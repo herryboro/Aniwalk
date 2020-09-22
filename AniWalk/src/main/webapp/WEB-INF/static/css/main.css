@@ -1,0 +1,158 @@
+/*Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+/*
+font-family: 'Noto Sans KR', sans-serif
+*/
+
+:root{
+    --main-color: #71d5c2;
+    --white: #fafafa;
+}
+/**************************************************
+
+    modal-bg
+
+***************************************************/
+.modal-bg{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.modal-content{
+    width: 70%;
+    height: 70%;
+    background: var(--white);
+    padding: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hidden{
+    display: none;
+}
+/**************************************************
+
+    indexTemplate
+
+***************************************************/
+html{
+    width: 100%;
+    height: 100%;
+    font-family: 'Noto Sans KR', sans-serif
+}
+body{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+nav{
+    width: 100%;
+    height: 10%;
+    border: 1px solid black;
+}
+article{
+    width: 100%;
+    height: 80%;
+}
+article div{
+    width: 100%;
+    height: 90%;
+    background-image: url("../../images/index_bg.jpg");
+    background-repeat : no-repeat;
+    background-size : cover;
+
+    margin: 2% auto;
+}
+.innerBox{
+    width: 300px;
+    height: 350px;
+    background: #71d5c2b8;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    top: 100px;
+    left: 20%;
+}
+.innerBox label{
+    font-size: 2rem;
+}
+.innerBox button{
+    display: block;
+    margin-top: 30px;
+}
+footer{
+    width: 100%;
+    height: 6%;
+    background: var(--main-color);
+    color: var(--white);
+    margin: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+/**************************************************
+
+    signUp
+
+***************************************************/
+.register{
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 90%;
+    margin: auto 1px;
+}
+
+.register-left{
+    width: 30%;
+    height: 90%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+}
+.register-right{
+    width: 70%;
+    height: 90%;
+    padding: 20px;
+
+    background: var(--white);
+    overflow: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+}
+::-webkit-scrollbar {
+     display: none; /* Chrome, Safari, Opera*/
+ }
+
+.addDog{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px;
+}
