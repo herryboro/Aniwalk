@@ -8,6 +8,5 @@
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
 
-	<view-controller path="/board/insertView.do" view-name="board/write"/>
-	<view-controller path="/member/insertView.do" view-name="member/write"/>
+	<view-controller path="/index.do" view-name="index"/>
 </beans:beans>
