@@ -20,9 +20,9 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/images/**"
-		location="/WEB-INF/static/images/" />
-	<resources mapping="/common/**"
-		location="/WEB-INF/static/common/" />
+		location="/WEB-INF/images/" />
+	<resources mapping="/static/**"
+		location="/WEB-INF/static/" />
 
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
