@@ -7,19 +7,19 @@
 <title>회원가입</title>
 </head>
 	<!-- css -->
-	<link rel="stylesheet" type="text/css" href="../../static/css/main.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/main.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 	<!-- jquery -->
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 	<!-- js -->
-	<script src="../../static/js/main.js"></script>
+	<script src="${pageContext.request.contextPath}/static/js/main.js"></script>
 
 <body>
 <div class="container register">
 	<div class="register-left">
-		<img src="../../images/main_logo.png" alt="">
+		<img src="${pageContext.request.contextPath}/images/main_logo.png" alt="">
 		<p>
 			Walk anywhere with your dog
 		</p>

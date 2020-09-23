@@ -9,4 +9,5 @@
 
 
 	<view-controller path="/index.do" view-name="index"/>
+	<view-controller path="/login.do" view-name="login"/>
 </beans:beans>

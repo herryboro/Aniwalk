@@ -15,7 +15,7 @@
 			산책을<br>
 			지금 시작해보세요
 		</label>
-		<a id="custom-login-btn" href="javascript:loginWithKakao()">
+		<a id="custom-login-btn" href="/aniwalk/login.do">
 			<img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="222"/>
 		</a>
 		<p id="token-result"></p>
