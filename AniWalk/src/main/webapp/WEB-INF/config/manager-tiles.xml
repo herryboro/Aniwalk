@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+       
+<tiles-definitions>
+	<!-- 유저 리스트 -->
+	<definition name="manager/user" extends="managerTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/manager/manageUser.jsp"/>
+	</definition>
+	<!-- 워커 리스트 -->
+	<definition name="manager/walker" extends="managerTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/manager/manageApplier.jsp"/>
+	</definition>
+	<!-- 유저 상세정보 -->
+	<definition name="manager/userInfo" extends="managerTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/manager/manageUserInfo.jsp"/>
+	</definition>
+	<!-- 워커 상세정보 -->
+	<definition name="manager/walkerInfo" extends="managerTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/manager/manageApplierInfo.jsp"/>
+	</definition>
+	
+</tiles-definitions>

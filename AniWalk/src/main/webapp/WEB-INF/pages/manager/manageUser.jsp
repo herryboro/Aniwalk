@@ -32,7 +32,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr onclick="location.href='/aniwalk/manager/userInfo.do'">
                 <td>kakaotalk id</td>
                 <td>nickname</td>
                 <td>phone number</td>

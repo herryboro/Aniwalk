@@ -33,7 +33,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
+        <tr onclick="location.href='/aniwalk/manager/walkerInfo.do'">
             <td>신청자</td>
             <td>address@mail.com</td>
             <td>010-1234-5678</td>
