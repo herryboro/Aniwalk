@@ -4,9 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자템플릿</title>
+	<link rel="stylesheet" type="text/css" href="../static/css/manager.css">
 </head>
 <body>
-	hi
+	<header></header>
+	<article>
+		<nav></nav>
+		<section></section>
+	</article>
+	<footer>관리자 일 똑바로해라</footer>
 </body>
 </html>
