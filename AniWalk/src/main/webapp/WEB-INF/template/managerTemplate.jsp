@@ -1,17 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>관리자템플릿</title>
-	<link rel="stylesheet" type="text/css" href="../static/css/manager.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/manager.css">
 </head>
 <body>
-	<header></header>
+	<header><tiles:insertAttribute name="top"></tiles:insertAttribute></header>
 	<article>
-		<nav></nav>
-		<section></section>
+		<nav><tiles:insertAttribute name="nav"></tiles:insertAttribute></nav>
+		<section><tiles:insertAttribute name="content"></tiles:insertAttribute></section>
 	</article>
 	<footer>관리자 일 똑바로해라</footer>
 </body>

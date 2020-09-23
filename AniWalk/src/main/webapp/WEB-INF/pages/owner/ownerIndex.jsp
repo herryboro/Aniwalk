@@ -9,7 +9,7 @@
 <body>
 	<div class="owner-content">
 		<div class="index-img">
-			<img src="../../images/ownerindex.png" alt="">
+			<img src="${pageContext.request.contextPath}/images/ownerindex.png" alt="">
 		</div>
 	</div>
 	

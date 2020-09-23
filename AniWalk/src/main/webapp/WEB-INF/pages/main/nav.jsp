@@ -13,11 +13,11 @@
 	<img src="${pageContext.request.contextPath}/images/main_logo.png" alt="">
 
 	<ul class="nav-ul">
-		<li>Home</li>
+		<li><a href="/aniwalk/index.do">Home</a></li>
 		<li>사용방법</li>
 		<li>사용후기</li>
 		<li>Login</li>
-		<li>Walker신청</li>
+		<li><a href="/aniwalk/walkerApply.do">Walker신청</a></li>
 	</ul>
 </div>
 

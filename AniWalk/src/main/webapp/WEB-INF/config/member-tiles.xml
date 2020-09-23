@@ -7,5 +7,9 @@
 	<definition name="login" extends="mainTemplate">
 		<put-attribute name="content" value="/WEB-INF/pages/main/signUp.jsp"/>
 	</definition>
+	<definition name="walkerApply" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/main/walkerApply.jsp"/>
+		<put-attribute name="nav" value="/WEB-INF/pages/main/walkerApplyTop.jsp"/>
+	</definition>
 
 </tiles-definitions>

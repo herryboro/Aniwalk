@@ -7,7 +7,7 @@
 <title>프렌즈신청</title>
 </head>
 	<!-- css -->
-	<link rel="stylesheet" type="text/css" href="../../static/css/main.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/main.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 
@@ -15,7 +15,7 @@
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 	<!-- js -->
-	<script src="../../static/js/main.js"></script>
+	<script src="${pageContext.request.contextPath}/static/js/main.js"></script>
 
 <body>
 <div class="container">

@@ -10,4 +10,7 @@
 
 	<view-controller path="/index.do" view-name="index"/>
 	<view-controller path="/login.do" view-name="login"/>
+	<view-controller path="/walkerApply.do" view-name="walkerApply"/>
+	<view-controller path="/owner/index.do" view-name="owner/index"/>
+	<view-controller path="/manager/index.do" view-name="manager/index"/>
 </beans:beans>

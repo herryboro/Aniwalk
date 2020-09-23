@@ -6,15 +6,15 @@
 <meta charset="UTF-8">
 <title>오너메뉴</title>
 </head>
-<link rel="stylesheet" type="text/css" href="../../static/css/owner.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/owner.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <body>
 <div class="ownerNav">
-	<img src="../../images/main_logo.png" alt="">
+	<img src="${pageContext.request.contextPath}/images/main_logo.png" alt="">
 
 	<ul>
 		<li>
-			<img class="img-circle" src="../../images/profile_test.png" alt="">
+			<img class="img-circle" src="${pageContext.request.contextPath}/images/profile_test.png" alt="">
 			<label>유저닉네임</label>
 		</li>
 		<li>
