@@ -9,7 +9,7 @@
 </head>
 
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/main.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <!-- js -->
@@ -22,7 +22,6 @@
 		<tiles:insertAttribute name="content"></tiles:insertAttribute>
 		
 		<div>
-		<tiles:insertAttribute name="sign"></tiles:insertAttribute>
 			<div class="innerBox">
 				<label>
 					반려견의<br>
