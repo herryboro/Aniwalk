@@ -18,10 +18,10 @@
 			<label>유저닉네임</label>
 		</li>
 		<li>
-			<button class="btn btn-primary" type="button">산책러 모집</button>
+			<button class="btn btn-primary" type="button">산책모집</button>
 		</li>
 		<li>
-			<button class="btn btn-primary" type="button">산책러 리스트</button>
+			<button class="btn btn-primary" type="button">펫프렌즈 리스트</button>
 		</li>
 		<li>
 			<button class="btn btn-primary" type="button">대화리스트</button>
