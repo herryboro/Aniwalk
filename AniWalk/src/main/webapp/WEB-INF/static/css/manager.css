@@ -28,6 +28,18 @@ ul {
 ::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
 }
+
+.btn-line{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.btn-line button{
+    width: 200px;
+    margin: auto 20px;
+}
 /**************************************************
 
     modal-bg
@@ -289,4 +301,17 @@ footer{
 }
 .form-group ul li label{
     display: block;
+}
+/**************************************************
+
+    manageApplierInfo
+
+***************************************************/
+
+.applier-info{
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.applier-info li{
+    margin: 10px 0;
 }

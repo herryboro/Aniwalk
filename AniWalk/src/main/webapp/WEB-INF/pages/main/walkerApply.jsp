@@ -20,7 +20,7 @@
 <body>
 <div class="container">
 	<h3>서비스약관동의</h3>
-	<form id="applyForm1" class="walker-apply-form">
+	<form id="applyForm1" class="walker-apply-form" method="post" action="/aniwalk/index.do">
 		<ul class="terms">
 			<li>
 				<div>
@@ -103,7 +103,7 @@
 			</li>
 		</ul>
 
-		<button type="button" class="btn btn-success">신청</button>
+		<button type="submit" class="btn btn-success">신청</button>
 	</form>
 </div>
 </body>

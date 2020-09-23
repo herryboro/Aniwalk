@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>index</title>
 </head>
-<link rel="stylesheet" type="text/css" href="../../static/css/manager.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/manager.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <body>
 <div class="user-info">
@@ -15,7 +15,7 @@
     </div>
     <div class="info-content">
         <div class="left-box">
-            <img class="img-rounded" src="../../images/profile_test.png" alt="">
+            <img class="img-rounded" src="${pageContext.request.contextPath}/images/profile_test.png" alt="">
             <ul>
                 <li>
                     <label>user nickname</label>
@@ -41,7 +41,7 @@
         <div class="right-box">
             <h4>반려견 리스트</h4>
             <div class="form-group">
-                <img class="img-rounded" src="../../images/mydog.jpg" alt="">
+                <img class="img-rounded" src="${pageContext.request.contextPath}/images/mydog.jpg" alt="">
                 <ul>
                     <li>
                         <label>강아지이름</label>
@@ -60,7 +60,7 @@
                 </ul>
             </div>
             <div class="form-group">
-                <img class="img-rounded" src="../../images/mydog.jpg" alt="">
+                <img class="img-rounded" src="${pageContext.request.contextPath}/images/mydog.jpg" alt="">
                 <ul>
                     <li>
                         <label>강아지이름</label>

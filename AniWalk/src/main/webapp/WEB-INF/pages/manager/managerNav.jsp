@@ -10,8 +10,8 @@
 <body>
 <div class="dash-nav">
 	<ul>
-		<li>유저관리</li>
-		<li>워커관리</li>
+		<li><a href="/aniwalk/manager/user.do">유저관리</a></li>
+		<li><a href="/aniwalk/manager/walker.do">워커관리</a></li>
 		<li>예약관리</li>
 		<li>포인트관리</li>
 	</ul>
