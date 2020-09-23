@@ -12,13 +12,7 @@
 <div class="main-nav">
 	<img src="../../images/main_logo.png" alt="">
 
-	<ul class="nav-ul">
-		<li>Home</li>
-		<li>사용방법</li>
-		<li>사용후기</li>
-		<li>Login</li>
-		<li>Walker신청</li>
-	</ul>
+	<span>펫프렌즈 신청</span>
 </div>
 
 </body>
