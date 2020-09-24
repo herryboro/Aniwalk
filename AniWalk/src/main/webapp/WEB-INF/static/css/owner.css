@@ -14,6 +14,11 @@ ul{
     padding: 0;
     margin: 0;
 }
+ol{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 /**************************************************
 
     modal-bg
@@ -278,4 +283,78 @@ body{
 }
 .walked-info ul li{
     margin: 10px 0;
+}
+
+
+/**************************************************
+
+    ownerRecruit
+
+***************************************************/
+.recruit-write{
+    width: 100%;
+    overflow: scroll;
+}
+.recruit-write section{
+    width: 90%;
+    margin: 20px auto;
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.recruit-write section h4{
+    margin: 10px 0;
+}
+
+.recruit-write section ol li img{
+    width: 200px;
+    height: 200px;
+}
+.recruit-write section ol li{
+    text-align: center;
+}
+.recruit-write section ol li label{
+    margin: 20px auto 0 auto;
+}
+.recruit-write .form-group{
+    width: 40%;
+    height: 200px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.recruit-write .form-group div{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    border: 1px solid var(--black);
+}
+.recruit-write .form-group label{
+    margin: 20px auto;
+}
+.recruit-write .form-group i{
+    font-size: 10rem;
+}
+.recruit-write .date-select{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.recruit-write .notice label{
+    width: 100%;
+    height: 300px;
+}
+.recruit-write .notice textarea{
+    margin: auto;
+    height: 200px;
 }
