@@ -17,4 +17,6 @@
 	<view-controller path="/manager/walker.do" view-name="manager/walker"/>
 	<view-controller path="/manager/userInfo.do" view-name="manager/userInfo"/>
 	<view-controller path="/manager/walkerInfo.do" view-name="manager/walkerInfo"/>
+	<view-controller path="/owner/recruit.do" view-name="owner/recruit"/>
+	<view-controller path="/owner/my.do" view-name="owner/my"/>
 </beans:beans>

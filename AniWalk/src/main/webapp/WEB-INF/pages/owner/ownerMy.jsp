@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="../../static/css/owner.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/owner.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -36,7 +36,7 @@
 		</div>
 		<div class="mydog-item">
 			<div class="mydog-name">반려견이름</div>
-			<img class="img-thumbnail" src="../../images/mydog.jpg" alt="">
+			<img class="img-thumbnail" src="${pageContext.request.contextPath}/images/mydog.jpg" alt="">
 			<ul>
 				<li class="first">
 					<label>견종</label>
@@ -69,7 +69,7 @@
 		<div class="form-group">
 			<div class="walked-month">2020년 9월</div>
 			<div class="walked-info">
-				<img class="img-thumbnail" src="../../images/moveInfo.png" alt="">
+				<img class="img-thumbnail" src="${pageContext.request.contextPath}/images/moveInfo.png" alt="">
 				<ul>
 					<li>
 						<label>날짜</label>

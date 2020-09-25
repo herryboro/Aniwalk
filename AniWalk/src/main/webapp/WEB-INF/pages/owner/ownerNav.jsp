@@ -14,11 +14,11 @@
 
 	<ul>
 		<li>
-			<img class="img-circle" src="${pageContext.request.contextPath}/images/profile_test.png" alt="">
-			<label>유저닉네임</label>
+			<img class="img-circle" src="${pageContext.request.contextPath}/images/profile_test.png" alt="" onclick="location.href='/aniwalk/owner/my.do'">
+			<label onclick="location.href='/aniwalk/owner/my.do'">유저닉네임</label>
 		</li>
 		<li>
-			<button class="btn btn-primary" type="button">산책모집</button>
+			<button class="btn btn-primary" type="button" onclick="location.href='/aniwalk/owner/recruit.do'">산책모집</button>
 		</li>
 		<li>
 			<button class="btn btn-primary" type="button">펫프렌즈 리스트</button>

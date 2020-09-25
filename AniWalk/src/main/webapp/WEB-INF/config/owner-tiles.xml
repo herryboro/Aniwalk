@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+       
+<tiles-definitions>
+	<definition name="owner/recruit" extends="ownerTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/owner/ownerRecruit.jsp"/>
+	</definition>
+	<definition name="owner/my" extends="ownerTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/owner/ownerMy.jsp"/>
+	</definition>
+</tiles-definitions>
