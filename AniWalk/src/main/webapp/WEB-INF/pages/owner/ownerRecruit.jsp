@@ -54,8 +54,9 @@
 		</section>
 		<section>
 			<h4>4.주소선택</h4>
+			<input type="text" id="addr" placeholder="주소검색"><button onclick="searchAddr()">검색</button>
 			<div id="map" style="width: 500px; height: 400px;" class="kakao-map"></div>
-			<label id="centerAddr">현재주소만 가져오면되는데 이게 힘드네 어휴</label>
+			<label id="centerAddr">현재주소</label>
 		</section>
 		<section class="notice">
 			<h4>5.주의사항</h4>
@@ -66,17 +67,47 @@
 
 </body>
 <script>
-	//카카오톡지도
+//카카오톡지도 생성
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     mapOption = {
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
         level: 5 // 지도의 확대 레벨
     };
-
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+//지도에 표시된 마커 객체를 가지고 있을 배열입니다
+var markers = [];
+
+//장소 검색 객체를 생성합니다
+var ps = new kakao.maps.services.Places();  
 
 //주소-좌표 변환 객체를 생성합니다
 var geocoder = new kakao.maps.services.Geocoder();
+
+// 키워드 검색을 요청하는 함수
+function searchPlaces() {
+    var keyword = document.getElementById('keyword').value;
+    if (!keyword.replace(/^\s+|\s+$/g, '')) {
+        alert('키워드를 입력해주세요!');
+        return false;
+    }
+    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
+    ps.keywordSearch( keyword, placesSearchCB); 
+}
+
+//좌표로 주소 불러오기
+function coord2Address(coord) {
+	 var callback = function(result, status) {
+         if (status === kakao.maps.services.Status.OK) {
+         	var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+            detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
+            document.getElementById('centerAddr').innerHTML = detailAddr;
+         }
+     };
+     message = '<div style="padding:5px;">현재위치</div>';
+     displayMarker(coord, message);
+     geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
+}
 
 // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 if (navigator.geolocation) {
@@ -88,20 +119,9 @@ if (navigator.geolocation) {
         
         var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
             message = '<div style="padding:5px;">현재위치</div>'; // 인포윈도우에 표시될 내용입니다
-   
+        
         // 마커와 인포윈도우를 표시합니다
         displayMarker(locPosition, message);
-        var coord = new kakao.maps.LatLng(lat, lon);
-        var callback = function(result, status) {
-            if (status === kakao.maps.services.Status.OK) {
-            	var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
-                detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
-                document.getElementById('centerAddr').innerHTML = detailAddr;
-            }
-        };
-
-        geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
-   
     });
     
 } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
@@ -113,13 +133,7 @@ if (navigator.geolocation) {
 
 // 지도에 마커와 인포윈도우를 표시하는 함수입니다
 function displayMarker(locPosition, message) {
-
-    // 마커를 생성합니다
-    var marker = new kakao.maps.Marker({
-        map: map,
-        position: locPosition
-    });
-    
+	removeMarker();
     var iwContent = message, // 인포윈도우에 표시할 내용
         iwRemoveable = true;
 
@@ -128,9 +142,19 @@ function displayMarker(locPosition, message) {
         content : iwContent,
         removable : iwRemoveable
     });
-    
+ 	//마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        map: map,
+        position: locPosition
+    });
     // 인포윈도우를 마커위에 표시합니다 
-    infowindow.open(map, marker);
+    // infowindow.open(map, marker);
+    
+    // 마커가 지도 위에 표시되도록 설정합니다
+    marker.setMap(map);
+    
+	// 생성된 마커를 배열에 추가합니다
+    markers.push(marker);
     
     // 지도 중심좌표를 접속위치로 변경합니다
     map.setCenter(locPosition);
@@ -147,6 +171,24 @@ map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 var zoomControl = new kakao.maps.ZoomControl();
 map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
+function searchAddr(){
+	var addr = document.getElementById('addr').value
+	geocoder.addressSearch(addr, function(result, status) {
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === kakao.maps.services.Status.OK) {
+	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	        coord2Address(coords);
+	     }
+	});    
+}
+
+//지도 위에 표시되고 있는 마커를 모두 제거합니다
+function removeMarker() {
+    for ( var i = 0; i < markers.length; i++ ) {
+        markers[i].setMap(null);
+    }   
+    markers = [];
+}
 </script>
 
 </html>
