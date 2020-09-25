@@ -376,9 +376,17 @@ body{
 
 .walker-list .search-part{
     padding: 20px;
+    background: white;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
 }
 .walker-list .search-part label{
     width: 90%;
+}
+.items{
+    margin-top: 80px;
 }
 .walker-list .list-item{
     display: flex;
@@ -386,8 +394,7 @@ body{
     justify-content: space-around;
 
     width: 95%;
-    padding: 40px;
-    margin: 10px;
+    padding: 10px 0;
 }
 
 .list-item img{
