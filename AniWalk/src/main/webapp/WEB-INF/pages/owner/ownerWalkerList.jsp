@@ -11,22 +11,7 @@
 
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </head>
-<style>
-	.star-rating {
-		width:304px;
-	}
-	.star-rating,.star-rating span {
-		display:inline-block;
-		height:55px;
-		overflow:hidden;
-		background:url("../../images/star.png")no-repeat;
-	}
-	.star-rating span{
-		background-position:left bottom;
-		line-height:0;
-		vertical-align:top;
-	}
-</style>
+
 <body>
 	<div class="walker-list">
 

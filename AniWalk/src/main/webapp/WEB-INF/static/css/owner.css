@@ -9,6 +9,11 @@ font-family: 'Jua', sans-serif;
     --black: #212121;
 }
 
+/**************************************************
+
+    공통
+
+***************************************************/
 ul{
     list-style: none;
     padding: 0;
@@ -19,6 +24,34 @@ ol{
     padding: 0;
     margin: 0;
 }
+ul li ul{
+    list-style: circle;
+    margin: 20px auto 0 auto;
+}
+button{
+    border: none;
+}
+/**************************************************
+
+    별점
+
+***************************************************/
+
+.star-rating {
+    width:304px;
+}
+.star-rating,.star-rating span {
+    display:inline-block;
+    height:55px;
+    overflow:hidden;
+    background:url("../../images/star.png")no-repeat;
+}
+.star-rating span{
+    background-position:left bottom;
+    line-height:0;
+    vertical-align:top;
+}
+
 /**************************************************
 
     modal-bg
@@ -402,7 +435,123 @@ body{
     height: 250px;
 }
 
-.list-item ul li ul{
-    list-style: circle;
-    margin: 20px auto 0 auto;
+
+
+/**************************************************
+
+    ownerWalkerList
+
+***************************************************/
+.walker-info{
+    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+    width: 100%;
+    height: 100%;
+}
+
+.info-top{
+    background: linear-gradient(to right, #0c2646 0%, #204065 60%, #2a5788 100%);
+    color: var(--white);
+    width: 100%;
+    height: 180px;
+    padding: 30px;
+
+    user-select: none;
+}
+.info-content{
+    width: 95%;
+    padding: 20px;
+
+    background: var(--white);
+    box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
+
+    position: relative;
+    top: -90px;
+
+    margin: 1px auto;
+    border-radius: 20px;
+}
+
+.info-box{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+
+    padding: 20px;
+}
+.info-box .star-rating {
+    width: 170px;
+}
+.info-box .star-rating, .info-box .star-rating span {
+    display:inline-block;
+    height:27px;
+    overflow:hidden;
+    background:url("../../images/littlestar.png")no-repeat;
+}
+.info-box .star-rating span{
+    background-position:left bottom;
+    line-height:0;
+    vertical-align:top;
+}
+.info-box .img-rounded{
+    width: 300px;
+    height: 250px;
+}
+.info-box ul button{
+    margin: 20px auto 5px auto;
+    width: 100%;
+    height: 45px;
+
+    background: rgb(142, 68, 173);
+    color: var(--white);
+}
+.info-box .glyphicon-remove{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.part-title{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.review-list .img-rounded{
+    width: 150px;
+    height: 150px;
+
+    margin-left: 40px;
+}
+.review-list .img-circle{
+    width: 40px;
+    height: 35px;
+}
+.review-list .star-rating {
+    width: 90px;
+}
+.review-list .star-rating, .review-list .star-rating span {
+    display:inline-block;
+    height:14px;
+    overflow:hidden;
+    background:url("../../images/morelittlestar.png")no-repeat;
+}
+.review-list .star-rating span{
+    background-position:left bottom;
+    line-height:0;
+    vertical-align:top;
+}
+.review-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.review-item ul{
+    width: 80%;
+    margin-left: 50px;
+}
+.review-item ul .bottom-margin{
+    margin-bottom: 30px;
+}
+.review-item ul .bottom-margin .right{
+    position: relative;
+    left: 100px;
 }
