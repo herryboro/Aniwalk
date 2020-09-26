@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kr.pandorabox.aniwalk.walker">
+	<insert id="walkerApply" parameterType="walker">
+		insert into ANI_Walker 
+		values('walker'||lpad(seq_walker.nextval,5,0), #{wk_name}, 'temp'||seq_walker.nextval, 
+			'temp'||seq_walker.nextval, #{wk_phone}, to_date(#{wk_birth}, 'YYYYMMDD'), #{wk_email}, #{wk_addr},
+			 #{wk_profile_img1}, #{wk_profile_img2}, #{wk_profile_img3}, #{wk_event_agree}, 
+			 #{wk_location}, 0, sysdate, 1, sysdate, 0)
+	</insert> 
+	<insert id="fileinsert" parameterType="Map">
+		insert all
+		<foreach collection="filelist" item="file" separator=" ">
+			into ANI_Certificate 
+			values('certi'||lpad(seq_certificate.nextval,5,0),
+				'walker'||lpad(seq_walker.currval,5,0), #{file})
+		</foreach>
+		select * from dual
+	</insert>
+</mapper>

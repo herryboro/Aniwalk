@@ -3,8 +3,14 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+	<settings>
+        <setting name="cacheEnabled" value="false" />
+        <setting name="jdbcTypeForNull" value="NULL" />
+    </settings>
 	<typeAliases>
+		<typeAlias type="kr.pandorabox.aniwalk.walker.WalkerDTO" alias="walker"/>
 	</typeAliases>
 	<mappers>
+		<mapper resource="mapper/walker.xml"/>
 	</mappers>
 </configuration>
