@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="kr.pandorabox.aniwalk.walker">
+	<!-- 펫 프렌즈 신청 정보 insert -->
 	<insert id="walkerApply" parameterType="walker">
 		insert into ANI_Walker 
 		values('walker'||lpad(seq_walker.nextval,5,0), #{wk_name}, 'temp'||seq_walker.nextval, 
@@ -11,6 +12,8 @@
 			 #{wk_profile_img1}, #{wk_profile_img2}, #{wk_profile_img3}, #{wk_event_agree}, 
 			 #{wk_location}, 0, sysdate, 1, sysdate, 0)
 	</insert> 
+	
+	<!-- 펫 프렌즈 자격증 insert -->
 	<insert id="fileinsert" parameterType="Map">
 		insert all
 		<foreach collection="filelist" item="file" separator=" ">
@@ -20,4 +23,12 @@
 		</foreach>
 		select * from dual
 	</insert>
+	
+	<!-- 펫프렌즈 신청 정보 List -->
+	<select id="applierList" resultType="walker">
+		select * from ANI_Walker
+		<if test="wk_id != null">
+			where wk_id=#{wk_id}
+		</if>
+	</select>
 </mapper>

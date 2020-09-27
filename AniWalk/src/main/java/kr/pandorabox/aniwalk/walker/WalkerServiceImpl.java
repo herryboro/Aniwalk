@@ -1,6 +1,7 @@
 package kr.pandorabox.aniwalk.walker;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,13 @@ public class WalkerServiceImpl implements WalkerService {
 	@Autowired
 	private WalkerDAO walkerDao;
 	
-	// 워커 신청
+	// 펫프렌즈 리스트
+	@Override
+	public List<WalkerDTO> applierList() {
+		return walkerDao.applyierList();
+	}
+	
+	// 펫프렌즈 신청 
 	@Override
 	public int walkerApply(WalkerDTO walker, ArrayList<String> filelist) {
 		int result = 0;

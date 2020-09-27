@@ -1,6 +1,7 @@
 package kr.pandorabox.aniwalk.walker;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
 import kr.pandorabox.aniwalk.FileUploadLogic;
@@ -20,6 +22,23 @@ public class WalkerController {
 	private WalkerService walkerService;
 	@Autowired
 	private FileUploadLogic uploadService;
+	
+	// 펫 프렌즈 상세 정보
+	@RequestMapping("manager/walkerInfo.do")
+	public ModelAndView walkerInfo() {
+		List<WalkerDTO> walkerInfo = walkerService.applierList();
+		return new ModelAndView("manager/walkerInfo", "walkerInfo", walkerInfo);
+	}
+	
+	// 펫 프렌즈 신청 리스트
+	@RequestMapping("manager/walker.do")
+	public ModelAndView ApplierList() {
+		ModelAndView mav = new ModelAndView();
+		List<WalkerDTO> list = walkerService.applierList();
+		mav.addObject("applierList",list);
+		mav.setViewName("manager/walker");
+		return mav;
+	}
 	
 	// 지역
 	@ResponseBody

@@ -8,6 +8,7 @@
 </head>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/manager.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <body>
 <div class="user-info">
     <div class="info-top">
@@ -19,24 +20,23 @@
             <ul>
                 <li>
                     <label>신청자</label>
-                    <span>신청인</span>
+                    <span>${walkerInfo[0].wk_name}</span>
                 </li>
                 <li>
                     <label>생년월일</label>
-                    <span>900909</span>
+                    <span>${walkerInfo[0].wk_birth}</span>
                 </li>
                 <li>
                     <label>핸드폰</label>
-                    <span>010-3938-4995</span>
+                    <span>${walkerInfo[0].wk_phone}</span>
                 </li>
                 <li>
                     <label>거주지</label>
-                    <span>서울시 서초구 반포대로16길 42</span>
-                    <span>롯데캐슬 1004동 209호</span>
+                    <span>${walkerInfo[0].wk_addr}</span>
                 </li>
                 <li>
                     <label>이메일</label>
-                    <span>test@guest.com</span>
+                    <span>${walkerInfo[0].wk_email}</span>
                 </li>
             </ul>
         </div>
@@ -47,19 +47,20 @@
             <ul class="applier-info">
                 <li>
                     <label>신청날짜</label>
-                    <span>2020-09-23</span>
+                    <span>${walkerInfo[0].apply_date}</span>
                 </li>
                 <li>
                     <label>활동지역</label>
-                    <span>서울특별시 서초구</span>
+                    <span>${walkerInfo[0].wk_location}</span>
                 </li>
                 <li>
                     <label>신청상태</label>
-                    <select>
-                        <option>연락전</option>
-                        <option>교육대기</option>
-                        <option>교육수료</option>
-                        <option>합격</option>
+                    <select id="apply_state">
+                        <option value="1">서류 검토 중</option>
+                        <option value="2">교육 대기</option>
+                        <option value="3">교육 수료</option>
+                        <option value="4">합격</option>
+                        <option value="5">불합격</option>
                     </select>
                 </li>
             </ul>
@@ -95,6 +96,14 @@
         </form>
     </div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		var apply_state = "${walkerInfo[0].apply_state}";
+		$('#apply_state').val(apply_state).attr('selected', 'selected');
+		
+	})
+</script>
 </body>
 
 </html>

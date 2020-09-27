@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>index</title>
 </head>
-<link rel="stylesheet" type="text/css" href="../../static/css/manager.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/manager.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <body>
 <div class="manage">
@@ -33,14 +36,16 @@
         </tr>
         </thead>
         <tbody>
-        <tr onclick="location.href='/aniwalk/manager/walkerInfo.do'">
-            <td>신청자</td>
-            <td>address@mail.com</td>
-            <td>010-1234-5678</td>
-            <td>서울특별시 서초구</td>
-            <td>2020-09-23</td>
-            <td>연락전<!--/ 교육대기 / 교육수료 /--></td>
-        </tr>
+        <c:forEach var="applier" items="${applierList}">
+	        <tr onclick="location.href='/aniwalk/manager/walkerInfo.do?wk_id=${applier.wk_id}'">
+	            <td>${applier.wk_name}</td>
+	            <td>${applier.wk_email}</td>
+	            <td>${applier.wk_phone}</td>
+	            <td>${applier.wk_location}</td>
+	            <td>${applier.apply_date}</td>
+	            <td>${applier.apply_state}</td>
+	        </tr>
+        </c:forEach>
         </tbody>
     </table>
 
