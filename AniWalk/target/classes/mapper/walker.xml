@@ -25,7 +25,7 @@
 	</insert>
 	
 	<!-- 펫프렌즈 신청 정보 List -->
-	<select id="applierList" resultType="walker">
+	<select id="applierList" parameterType="Map" resultType="walker">
 		select * from ANI_Walker
 		<if test="wk_id != null">
 			where wk_id=#{wk_id}

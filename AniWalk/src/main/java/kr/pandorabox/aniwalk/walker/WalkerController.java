@@ -25,16 +25,17 @@ public class WalkerController {
 	
 	// 펫 프렌즈 상세 정보
 	@RequestMapping("manager/walkerInfo.do")
-	public ModelAndView walkerInfo() {
-		List<WalkerDTO> walkerInfo = walkerService.applierList();
+	public ModelAndView walkerInfo(String wk_id) {
+		System.out.println(wk_id);
+		List<WalkerDTO> walkerInfo = walkerService.applierList(wk_id);
 		return new ModelAndView("manager/walkerInfo", "walkerInfo", walkerInfo);
 	}
 	
-	// 펫 프렌즈 신청 리스트
+	// 펫 프렌즈 리스트
 	@RequestMapping("manager/walker.do")
-	public ModelAndView ApplierList() {
+	public ModelAndView ApplierList(String wk_id) {
 		ModelAndView mav = new ModelAndView();
-		List<WalkerDTO> list = walkerService.applierList();
+		List<WalkerDTO> list = walkerService.applierList(wk_id);
 		mav.addObject("applierList",list);
 		mav.setViewName("manager/walker");
 		return mav;

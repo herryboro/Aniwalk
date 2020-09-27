@@ -9,6 +9,6 @@ public interface WalkerDAO {
 
 	public int fileInsert(ArrayList<String> filelist);
 
-	public List<WalkerDTO> applyierList();
+	public List<WalkerDTO> applyierList(String wk_id);
 	
 }

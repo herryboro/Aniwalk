@@ -16,8 +16,10 @@ public class WalkerDAOImpl implements WalkerDAO{
 	
 	// 펫프렌즈 list
 	@Override
-	public List<WalkerDTO> applyierList() {
-		return session.selectList("kr.pandorabox.aniwalk.walker.applierList");
+	public List<WalkerDTO> applyierList(String wk_id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("wk_id", wk_id);
+		return session.selectList("kr.pandorabox.aniwalk.walker.applierList", map);
 	}
 	
 	// 펫프렌즈 자격증 정보 insert
