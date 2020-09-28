@@ -67,4 +67,14 @@ public class WalkerController {
 		walkerService.walkerApply(walker, filelist);
 		return "index";
 	}
+	
+	//walker 로그인 유효성 검사
+	@RequestMapping(value="/walker/loginCheck.do",
+			method=RequestMethod.GET,
+			produces = "application/json;charset=utf-8")
+	public @ResponseBody int login(String walker_id, String wk_pw) {
+		int result = walkerService.walkerLogin(walker_id,wk_pw);
+		return result;
+	}
+	
 }

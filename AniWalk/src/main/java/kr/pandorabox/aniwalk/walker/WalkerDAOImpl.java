@@ -35,4 +35,15 @@ public class WalkerDAOImpl implements WalkerDAO{
 	public int walkerApply(WalkerDTO walker) {
 		return session.insert("kr.pandorabox.aniwalk.walker.walkerApply", walker);
 	}
+	
+	//워커 로그인 check
+	@Override
+	public int walkerLogin(HashMap<String, String> map) {
+		return session.selectOne("kr.pandorabox.aniwalk.walker.walkerLogin", map);
+	}
+	@Override
+	public int walkerLogin_id(String walker_id) {
+		return session.selectOne("kr.pandorabox.aniwalk.walker.walkerLogin_id",walker_id);
+	}
+	
 }
