@@ -2,6 +2,7 @@ package kr.pandorabox.aniwalk.walker;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,7 +15,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
+import kr.pandorabox.aniwalk.Authentication;
 import kr.pandorabox.aniwalk.FileUploadLogic;
+import kr.pandorabox.aniwalk.SHA256;
 
 @Controller
 public class WalkerController {
@@ -22,6 +25,38 @@ public class WalkerController {
 	private WalkerService walkerService;
 	@Autowired
 	private FileUploadLogic uploadService;
+	@Autowired
+	private Authentication auth;
+	@Autowired
+	private SHA256 hash;
+	
+	// 인증번호 확인 
+	@ResponseBody
+	@RequestMapping(value="walker/authNum.do",
+			method = RequestMethod.POST,
+			produces = "application/text;charset=utf-8")
+	public String authNum(String auth_num, String auth) {
+	    auth = hash.toSHA256(auth);
+	    if(auth_num.equals(auth)) {
+	    	return "pass";
+	    }
+		return "fail";
+	}
+	
+	// 문자인증 메시지 보내기
+	@ResponseBody
+	@RequestMapping(value="walker/auth.do",
+			method = RequestMethod.POST,
+			produces = "application/text;charset=utf-8")
+	public String auth(String wk_phone) {
+		System.out.println(wk_phone);
+		Random ran = new Random();
+	    String auth = Integer.toString(ran.nextInt(899999) + 100000); 
+	    System.out.println(auth);
+	    auth = hash.toSHA256(auth);
+	    System.out.println(auth);
+		return auth;
+	}
 	
 	// 펫 프렌즈 상세 정보
 	@RequestMapping("manager/walkerInfo.do")

@@ -68,12 +68,12 @@
 				<label>이름</label>
 				<label><input name='wk_name' class="form-control" type="text" placeholder="이름" required minlength="2"></label>
 			</li>
-			<li class="auth-phone">
+			<li>
 				<label>휴대폰번호</label>
-				<label><input name='wk_phone' class="form-control" type="text" placeholder="휴대폰번호" required>
-				<button type="button" class="btn btn-primary auth-btn">휴대폰 인증하기</button></label>
-				
+				<label><input id='wk_phone' name='wk_phone' class="form-control" type="text" placeholder="휴대폰번호" required>
+				<input id='auth-btn' type="button" class="btn btn-primary auth-btn" value="휴대폰 인증하기"></label>
 			</li>
+			<li class="auth-phone"></li>
 			<li>
 				<label>생년월일</label>
 				<label><input name='wk_birth' class="form-control" type="text" placeholder="생년월일 6자리" required></label>
@@ -130,11 +130,52 @@
 				<input name="files" class="form-control" type="file">
 			</li>
 		</ul>
-
+		<input id='auth_num' type="hidden">
 		<button type="submit" class="btn btn-success">신청</button>
 	</form>
 </div>
 <script type="text/javascript">
+	$('#auth-btn').on('click', function(){
+		$('#wk_phone').attr("readonly", "readonly");
+		$('.auth-phone').empty();
+		$('#auth-btn').val('인증번호 다시받기');
+		$.ajax({
+			url:"/aniwalk/walker/auth.do",
+			type:"post",
+			data:{
+				"wk_phone" : $('#wk_phone').val()
+			},
+			success:function(data){
+				var auth_num = $('#auth_num').val(data);
+			},
+			error:function(a,b,c){
+			}
+		})
+	})
+	function auth(){
+		alert('a');
+		alert($('.auth').val());
+		$.ajax({
+			url:"/aniwalk/walker/authNum.do",
+			type:"post",
+			data:{
+				"auth_num" : $('#auth_num').val(),
+				"auth" : $('.auth').val()
+			},
+			success:function(data){
+				if(data == 'pass'){
+					$('#auth-btn').val('인증이 완료되었습니다');
+					$('#auth-btn').removeAttr('id');
+					$('.auth-phone').empty();
+					authBtn.removeEventListener('click',addPhoneAuthForm);
+				} else {
+					alert('인증번호가 틀렸습니다.');
+				}
+			},
+			error:function(a,b,c){
+			}
+		})
+	}
 	$(document).ready(function(){
 		var area = ["강원도", "경기도", "경상남도", "경상북도", "광주광역시", "대구광역시",
 			"대전광역시", "부산광역시", "서울특별시", "세종특별자치시", "울산광역시", "인천광역시",

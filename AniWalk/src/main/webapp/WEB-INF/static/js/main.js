@@ -18,11 +18,12 @@ applyCheck =  function(){
 addPhoneAuthForm = function(){
     const authPhoneLi = document.querySelector('.auth-phone');
     const addForm = `
-        <form style="display: flex; justify-content: space-around; margin-top: 10px;">
+        <form id='authForm' style="display: flex; justify-content: space-around; margin-top: 10px;">
             <label>인증번호</label>
-            <input type="text" class="from-control" style="width: 65%;">
-            <button type="button" class="btn btn-primary">인증번호입력</button>
+            <input class='auth' type="text" class="from-control" style="width: 65%;">
+            <button onclick='auth()' id='authNum' type="button" class="btn btn-primary">인증번호입력</button>
         </form>
     `
     authPhoneLi.innerHTML += addForm;
 }
+
