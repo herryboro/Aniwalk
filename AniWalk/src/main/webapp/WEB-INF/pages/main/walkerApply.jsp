@@ -15,6 +15,7 @@
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 	<!-- js -->
+	<script src="/aniwalk/static/js/main.js"></script>
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	
 	<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
@@ -26,7 +27,7 @@
 <body>
 <div class="container">
 	<h3>서비스약관동의</h3>
-	<form id="applyForm1" class="walker-apply-form" method="POST" 
+	<form id="applyForm1" class="walker-apply-form" method="POST" onsubmit="return applyCheck()"
 		enctype="multipart/form-data" name='walker' action="/aniwalk/walker/apply.do">
 		<ul class="terms">
 			<li>
@@ -39,6 +40,7 @@
 				<div class="essential-agree">
 					<i class="far fa-check-circle"></i>
 					<span>[필수] 개인정보 수집 및 이용 동의</span>
+					<input id="essentialAgreeYn" type="hidden" required>
 				</div>
 				<span id="essential" class="glyphicon glyphicon-chevron-down"></span>
 			</li>
@@ -91,7 +93,7 @@
 				<h3>[필수] 프로필사진을 등록해주세요</h3><span>(1개 이상)</span>
 			</li>
 			<li>
-				<input multiple="multiple" type=file class="form-control" name="profile_files[]">
+				<input multiple="multiple" type=file class="form-control" name="profile_files[]" required>
 			</li>
 		</ul>
 
@@ -171,11 +173,23 @@
 	const chooseClick = document.getElementById('choose');
 	const chooseContent = document.getElementById('choose-content');
 
+	ynCheck = () =>{
+		if($('.essential-agree').hasClass('agree')){
+			$('#essentialAgreeYn').val('Yes');
+		}else {
+			$('#essentialAgreeYn').val('');
+		}
+	}
+
+
+
 	essentialAgree.addEventListener('click',function(){
 		essentialAgree.classList.toggle('agree');
+		ynCheck();
 	});
 	chooseAgree.addEventListener('click',function(){
 		chooseAgree.classList.toggle('agree');
+		ynCheck();
 	});
 
 	essentialClick.addEventListener('click',function(){
@@ -193,6 +207,7 @@
 	allAgree.addEventListener('click',function (){
 		essentialAgree.classList.toggle('agree');
 		chooseAgree.classList.toggle('agree');
+		ynCheck();
 	});
 
 </script>
@@ -201,13 +216,15 @@
 <script>
 $(document).ready(function(){
 	$('footer').removeClass('absolute-position');
+
 });
+
 </script>
 
 </body>
 <style>
 	.agree{
-		color: #337ab7;
+		color: blue;
 	}
 </style>
 </html>
