@@ -15,7 +15,7 @@
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 	<!-- js -->
-	<script src="${pageContext.request.contextPath}/static/js/main.js"></script>
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	
 	<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
@@ -73,6 +73,15 @@
 			<li>
 				<label>이메일 주소</label>
 				<label><input name='wk_email' class="form-control" type="text" placeholder="이메일 주소 입력" required></label>
+			</li>
+		</ul>
+		
+		<ul class="apply-list">
+			<li style="display: flex; justify-content: center; align-items: center;">
+				<h3>[필수] 프로필사진을 등록해주세요</h3><span>(1개 이상)</span>
+			</li>
+			<li>
+				<input multiple="multiple" type=file class="form-control" name="profile_files[]">
 			</li>
 		</ul>
 
@@ -142,6 +151,11 @@
 		})
 	})
 
+</script>
+<script>
+$(document).ready(function(){
+	$('footer').removeClass('absolute-position');
+});
 </script>
 </body>
 
