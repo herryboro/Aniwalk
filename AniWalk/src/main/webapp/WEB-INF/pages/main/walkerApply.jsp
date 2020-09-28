@@ -15,7 +15,8 @@
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 	<!-- js -->
-	<script src="${pageContext.request.contextPath}/static/js/main.js"></script>
+	<script src="/aniwalk/static/js/main.js"></script>
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	
 	<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
@@ -26,26 +27,37 @@
 <body>
 <div class="container">
 	<h3>서비스약관동의</h3>
-	<form id="applyForm1" class="walker-apply-form" method="POST" 
+	<form id="applyForm1" class="walker-apply-form" method="POST" onsubmit="return applyCheck()"
 		enctype="multipart/form-data" name='walker' action="/aniwalk/walker/apply.do">
 		<ul class="terms">
 			<li>
-				<div>
+				<div class="all-agree">
 					<i class="far fa-check-circle"></i>
 					<span>전체동의</span>
 				</div>
 			</li>
 			<li>
-				<div>
+				<div class="essential-agree">
 					<i class="far fa-check-circle"></i>
 					<span>[필수] 개인정보 수집 및 이용 동의</span>
+					<input id="essentialAgreeYn" type="hidden" required>
 				</div>
+				<span id="essential" class="glyphicon glyphicon-chevron-down"></span>
+			</li>
+			<li id="essential-content" class="hidden">
+				1. 목적 : 지원자 개인 식별, 지원의사 확인, 입사전형의 진행, 고지사항 전달, 입사 지원자와의 원활한 의사소통, 지원이력 확인 및 면접 불합격자 재지원 제한
+				2. 항목 : 아이디(이메일주소), 비밀번호, 이름, 생년월일, 휴대폰번호
+				3. 보유기간 : 회원 탈퇴 시까지 보유 (단, 지원이력 정보는 일방향 암호화하여 탈퇴일로부터 1년간 보관 후 파기합니다.)
 			</li>
 			<li>
-				<div>
+				<div class="choose-agree">
 					<i class="far fa-check-circle"></i>
 					<span>[선택] 이벤트 정보 수신 동의</span>
 				</div>
+				<span id="choose" class="glyphicon glyphicon-chevron-down"></span>
+			</li>
+			<li id="choose-content" class="hidden">
+				이벤트/지원 프로모션 혜택 등 다양한 정보를 휴대전화로 받아보실 수 있습니다.
 			</li>
 		</ul>
 		<input type="hidden" name='wk_event_agree' value='0'>
@@ -73,6 +85,15 @@
 			<li>
 				<label>이메일 주소</label>
 				<label><input name='wk_email' class="form-control" type="text" placeholder="이메일 주소 입력" required></label>
+			</li>
+		</ul>
+		
+		<ul class="apply-list">
+			<li style="display: flex; justify-content: center; align-items: center;">
+				<h3>[필수] 프로필사진을 등록해주세요</h3><span>(1개 이상)</span>
+			</li>
+			<li>
+				<input multiple="multiple" type=file class="form-control" name="profile_files[]" required>
 			</li>
 		</ul>
 
@@ -143,6 +164,67 @@
 	})
 
 </script>
-</body>
+<script>
+	const essentialAgree = document.querySelector('.essential-agree');
+	const essentialClick = document.getElementById('essential');
+	const essentialContent = document.getElementById('essential-content');
 
+	const chooseAgree = document.querySelector('.choose-agree');
+	const chooseClick = document.getElementById('choose');
+	const chooseContent = document.getElementById('choose-content');
+
+	ynCheck = () =>{
+		if($('.essential-agree').hasClass('agree')){
+			$('#essentialAgreeYn').val('Yes');
+		}else {
+			$('#essentialAgreeYn').val('');
+		}
+	}
+
+
+
+	essentialAgree.addEventListener('click',function(){
+		essentialAgree.classList.toggle('agree');
+		ynCheck();
+	});
+	chooseAgree.addEventListener('click',function(){
+		chooseAgree.classList.toggle('agree');
+		ynCheck();
+	});
+
+	essentialClick.addEventListener('click',function(){
+		essentialContent.classList.toggle('hidden');
+		essentialClick.classList.toggle('glyphicon-chevron-down');
+		essentialClick.classList.toggle('glyphicon-chevron-up');
+	});
+	chooseClick.addEventListener('click',function(){
+		chooseContent.classList.toggle('hidden');
+		chooseContent.classList.toggle('glyphicon-chevron-down');
+		chooseContent.classList.toggle('glyphicon-chevron-up');
+	});
+
+	const allAgree = document.querySelector('.all-agree');
+	allAgree.addEventListener('click',function (){
+		essentialAgree.classList.toggle('agree');
+		chooseAgree.classList.toggle('agree');
+		ynCheck();
+	});
+
+</script>
+
+
+<script>
+$(document).ready(function(){
+	$('footer').removeClass('absolute-position');
+
+});
+
+</script>
+
+</body>
+<style>
+	.agree{
+		color: blue;
+	}
+</style>
 </html>

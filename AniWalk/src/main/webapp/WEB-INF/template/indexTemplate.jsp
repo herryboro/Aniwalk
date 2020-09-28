@@ -15,7 +15,13 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <!-- js -->
-
+<style>
+	.absolute-position{
+		position: absolute;
+		bottom: 0;
+		left: 0;
+	}
+</style>
 <body>
 	<nav>
 		<tiles:insertAttribute name="nav"></tiles:insertAttribute>
@@ -23,6 +29,7 @@
 	<article>
 		<tiles:insertAttribute name="content"></tiles:insertAttribute>
 	</article>
-	<footer> Copyright@ PandoraBox Web / App Project </footer>
+	<footer class="absolute-position"> Copyright@ PandoraBox Web / App Project </footer>
+	
 </body>
 </html>
