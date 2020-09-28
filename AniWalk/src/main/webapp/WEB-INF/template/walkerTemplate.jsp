@@ -4,9 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>프렌즈 템플릿</title>
+	<link rel="stylesheet" type="text/css" href="../static/css/walker.css">
+
 </head>
 <body>
-	hi
+	<nav>
+
+	</nav>
+	<article>
+
+	</article>
 </body>
 </html>
