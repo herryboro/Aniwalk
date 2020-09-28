@@ -21,7 +21,7 @@
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2521c7cc3e67ced68e19182536406c54&libraries=services,clusterer,drawing"></script>
 </head>
 <body>
-	<div class="recruit-write">
+	<form class="recruit-write">
 		<div>
 			<h4>모집글작성</h4>
 			<hr width="90%" color="gray">
@@ -42,14 +42,18 @@
 					<h4>2.일정 선택</h4>
 					<i class="far fa-calendar-plus"></i>
 				</div>
-				<label>2020-09-24</label>
+				<label>
+					<input type="date" class="form-control">
+				</label>
 			</div>
 			<div class="form-group">
 				<div>
 					<h4>3.시간 선택</h4>
 					<i class="far fa-clock"></i>
 				</div>
-				<label>2020-09-24</label>
+				<label>
+					<input type="time" class="form-control">
+				</label>
 			</div>
 		</section>
 		<section>
@@ -63,7 +67,11 @@
 			<label> <textarea class="form-control" cols="200"></textarea>
 			</label>
 		</section>
-	</div>
+		<div class="btn-line">
+			<button type="submit" class="btn btn-primary">수정하기</button>
+			<button type="button" class="btn btn-default">취소</button>
+		</div>
+	</form>
 
 </body>
 <script>

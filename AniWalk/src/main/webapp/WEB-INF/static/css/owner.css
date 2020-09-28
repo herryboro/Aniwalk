@@ -7,8 +7,11 @@ font-family: 'Jua', sans-serif;
     --main-color: #71d5c2;
     --white: #fafafa;
     --black: #212121;
+    --purple: rgb(155, 89, 182);
+    --blue: rgb(90, 166, 216);
+    --yellow: rgb(241, 196, 15);
+    --darkgray: rgb(94, 94, 94);
 }
-
 /**************************************************
 
     공통
@@ -34,6 +37,11 @@ button{
 ::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
 }
+.subtitle{
+    width: 100%;
+    display: flex;
+}
+
 /**************************************************
 
     별점
@@ -82,6 +90,9 @@ button{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.modal-content .close{
+    margin-top: 10px;
 }
 .hidden{
     display: none;
@@ -327,6 +338,7 @@ body{
 .recruit-write{
     width: 100%;
     overflow: scroll;
+    padding: 20px;
 }
 .recruit-write section{
     width: 90%;
@@ -372,6 +384,7 @@ body{
 }
 .recruit-write .form-group label{
     margin: 20px auto;
+    width: 300px;
 }
 .recruit-write .form-group i{
     font-size: 10rem;
@@ -391,9 +404,114 @@ body{
     margin: auto;
     height: 200px;
 }
+.recruit-write .btn-line{
+    display: flex;
+    justify-content: space-around;
+}
+.recruit-write .btn-line .btn-default{
+    background: var(--darkgray);
+    color: var(--white);
+}
+.recruit-write .btn-line button{
+    width: 40%;
+    height: 45px;
+}
 #centerAddr{
     margin: 20px auto 10px auto;
 }
+
+/**************************************************
+
+    ownerRecruitList
+
+***************************************************/
+.recruit-list{
+    height: 100%;
+    padding: 20px;
+
+    overflow-x: hidden;
+}
+.list-part{
+    margin-bottom: 40px;
+    width: 100%;
+}
+.list-part .subtitle{
+    width: 100%;
+    display: flex;
+}
+.list-group{
+    margin-bottom: 40px;
+    overflow-x: scroll;
+    display: -webkit-inline-box;
+    width: 100%;
+}
+.list-group .list-item{
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    padding: 20px 0 5px 0;
+    margin: auto 10px;
+
+    width: 350px;
+    height: 350px;
+
+    background: rgba(52, 152, 219, 0.28);
+}
+.list-group .list-item:hover{
+    cursor: pointer;
+}
+.btn-part{
+    background: white;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+}
+.btn-part .btn-default{
+    background: var(--darkgray);
+    color: white;
+    width: 50%;
+    height: 50px;
+}
+.list-group .list-item img{
+    width: 250px;
+    height: 200px;
+}
+.list-group .list-item ul{
+    font-size: 1.6rem;
+
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+
+    font-family: 'Jua', sans-serif;
+}
+
+.modal-content .recruit-write{
+    width: 100%;
+    height: 100%;
+
+    padding: 20px;
+}
+.modal-content .btn-line{
+    display: flex;
+    justify-content: space-around;
+}
+.modal-content .btn-line button{
+    width: 40%;
+    height: 45px;
+}
+
 
 /**************************************************
 
@@ -434,6 +552,8 @@ body{
     width: 300px;
     height: 250px;
 }
+
+
 
 
 
@@ -560,9 +680,5 @@ body{
 }
 
 
-/**************************************************
 
-    ownerWalkerList
-
-***************************************************/
 
