@@ -31,4 +31,12 @@
 			where wk_id=#{wk_id}
 		</if>
 	</select>
+	
+	<!-- 워커 로그인 -->
+	<select id="walkerLogin" parameterType="map" resultType="int">
+		select count(*) from ani_walker where walker_id=#{walker_id} and wk_pw=#{wk_pw} 
+	</select>
+	<select id="walkerLogin_id" parameterType="String" resultType="int">
+		select count(*) from ani_walker where walker_id=#{walker_id}
+	</select>
 </mapper>

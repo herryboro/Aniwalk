@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,19 +19,19 @@
 		<button class="btn btn-primary">활동 시작하기</button>
 	</div>
 	<div class="walker-login hidden">
-		<form method="post" action="/aniwalk/walker/main.do">
+		<form>
 			<img src="${pageContext.request.contextPath}/images/main_logo.png" alt="">
 			<ul>
 				<li>
 					<label>아이디</label>
 					<label>
-						<input type="text" class="form-control">
+						<input type="text" class="form-control" id="walker_id">
 					</label>
 				</li>
 				<li>
 					<label>비밀번호</label>
 					<label>
-						<input type="password" class="form-control">
+						<input type="password" class="form-control" id="wk_pw">
 					</label>
 				</li>
 				<li class="text-center">
@@ -40,7 +41,7 @@
 					</div>
 				</li>
 				<li>
-					<button type="submit" class="btn">로그인</button>
+					<button type="button" class="btn" id="loginbt">로그인</button>
 				</li>
 			</ul>
 		</form>
@@ -48,6 +49,9 @@
 	</div>
 </body>
 <script>
+
+	
+
 	const indexDiv = document.querySelector('.walker-index');
 	const loginDiv = document.querySelector('.walker-login');
 	const btn = document.querySelector('.btn-primary');
@@ -56,6 +60,43 @@
 		indexDiv.classList.add('hidden');
 		loginDiv.classList.remove('hidden');
 
+	});
+	
+	$(document).ready(function(){
+		$("#loginbt").click(function(){
+		var walker_id = $("#walker_id").val();
+		var wk_pw = $("#wk_pw").val();
+		
+			if(walker_id==""){
+				alert("아이디를 입력해주세요");
+			}else if(wk_pw==""){ 
+				alert("비밀번호를 입력해주세요");
+			}else{
+				$.ajax({
+					url:"/aniwalk/walker/loginCheck.do",
+					type: "get",
+					data: {
+							"walker_id" : walker_id,
+							"wk_pw" : wk_pw
+						},
+					success : function(data){
+						switch(data){
+						case 1 : alert("아이디를 확인해주세요."); break;
+						case 3 : alert("아이디와 비밀번호가 일치하지 않습니다."); break;
+						default : location.href="main.do";
+								//세션에 id 저장
+								var sessionData = walker_id;
+								sessionStorage.setItem("walker_id",walker_id);
+						}
+					},
+					error: function(a,b,c){ //ajax 실패시 원인
+						alert(c);
+					}
+				});
+				
+			}
+			
+		})
 	});
 </script>
 </html>

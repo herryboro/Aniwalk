@@ -1,6 +1,7 @@
 package kr.pandorabox.aniwalk.walker;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,5 +92,25 @@ public class WalkerServiceImpl implements WalkerService {
 			case "충청북도": return chungbuk;
 		}
 		return null;
+	}
+	
+	@Override
+	public int walkerLogin(String walker_id, String wk_pw) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("walker_id",walker_id);
+		map.put("wk_pw",wk_pw);
+		int result = 0;
+		int result_id = walkerDao.walkerLogin_id(walker_id);
+		if(result_id ==1) {
+			int result_idpw = walkerDao.walkerLogin(map);
+			if(result_idpw==1) {
+				result = 2; //아이디와 비밀번호가 일치
+			}else {
+				result = 3; //아이디와 비밀번호가 일치하지 않음
+			}
+		}else {
+			result = 1; //아이디가 없음 
+		}
+		return result;
 	}
 }
