@@ -30,22 +30,32 @@
 		enctype="multipart/form-data" name='walker' action="/aniwalk/walker/apply.do">
 		<ul class="terms">
 			<li>
-				<div>
+				<div class="all-agree">
 					<i class="far fa-check-circle"></i>
 					<span>전체동의</span>
 				</div>
 			</li>
 			<li>
-				<div>
+				<div class="essential-agree">
 					<i class="far fa-check-circle"></i>
 					<span>[필수] 개인정보 수집 및 이용 동의</span>
 				</div>
+				<span id="essential" class="glyphicon glyphicon-chevron-down"></span>
+			</li>
+			<li id="essential-content" class="hidden">
+				1. 목적 : 지원자 개인 식별, 지원의사 확인, 입사전형의 진행, 고지사항 전달, 입사 지원자와의 원활한 의사소통, 지원이력 확인 및 면접 불합격자 재지원 제한
+				2. 항목 : 아이디(이메일주소), 비밀번호, 이름, 생년월일, 휴대폰번호
+				3. 보유기간 : 회원 탈퇴 시까지 보유 (단, 지원이력 정보는 일방향 암호화하여 탈퇴일로부터 1년간 보관 후 파기합니다.)
 			</li>
 			<li>
-				<div>
+				<div class="choose-agree">
 					<i class="far fa-check-circle"></i>
 					<span>[선택] 이벤트 정보 수신 동의</span>
 				</div>
+				<span id="choose" class="glyphicon glyphicon-chevron-down"></span>
+			</li>
+			<li id="choose-content" class="hidden">
+				이벤트/지원 프로모션 혜택 등 다양한 정보를 휴대전화로 받아보실 수 있습니다.
 			</li>
 		</ul>
 		<input type="hidden" name='wk_event_agree' value='0'>
@@ -153,10 +163,51 @@
 
 </script>
 <script>
+	const essentialAgree = document.querySelector('.essential-agree');
+	const essentialClick = document.getElementById('essential');
+	const essentialContent = document.getElementById('essential-content');
+
+	const chooseAgree = document.querySelector('.choose-agree');
+	const chooseClick = document.getElementById('choose');
+	const chooseContent = document.getElementById('choose-content');
+
+	essentialAgree.addEventListener('click',function(){
+		essentialAgree.classList.toggle('agree');
+	});
+	chooseAgree.addEventListener('click',function(){
+		chooseAgree.classList.toggle('agree');
+	});
+
+	essentialClick.addEventListener('click',function(){
+		essentialContent.classList.toggle('hidden');
+		essentialClick.classList.toggle('glyphicon-chevron-down');
+		essentialClick.classList.toggle('glyphicon-chevron-up');
+	});
+	chooseClick.addEventListener('click',function(){
+		chooseContent.classList.toggle('hidden');
+		chooseContent.classList.toggle('glyphicon-chevron-down');
+		chooseContent.classList.toggle('glyphicon-chevron-up');
+	});
+
+	const allAgree = document.querySelector('.all-agree');
+	allAgree.addEventListener('click',function (){
+		essentialAgree.classList.toggle('agree');
+		chooseAgree.classList.toggle('agree');
+	});
+
+</script>
+
+
+<script>
 $(document).ready(function(){
 	$('footer').removeClass('absolute-position');
 });
 </script>
-</body>
 
+</body>
+<style>
+	.agree{
+		color: #337ab7;
+	}
+</style>
 </html>

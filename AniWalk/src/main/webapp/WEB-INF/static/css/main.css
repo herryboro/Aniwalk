@@ -224,6 +224,18 @@ footer{
     padding: 10px;
     border: 1px solid black;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.terms li div{
+    width: 80%;
+}
+.terms li div:hover{
+    cursor: pointer;
+}
+.terms li span:hover{
+    cursor: pointer;
 }
 .auth-btn{
     margin: 20px 10px;
