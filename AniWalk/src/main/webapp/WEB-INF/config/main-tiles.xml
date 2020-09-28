@@ -27,8 +27,16 @@
 		<put-attribute name="top" value="/WEB-INF/pages/manager/managerTop.jsp"/>
 	</definition>
 	
+	<!-- 펫 프렌즈 템플릿 등록 -->
+	<definition name="walkerTemplate" 
+			template="/WEB-INF/template/walkerTemplate.jsp">
+		<put-attribute name="content" value="/WEB-INF/pages/walker/walkerIndex.jsp"/>
+		<put-attribute name="nav" value="/WEB-INF/pages/walker/walkerNav.jsp"/>
+	</definition>
+	
 	<!-- index 페이지 등록 -->
 	<definition name="index" extends="mainTemplate"></definition>
 	<definition name="owner/index" extends="ownerTemplate"></definition>
 	<definition name="manager/index" extends="managerTemplate"></definition>
+	<definition name="walker/index" extends="walkerTemplate"></definition>
 </tiles-definitions>

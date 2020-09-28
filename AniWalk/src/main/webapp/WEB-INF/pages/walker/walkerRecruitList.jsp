@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>모집글리스트</title>
-	<link rel="stylesheet" type="text/css" href="../../static/css/walker.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/walker.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -32,7 +32,7 @@
 
 			<!-- 1개의 글 /// 작업할 땐 주석 지워도됨-->
 			<div class="form-group col-md-3">
-				<img src="../../images/mydog.jpg" alt="" class="img-rounded">
+				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
 				<ul>
 					<li>
 						<label>견종 : </label>
@@ -51,7 +51,7 @@
 			<!-- 1개의 글 끝 -->
 			<!-- 1개의 글 /// 작업할 땐 주석 지워도됨-->
 			<div class="form-group col-md-3">
-				<img src="../../images/mydog.jpg" alt="" class="img-rounded">
+				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
 				<ul>
 					<li>
 						<label>견종 : </label>
@@ -70,7 +70,7 @@
 			<!-- 1개의 글 끝 -->
 			<!-- 1개의 글 /// 작업할 땐 주석 지워도됨-->
 			<div class="form-group col-md-3">
-				<img src="../../images/mydog.jpg" alt="" class="img-rounded">
+				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
 				<ul>
 					<li>
 						<label>견종 : </label>
@@ -89,7 +89,7 @@
 			<!-- 1개의 글 끝 -->
 			<!-- 1개의 글 /// 작업할 땐 주석 지워도됨-->
 			<div class="form-group col-md-3">
-				<img src="../../images/mydog.jpg" alt="" class="img-rounded">
+				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
 				<ul>
 					<li>
 						<label>견종 : </label>
@@ -108,7 +108,7 @@
 			<!-- 1개의 글 끝 -->
 			<!-- 1개의 글 /// 작업할 땐 주석 지워도됨-->
 			<div class="form-group col-md-3">
-				<img src="../../images/mydog.jpg" alt="" class="img-rounded">
+				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
 				<ul>
 					<li>
 						<label>견종 : </label>

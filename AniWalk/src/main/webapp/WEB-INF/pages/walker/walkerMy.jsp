@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>프렌즈 마이페이지</title>
-	<link rel="stylesheet" type="text/css" href="../../static/css/walker.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/walker.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -17,7 +17,7 @@
 			<hr width="80%" color="gray"/>
 		</div>
 		<div class="info-part">
-			<img class="img-rounded" src="../../images/applier.png" alt="">
+			<img class="img-rounded" src="${pageContext.request.contextPath}/images/applier.png" alt="">
 			<table>
 				<tr>
 					<th>활동지역</th>
@@ -56,10 +56,10 @@
 			</div>
 
 			<div class="list-item">
-				<img src="../../images/mydog.jpg" alt="" class="img-rounded">
+				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
 				<ul>
 					<li class="bottom-margin">
-						<img src="../../images/profile_test.png" alt="" class="img-circle">
+						<img src="${pageContext.request.contextPath}/images/profile_test.png" alt="" class="img-circle">
 						<label>반려견주인 닉네임</label>
 						<div class="star-rating">
 							<span style="width:30%"></span>
@@ -75,10 +75,10 @@
 			</div>
 
 			<div class="list-item">
-				<img src="../../images/mydog.jpg" alt="" class="img-rounded">
+				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
 				<ul>
 					<li class="bottom-margin">
-						<img src="../../images/profile_test.png" alt="" class="img-circle">
+						<img src="${pageContext.request.contextPath}/images/profile_test.png" alt="" class="img-circle">
 						<label>반려견주인 닉네임</label>
 						<div class="star-rating">
 							<span style="width:30%"></span>
@@ -94,10 +94,10 @@
 			</div>
 
 			<div class="list-item">
-				<img src="../../images/mydog.jpg" alt="" class="img-rounded">
+				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
 				<ul>
 					<li class="bottom-margin">
-						<img src="../../images/profile_test.png" alt="" class="img-circle">
+						<img src="${pageContext.request.contextPath}/images/profile_test.png" alt="" class="img-circle">
 						<label>반려견주인 닉네임</label>
 						<div class="star-rating">
 							<span style="width:30%"></span>
@@ -116,7 +116,7 @@
 
 <div class="modal-bg hidden">
 	<div class="modal-content" onclick="event.stopPropagation()">
-		<form class="password-field">
+		<form class="password-field" method="post" action="/aniwalk/walker/myInfo.do">
 			<h3>개인정보수정</h3>
 			<div>
 				<label>비밀번호</label>
