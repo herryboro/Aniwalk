@@ -66,12 +66,12 @@
 		<ul class="apply-list userinfo">
 			<li>
 				<label>이름</label>
-				<label><input name='wk_name' class="form-control" type="text" placeholder="이름" required></label>
+				<label><input name='wk_name' class="form-control" type="text" placeholder="이름" required minlength="2"></label>
 			</li>
-			<li>
+			<li class="auth-phone">
 				<label>휴대폰번호</label>
 				<label><input name='wk_phone' class="form-control" type="text" placeholder="휴대폰번호" required>
-				<button type="button" class="btn btn-primary auth-btn")>휴대폰 인증하기</button></label>
+				<button type="button" class="btn btn-primary auth-btn">휴대폰 인증하기</button></label>
 				
 			</li>
 			<li>
@@ -218,7 +218,11 @@ $(document).ready(function(){
 	$('footer').removeClass('absolute-position');
 
 });
+</script>
 
+<script>
+	const authBtn = document.querySelector('.auth-btn');
+	authBtn.addEventListener('click',addPhoneAuthForm);
 </script>
 
 </body>
