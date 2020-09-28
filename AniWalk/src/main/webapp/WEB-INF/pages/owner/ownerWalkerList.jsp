@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>워커리스트</title>
-	<link rel="stylesheet" type="text/css" href="../../static/css/owner.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/owner.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 

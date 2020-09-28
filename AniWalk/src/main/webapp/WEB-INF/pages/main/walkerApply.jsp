@@ -49,7 +49,7 @@
 			</li>
 		</ul>
 		<input type="hidden" name='wk_event_agree' value='0'>
-		<button type="button" class="btn btn-primary auth-btn">휴대폰 인증하기</button>
+		
 
 		<ul class="apply-list userinfo">
 			<li>
@@ -58,7 +58,9 @@
 			</li>
 			<li>
 				<label>휴대폰번호</label>
-				<label><input name='wk_phone' class="form-control" type="text" placeholder="휴대폰번호" required></label>
+				<label><input name='wk_phone' class="form-control" type="text" placeholder="휴대폰번호" required>
+				<button type="button" class="btn btn-primary auth-btn")>휴대폰 인증하기</button></label>
+				
 			</li>
 			<li>
 				<label>생년월일</label>

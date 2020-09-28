@@ -5,13 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>프렌즈 메인</title>
-	<link rel="stylesheet" type="text/css" href="../../static/css/walker.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/walker.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 	<div class="main-active-none">
-		<img src="../../images/walkerMain.png" alt="">
+		<img src="${pageContext.request.contextPath}/images/walkerMain.png" alt="">
 		<h2>활동 내역이 없습니다.</h2>
 	</div>
 

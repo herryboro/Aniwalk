@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>프렌즈 개인정보수정</title>
-	<link rel="stylesheet" type="text/css" href="../../static/css/walker.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/walker.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <body>

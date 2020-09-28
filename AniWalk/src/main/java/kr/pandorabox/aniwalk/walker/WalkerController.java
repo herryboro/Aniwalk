@@ -26,7 +26,6 @@ public class WalkerController {
 	// 펫 프렌즈 상세 정보
 	@RequestMapping("manager/walkerInfo.do")
 	public ModelAndView walkerInfo(String wk_id) {
-		System.out.println(wk_id);
 		List<WalkerDTO> walkerInfo = walkerService.applierList(wk_id);
 		return new ModelAndView("manager/walkerInfo", "walkerInfo", walkerInfo);
 	}
@@ -55,7 +54,6 @@ public class WalkerController {
 	@RequestMapping("/walker/apply.do")
 	public String walkerApply(WalkerDTO walker, HttpServletRequest req) throws Exception {
 		MultipartFile[] files = walker.getFiles();
-		System.out.println(walker);
 		ArrayList<String> filelist = new ArrayList<String>();
 		String path = 
 				WebUtils.getRealPath(req.getSession().getServletContext(), "/WEB-INF/upload");

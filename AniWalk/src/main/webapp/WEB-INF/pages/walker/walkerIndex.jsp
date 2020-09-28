@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>프렌즈 첫화면</title>
 	<!-- css -->
-	<link rel="stylesheet" type="text/css" href="../../static/css/walker.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/walker.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 	<!-- jQuery -->
@@ -14,12 +14,12 @@
 </head>
 <body>
 	<div class="walker-index">
-		<img src="../../images/main_logo.png" alt="">
+		<img src="${pageContext.request.contextPath}/images/main_logo.png" alt="">
 		<button class="btn btn-primary">활동 시작하기</button>
 	</div>
 	<div class="walker-login hidden">
-		<form>
-			<img src="../../images/main_logo.png" alt="">
+		<form method="post" action="/aniwalk/walker/main.do">
+			<img src="${pageContext.request.contextPath}/images/main_logo.png" alt="">
 			<ul>
 				<li>
 					<label>아이디</label>
