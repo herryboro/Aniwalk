@@ -16,6 +16,12 @@ const check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;      // 한글체크
 const check_minWord = /[ㄱ-ㅎ|ㅏ-ㅣ]/;           // 모음, 자음 체크
 
 const check_email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;       //이메일 정규식
+const check_passwd = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,10}$/;                   //  8 ~ 10자 영문, 숫자 조합     비밀번호 정규식
+
+
+
+
+출처: https://suyou.tistory.com/150 [수유산장]
 
 //워커신청 유효성
 applyCheck =  function(){

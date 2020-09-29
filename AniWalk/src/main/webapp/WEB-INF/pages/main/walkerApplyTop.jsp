@@ -6,8 +6,6 @@
 <meta charset="UTF-8">
 <title>메인메뉴</title>
 </head>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/main.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <body>
 <div class="apply-nav">
 	<img src="${pageContext.request.contextPath}/images/main_logo.png" alt="">

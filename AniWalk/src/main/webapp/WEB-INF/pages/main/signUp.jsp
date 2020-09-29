@@ -6,15 +6,11 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 </head>
-	<!-- css -->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/main.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 	<!-- jquery -->
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
-	<!-- js -->
-	<script src="${pageContext.request.contextPath}/static/js/main.js"></script>
+
 
 <body>
 <div class="container register">

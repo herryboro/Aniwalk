@@ -9,12 +9,13 @@
 </head>
 
 <!-- css -->
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/static/css/main.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/main.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 
 <!-- js -->
+<script src="${pageContext.request.contextPath}/static/js/main.js"></script>
+
 <style>
 	.absolute-position{
 		position: absolute;
