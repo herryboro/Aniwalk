@@ -39,4 +39,9 @@
 	<select id="walkerLogin_id" parameterType="String" resultType="int">
 		select count(*) from ani_walker where walker_id=#{walker_id}
 	</select>
+	
+	<!-- 워커신청 폰 체크 -->
+	<select id="phoneCheck" parameterType="String" resultType="String">
+		select WK_PHONE from ANI_WALKER where WK_PHONE=#{phoneNum}
+	</select>
 </mapper>

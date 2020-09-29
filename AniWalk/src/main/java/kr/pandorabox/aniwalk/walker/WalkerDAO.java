@@ -14,4 +14,7 @@ public interface WalkerDAO {
 	
 	public int walkerLogin(HashMap<String, String> map);
 	public int walkerLogin_id(String walker_id);
+	
+	//워커신청 폰체크
+	public String phoneCheck(String phoneNum);
 }

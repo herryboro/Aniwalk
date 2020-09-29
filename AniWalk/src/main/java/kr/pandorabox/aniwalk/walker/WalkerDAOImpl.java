@@ -46,4 +46,9 @@ public class WalkerDAOImpl implements WalkerDAO{
 		return session.selectOne("kr.pandorabox.aniwalk.walker.walkerLogin_id",walker_id);
 	}
 	
+	//워커신청 폰체크
+	@Override
+	public String phoneCheck(String phoneNum) {
+		return session.selectOne("kr.pandorabox.aniwalk.walker.phoneCheck",phoneNum);
+	}
 }

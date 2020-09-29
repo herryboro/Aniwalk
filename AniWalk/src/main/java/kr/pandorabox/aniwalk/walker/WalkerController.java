@@ -134,4 +134,17 @@ public class WalkerController {
 		return mav;
 	}
 	
+	
+	//워커신청 폰 유효성검사
+	@ResponseBody
+	@RequestMapping(value="/walker/phoneCheck.do", 
+			method = RequestMethod.GET,
+			produces = "application/text;charset=utf-8")
+	public String phoneCheck(String phoneNum) {
+		System.out.println(phoneNum);
+		String result = walkerService.phoneCheck(phoneNum);
+		System.out.println(result);
+		return result;
+	}
+	
 }

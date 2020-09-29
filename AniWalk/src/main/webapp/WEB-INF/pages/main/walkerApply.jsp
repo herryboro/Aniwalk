@@ -70,10 +70,13 @@
 			</li>
 			<li>
 				<label>휴대폰번호</label>
-				<label><input id='wk_phone' name='wk_phone' class="form-control" type="text" placeholder="휴대폰번호" required>
+				<label><input id='wk_phone' name='wk_phone' class="form-control" type="text" placeholder="휴대폰번호 11자리를 입력해주세요(-빼고 입력해주세요)" required maxlength="11">
 				<input id='auth-btn' type="button" class="btn btn-primary auth-btn" value="휴대폰 인증하기"></label>
 			</li>
-			<li class="auth-phone"></li>
+			<li>
+				<div class="unuse"></div>
+				<div class="auth-part"></div>
+			</li>
 			<li>
 				<label>생년월일</label>
 				<label><input name='wk_birth' class="form-control" type="text" placeholder="생년월일 6자리" required></label>
@@ -135,46 +138,7 @@
 	</form>
 </div>
 <script type="text/javascript">
-	$('#auth-btn').on('click', function(){
-		$('#wk_phone').attr("readonly", "readonly");
-		$('.auth-phone').empty();
-		$('#auth-btn').val('인증번호 다시받기');
-		$.ajax({
-			url:"/aniwalk/walker/auth.do",
-			type:"post",
-			data:{
-				"wk_phone" : $('#wk_phone').val()
-			},
-			success:function(data){
-				var auth_num = $('#auth_num').val(data);
-			},
-			error:function(a,b,c){
-			}
-		})
-	})
-	function auth(){
-		alert($('.auth').val());
-		$.ajax({
-			url:"/aniwalk/walker/authNum.do",
-			type:"post",
-			data:{
-				"auth_num" : $('#auth_num').val(),
-				"auth" : $('.auth').val()
-			},
-			success:function(data){
-				if(data == 'pass'){
-					$('#auth-btn').val('인증이 완료되었습니다');
-					$('#auth-btn').removeAttr('id');
-					$('.auth-phone').empty();
-					authBtn.removeEventListener('click',addPhoneAuthForm);
-				} else {
-					alert('인증번호가 틀렸습니다.');
-				}
-			},
-			error:function(a,b,c){
-			}
-		})
-	}
+
 	$(document).ready(function(){
 		var area = ["강원도", "경기도", "경상남도", "경상북도", "광주광역시", "대구광역시",
 			"대전광역시", "부산광역시", "서울특별시", "세종특별자치시", "울산광역시", "인천광역시",
@@ -221,8 +185,6 @@
 		}
 	}
 
-
-
 	essentialAgree.addEventListener('click',function(){
 		essentialAgree.classList.toggle('agree');
 		ynCheck();
@@ -262,9 +224,69 @@ $(document).ready(function(){
 
 <script>
 	const authBtn = document.querySelector('.auth-btn');
-	authBtn.addEventListener('click',addPhoneAuthForm);
+	authBtn.addEventListener('click',function(){
+		$.ajax({
+			url:"/aniwalk/walker/phoneCheck.do",
+			type:"get",
+			data:{
+				"phoneNum" : $('#wk_phone').val()
+			},
+			success:function(data){
+				if(data === ''){
+					addPhoneAuthForm();
+					if(addPhoneAuthForm()){
+						$('#wk_phone').attr("readonly", "readonly");
+						$('.auth-phone').empty();
+						$('#auth-btn').val('인증번호 다시받기');
+					}
+				}else{
+					phoneUnusable();
+				}
+			},
+			error:function(a,b,c){
+			}
+		})
+	})
+	authBtn.addEventListener('click',function(){
+		$.ajax({
+			url:"/aniwalk/walker/auth.do",
+			type:"post",
+			data:{
+				"wk_phone" : $('#wk_phone').val()
+			},
+			success:function(data){
+				var auth_num = $('#auth_num').val(data);
+			},
+			error:function(a,b,c){
+			}
+		})
+	})
 </script>
+<script>
 
+	function auth(){
+		alert($('.auth').val());
+		$.ajax({
+			url:"/aniwalk/walker/authNum.do",
+			type:"post",
+			data:{
+				"auth_num" : $('#auth_num').val(),
+				"auth" : $('.auth').val()
+			},
+			success:function(data){
+				if(data == 'pass'){
+					$('#auth-btn').val('인증이 완료되었습니다');
+					$('.auth-part').empty();
+					authBtn.removeEventListener('click',addPhoneAuthForm);
+				} else {
+					alert('인증번호가 틀렸습니다.');
+				}
+			},
+			error:function(a,b,c){
+			}
+		})
+	}
+</script>
 </body>
 <style>
 	.agree{

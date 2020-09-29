@@ -113,4 +113,10 @@ public class WalkerServiceImpl implements WalkerService {
 		}
 		return result;
 	}
+	
+	//워커신청 핸드폰체크
+	@Override
+	public String phoneCheck(String phoneNum) {
+		return walkerDao.phoneCheck(phoneNum);
+	}
 }

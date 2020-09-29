@@ -27,19 +27,19 @@ applyCheck =  function(){
 }
 
 
-
 addPhoneAuthForm = function(){
     const authPart = document.querySelector('.auth-part');
+    const unuse = document.querySelector('.unuse');
     const addForm = `
-        <form style="display: flex; justify-content: space-around; margin-top: 10px;">
+        <form id="authForm" style="display: flex; justify-content: space-around; margin-top: 10px;">
             <label>인증번호</label>
-            <input type="text" class="from-control" style="width: 65%;">
-            <button type="button" class="btn btn-primary">인증번호입력</button>
+            <input class="auth form-control" style="width: 65%;">
+            <button onclick="auth()" id="authNum" type="button" class="btn btn-primary">인증번호입력</button>
         </form>
     `;
 
-    const inputPhoneNum = document.getElementById('inputPhoneNum');
-    let phoneNum = inputPhoneNum.value.split('');
+    const wk_phone = document.getElementById('wk_phone');
+    let phoneNum = wk_phone.value.split('');
     let minusError = 0;
     for(let i=0; i<phoneNum.length; i++){
         if(phoneNum[i] === '-'){
@@ -49,14 +49,30 @@ addPhoneAuthForm = function(){
 
     if(minusError >= 1){
         authPart.innerHTML = phoneMinusError;
-    }else if (inputPhoneNum.value.length < 11){
+        return false;
+    }else if (wk_phone.value.length < 11){
         authPart.innerHTML = phoneInputError;
-    }else if (check_kor.test(inputPhoneNum.value) || check_eng.test(inputPhoneNum.value) || check_spc.test(inputPhoneNum.value) ){
+        return false;
+    }else if (check_kor.test(wk_phone.value) || check_eng.test(wk_phone.value) || check_spc.test(wk_phone.value) ){
         authPart.innerHTML = phoneInputError;
+        return false;
     }
     else{
         authPart.innerHTML = addForm;
+        unuse.innerHTML = '';
+        return true;
     }
 
 
+}
+
+phoneUnusable = function(){
+    const unuse = document.querySelector('.unuse');
+    const authPart = document.querySelector('.auth-part');
+
+    const unusable = `
+        <div class="text-danger">이미 사용중인 번호입니다.</div>
+    `
+    unuse.innerHTML = unusable;
+    authPart.innerHTML = '';
 }
