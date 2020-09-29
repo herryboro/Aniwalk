@@ -83,10 +83,11 @@
 						switch(data){
 						case 1 : alert("아이디를 확인해주세요."); break;
 						case 3 : alert("아이디와 비밀번호가 일치하지 않습니다."); break;
-						default : location.href="main.do";
-								//세션에 id 저장
-								var sessionData = walker_id;
-								sessionStorage.setItem("walker_id",walker_id);
+						default : 
+							//세션에 id 저장
+							//sessionStorage.setItem("walker_id",walker_id);
+							//alert(sessionStorage.getItem("walker_id"));
+							location.href="main.do?walker_id="+walker_id;
 						}
 					},
 					error: function(a,b,c){ //ajax 실패시 원인

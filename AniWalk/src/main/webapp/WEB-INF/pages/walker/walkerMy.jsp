@@ -121,10 +121,10 @@
 			<div>
 				<label>비밀번호</label>
 				<label class="input-label">
-					<input type="password" class="form-control" placeholder="비밀번호를 입력하세요">
+					<input type="password" class="form-control" placeholder="비밀번호를 입력하세요" id="pw_check">
 				</label>
 			</div>
-			<button type="submit" class="btn btn-primary">비밀번호 입력</button>
+			<button type="button" class="btn btn-primary" onclick="check()">비밀번호 입력</button>
 		</form>
 	</div>
 </div>
@@ -140,6 +140,13 @@
 		modalBg.addEventListener('click',function(){
 			modalBg.classList.add('hidden');
 		});
+		
+		function check(){
+			
+			alert(sessionStorage.getItem("walker_id"));
+			
+		}
+		
 	</script>
 </body>
 </html>
