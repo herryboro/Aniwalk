@@ -1,34 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-		 pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>프렌즈신청</title>
+<meta charset="UTF-8">
+<title>프렌즈신청</title>
 </head>
-<!-- css -->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/main.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+	<!-- css -->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/main.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 
-<!-- jquery -->
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<!-- jquery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
-<!-- js -->
-<script src="/aniwalk/static/js/main.js"></script>
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+	<!-- js -->
+	<script src="/aniwalk/static/js/main.js"></script>
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+	
+	<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
 
-<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
-
-<!-- Add Firebase products that you want to use -->
-<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
 <body>
 <div class="container">
 	<h3>서비스약관동의</h3>
 	<form id="applyForm1" class="walker-apply-form" method="POST" onsubmit="return applyCheck()"
-		  enctype="multipart/form-data" name='walker' action="/aniwalk/walker/apply.do">
+		enctype="multipart/form-data" name='walker' action="/aniwalk/walker/apply.do">
 		<ul class="terms">
 			<li>
 				<div class="all-agree">
@@ -61,7 +61,7 @@
 			</li>
 		</ul>
 		<input type="hidden" name='wk_event_agree' value='0'>
-
+		
 
 		<ul class="apply-list userinfo">
 			<li>
@@ -70,13 +70,10 @@
 			</li>
 			<li>
 				<label>휴대폰번호</label>
-				<label><input id="inputPhoneNum" name='wk_phone'
-							  class="form-control" type="text"
-							  placeholder="휴대폰번호 11자리 (-을 빼고 작성해주세요)" required maxlength="11">
-					<button type="button" class="btn btn-primary auth-btn">휴대폰 인증하기</button></label>
-				<div class="use-yn"></div>
-				<div class="auth-part"></div>
+				<label><input id='wk_phone' name='wk_phone' class="form-control" type="text" placeholder="휴대폰번호" required>
+				<input id='auth-btn' type="button" class="btn btn-primary auth-btn" value="휴대폰 인증하기"></label>
 			</li>
+			<li class="auth-phone"></li>
 			<li>
 				<label>생년월일</label>
 				<label><input name='wk_birth' class="form-control" type="text" placeholder="생년월일 6자리" required></label>
@@ -90,7 +87,7 @@
 				<label><input name='wk_email' class="form-control" type="text" placeholder="이메일 주소 입력" required></label>
 			</li>
 		</ul>
-
+		
 		<ul class="apply-list">
 			<li style="display: flex; justify-content: center; align-items: center;">
 				<h3>[필수] 프로필사진을 등록해주세요</h3><span>(1개 이상)</span>
@@ -133,11 +130,51 @@
 				<input name="files" class="form-control" type="file">
 			</li>
 		</ul>
-
+		<input id='auth_num' type="hidden">
 		<button type="submit" class="btn btn-success">신청</button>
 	</form>
 </div>
 <script type="text/javascript">
+	$('#auth-btn').on('click', function(){
+		$('#wk_phone').attr("readonly", "readonly");
+		$('.auth-phone').empty();
+		$('#auth-btn').val('인증번호 다시받기');
+		$.ajax({
+			url:"/aniwalk/walker/auth.do",
+			type:"post",
+			data:{
+				"wk_phone" : $('#wk_phone').val()
+			},
+			success:function(data){
+				var auth_num = $('#auth_num').val(data);
+			},
+			error:function(a,b,c){
+			}
+		})
+	})
+	function auth(){
+		alert($('.auth').val());
+		$.ajax({
+			url:"/aniwalk/walker/authNum.do",
+			type:"post",
+			data:{
+				"auth_num" : $('#auth_num').val(),
+				"auth" : $('.auth').val()
+			},
+			success:function(data){
+				if(data == 'pass'){
+					$('#auth-btn').val('인증이 완료되었습니다');
+					$('#auth-btn').removeAttr('id');
+					$('.auth-phone').empty();
+					authBtn.removeEventListener('click',addPhoneAuthForm);
+				} else {
+					alert('인증번호가 틀렸습니다.');
+				}
+			},
+			error:function(a,b,c){
+			}
+		})
+	}
 	$(document).ready(function(){
 		var area = ["강원도", "경기도", "경상남도", "경상북도", "광주광역시", "대구광역시",
 			"대전광역시", "부산광역시", "서울특별시", "세종특별자치시", "울산광역시", "인천광역시",
@@ -157,7 +194,7 @@
 					$('#city').empty();
 					$('#city').append("<option>선택하세요</option>");
 					for(var i=0; i<data.length; i++){
-						$('#city').append("<option>" + data[i] + "</option>");
+						$('#city').append("<option>" + data[i] + "</option>");	
 					}
 				},
 				error:function(a,b,c){
@@ -217,33 +254,15 @@
 
 
 <script>
-	$(document).ready(function(){
-		$('footer').removeClass('absolute-position');
+$(document).ready(function(){
+	$('footer').removeClass('absolute-position');
 
-	});
+});
 </script>
 
 <script>
 	const authBtn = document.querySelector('.auth-btn');
 	authBtn.addEventListener('click',addPhoneAuthForm);
-	authBtn.addEventListener('click',function(){
-		$.ajax({
-			url:"/aniwalk/walker/checkPhone.do",
-			type:"get",
-			data:{
-				"area" : $('#area').val()
-			},
-			success:function(data){
-				$('#city').empty();
-				$('#city').append("<option>선택하세요</option>");
-				for(var i=0; i<data.length; i++){
-					$('#city').append("<option>" + data[i] + "</option>");
-				}
-			},
-			error:function(a,b,c){
-			}
-		})
-	})
 </script>
 
 </body>
