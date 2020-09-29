@@ -125,13 +125,11 @@ public class WalkerController {
 	
 	//walker my page
 	@RequestMapping("/walker/my.do")
-	public ModelAndView walkerMy() {
+	public ModelAndView walkerMy(HttpServletRequest request) {
 		
-		
-		ModelAndView mav = new ModelAndView();
-		
-		
-		return mav;
+		String wallker_id = (String) request.getSession().getAttribute("walker_id");
+		WalkerDTO walkerDto = walkerService.walkerInfo(wallker_id);
+		return new ModelAndView("walker/my","walkerDto",walkerDto);
 	}
 	
 	
