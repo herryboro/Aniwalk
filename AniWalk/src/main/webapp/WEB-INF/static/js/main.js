@@ -1,6 +1,7 @@
 const agreeError = '필수 항목에 동의하셔야 합니다.';
-const profileImgError = '사진 1개이상 업로드 하셔야합니다.'
-const twoTextInputError = '2글자 이상 입력하세요';
+const nameError = '이름을 올바르게 입력하세요.';
+const emailError = '올바른 이메일 형식으로 작성해주세요.';
+const phoneAuthPassError = '핸드폰 인증을 진행해주세요';
 const phoneMinusError = `
         <div class="text-danger">-을 빼고 작성해주세요</div>
     `;
@@ -12,21 +13,34 @@ const check_num = /[0-9]/;                  // 숫자
 const check_eng = /[a-zA-Z]/;               // 문자
 const check_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
 const check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;      // 한글체크
+const check_minWord = /[ㄱ-ㅎ|ㅏ-ㅣ]/;           // 모음, 자음 체크
 
+const check_email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;       //이메일 정규식
 
+//워커신청 유효성
 applyCheck =  function(){
+    let wkNameValue = applyForm1.wk_name.value;
+    let wkEmailValue = applyForm1.wk_email.value
     if(applyForm1.essentialAgreeYn.value === ''){
         alert(agreeError);
         return false;
     }
-    if(applyForm1.ul.li.profile_files[0].value === ''){
-        alert(profileImgError);
+    if(check_num.test(wkNameValue) || check_spc.test(wkNameValue) || check_eng.test(wkNameValue) || check_minWord.test(wkNameValue)){
+        alert(nameError);
+        return false;
+    }
+    if(! check_email.test(wkEmailValue)){
+        alert(emailError);
+        return false;
+    }
+    if(applyForm1.auth_pass.value !== 'auth-pass'){
+        alert(phoneAuthPassError);
         return false;
     }
 
 }
 
-
+//핸드폰인증 유효성
 addPhoneAuthForm = function(){
     const authPart = document.querySelector('.auth-part');
     const unuse = document.querySelector('.unuse');
@@ -65,7 +79,7 @@ addPhoneAuthForm = function(){
 
 
 }
-
+//작성한 핸드폰 번호가 사용중인 번호일 때 호출
 phoneUnusable = function(){
     const unuse = document.querySelector('.unuse');
     const authPart = document.querySelector('.auth-part');

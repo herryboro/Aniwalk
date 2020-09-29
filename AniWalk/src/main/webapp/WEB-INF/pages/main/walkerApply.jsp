@@ -66,24 +66,28 @@
 		<ul class="apply-list userinfo">
 			<li>
 				<label>이름</label>
-				<label><input name='wk_name' class="form-control" type="text" placeholder="이름" required minlength="2"></label>
+				<label><input name='wk_name' class="form-control" type="text" placeholder="이름" required minlength="2" maxlength="5"></label>
 			</li>
 			<li>
 				<label>휴대폰번호</label>
-				<label><input id='wk_phone' name='wk_phone' class="form-control" type="text" placeholder="휴대폰번호 11자리를 입력해주세요(-빼고 입력해주세요)" required maxlength="11">
+				<label><input id='wk_phone' name='wk_phone' class="form-control" type="text"
+							  placeholder="휴대폰번호 11자리를 입력해주세요(-빼고 입력해주세요)" required minlength="11" maxlength="11">
 				<input id='auth-btn' type="button" class="btn btn-primary auth-btn" value="휴대폰 인증하기"></label>
 			</li>
 			<li>
+				<input type="hidden" id="authResult" name="auth_pass">
 				<div class="unuse"></div>
-				<div class="auth-part"></div>
+				<div class="auth-part">
+
+				</div>
 			</li>
 			<li>
 				<label>생년월일</label>
-				<label><input name='wk_birth' class="form-control" type="text" placeholder="생년월일 6자리" required></label>
+				<label><input name='wk_birth' class="form-control" type="text" placeholder="생년월일 6자리" required minlength="6" maxlength="6"></label>
 			</li>
 			<li>
 				<label>거주지 주소</label>
-				<label><input name='wk_addr' class="form-control" type="text" placeholder="ex)서울시 서초구 00동 00호" required></label>
+				<label><input name='wk_addr' class="form-control" type="text" placeholder="ex)서울시 서초구 00동 00호" required minlength="13"></label>
 			</li>
 			<li>
 				<label>이메일 주소</label>
@@ -106,12 +110,12 @@
 			</li>
 			<li>
 				<select id='area' class="form-control" required>
-					<option>선택하세요</option>
+					<option value="">선택하세요</option>
 				</select>
 			</li>
 			<li><!-- ajax로 구현.. ex)경기도 선택하면 하위 select는 고양시 일산서구-->
-				<select id='city' name='wk_location' class="form-control">
-					<option>선택하세요</option>
+				<select id='city' name='wk_location' class="form-control" required>
+					<option value="">선택하세요</option>
 				</select>
 			</li>
 		</ul>
@@ -138,7 +142,7 @@
 	</form>
 </div>
 <script type="text/javascript">
-
+	//주소관련 ajax
 	$(document).ready(function(){
 		var area = ["강원도", "경기도", "경상남도", "경상북도", "광주광역시", "대구광역시",
 			"대전광역시", "부산광역시", "서울특별시", "세종특별자치시", "울산광역시", "인천광역시",
@@ -169,6 +173,7 @@
 
 </script>
 <script>
+	//항목 동의 항목
 	const essentialAgree = document.querySelector('.essential-agree');
 	const essentialClick = document.getElementById('essential');
 	const essentialContent = document.getElementById('essential-content');
@@ -223,6 +228,7 @@ $(document).ready(function(){
 </script>
 
 <script>
+	//인증번호 관련
 	const authBtn = document.querySelector('.auth-btn');
 	authBtn.addEventListener('click',function(){
 		$.ajax({
@@ -278,6 +284,7 @@ $(document).ready(function(){
 					$('#auth-btn').val('인증이 완료되었습니다');
 					$('.auth-part').empty();
 					authBtn.removeEventListener('click',addPhoneAuthForm);
+					$('#authResult').val('auth-pass');
 				} else {
 					alert('인증번호가 틀렸습니다.');
 				}
@@ -286,7 +293,7 @@ $(document).ready(function(){
 			}
 		})
 	}
-</script>
+</script>`
 </body>
 <style>
 	.agree{

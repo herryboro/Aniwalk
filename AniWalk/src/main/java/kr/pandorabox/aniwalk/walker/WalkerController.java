@@ -141,9 +141,9 @@ public class WalkerController {
 			method = RequestMethod.GET,
 			produces = "application/text;charset=utf-8")
 	public String phoneCheck(String phoneNum) {
-		System.out.println(phoneNum);
+		System.out.println("넘어온 핸드폰번호 ===>"+phoneNum);
 		String result = walkerService.phoneCheck(phoneNum);
-		System.out.println(result);
+		System.out.println("핸드폰체크 결과값"+result);
 		return result;
 	}
 	
