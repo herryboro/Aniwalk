@@ -60,7 +60,6 @@ public class WalkerController {
 			method = RequestMethod.POST,
 			produces = "application/text;charset=utf-8")
 	public String auth(String wk_phone) {
-		System.out.println(wk_phone);
 		Random ran = new Random();
 	    String auth = Integer.toString(ran.nextInt(899999) + 100000); 
 	    System.out.println(auth);
@@ -101,8 +100,7 @@ public class WalkerController {
 	public String walkerApply(WalkerDTO walker, HttpServletRequest req) throws Exception {
 		MultipartFile[] files = walker.getFiles();
 		ArrayList<String> filelist = new ArrayList<String>();
-		String path = 
-				WebUtils.getRealPath(req.getSession().getServletContext(), "/WEB-INF/upload");
+		String path = "C:/walker";
 		for(int i=0; i<files.length; i++) {
 			String fileName = files[i].getOriginalFilename();
 			if(fileName.length()!=0) {
