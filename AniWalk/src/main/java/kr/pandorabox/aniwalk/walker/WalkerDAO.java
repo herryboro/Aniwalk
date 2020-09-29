@@ -17,4 +17,5 @@ public interface WalkerDAO {
 	
 	//워커신청 폰체크
 	public String phoneCheck(String phoneNum);
+	public WalkerDTO walkerInfo(String walker_id);
 }

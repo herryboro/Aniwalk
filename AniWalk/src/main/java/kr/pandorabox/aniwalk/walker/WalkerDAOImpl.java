@@ -51,4 +51,8 @@ public class WalkerDAOImpl implements WalkerDAO{
 	public String phoneCheck(String phoneNum) {
 		return session.selectOne("kr.pandorabox.aniwalk.walker.phoneCheck",phoneNum);
 	}
+	@Override
+	public WalkerDTO walkerInfo(String walker_id) {
+		return session.selectOne("kr.pandorabox.aniwalk.walker.walkerInfo",walker_id);
+	}
 }

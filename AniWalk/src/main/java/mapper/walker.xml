@@ -44,4 +44,9 @@
 	<select id="phoneCheck" parameterType="String" resultType="String">
 		select WK_PHONE from ANI_WALKER where WK_PHONE=#{phoneNum}
 	</select>
+	
+	<select id="walkerInfo" parameterType="String" resultType="walker">
+		select * from ani_walker where walker_id = #{walker_id}
+	</select>
+	
 </mapper>

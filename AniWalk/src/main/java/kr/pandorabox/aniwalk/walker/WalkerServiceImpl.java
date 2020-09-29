@@ -119,4 +119,10 @@ public class WalkerServiceImpl implements WalkerService {
 	public String phoneCheck(String phoneNum) {
 		return walkerDao.phoneCheck(phoneNum);
 	}
+	
+	//my 페이지 워커 상세정보
+	@Override
+	public WalkerDTO walkerInfo(String walker_id) {
+		return walkerDao.walkerInfo(walker_id);
+	}
 }

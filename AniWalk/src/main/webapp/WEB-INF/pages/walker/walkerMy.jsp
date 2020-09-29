@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,8 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/walker.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+	<!-- jQuery -->
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 	<section class="walker-my">
@@ -21,18 +24,18 @@
 			<table>
 				<tr>
 					<th>활동지역</th>
-					<td>서울시 서초구 / 서울시 강남구</td>
+					<td>${walkerDto.wk_location}</td>
 				</tr>
 				<tr>
 					<th>포인트</th>
-					<td>20202020 point</td>
+					<td>${walkerDto.wk_point} point</td>
 					<td>
 						<button class="btn btn-default" type="button">포인트 사용</button>
 					</td>
 				</tr>
 				<tr>
 					<th>활동시작</th>
-					<td>2020-09-27</td>
+					<td>${walkerDto.activity_start_date}</td>
 				</tr>
 				<tr>
 					<th colspan="3">
@@ -116,12 +119,12 @@
 
 <div class="modal-bg hidden">
 	<div class="modal-content" onclick="event.stopPropagation()">
-		<form class="password-field" method="post" action="/aniwalk/walker/myInfo.do">
+		<form class="password-field" method="post" >
 			<h3>개인정보수정</h3>
 			<div>
 				<label>비밀번호</label>
 				<label class="input-label">
-					<input type="password" class="form-control" placeholder="비밀번호를 입력하세요" id="pw_check">
+					<input type="password" class="form-control" id="pw" placeholder="비밀번호를 입력하세요" id="pw_check">
 				</label>
 			</div>
 			<button type="button" class="btn btn-primary" onclick="check()">비밀번호 입력</button>
@@ -142,9 +145,16 @@
 		});
 		
 		function check(){
-			
-			alert(sessionStorage.getItem("walker_id"));
-			
+			var wk_pw = "${walkerDto.wk_pw}";
+			console.log("wk_pw:"+wk_pw);
+			var pw = $('#pw').val();
+			console.log("pw:"+pw);
+			if(wk_pw!=pw){
+				alert("비밀번호가 일치하지 않습니다.");
+				$('#pw').val("");
+			}else{
+				location.href="myInfo.do";
+			}
 		}
 		
 	</script>
