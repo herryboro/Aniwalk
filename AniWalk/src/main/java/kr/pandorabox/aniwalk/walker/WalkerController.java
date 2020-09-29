@@ -30,6 +30,17 @@ public class WalkerController {
 	@Autowired
 	private SHA256 hash;
 	
+	
+	//main
+	@RequestMapping("/walker/main.do")
+	public String main(HttpServletRequest request, String walker_id) {
+		request.getSession().setAttribute("walker_id", walker_id);
+		System.out.println("세션---->"+request.getSession().getAttribute("walker_id"));
+		return "walker/main";
+	}	
+	
+	
+	
 	// 인증번호 확인 
 	@ResponseBody
 	@RequestMapping(value="walker/authNum.do",
@@ -110,6 +121,17 @@ public class WalkerController {
 	public @ResponseBody int login(String walker_id, String wk_pw) {
 		int result = walkerService.walkerLogin(walker_id,wk_pw);
 		return result;
+	}
+	
+	//walker my page
+	@RequestMapping("/walker/my.do")
+	public ModelAndView walkerMy() {
+		
+		
+		ModelAndView mav = new ModelAndView();
+		
+		
+		return mav;
 	}
 	
 }
