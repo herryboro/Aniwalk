@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.pandorabox.aniwalk.member">
+	
+	<select id="check" parameterType="int" resultType="int">
+		select count(*) from ani_member where kakao_id = #{kakao_id}
+	</select>
+
+	<insert id="joinmember" parameterType="joinMemberDogImage">
+		insert into ani_member (mem_id, mem_nickname, kakao_id, mem_point, mem_profile_img, mem_join_date) 
+		values(seq_member.nextval, #{mem_nickname}, #{kakao_id}, #{mem_point}, #{mem_profile_img}, #{mem_join_date})
+	</insert>
+	
+	<insert id="joindog" parameterType="joinMemberDogImage">
+		insert into ani_dog (dog_id, dog_name, dog_type, dog_size, dog_info, dog_birth) 
+		values(seq_dog.nextval, #{dog_name}, #{dog_type}, #{dog_size}, #{dog_info}, #{dog_birth})
+	</insert>
+	
+	<insert id="fileinsert" parameterType="Map">
+		insert all
+		<foreach collection="filelist" item="file" separator=" ">
+			into ani_dog_img values (seq_dog_img.nextval, #{file}, seq_dog.currval)
+		</foreach>
+		select * from dual
+	</insert>
+
+</mapper>

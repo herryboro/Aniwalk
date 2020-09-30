@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,12 +23,14 @@
 	</div>
 	<div class="register-right">
 		<h2>회원 정보 등록</h2>
-		<form class="form-horizontal" method="post" action="/aniwalk/owner/index.do">
+		<form class="form-horizontal" method="post" action="/aniwalk/owner/index.do" enctype="multipart/form-data">
+		
 			<div class="form-group">
 				<label class="col-sm-2 control-label">닉네임</label>
 				<div class="col-sm-6">
-					<label>
-						<input class="form-control" type="text" placeholder="닉네임 입력">
+					<label>																				<!-- get방식을 받으려면  ${param.xx}를 사용-->
+						<input class="form-control" type="text" placeholder="닉네임 입력" name="mem_nickname">${param.kakao_id}
+						<input class="form-control" type="hidden" name="kakao_id" value="${param.kakao_id}">
 					</label>
 				</div>
 			</div>
@@ -43,10 +46,18 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
-					<button id="dogAdd" type="button" class="btn btn-success">반려견 등록</button>
+				<label class="col-sm-2 control-label">개정보 등록</label>
+				<div class="col-sm-6">
+					<label>
+						강아지 프로필: <input id="dogAdd" type="file" class="form-control" name="files">
+						강아지 이름: <input id="dogAdd" type="text" class="form-control" name="dog_name">
+						견종: <input id="dogAdd" type="text" class="form-control" name="dog_type">
+						크기: <input id="dogAdd" type="text" class="form-control" name="dog_size">
+						강아지 정보: <input id="dogAdd" type="text" class="form-control" name="dog_info">
+					</label>
 				</div>
 			</div>
+		
 			<div id="dogList" class="form-group hidden">
 
 
@@ -69,28 +80,7 @@
 	</div>
 </div>
 
-<div class="modal-bg hidden">
-	<div class="modal-content" onclick="event.stopPropagation()">
-		<form>
-			<div class="addDog">
-				<input class="form-control" type="file" name="dog_images" placeholder="강아지사진들">
-				<label>
-					<input class="form-control" type="text" name="dog_name" placeholder="강아지이름">
-				</label>
-				<select name="dog_type">
-					<option selected>강아지 종류들 어디서 가져올거얌</option>
-				</select>
-				<label>
-					<textarea class="form-control" name="dog_notice"></textarea>
-				</label>
-				<div>
-					<button type="reset" class="btn btn-success" onclick="addDog()">등록</button>
-					<button type="button" class="btn btn-danger" onclick="addModalHidden()">취소</button>
-				</div>
-			</div>
-		</form>
-	</div>
-</div>
+
 <script>
 	const dogAddBtn = document.getElementById('dogAdd');
 	const modalBg = document.querySelector('.modal-bg');
