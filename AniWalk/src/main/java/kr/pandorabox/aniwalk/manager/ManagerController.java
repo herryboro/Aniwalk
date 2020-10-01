@@ -1,4 +1,4 @@
-package kr.pandorbox.aniwalk.manager;
+package kr.pandorabox.aniwalk.manager;
 
 import org.springframework.stereotype.Controller;
 

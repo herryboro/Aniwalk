@@ -24,7 +24,8 @@ public class WalkerDTO {
 	private int apply_state;
 	private Date activity_start_date;
 	private int activity_state;
-	MultipartFile[] files;
+	private MultipartFile[] wk_profile_imgs;
+	private MultipartFile[] files;
 	
 	//리뷰테이블
 	private String review_id;
@@ -159,6 +160,14 @@ public class WalkerDTO {
 	public void setFiles(MultipartFile[] files) {
 		this.files = files;
 	}
+	
+	public MultipartFile[] getWk_profile_imgs() {
+		return wk_profile_imgs;
+	}
+
+	public void setWk_profile_imgs(MultipartFile[] wk_profile_imgs) {
+		this.wk_profile_imgs = wk_profile_imgs;
+	}
 
 	public String getReview_id() {
 		return review_id;
@@ -207,9 +216,5 @@ public class WalkerDTO {
 	public void setMem_nickname(String mem_nickname) {
 		this.mem_nickname = mem_nickname;
 	}
-	
-	
-	
-	
-	
+
 }

@@ -19,4 +19,7 @@
 	<definition name="owner/walkerInfo" extends="ownerTemplate">
 		<put-attribute name="content" value="/WEB-INF/pages/owner/ownerWalkerInfo.jsp"/>
 	</definition>
+	<definition name="owner/talkContent" extends="ownerTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/owner/ownerTalkContent.jsp"/>
+	</definition>
 </tiles-definitions>

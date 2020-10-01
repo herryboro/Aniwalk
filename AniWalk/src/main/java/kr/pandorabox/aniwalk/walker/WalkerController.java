@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.util.WebUtils;
 
 import kr.pandorabox.aniwalk.Authentication;
 import kr.pandorabox.aniwalk.FileUploadLogic;
@@ -96,21 +95,32 @@ public class WalkerController {
 	}
 	
 	// 펫 프렌즈 신청
-	@RequestMapping("/walker/apply.do")
-	public String walkerApply(WalkerDTO walker, HttpServletRequest req) throws Exception {
-		MultipartFile[] files = walker.getFiles();
-		ArrayList<String> filelist = new ArrayList<String>();
-		String path = "C:/walker";
-		for(int i=0; i<files.length; i++) {
-			String fileName = files[i].getOriginalFilename();
-			if(fileName.length()!=0) {
-				String new_file = uploadService.upload(files[i], path, fileName);
-				filelist.add(new_file);
+		@RequestMapping("/walker/apply.do")
+		public String walkerApply(WalkerDTO walker, HttpServletRequest req) throws Exception {
+			MultipartFile[] certifications = walker.getFiles();
+			MultipartFile[] profile_imgs = walker.getWk_profile_imgs();
+			ArrayList<String> filelist = new ArrayList<String>();
+			ArrayList<String> profileImgList = new ArrayList<String>();
+			String path = "C:/walker";
+			for(int i=0; i<certifications.length; i++) {
+				String fileName = "certi" +certifications[i].getOriginalFilename();
+				if(fileName.length()!=0) {
+					String new_file = uploadService.upload(certifications[i], path, fileName);
+					filelist.add(new_file);
+				}
 			}
+			for(int i=0; i<profile_imgs.length; i++) {
+				String fileName = "profile" + profile_imgs[i].getOriginalFilename();
+				if(fileName.length()!=0) {
+					String new_file = uploadService.upload(profile_imgs[i], path, fileName);
+					profileImgList.add(new_file);
+				}
+			}
+			walkerService.walkerApply(walker, filelist);
+			return "index";
 		}
-		walkerService.walkerApply(walker, filelist);
-		return "index";
-	}
+
+
 	
 	//walker 로그인 유효성 검사
 	@RequestMapping(value="/walker/loginCheck.do",

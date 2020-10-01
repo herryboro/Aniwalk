@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -72,12 +72,11 @@
 				<input type="hidden" id="authResult" name="auth_pass">
 				<div class="unuse"></div>
 				<div class="auth-part">
-
 				</div>
 			</li>
 			<li>
 				<label>생년월일</label>
-				<label><input name='wk_birth' class="form-control" type="text" placeholder="생년월일 6자리" required minlength="6" maxlength="6"></label>
+				<label><input name='wk_birth' class="form-control" type="text" placeholder="생년월일 8자리 ex)19990101" required minlength="8" maxlength="8"></label>
 			</li>
 			<li>
 				<label>거주지 주소</label>
@@ -94,7 +93,10 @@
 				<h3>[필수] 프로필사진을 등록해주세요</h3><span>(1개 이상)</span>
 			</li>
 			<li>
-				<input multiple="multiple" type=file class="form-control" name="profile_files[]" required>
+				<i class="fas fa-angle-left"></i>
+				<img id='wk_img' alt="" src="${pageContext.request.contextPath}/images/main_logo.png">
+				<i class="fas fa-angle-right"></i>
+				<input id='wk_profile' multiple="multiple" type="file" maxlength="3" class="form-control" name="wk_profile_imgs" required>
 			</li>
 		</ul>
 
@@ -107,7 +109,7 @@
 					<option value="">선택하세요</option>
 				</select>
 			</li>
-			<li><!-- ajax로 구현.. ex)경기도 선택하면 하위 select는 고양시 일산서구-->
+			<li>
 				<select id='city' name='wk_location' class="form-control" required>
 					<option value="">선택하세요</option>
 				</select>
@@ -135,6 +137,43 @@
 		<button type="submit" class="btn btn-success">신청</button>
 	</form>
 </div>
+<script type="text/javascript">
+	// profile 사진 
+	$('#wk_profile').on('change', function(e){
+		var cnt = 0;
+    	var maxSize = 209715200;
+    	var files = e.target.files;
+    	var filesArr = Array.prototype.slice.call(files);
+    	if(files.length == 0){
+    		$('#wk_img').attr('src', '${pageContext.request.contextPath}/images/main_logo.png' );
+    	}
+    	filesArr.forEach(function(f) {
+    		if(f.size >= maxSize) {
+    			alert("파일 사이즈 초과");
+    			$('#wk_profile').val('');
+    		} else if(!f.type.match("image.*")) {
+    			alert("사진과 동영상만 업로드 가능합니다!");
+    			$('#wk_profile').val('');
+    		} else {
+    			$('#wk_img').attr('src', URL.createObjectURL(e.target.files[0]));
+    		}
+    	});
+    	$('.fa-angle-left').on('click', function(){
+    		if(cnt > 0) {
+    			cnt -= 1;
+           		$('#wk_img').attr('src', URL.createObjectURL(e.target.files[cnt]));
+    		}
+    	});
+    	$('.fa-angle-right').on('click', function(){
+    		if(cnt < files.length-1) {
+    			cnt += 1;
+           		$('#wk_img').attr('src', URL.createObjectURL(e.target.files[cnt]));
+           	}
+    	});
+	})
+
+</script>
+
 <script type="text/javascript">
 	//주소관련 ajax
 	$(document).ready(function(){
@@ -238,24 +277,22 @@ $(document).ready(function(){
 						$('#wk_phone').attr("readonly", "readonly");
 						$('.auth-phone').empty();
 						$('#auth-btn').val('인증번호 다시받기');
+						$.ajax({
+							url:"/aniwalk/walker/auth.do",
+							type:"post",
+							data:{
+								"wk_phone" : $('#wk_phone').val()
+							},
+							success:function(data){
+								var auth_num = $('#auth_num').val(data);
+							},
+							error:function(a,b,c){
+							}
+						})
 					}
 				}else{
 					phoneUnusable();
 				}
-			},
-			error:function(a,b,c){
-			}
-		})
-	})
-	authBtn.addEventListener('click',function(){
-		$.ajax({
-			url:"/aniwalk/walker/auth.do",
-			type:"post",
-			data:{
-				"wk_phone" : $('#wk_phone').val()
-			},
-			success:function(data){
-				var auth_num = $('#auth_num').val(data);
 			},
 			error:function(a,b,c){
 			}
@@ -275,9 +312,9 @@ $(document).ready(function(){
 			},
 			success:function(data){
 				if(data == 'pass'){
-					$('#auth-btn').val('인증이 완료되었습니다');
+					$('#auth-btn').remove();
 					$('.auth-part').empty();
-					authBtn.removeEventListener('click',addPhoneAuthForm);
+					$('.auth-part').html('<input type="button" class="btn btn-primary" value="인증이 완료되었습니다."></label>');
 					$('#authResult').val('auth-pass');
 				} else {
 					alert('인증번호가 틀렸습니다.');
@@ -287,7 +324,7 @@ $(document).ready(function(){
 			}
 		})
 	}
-</script>`
+</script>
 </body>
 <style>
 	.agree{

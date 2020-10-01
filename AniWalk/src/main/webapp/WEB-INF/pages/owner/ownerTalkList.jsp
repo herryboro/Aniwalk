@@ -21,12 +21,12 @@
 			</form>
 		</div>
 
-		<div class="list-part">
+		<div class="list-part" >
 
 			<div class="talk-item">
 				<ul>
 					<li>
-						<img class="img-circle" src="${pageContext.request.contextPath}/images/applier.png" alt="">
+						<a href="/aniwalk/owner/talkContent.do"><img class="img-circle" src="${pageContext.request.contextPath}/images/applier.png" alt=""></a>
 					</li>
 					<li>
 						<div>
