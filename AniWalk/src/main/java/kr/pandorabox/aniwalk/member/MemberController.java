@@ -33,7 +33,7 @@ public class MemberController {
 			return mav;
 		} else {
 			mav.addObject("kakao_id", kakao_id);
-			mav.setViewName("index");
+			mav.setViewName("owner/index");
 			return mav;
 		}			
 	}
