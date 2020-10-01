@@ -26,7 +26,7 @@
 		<div class="items">
 			<ul class="list-item">
 				<li>
-					<img src="../../images/profile_test.png" alt="">
+					<a href="/aniwalk/owner/walkerInfo.do"><img src="${pageContext.request.contextPath}/images/profile_test.png" alt=""></a>
 				</li>
 				<li>
 					<ul>
@@ -54,7 +54,7 @@
 
 			<ul class="list-item">
 				<li>
-					<img src="../../images/applier.png" alt="">
+					<img src="${pageContext.request.contextPath}/images/applier.png" alt="">
 				</li>
 				<li>
 					<ul>
@@ -82,7 +82,7 @@
 
 			<ul class="list-item">
 				<li>
-					<img src="../../images/applier.png" alt="">
+					<img src="${pageContext.request.contextPath}/images/applier.png" alt="">
 				</li>
 				<li>
 					<ul>
@@ -111,7 +111,7 @@
 
 			<ul class="list-item">
 				<li>
-					<img src="../../images/applier.png" alt="">
+					<img src="${pageContext.request.contextPath}/images/applier.png" alt="">
 				</li>
 				<li>
 					<ul>
@@ -139,7 +139,7 @@
 
 			<ul class="list-item">
 				<li>
-					<img src="../../images/applier.png" alt="">
+					<img src="${pageContext.request.contextPath}/images/applier.png" alt="">
 				</li>
 				<li>
 					<ul>
@@ -167,7 +167,7 @@
 
 			<ul class="list-item">
 				<li>
-					<img src="../../images/applier.png" alt="">
+					<img src="${pageContext.request.contextPath}/images/applier.png" alt="">
 				</li>
 				<li>
 					<ul>
@@ -195,7 +195,7 @@
 
 			<ul class="list-item">
 				<li>
-					<img src="../../images/applier.png" alt="">
+					<img src="${pageContext.request.contextPath}/images/applier.png" alt="">
 				</li>
 				<li>
 					<ul>
@@ -223,7 +223,7 @@
 
 			<ul class="list-item">
 				<li>
-					<img src="../../images/applier.png" alt="">
+					<img src="${pageContext.request.contextPath}/images/applier.png" alt="">
 				</li>
 				<li>
 					<ul>
@@ -251,7 +251,7 @@
 
 			<ul class="list-item">
 				<li>
-					<img src="../../images/applier.png" alt="">
+					<img src="${pageContext.request.contextPath}/images/applier.png" alt="">
 				</li>
 				<li>
 					<ul>
@@ -279,7 +279,7 @@
 
 			<ul class="list-item">
 				<li>
-					<img src="../../images/applier.png" alt="">
+					<img src="${pageContext.request.contextPath}/images/applier.png" alt="">
 				</li>
 				<li>
 					<ul>

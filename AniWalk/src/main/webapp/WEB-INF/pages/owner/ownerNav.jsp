@@ -21,13 +21,13 @@
 			<button class="btn btn-primary" type="button" onclick="location.href='/aniwalk/owner/recruit.do'">산책모집</button>
 		</li>
 		<li>
-			<button class="btn btn-primary" type="button">펫프렌즈 리스트</button>
+			<button class="btn btn-primary" type="button" onclick="location.href='/aniwalk/owner/walker.do'">펫프렌즈 리스트</button>
 		</li>
 		<li>
-			<button class="btn btn-primary" type="button">대화리스트</button>
+			<button class="btn btn-primary" type="button" onclick="location.href='/aniwalk/owner/talk.do'">대화리스트</button>
 		</li>
 		<li>
-			<button class="btn btn-primary" type="button">산책정보</button>
+			<button class="btn btn-primary" type="button" >산책정보</button>
 		</li>
 	</ul>
 </div>

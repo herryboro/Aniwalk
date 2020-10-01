@@ -17,7 +17,10 @@
 	<view-controller path="/manager/userInfo.do" view-name="manager/userInfo"/>
 	<view-controller path="/manager/walkerInfo.do" view-name="manager/walkerInfo"/>
 	<view-controller path="/owner/recruit.do" view-name="owner/recruit"/>
+	<view-controller path="/owner/walker.do" view-name="owner/walkerList"/>
+	<view-controller path="/owner/talk.do" view-name="owner/talkList"/>
 	<view-controller path="/owner/my.do" view-name="owner/my"/>
+	<view-controller path="/owner/walkerInfo.do" view-name="owner/walkerInfo"/>
 	<view-controller path="/walker/index.do" view-name="walker/index"/>
 	<view-controller path="/walker/main.do" view-name="walker/main"/>
 	<view-controller path="/walker/recruitlist.do" view-name="walker/recruitlist"/>
