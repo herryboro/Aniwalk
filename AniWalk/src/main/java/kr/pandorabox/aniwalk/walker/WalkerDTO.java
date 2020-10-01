@@ -26,6 +26,13 @@ public class WalkerDTO {
 	private int activity_state;
 	MultipartFile[] files;
 	
+	//리뷰테이블
+	private String review_id;
+	private String mem_id;
+	private String review_contents;
+	private String review_score;
+	private Date review_date;
+	private String mem_nickname;
 	
 	@Override
 	public String toString() {
@@ -152,6 +159,57 @@ public class WalkerDTO {
 	public void setFiles(MultipartFile[] files) {
 		this.files = files;
 	}
+
+	public String getReview_id() {
+		return review_id;
+	}
+
+	public void setReview_id(String review_id) {
+		this.review_id = review_id;
+	}
+
+	public String getMem_id() {
+		return mem_id;
+	}
+
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
+	}
+
+	public String getReview_contents() {
+		return review_contents;
+	}
+
+	public void setReview_contents(String review_contents) {
+		this.review_contents = review_contents;
+	}
+
+	public String getReview_score() {
+		return review_score;
+	}
+
+	public void setReview_score(String review_score) {
+		this.review_score = review_score;
+	}
+
+	public Date getReview_date() {
+		return review_date;
+	}
+
+	public void setReview_date(Date review_date) {
+		this.review_date = review_date;
+	}
+
+	public String getMem_nickname() {
+		return mem_nickname;
+	}
+
+	public void setMem_nickname(String mem_nickname) {
+		this.mem_nickname = mem_nickname;
+	}
+	
+	
+	
 	
 	
 }

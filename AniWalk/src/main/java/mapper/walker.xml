@@ -49,4 +49,13 @@
 		select * from ani_walker where walker_id = #{walker_id}
 	</select>
 	
+	<select id="review" parameterType="String" resultType="walker">
+		select * from ani_review r 
+		left outer join ani_walker w
+		on r.wk_id = w.wk_id
+		left outer join ani_member m
+		on m.mem_id = r.mem_id
+		where w.walker_id = #{walker_id} 
+	</select>
+	
 </mapper>
