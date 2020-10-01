@@ -94,16 +94,15 @@
 	<tx:advice id="transactionAdvice"
 		transaction-manager="transactionManager">
 		<tx:attributes>
-			<tx:method name="insert" rollback-for="Exception"/>
+			<tx:method name="*" rollback-for="Exception"/>
 		</tx:attributes>
 	</tx:advice>
 	<!-- 3. aop처리 -->
 	<aop:config>
 		<!-- 펫 프렌즈 신청 트랜잭션 처리 -->
 		<aop:pointcut expression="execution(*
-		 kr.pandorabox.aniwalk.walker.WalkerServiceImpl.walkerApply(..))"
+		 kr.pandorabox.aniwalk.walker.*.walkerApply(..))"
 			 id="walkerApply"/>
 		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="walkerApply"/>
 	</aop:config>
-	
 </beans:beans>

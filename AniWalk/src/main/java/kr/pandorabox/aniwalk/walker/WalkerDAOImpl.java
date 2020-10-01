@@ -24,10 +24,8 @@ public class WalkerDAOImpl implements WalkerDAO{
 	
 	// 펫프렌즈 자격증 정보 insert
 	@Override
-	public int fileInsert(ArrayList<String> filelist) {
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("filelist", filelist);
-		return session.insert("kr.pandorabox.aniwalk.walker.fileinsert", paramMap);
+	public int walkerApply(String file) {
+		return session.insert("kr.pandorabox.aniwalk.walker.fileinsert", file);
 	}
 	
 	// 펫프렌즈 신청자 insert

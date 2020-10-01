@@ -90,13 +90,13 @@
 		
 		<ul class="apply-list">
 			<li style="display: flex; justify-content: center; align-items: center;">
-				<h3>[필수] 프로필사진을 등록해주세요</h3><span>(1개 이상)</span>
+				<h3>[필수] 프로필사진을 등록해주세요</h3><span>(1장 이상)</span>
 			</li>
 			<li>
 				<i class="fas fa-angle-left"></i>
 				<img id='wk_img' alt="" src="${pageContext.request.contextPath}/images/main_logo.png">
 				<i class="fas fa-angle-right"></i>
-				<input id='wk_profile' multiple="multiple" type="file" maxlength="3" class="form-control" name="wk_profile_imgs" required>
+				<input id='wk_profile' multiple="multiple" type="file" max="3" class="form-control" name="wk_profile_imgs" required>
 			</li>
 		</ul>
 
@@ -146,30 +146,34 @@
     	var filesArr = Array.prototype.slice.call(files);
     	if(files.length == 0){
     		$('#wk_img').attr('src', '${pageContext.request.contextPath}/images/main_logo.png' );
+    	} else if(files.length > 3) {
+    		alert('최대 3개 까지 선택 가능합니다.');
+    		$('#wk_profile').val('');
+    	} else {
+    		filesArr.forEach(function(f) {
+        		if(f.size >= maxSize) {
+        			alert("파일 사이즈 초과");
+        			$('#wk_profile').val('');
+        		} else if(!f.type.match("image.*")) {
+        			alert("사진과 동영상만 업로드 가능합니다!");
+        			
+        		} else {
+        			$('#wk_img').attr('src', URL.createObjectURL(e.target.files[0]));
+        		}
+        	});
+        	$('.fa-angle-left').on('click', function(){
+        		if(cnt > 0) {
+        			cnt -= 1;
+               		$('#wk_img').attr('src', URL.createObjectURL(e.target.files[cnt]));
+        		}
+        	});
+        	$('.fa-angle-right').on('click', function(){
+        		if(cnt < files.length-1) {
+        			cnt += 1;
+               		$('#wk_img').attr('src', URL.createObjectURL(e.target.files[cnt]));
+               	}
+        	});
     	}
-    	filesArr.forEach(function(f) {
-    		if(f.size >= maxSize) {
-    			alert("파일 사이즈 초과");
-    			$('#wk_profile').val('');
-    		} else if(!f.type.match("image.*")) {
-    			alert("사진과 동영상만 업로드 가능합니다!");
-    			$('#wk_profile').val('');
-    		} else {
-    			$('#wk_img').attr('src', URL.createObjectURL(e.target.files[0]));
-    		}
-    	});
-    	$('.fa-angle-left').on('click', function(){
-    		if(cnt > 0) {
-    			cnt -= 1;
-           		$('#wk_img').attr('src', URL.createObjectURL(e.target.files[cnt]));
-    		}
-    	});
-    	$('.fa-angle-right').on('click', function(){
-    		if(cnt < files.length-1) {
-    			cnt += 1;
-           		$('#wk_img').attr('src', URL.createObjectURL(e.target.files[cnt]));
-           	}
-    	});
 	})
 
 </script>

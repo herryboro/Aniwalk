@@ -14,14 +14,10 @@
 	</insert> 
 	
 	<!-- 펫 프렌즈 자격증 insert -->
-	<insert id="fileinsert" parameterType="Map">
-		insert all
-		<foreach collection="filelist" item="file" separator=" ">
-			into ANI_Certificate 
-			values('certi'||lpad(seq_certificate.nextval,5,0),
+	<insert id="fileinsert" parameterType="String">
+		insert into ANI_Certificate 
+		values('certi'||lpad(seq_certificate.nextval,5,0),
 				'walker'||lpad(seq_walker.currval,5,0), #{file})
-		</foreach>
-		select * from dual
 	</insert>
 	
 	<!-- 펫프렌즈 신청 정보 List -->

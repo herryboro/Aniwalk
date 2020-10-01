@@ -18,7 +18,7 @@ public class WalkerServiceImpl implements WalkerService {
 		return walkerDao.applyierList(wk_id);
 	}
 	
-	// 펫프렌즈 신청 
+	// 펫프렌즈 신청
 	@Override
 	public int walkerApply(WalkerDTO walker, ArrayList<String> filelist) {
 		int result = 0;
@@ -26,7 +26,9 @@ public class WalkerServiceImpl implements WalkerService {
 		int certificate_result = 0; 
 		walker_result = walkerDao.walkerApply(walker);
 		if(filelist.size() != 0) {
-			certificate_result = walkerDao.fileInsert(filelist);
+			for(String file : filelist) {
+				certificate_result = walkerDao.walkerApply(file);
+			}
 			if(walker_result >= 1 && certificate_result >= 1) {
 				result = 1;
 			}

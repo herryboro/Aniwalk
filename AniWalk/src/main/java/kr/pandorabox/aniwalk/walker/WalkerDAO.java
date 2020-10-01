@@ -1,14 +1,12 @@
 package kr.pandorabox.aniwalk.walker;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public interface WalkerDAO {
 
 	public int walkerApply(WalkerDTO walker);
-
-	public int fileInsert(ArrayList<String> filelist);
+	public int walkerApply(String file);
 
 	public List<WalkerDTO> applyierList(String wk_id);
 	
