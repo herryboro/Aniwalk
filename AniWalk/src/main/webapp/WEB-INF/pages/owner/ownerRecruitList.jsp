@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>모집글리스트</title>
-	<link rel="stylesheet" type="text/css" href="../../static/css/owner.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/owner.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 
@@ -28,7 +28,7 @@
 
 			<div class="list-group">
 				<div class="list-item">
-					<img src="../../images/mydog.jpg" alt="" class="img-rounded">
+					<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
 					<ul>
 						<li>
 							<label>견종 : </label>
@@ -46,7 +46,7 @@
 				</div>
 
 				<div class="list-item">
-					<img src="../../images/mydog.jpg" alt="" class="img-rounded">
+					<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
 					<ul>
 						<li>
 							<label>견종 : </label>
@@ -64,7 +64,7 @@
 				</div>
 
 				<div class="list-item">
-					<img src="../../images/mydog.jpg" alt="" class="img-rounded">
+					<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
 					<ul>
 						<li>
 							<label>견종 : </label>
@@ -82,7 +82,7 @@
 				</div>
 
 				<div class="list-item">
-					<img src="../../images/mydog.jpg" alt="" class="img-rounded">
+					<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
 					<ul>
 						<li>
 							<label>견종 : </label>
@@ -109,7 +109,7 @@
 
 			<div class="list-group">
 				<div class="list-item">
-					<img src="../../images/mydog.jpg" alt="" class="img-rounded">
+					<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
 					<ul>
 						<li>
 							<label>견종 : </label>
@@ -127,7 +127,7 @@
 				</div>
 
 				<div class="list-item">
-					<img src="../../images/mydog.jpg" alt="" class="img-rounded">
+					<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
 					<ul>
 						<li>
 							<label>견종 : </label>
@@ -161,7 +161,7 @@
 				<section>
 					<ol>
 						<li>
-							<img class="img-rounded" src="../../images/mydog.jpg" alt="">
+							<img class="img-rounded" src="${pageContext.request.contextPath}/images/mydog.jpg" alt="">
 						</li>
 						<li>
 							<label>선택된 반려견</label>
