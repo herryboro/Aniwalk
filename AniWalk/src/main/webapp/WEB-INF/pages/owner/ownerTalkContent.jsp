@@ -46,138 +46,140 @@
 	<div class="modal-bg hidden">
 		<div class="modal-content" onclick="event.stopPropagation()">
 			<button class="close" type="button">&times;</button>
-			<form class="recruit-write">
-				<h4>1.반려견 선택</h4>
-				<section>
-					<ol>
-						<li>
-							<img class="img-rounded" src="../../images/mydog.jpg" alt="">
-						</li>
-						<li>
-							<label>선택된 반려견</label>
-						</li>
-					</ol>
-				</section>
+			<div class="reserve-modal">
+				<h3>매칭안된 모집글 리스트</h3>
+				<div class="dont-match-list">
 
-				<section class="date-select">
-					<div class="form-group">
-						<div>
-							<h4>2.일정 선택</h4>
-							<i class="far fa-calendar-plus"></i>
-						</div>
-						<label>
-							<input type="date" class="form-control">
-						</label>
+					<!-- 모집글 1개 -->
+					<div class="list-item">
+						<img src="../../images/mydog.jpg" class="img-rounded" alt="">
+						<ul>
+							<li>
+								<label>날짜 : </label>
+								<span>2020-09-30</span>
+							</li>
+							<li>
+								<label>시간 : </label>
+								<span>오후 1:30 ~ 오후 2:00 (30분)</span>
+							</li>
+							<li>
+								<label>장소 : </label>
+								<span>서울특별시 서초구 반포대로 13길 26</span>
+							</li>
+						</ul>
 					</div>
-					<div class="form-group">
-						<div>
-							<h4>3.시간 선택</h4>
-							<i class="far fa-clock"></i>
-						</div>
-						<label>
-							<input type="date" class="form-control">
-						</label>
+					<!-- 끝 -->
+
+					<!-- 모집글 1개 -->
+					<div class="list-item">
+						<img src="../../images/mydog.jpg" class="img-rounded" alt="">
+						<ul>
+							<li>
+								<label>날짜 : </label>
+								<span>2020-09-30</span>
+							</li>
+							<li>
+								<label>시간 : </label>
+								<span>오후 1:30 ~ 오후 2:00 (30분)</span>
+							</li>
+							<li>
+								<label>장소 : </label>
+								<span>서울특별시 서초구 반포대로 13길 26</span>
+							</li>
+						</ul>
 					</div>
-				</section>
+					<!-- 끝 -->
 
-				<h4>4.주소선택</h4>
-				<section>
-					<div id="map" style="width:500px;height:400px;" class="kakao-map"></div>
-					<label id="centerAddr">선택한 지역</label>
-				</section>
+					<!-- 모집글 1개 -->
+					<div class="list-item">
+						<img src="../../images/mydog.jpg" class="img-rounded" alt="">
+						<ul>
+							<li>
+								<label>날짜 : </label>
+								<span>2020-09-30</span>
+							</li>
+							<li>
+								<label>시간 : </label>
+								<span>오후 1:30 ~ 오후 2:00 (30분)</span>
+							</li>
+							<li>
+								<label>장소 : </label>
+								<span>서울특별시 서초구 반포대로 13길 26</span>
+							</li>
+						</ul>
+					</div>
+					<!-- 끝 -->
 
-				<h4>5.주의사항</h4>
-				<section class="notice">
-					<label>
-						<textarea class="form-control" cols="200">
-							써놓은 주의사항들
-						</textarea>
-					</label>
-				</section>
-				<div class="btn-line">
-					<button type="submit" class="btn btn-primary">예약하기</button>
-					<button type="button" class="btn btn-default">취소</button>
+					<!-- 모집글 1개 -->
+					<div class="list-item">
+						<img src="../../images/mydog.jpg" class="img-rounded" alt="">
+						<ul>
+							<li>
+								<label>날짜 : </label>
+								<span>2020-09-30</span>
+							</li>
+							<li>
+								<label>시간 : </label>
+								<span>오후 1:30 ~ 오후 2:00 (30분)</span>
+							</li>
+							<li>
+								<label>장소 : </label>
+								<span>서울특별시 서초구 반포대로 13길 26</span>
+							</li>
+						</ul>
+					</div>
+					<!-- 끝 -->
+
 				</div>
-			</form>
+				<!-- 모집글 작성 버튼 -->
+				<div class="new-recruit">
+					<i class="far fa-plus-square"></i>
+					<label>새로운 모집글 작성</label>
+				</div>
+				<!-- 예약, 취소 버튼 -->
+				<div class="btn-line">
+					<button class="btn btn-primary">예약하기</button>
+					<button class="btn btn-default cancel-btn">취소</button>
+				</div>
+			</div>
 		</div>
 	</div>
-	<script>
-		//모달창
-		const reserveBtn = document.querySelector('.reserve-btn');
-		const modalBg = document.querySelector('.modal-bg');
-		const close = document.querySelector('.close');
+<script>
+	//모달창
+	const reserveBtn = document.querySelector('.reserve-btn');
+	const modalBg = document.querySelector('.modal-bg');
+	const close = document.querySelector('.close');
+	const cancelBtn = document.querySelector('.cancel-btn');
 
-		const modalClose = function(){
-			modalBg.classList.add('hidden');
-		}
+	const modalClose = function(){
+		modalBg.classList.add('hidden');
+	}
 
-		reserveBtn.addEventListener('click',function(){
-			modalBg.classList.remove('hidden');
+	reserveBtn.addEventListener('click',function(){
+		modalBg.classList.remove('hidden');
+	});
+
+	modalBg.addEventListener('click',modalClose);
+	close.addEventListener('click',modalClose);
+	cancelBtn.addEventListener('click',modalClose);
+</script>
+<script>
+	//매칭안된 모집글 클릭시 이벤트
+	const listItem = document.querySelectorAll('.list-item');
+	for(let i=0; i<listItem.length; i++) {
+		listItem[i].addEventListener('click',function(){
+			for(let j=0; j<listItem.length; j++){
+				listItem[j].classList.remove('on-click');
+			}
+			listItem[i].classList.add('on-click');
 		});
-
-		modalBg.addEventListener('click',modalClose);
-		close.addEventListener('click',modalClose);
-	</script>
-
-	<script>
-		//카카오톡지도
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-				mapOption = {
-					center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-					level: 5 // 지도의 확대 레벨
-				};
-
-		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-		// HTML5의 geolocation으로 사용할 수 있는지 확인합니다
-		if (navigator.geolocation) {
-
-			// GeoLocation을 이용해서 접속 위치를 얻어옵니다
-			navigator.geolocation.getCurrentPosition(function(position) {
-
-				var lat = position.coords.latitude, // 위도
-						lon = position.coords.longitude; // 경도
-
-				var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-						message = '<div style="padding:5px;">현재위치</div>'; // 인포윈도우에 표시될 내용입니다
-
-				// 마커와 인포윈도우를 표시합니다
-				displayMarker(locPosition, message);
-
-			});
-
-		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-
-			var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
-					message = 'geolocation을 사용할수 없어요..'
-
-			displayMarker(locPosition, message);
-		}
-
-		// 지도에 마커와 인포윈도우를 표시하는 함수입니다
-		function displayMarker(locPosition, message) {
-
-			// 마커를 생성합니다
-			var marker = new kakao.maps.Marker({
-				map: map,
-				position: locPosition
-			});
-
-			var iwContent = message, // 인포윈도우에 표시할 내용
-					iwRemoveable = true;
-
-			// 인포윈도우를 생성합니다
-			var infowindow = new kakao.maps.InfoWindow({
-				content : iwContent,
-				removable : iwRemoveable
-			});
-
-			// 인포윈도우를 마커위에 표시합니다
-			infowindow.open(map, marker);
-
-			// 지도 중심좌표를 접속위치로 변경합니다
-			map.setCenter(locPosition);
-		}
-	</script>
+	}
+</script>
 </body>
+<style>
+	.on-click{
+		background: rgb(52, 152, 219);
+		color: white;
+	}
+</style>
 </html>
