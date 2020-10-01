@@ -15,7 +15,7 @@ public class MemberDAOImpl implements MemberDAO {
 	SqlSession sqlSession;
 	
 	@Override
-	public int joinCheck(int kakao_id) {
+	public String joinCheck(int kakao_id) {
 		return sqlSession.selectOne("kr.pandorabox.aniwalk.member.check", kakao_id);
 	}
 	

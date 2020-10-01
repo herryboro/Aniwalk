@@ -12,7 +12,7 @@ public class MemberServiceImpl implements MemberService {
 	MemberDAO memberDAO;
 	
 	@Override
-	public int joinCheck(int kakao_id) {			
+	public String joinCheck(int kakao_id) {			
 		return memberDAO.joinCheck(kakao_id);
 	}
 	

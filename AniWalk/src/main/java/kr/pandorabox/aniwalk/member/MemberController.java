@@ -26,12 +26,15 @@ public class MemberController {
 	public ModelAndView checkMember(int kakao_id, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		
-		int result = memverService.joinCheck(kakao_id);
+		String mem_nickname = memverService.joinCheck(kakao_id);
 		
-		if(result == 0) {
+		if(mem_nickname == null) {
 			mav.setViewName("login");
 			return mav;
 		} else {
+			request.getSession().setAttribute("mem_nickname", mem_nickname);
+			System.out.println(request.getSession().getAttribute("mem_nickname"));
+			mav.addObject("mem_nickname", mem_nickname);
 			mav.addObject("kakao_id", kakao_id);
 			mav.setViewName("owner/index");
 			return mav;
