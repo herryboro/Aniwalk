@@ -18,4 +18,8 @@ public interface WalkerDAO {
 	//워커신청 폰체크
 	public String phoneCheck(String phoneNum);
 	public WalkerDTO walkerInfo(String walker_id);
+	
+	//워커 산책 후기
+	public List<WalkerDTO> review(String walker_id);
+
 }

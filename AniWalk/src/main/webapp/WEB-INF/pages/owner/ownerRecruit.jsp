@@ -58,7 +58,7 @@
 		</section>
 		<section>
 			<h4>4.주소선택</h4>
-			<input type="text" id="addr" placeholder="주소검색"><button onclick="searchAddr()">검색</button>
+			<input type="text" id="addr" placeholder="주소검색"><button type="button" onclick="searchAddr()">검색</button>
 			<div id="map" style="width: 500px; height: 400px;" class="kakao-map"></div>
 			<label id="centerAddr">현재주소</label>
 		</section>

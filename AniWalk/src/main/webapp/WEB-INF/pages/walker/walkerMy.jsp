@@ -57,63 +57,24 @@
 				</div>
 				<span>4.0</span>
 			</div>
-
-			<div class="list-item">
-				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
-				<ul>
-					<li class="bottom-margin">
-						<img src="${pageContext.request.contextPath}/images/profile_test.png" alt="" class="img-circle">
-						<label>반려견주인 닉네임</label>
-						<div class="star-rating">
-							<span style="width:30%"></span>
-						</div>
-						<span class="right">2020-09-27</span>
-					</li>
-					<li>
-						새가 운다사랑의 풀이 없으면 인간은 사막이다 오아이스도 없는 사막이다
-						보이는 끝까지 찾아다녀도 목숨이 있는 때까지 방황하여도 보이는 것은 거친 모래뿐일 것이다
-						이상의 꽃이 없으면 쓸쓸한 인간에 남는 것은 영락과 부패 뿐이다 낙원을
-					</li>
-				</ul>
-			</div>
-
-			<div class="list-item">
-				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
-				<ul>
-					<li class="bottom-margin">
-						<img src="${pageContext.request.contextPath}/images/profile_test.png" alt="" class="img-circle">
-						<label>반려견주인 닉네임</label>
-						<div class="star-rating">
-							<span style="width:30%"></span>
-						</div>
-						<span class="right">2020-09-27</span>
-					</li>
-					<li>
-						새가 운다사랑의 풀이 없으면 인간은 사막이다 오아이스도 없는 사막이다
-						보이는 끝까지 찾아다녀도 목숨이 있는 때까지 방황하여도 보이는 것은 거친 모래뿐일 것이다
-						이상의 꽃이 없으면 쓸쓸한 인간에 남는 것은 영락과 부패 뿐이다 낙원을
-					</li>
-				</ul>
-			</div>
-
-			<div class="list-item">
-				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
-				<ul>
-					<li class="bottom-margin">
-						<img src="${pageContext.request.contextPath}/images/profile_test.png" alt="" class="img-circle">
-						<label>반려견주인 닉네임</label>
-						<div class="star-rating">
-							<span style="width:30%"></span>
-						</div>
-						<span class="right">2020-09-27</span>
-					</li>
-					<li>
-						새가 운다사랑의 풀이 없으면 인간은 사막이다 오아이스도 없는 사막이다
-						보이는 끝까지 찾아다녀도 목숨이 있는 때까지 방황하여도 보이는 것은 거친 모래뿐일 것이다
-						이상의 꽃이 없으면 쓸쓸한 인간에 남는 것은 영락과 부패 뿐이다 낙원을
-					</li>
-				</ul>
-			</div>
+			<c:forEach items="${reviewDtos}" var="reviewDto">
+				<div class="list-item">
+					<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
+					<ul>
+						<li class="bottom-margin">
+							<img src="${pageContext.request.contextPath}/images/profile_test.png" alt="" class="img-circle">
+							<label>${reviewDto.mem_nickname}</label>
+							<div class="star-rating">
+								<span style="width:30%"></span>
+							</div>
+							<span class="right"> ${reviewDto.review_date} </span>
+						</li>
+						<li>
+							${reviewDto.review_contents}
+						</li>
+					</ul>
+				</div>
+			</c:forEach>
 		</div>
 	</section>
 

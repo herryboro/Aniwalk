@@ -39,21 +39,22 @@
 		      Kakao.API.request({
 		        url: '/v2/user/me',
 		        success: function(res) {
-		          //alert(JSON.stringify(res))   
+		         // alert(JSON.stringify(res))   
+		         
 		          
 		          var kakao_id = res.id;
 		          var nickname = res.properties['nickname'];
 		          var profile_img = res.properties['profile_image'];
 		          var connected_time = res.connected_at;
 		          var email = res.kakao_account['email'];
-		          var phone_number = res.kakao_account['phone_number'];
+		          var phone_number = res.kakao_account['phone_number'];         
 		          var gender = res.kakao_account['gender']
 		          var kakao_access_token = authObj.access_token;
 		       
 		          
 		          
 		          console.log(kakao_id);
-		          console.log(nickname);
+		          console.log(nickname);		   
 		          console.log(profile_img);
 		          console.log(connected_time);
 		          console.log(email);
@@ -61,7 +62,9 @@
 		          console.log(gender);
 		          console.log(kakao_access_token);
 		         
-		          
+		          location.href="loginPro.do?kakao_id="+ kakao_id + "&nickname=" + nickname + "&profile_img=" + profile_img
+	           		+ "&connected_time=" + connected_time + "&email=" + email + "&phone_number=" + phone_number + "&gender="+ gender 
+	           		+"&kakao_access_token=" + kakao_access_token;
 		          
 		        },
 		        fail: function(error) {

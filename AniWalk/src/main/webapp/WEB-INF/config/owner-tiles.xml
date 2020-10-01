@@ -10,4 +10,13 @@
 	<definition name="owner/my" extends="ownerTemplate">
 		<put-attribute name="content" value="/WEB-INF/pages/owner/ownerMy.jsp"/>
 	</definition>
+	<definition name="owner/talkList" extends="ownerTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/owner/ownerTalkList.jsp"/>
+	</definition>
+	<definition name="owner/walkerList" extends="ownerTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/owner/ownerWalkerList.jsp"/>
+	</definition>
+	<definition name="owner/walkerInfo" extends="ownerTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/owner/ownerWalkerInfo.jsp"/>
+	</definition>
 </tiles-definitions>

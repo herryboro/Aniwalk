@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>워커정보</title>
-	<link rel="stylesheet" type="text/css" href="../../static/css/owner.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/owner.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -16,7 +16,7 @@
 	</div>
 	<div class="info-content">
 		<div class="info-box">
-			<img class="img-rounded" src="../../images/applier.png" alt="">
+			<img class="img-rounded" src="${pageContext.request.contextPath}/images/applier.png" alt="">
 			<span class="glyphicon glyphicon-remove"></span>
 			<ul>
 				<li>
@@ -52,12 +52,12 @@
 		</div>
 		<div class="review-list">
 			<div class="review-item">
-				<img class="img-rounded" src="../../images/mydog.jpg" alt="">
+				<img class="img-rounded" src="${pageContext.request.contextPath}/images/mydog.jpg" alt="">
 				<div class="review-right">
 					<ul>
 						<li class="bottom-margin">
 							<div>
-								<img class="img-circle" src="../../images/profile_test.png" alt="">
+								<img class="img-circle" src="${pageContext.request.contextPath}/images/profile_test.png" alt="">
 								<label>사용자닉네임</label>
 								<div class="star-rating">
 									<span style="width:30%"></span>
@@ -76,12 +76,12 @@
 			</div>
 
 			<div class="review-item">
-				<img class="img-rounded" src="../../images/mydog.jpg" alt="">
+				<img class="img-rounded" src="${pageContext.request.contextPath}/images/mydog.jpg" alt="">
 				<div class="review-right">
 					<ul>
 						<li class="bottom-margin">
 							<div>
-								<img class="img-circle" src="../../images/profile_test.png" alt="">
+								<img class="img-circle" src="${pageContext.request.contextPath}/images/profile_test.png" alt="">
 								<label>사용자닉네임</label>
 								<div class="star-rating">
 									<span style="width:30%"></span>
@@ -100,12 +100,12 @@
 			</div>
 
 			<div class="review-item">
-				<img class="img-rounded" src="../../images/mydog.jpg" alt="">
+				<img class="img-rounded" src="${pageContext.request.contextPath}/images/mydog.jpg" alt="">
 				<div class="review-right">
 					<ul>
 						<li class="bottom-margin">
 							<div>
-								<img class="img-circle" src="../../images/profile_test.png" alt="">
+								<img class="img-circle" src="${pageContext.request.contextPath}/images/profile_test.png" alt="">
 								<label>사용자닉네임</label>
 								<div class="star-rating">
 									<span style="width:30%"></span>

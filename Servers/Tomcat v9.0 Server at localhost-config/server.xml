@@ -155,6 +155,7 @@
 	
       <Context docBase="AniWalk" path="/aniwalk" reloadable="true" source="org.eclipse.jst.jee.server:AniWalk"/>
       <Context docBase="C:/walker" path="/walker" reloadable="true"/>
+      <Context docBase="C:/owner" path="/owner" reloadable="true"/>
       </Host>
     </Engine>
   </Service>
