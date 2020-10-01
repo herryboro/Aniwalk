@@ -90,9 +90,20 @@ button{
     display: flex;
     justify-content: center;
     align-items: center;
+
+    overflow: scroll;
 }
+
 .modal-content .close{
-    margin-top: 10px;
+    padding: 10px;
+    z-index: 1;
+    position: absolute;
+    top: 2px;
+    right: 3%;
+}
+.modal-content .btn-line .btn-default{
+    background: var(--darkgray);
+    color: var(--white);
 }
 .hidden{
     display: none;
@@ -525,7 +536,7 @@ body{
     overflow: scroll;
 }
 
-.walker-list .search-part{
+.search-part{
     padding: 20px;
     background: white;
     position: fixed;
@@ -533,7 +544,7 @@ body{
     left: 0;
     top: 0;
 }
-.walker-list .search-part label{
+.search-part label{
     width: 90%;
 }
 .items{
@@ -680,5 +691,240 @@ body{
 }
 
 
+/**************************************************
+
+    ownerTalkList
+
+***************************************************/
+.search-part form{
+    display: flex;
+    justify-content: center;
+}
+.search-part form label{
+    width: 88%;
+}
+.talk-list{
+    width: 100%;
+}
+.talk-list .list-part{
+    margin-top: 85px;
+    width: 100%;
+}
+.list-part .talk-item{
+    display: flex;
+    justify-content: center;
+    background: rgb(224, 224, 224);
+    width: 90%;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--darkgray);
+    margin: 20px auto;
+}
+.list-part .talk-item ul{
+    width: 85%;
+    display: flex;
+}
+.list-part .talk-item ul img{
+    width: 75px;
+    height: 75px;
+}
+.list-part .talk-item ul div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    margin-left: 30px;
+}
+/**************************************************
+
+    ownerTalkContent
+
+***************************************************/
+.talk-content{
+    width: 100%;
+    height: 100%;
+
+    overflow: scroll;
 
 
+    margin-bottom: 54px;
+
+}
+.talk-content .reserve-btn{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    color: rgb(51, 51, 51);
+    background: rgba(52, 152, 219, 0.33);
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: bold;
+    left: 0;
+    position: fixed;
+    top: 0;
+}
+.reserve-btn:hover{
+    cursor: pointer;
+}
+.talk-content .content-part{
+    margin-top: 60px;
+    padding: 20px;
+}
+.talk-content .content-part .you{
+    padding: 10px;
+    display: flex;
+}
+.talk-content .content-part .you img{
+    width: 60px;
+    height: 60px;
+}
+.content-part .you ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 30px;
+    max-width: 50%;
+}
+.content-part .you ul li{
+    display: flex;
+    align-items: center;
+}
+.content-part .you div{
+    padding: 8px;
+    border: 1px solid;
+    border-radius: 10px;
+    margin-right: 10px;
+    max-width: 83%;
+}
+.content-part .you span {
+    width: 80px;
+}
+.talk-content .content-part .my{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 0;
+}
+.talk-content .content-part .my ul{
+    display: flex;
+    align-items: center;
+    max-width: 50%;
+    margin-right: 0;
+}
+.talk-content .content-part .my ul li{
+    margin-right: 0;
+}
+.talk-content .content-part .my .my-talk-content{
+    padding: 8px;
+    border: 1px solid;
+    border-radius: 10px;
+    margin-left: 10px;
+    float: right;
+}
+
+.talk-inputForm{
+    background: white;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 15px 15px 5px;
+}
+.talk-inputForm label{
+    width: 93%;
+    margin-left: 10px;
+}
+/**************************************************
+
+    ownerTalkContent - 예약정보box
+
+***************************************************/
+.you ul li .reserve-box-you{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    width: 100%;
+    padding: 15px 15px 5px 15px;
+
+    background: rgb(237, 237, 237);
+    border-radius: 10px;
+    border: none;
+}
+.you ul li .reserve-box-you button{
+    margin: 15px auto 5px auto;
+    width: 70%;
+}
+
+.reserve-box-my{
+    width: 40%;
+    position: relative;
+    right: -30%;
+}
+
+/**************************************************
+
+    ownerTalkContent - modal
+
+***************************************************/
+.reserve-modal{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+}
+.reserve-modal .dont-match-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    height: 70%;
+    padding: 20px;
+    overflow: scroll;
+}
+.reserve-modal .dont-match-list .list-item{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    border: 1px solid;
+    border-radius: 10px;
+
+    width: 85%;
+    height: 145px;
+
+    padding: 20px;
+    margin-bottom: 10px;
+}
+.reserve-modal .dont-match-list .list-item:hover{
+    cursor: pointer;
+}
+.reserve-modal .dont-match-list .list-item img{
+    width: 100px;
+    height: 100px;
+}
+.reserve-modal .new-recruit{
+    text-align: center;
+    font-size: 2rem;
+    margin: 20px auto;
+}
+.reserve-modal .new-recruit i, .reserve-modal .new-recruit label:hover{
+    cursor: pointer;
+
+}
+.reserve-box-my{
+
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+    padding: 20px;
+
+    background: rgb(237, 237, 237);
+    border-radius: 10px;
+
+}
