@@ -13,7 +13,16 @@
     <h1>관리자 로그인 해야된다</h1>
 
     <h3 id="showToday"></h3>
-    <button class="btn btn-primary">로그인</button>
+    <form action="${pageContext.request.contextPath}/manager/indexPro.do" method="post">
+	    <div>
+	         	관리자 아이디: <input name="manager_id">
+	    </div>
+    	<div>
+    		관리자 비밀번호: <input name="manage_pw">
+    	</div>
+    	<button class="btn btn-primary">로그인</button>
+    </form>
+    
 </div>
 <script>
 

@@ -15,6 +15,7 @@
 	<mappers>
 		<mapper resource="mapper/member.xml"/>
 		<mapper resource="mapper/walker.xml"/>
+		<mapper resource="mapper/manager.xml"/>
 		<mapper resource="mapper/walking.xml"/>
 	</mappers>
 </configuration>
