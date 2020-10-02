@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,13 +16,14 @@
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
 <!-- 스와이퍼 -->
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
-
 <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2521c7cc3e67ced68e19182536406c54&libraries=services,clusterer,drawing"></script>
+
 </head>
 <body>
-	<form class="recruit-write">
+	<form class="recruit-write" action="/aniwalk/owner/recruitInsert.do">
+	<input type="hidden" value="${recruit_mem_id}" name="recruit_mem_id">
 		<div>
 			<h4>모집글작성</h4>
 			<hr width="90%" color="gray">
@@ -29,12 +31,18 @@
 
 		<section>
 			<h4>1.반려견 선택</h4>
+			
 			<ol>
-				<li><img class="img-rounded"
-					src="${pageContext.request.contextPath}/images/mydog.jpg" alt="">
-				</li>
-				<li><label>반려견 이름</label></li>
+				
+				<li>
+				<c:forEach var="walkingDto" items="${walkingDtos}" varStatus="mystatus">
+				<img class="img-rounded"
+					src="/member/${walkingDto.dog_image}" alt="">
+					<input type="radio" name="dog_id" value="${walkingDto.dog_id}"> ${walkingDto.dog_name}
+				</c:forEach>
+				</li>	
 			</ol>
+			 
 		</section>
 		<section class="date-select">
 			<div class="form-group">
@@ -43,37 +51,48 @@
 					<i class="far fa-calendar-plus"></i>
 				</div>
 				<label>
-					<input type="date" class="form-control">
+					<input type="date" class="form-control" name="walk_date">
 				</label>
 			</div>
 			<div class="form-group">
 				<div>
-					<h4>3.시간 선택</h4>
+					<h4>3.산책 시작 시간</h4>
 					<i class="far fa-clock"></i>
 				</div>
 				<label>
-					<input type="time" class="form-control">
+					<input type="time" class="form-control" name="walk_start_time">
+				</label>
+			</div>
+			<div class="form-group">
+				<div>
+					<h4>4.산책 끝나는 시간</h4>
+					<i class="far fa-clock"></i>
+				</div>
+				<label>
+					<input type="time" class="form-control" name="walk_end_time">
 				</label>
 			</div>
 		</section>
 		<section>
-			<h4>4.주소선택</h4>
-			<input type="text" id="addr" placeholder="주소검색"><button type="button" onclick="searchAddr()">검색</button>
+			<h4>5.주소선택</h4>
+			<input type="text" id="addr"  placeholder="주소검색" ><button type="button" onclick="searchAddr()">검색</button>
+			<input type="hidden" id="recruit_location" name="recruit_location" value="">
 			<div id="map" style="width: 500px; height: 400px;" class="kakao-map"></div>
 			<label id="centerAddr">현재주소</label>
 		</section>
 		<section class="notice">
-			<h4>5.주의사항</h4>
-			<label> <textarea class="form-control" cols="200"></textarea>
+			<h4>6.주의사항</h4>
+			<label> <textarea class="form-control" cols="200" name="recruit_notices"></textarea>
 			</label>
 		</section>
 		<div class="btn-line">
-			<button type="submit" class="btn btn-primary">수정하기</button>
+			<button type="submit" class="btn btn-primary">신청하기</button>
 			<button type="button" class="btn btn-default">취소</button>
 		</div>
 	</form>
 
 </body>
+
 <script>
 //카카오톡지도 생성
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -110,6 +129,8 @@ function coord2Address(coord) {
          	var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
             detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
             document.getElementById('centerAddr').innerHTML = detailAddr;
+            
+            document.getElementById('recruit_location').value = result[0].road_address.address_name;
          }
      };
      message = '<div style="padding:5px;">현재위치</div>';
@@ -130,7 +151,6 @@ if (navigator.geolocation) {
         
         // 마커와 인포윈도우를 표시합니다
         displayMarker(locPosition, message);
-        coord2Address(locPosition);
     });
     
 } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
