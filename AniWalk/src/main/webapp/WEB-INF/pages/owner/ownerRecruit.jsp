@@ -6,19 +6,21 @@
 <head>
 <meta charset="UTF-8">
 <title>모집하기</title>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/static/css/owner.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
-	rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
-<!-- 스와이퍼 -->
-<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
-<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2521c7cc3e67ced68e19182536406c54&libraries=services,clusterer,drawing"></script>
+	<link rel="stylesheet" type="text/css"
+		href="${pageContext.request.contextPath}/static/css/owner.css">
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+		rel="stylesheet">
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+	<!-- 스와이퍼 -->
+	<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+	<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2521c7cc3e67ced68e19182536406c54&libraries=services,clusterer,drawing"></script>
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -97,7 +99,7 @@
 		</section>
 		
 		<div class="btn-line">
-			<button id="recruitBtn" type="button" class="btn btn-primary">모집글 작성</button>
+			<button id="recruitBtn" type="submit" class="btn btn-primary">모집글 작성</button>
 			<button type="button" class="btn btn-default">취소</button>
 		</div>
 	</form>
@@ -230,25 +232,6 @@ function removeMarker() {
     markers = [];
 }
 </script>
-<script>
-	//모달창
-	const recruitBtn = document.getElementById('recruitBtn');
-	const modalBg = document.querySelector('.modal-bg');
-	const close = document.querySelector('.close');
-	const closeBtn = document.querySelector('.btn-default');
-
-	const modalClose = function(){
-		modalBg.classList.add('hidden');
-	}
-
-	recruitBtn.addEventListener('click',function(){
-		modalBg.classList.remove('hidden');
-	});
-
-	modalBg.addEventListener('click',modalClose);
-	close.addEventListener('click',modalClose);
-	closeBtn.addEventListener('click',modalClose);
-</script>
 
 <script>
 //슬라이더
@@ -258,5 +241,14 @@ function removeMarker() {
 			prevEl: '.swiper-button-prev',
 		},
 	});
+</script>
+
+<script>
+	//모달로 정보넘기는 작업
+	let recruitModalInfo = function(){
+		$.document.ready(function (){
+
+		});
+	}
 </script>
 </html>
