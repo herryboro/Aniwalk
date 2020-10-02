@@ -603,10 +603,8 @@ body{
 .search-part{
     padding: 20px;
     background: white;
-    position: fixed;
     width: 100%;
-    left: 0;
-    top: 0;
+   
 }
 .search-part label{
     width: 90%;
