@@ -28,27 +28,37 @@
 			<h4>모집글작성</h4>
 			<hr width="90%" color="gray">
 		</div>
-
+		
 		<section>
-			<h4>1.반려견 선택</h4>
-			
-			<ol>
-				
-				<li>
-				<c:forEach var="walkingDto" items="${walkingDtos}" varStatus="mystatus">
-				<img class="img-rounded"
-					src="/member/${walkingDto.dog_image}" alt="">
-					<input type="radio" name="dog_id" value="${walkingDto.dog_id}"> ${walkingDto.dog_name}
-				</c:forEach>
-				</li>	
-			</ol>
-			 
+			<!-- Slider main container -->
+			<div class="swiper-container">
+				<!-- Additional required wrapper -->
+				<div class="swiper-wrapper">
+					<!-- Slides -->
+					<c:forEach var="walkingDto" items="${walkingDtos}" varStatus="mystatus">
+					<div class="swiper-slide">
+						<ol>
+							<li>
+								<img class="img-rounded" src="/member/${walkingDto.dog_image}" alt="">
+							</li>
+							<li>
+								<input type="radio" name="dog_id" value="${walkingDto.dog_id}"> ${walkingDto.dog_name}
+							</li>
+						</ol>
+					</div>
+					</c:forEach>
+				</div>
+				<!-- If we need navigation buttons -->
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+			</div>
 		</section>
 		<section class="date-select">
 			<div class="form-group">
 				<div>
 					<h4>2.일정 선택</h4>
 					<i class="far fa-calendar-plus"></i>
+	
 				</div>
 				<label>
 					<input type="date" class="form-control" name="walk_date">
@@ -56,37 +66,38 @@
 			</div>
 			<div class="form-group">
 				<div>
-					<h4>3.산책 시작 시간</h4>
+					<h4>3.시간 선택</h4>
 					<i class="far fa-clock"></i>
 				</div>
 				<label>
+					<span>시작시간 : </span>
 					<input type="time" class="form-control" name="walk_start_time">
 				</label>
-			</div>
-			<div class="form-group">
-				<div>
-					<h4>4.산책 끝나는 시간</h4>
-					<i class="far fa-clock"></i>
-				</div>
 				<label>
+					<span>종료시간 : </span>
 					<input type="time" class="form-control" name="walk_end_time">
 				</label>
 			</div>
 		</section>
+	
+	
+		<h4>4.주소선택</h4>
 		<section>
-			<h4>5.주소선택</h4>
-			<input type="text" id="addr"  placeholder="주소검색" ><button type="button" onclick="searchAddr()">검색</button>
-			<input type="hidden" id="recruit_location" name="recruit_location" value="">
-			<div id="map" style="width: 500px; height: 400px;" class="kakao-map"></div>
-			<label id="centerAddr">현재주소</label>
+				<input type="text" id="addr"  placeholder="주소검색" ><button type="button" onclick="searchAddr()">검색</button>
+				<input type="hidden" id="recruit_location" name="recruit_location" value="">
+				<div id="map" style="width: 500px; height: 400px;" class="kakao-map"></div>
+				<label id="centerAddr">현재주소</label>
 		</section>
+		
+		<h4>5.주의사항</h4>
 		<section class="notice">
-			<h4>6.주의사항</h4>
-			<label> <textarea class="form-control" cols="200" name="recruit_notices"></textarea>
+			<label>
+				<textarea class="form-control" cols="200" name="recruit_notices"></textarea>
 			</label>
 		</section>
+		
 		<div class="btn-line">
-			<button type="submit" class="btn btn-primary">신청하기</button>
+			<button id="recruitBtn" type="button" class="btn btn-primary">모집글 작성</button>
 			<button type="button" class="btn btn-default">취소</button>
 		</div>
 	</form>
@@ -219,5 +230,33 @@ function removeMarker() {
     markers = [];
 }
 </script>
+<script>
+	//모달창
+	const recruitBtn = document.getElementById('recruitBtn');
+	const modalBg = document.querySelector('.modal-bg');
+	const close = document.querySelector('.close');
+	const closeBtn = document.querySelector('.btn-default');
 
+	const modalClose = function(){
+		modalBg.classList.add('hidden');
+	}
+
+	recruitBtn.addEventListener('click',function(){
+		modalBg.classList.remove('hidden');
+	});
+
+	modalBg.addEventListener('click',modalClose);
+	close.addEventListener('click',modalClose);
+	closeBtn.addEventListener('click',modalClose);
+</script>
+
+<script>
+//슬라이더
+	var swiper = new Swiper('.swiper-container', {
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		},
+	});
+</script>
 </html>

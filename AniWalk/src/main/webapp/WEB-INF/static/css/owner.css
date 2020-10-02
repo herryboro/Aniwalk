@@ -41,7 +41,14 @@ button{
     width: 100%;
     display: flex;
 }
+/**************************************************
 
+    swiper
+
+***************************************************/
+.swiper-container{
+    width: 100%;
+}
 /**************************************************
 
     별점
@@ -395,7 +402,7 @@ body{
 }
 .recruit-write .form-group label{
     margin: 20px auto;
-    width: 300px;
+    width: 80%;
 }
 .recruit-write .form-group i{
     font-size: 10rem;
@@ -405,6 +412,9 @@ body{
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
 
 .recruit-write .notice label{
@@ -430,6 +440,60 @@ body{
 #centerAddr{
     margin: 20px auto 10px auto;
 }
+/**************************************************
+
+    ownerRecruit - 모달정보
+
+***************************************************/
+.recruit-modal{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    width: 80%;
+    height: 90%;
+
+    padding: 20px;
+}
+.recruit-content{
+    display: flex;
+    justify-content: space-around;
+
+    padding-top: 20px;
+}
+.recruit-content .dog-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.recruit-content .dog-info img{
+    width: 200px;
+    height: 200px;
+}
+.recruit-content .dog-info label{
+    font-size: 2rem;
+    margin-top: 20px;
+}
+.recruit-content .match-info{
+    display: flex;
+    flex-direction: column;
+}
+.recruit-content .match-info li{
+    display: flex;
+}
+.recruit-content .match-info li h3{
+    width: 150px;
+    min-width: 150px;
+}
+.recruit-content .match-info li div{
+    padding-top: 20px;
+
+    overflow: scroll;
+    height: 200px;
+    max-width: 300px;
+}
+
 
 /**************************************************
 
