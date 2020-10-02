@@ -11,4 +11,13 @@
 	<select id="pwcheck" parameterType="String" resultType="int">
 		select count(*) from ani_manage where manage_pw = #{manage_pw}
 	</select>
+	
+	<select id="memberlist" resultType="member">
+		select * from ani_member
+	</select>
+	
+	<select id="walkerlist" resultType="walker">
+		select * from ani_walker
+	</select>
+	 
 </mapper>

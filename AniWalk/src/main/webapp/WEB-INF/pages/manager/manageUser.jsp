@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,13 +33,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr onclick="location.href='/aniwalk/manager/userInfo.do'">
-                <td>kakaotalk id</td>
-                <td>nickname</td>
-                <td>phone number</td>
-                <td>user location</td>
-                <td>sign out date</td>
-            </tr>
+	        <c:forEach items="${memlist}" var="list">
+	           <tr onclick="location.href='/aniwalk/manager/userInfo.do'">
+	                <td>${list.kakao_id}</td>
+	                <td>${list.mem_nickname}</td>
+	                <td>phone number</td>
+	                <td>user location</td>
+	                <td>sign out date</td>
+	            </tr>
+	        </c:forEach>
         </tbody>
     </table>
 

@@ -1,7 +1,11 @@
 package kr.pandorabox.aniwalk.manager;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import kr.pandorabox.aniwalk.walker.WalkerDTO;
 
 @Service
 public class ManagerServiceImpl implements ManagerService{
@@ -28,5 +32,17 @@ public class ManagerServiceImpl implements ManagerService{
 			return 2;
 		}
 		
+	}
+	
+	@Override
+	public List<MemberDTO> memberList() {
+		List<MemberDTO> memlist = managerDAO.memberList();
+		return memlist;
+	}
+	
+	@Override
+	public List<WalkerDTO> walkerList() {
+		List<WalkerDTO> walkerList = managerDAO.walkerList();
+		return walkerList;
 	}
 }
