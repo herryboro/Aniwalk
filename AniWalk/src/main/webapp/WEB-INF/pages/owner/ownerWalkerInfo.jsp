@@ -16,7 +16,7 @@
 	</div>
 	<div class="info-content">
 		<div class="info-box">
-			<img class="img-rounded" src="${pageContext.request.contextPath}/images/applier.png" alt="">
+			<img class="img-rounded" src="/walker/${walkerInfo[0].wk_profile_img1}" alt="">
 			<span class="glyphicon glyphicon-remove"></span>
 			<ul>
 				<li>
@@ -30,11 +30,11 @@
 					<h4>짧은 자기소개</h4>
 				</li>
 				<li>
-					<h3>강형욱</h3>
+					<h3>${walkerInfo[0].wk_name}</h3>
 				</li>
 				<li>
 					<ul>
-						<li class="addr">주소적는란</li>
+						<li class="addr">${walkerInfo[0].wk_addr}</li>
 						<li>이 밑부터는 자격증 적는란</li>
 						<li>없으면 안써도되고</li>
 						<li>있으면 4개까지 적을 수잇음</li>

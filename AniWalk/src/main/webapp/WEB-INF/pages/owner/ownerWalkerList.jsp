@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,286 +26,35 @@
 			</form>
 		</div>
 		<div class="items">
-			<ul class="list-item">
-				<li>
-					<a href="/aniwalk/owner/walkerInfo.do"><img src="${pageContext.request.contextPath}/images/profile_test.png" alt=""></a>
-				</li>
-				<li>
-					<ul>
-						<li>
-							<h4>짧은 자기소개</h4>
-						</li>
-						<li>
-							<h3>사람이름</h3>
-							<div class="star-rating">
-								<span style="width:30%"></span>
-							</div>
-							<label>(1.5)</label>
-						</li>
-						<li>
-							<ul>
-								<li class="addr">주소적는란</li>
-								<li>이 밑부터는 자격증 적는란</li>
-								<li>없으면 안써도되고</li>
-								<li>있으면 4개까지 적을 수잇음</li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-			</ul>
-
-			<ul class="list-item">
-				<li>
-					<img src="${pageContext.request.contextPath}/images/applier.png" alt="">
-				</li>
-				<li>
-					<ul>
-						<li>
-							<h4>짧은 자기소개</h4>
-						</li>
-						<li>
-							<h3>사람이름</h3>
-							<div class="star-rating">
-								<span style="width:30%"></span>
-							</div>
-							<label>(1.5)</label>
-						</li>
-						<li>
-							<ul>
-								<li class="addr">주소적는란</li>
-								<li>이 밑부터는 자격증 적는란</li>
-								<li>없으면 안써도되고</li>
-								<li>있으면 4개까지 적을 수잇음</li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-			</ul>
-
-			<ul class="list-item">
-				<li>
-					<img src="${pageContext.request.contextPath}/images/applier.png" alt="">
-				</li>
-				<li>
-					<ul>
-						<li>
-							<h4>짧은 자기소개</h4>
-						</li>
-						<li>
-							<h3>사람이름</h3>
-							<div class="star-rating">
-								<span style="width:30%"></span>
-							</div>
-							<label>(1.5)</label>
-						</li>
-						<li>
-							<ul>
-								<li class="addr">주소적는란</li>
-								<li>이 밑부터는 자격증 적는란</li>
-								<li>없으면 안써도되고</li>
-								<li>있으면 4개까지 적을 수잇음</li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-			</ul>
-
-
-			<ul class="list-item">
-				<li>
-					<img src="${pageContext.request.contextPath}/images/applier.png" alt="">
-				</li>
-				<li>
-					<ul>
-						<li>
-							<h4>짧은 자기소개</h4>
-						</li>
-						<li>
-							<h3>사람이름</h3>
-							<div class="star-rating">
-								<span style="width:30%"></span>
-							</div>
-							<label>(1.5)</label>
-						</li>
-						<li>
-							<ul>
-								<li class="addr">주소적는란</li>
-								<li>이 밑부터는 자격증 적는란</li>
-								<li>없으면 안써도되고</li>
-								<li>있으면 4개까지 적을 수잇음</li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-			</ul>
-
-			<ul class="list-item">
-				<li>
-					<img src="${pageContext.request.contextPath}/images/applier.png" alt="">
-				</li>
-				<li>
-					<ul>
-						<li>
-							<h4>짧은 자기소개</h4>
-						</li>
-						<li>
-							<h3>사람이름</h3>
-							<div class="star-rating">
-								<span style="width:30%"></span>
-							</div>
-							<label>(1.5)</label>
-						</li>
-						<li>
-							<ul>
-								<li class="addr">주소적는란</li>
-								<li>이 밑부터는 자격증 적는란</li>
-								<li>없으면 안써도되고</li>
-								<li>있으면 4개까지 적을 수잇음</li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-			</ul>
-
-			<ul class="list-item">
-				<li>
-					<img src="${pageContext.request.contextPath}/images/applier.png" alt="">
-				</li>
-				<li>
-					<ul>
-						<li>
-							<h4>짧은 자기소개</h4>
-						</li>
-						<li>
-							<h3>사람이름</h3>
-							<div class="star-rating">
-								<span style="width:30%"></span>
-							</div>
-							<label>(1.5)</label>
-						</li>
-						<li>
-							<ul>
-								<li class="addr">주소적는란</li>
-								<li>이 밑부터는 자격증 적는란</li>
-								<li>없으면 안써도되고</li>
-								<li>있으면 4개까지 적을 수잇음</li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-			</ul>
-
-			<ul class="list-item">
-				<li>
-					<img src="${pageContext.request.contextPath}/images/applier.png" alt="">
-				</li>
-				<li>
-					<ul>
-						<li>
-							<h4>짧은 자기소개</h4>
-						</li>
-						<li>
-							<h3>사람이름</h3>
-							<div class="star-rating">
-								<span style="width:30%"></span>
-							</div>
-							<label>(1.5)</label>
-						</li>
-						<li>
-							<ul>
-								<li class="addr">주소적는란</li>
-								<li>이 밑부터는 자격증 적는란</li>
-								<li>없으면 안써도되고</li>
-								<li>있으면 4개까지 적을 수잇음</li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-			</ul>
-
-			<ul class="list-item">
-				<li>
-					<img src="${pageContext.request.contextPath}/images/applier.png" alt="">
-				</li>
-				<li>
-					<ul>
-						<li>
-							<h4>짧은 자기소개</h4>
-						</li>
-						<li>
-							<h3>사람이름</h3>
-							<div class="star-rating">
-								<span style="width:30%"></span>
-							</div>
-							<label>(1.5)</label>
-						</li>
-						<li>
-							<ul>
-								<li class="addr">주소적는란</li>
-								<li>이 밑부터는 자격증 적는란</li>
-								<li>없으면 안써도되고</li>
-								<li>있으면 4개까지 적을 수잇음</li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-			</ul>
-
-			<ul class="list-item">
-				<li>
-					<img src="${pageContext.request.contextPath}/images/applier.png" alt="">
-				</li>
-				<li>
-					<ul>
-						<li>
-							<h4>짧은 자기소개</h4>
-						</li>
-						<li>
-							<h3>사람이름</h3>
-							<div class="star-rating">
-								<span style="width:30%"></span>
-							</div>
-							<label>(1.5)</label>
-						</li>
-						<li>
-							<ul>
-								<li class="addr">주소적는란</li>
-								<li>이 밑부터는 자격증 적는란</li>
-								<li>없으면 안써도되고</li>
-								<li>있으면 4개까지 적을 수잇음</li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-			</ul>
-
-			<ul class="list-item">
-				<li>
-					<img src="${pageContext.request.contextPath}/images/applier.png" alt="">
-				</li>
-				<li>
-					<ul>
-						<li>
-							<h4>짧은 자기소개</h4>
-						</li>
-						<li>
-							<h3>사람이름</h3>
-							<div class="star-rating">
-								<span style="width:30%"></span>
-							</div>
-							<label>(1.5)</label>
-						</li>
-						<li>
-							<ul>
-								<li class="addr">주소적는란</li>
-								<li>이 밑부터는 자격증 적는란</li>
-								<li>없으면 안써도되고</li>
-								<li>있으면 4개까지 적을 수잇음</li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-			</ul>
+			<c:forEach var="walker" items="${walkerList}">
+				<ul class="list-item">
+					<li>
+						<a href="/aniwalk/owner/walkerInfo.do?wk_id=${walker.wk_id}"><img src="/walker/${walker.wk_profile_img1}" alt=""></a>
+					</li>
+					<li>
+						<ul>
+							<li>
+								<h4>짧은 자기소개</h4>
+							</li>
+							<li>
+								<h3>${walker.wk_name}</h3>
+								<div class="star-rating">
+									<span style="width:30%"></span>
+								</div>
+								<label>(1.5)</label>
+							</li>
+							<li>
+								<ul>
+									<li class="addr">${walker.wk_addr}</li>
+									<li>이 밑부터는 자격증 적는란</li>
+									<li>없으면 안써도되고</li>
+									<li>있으면 4개까지 적을 수잇음</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</c:forEach>
 		</div>
 
 	</div>

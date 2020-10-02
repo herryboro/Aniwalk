@@ -38,7 +38,22 @@ public class WalkerController {
 		return "walker/main";
 	}	
 	
+	// owner페이지 펫 프렌즈 리스트
+	@RequestMapping("owner/walker.do")
+	public ModelAndView walkerList(String wk_id) {
+		ModelAndView mav = new ModelAndView();
+		List<WalkerDTO> list = walkerService.applierList(wk_id);
+		mav.addObject("walkerList",list);
+		mav.setViewName("owner/walkerList");
+		return mav;
+	}
 	
+	// owner페이지  펫 프렌즈 상세 정보
+	@RequestMapping("owner/walkerInfo.do")
+	public ModelAndView ownerWalkerInfo(String wk_id) {
+		List<WalkerDTO> walkerInfo = walkerService.applierList(wk_id);
+		return new ModelAndView("owner/walkerInfo", "walkerInfo", walkerInfo);
+	}
 	
 	// 인증번호 확인 
 	@ResponseBody
