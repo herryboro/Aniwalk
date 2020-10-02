@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kr.pandorabox.aniwalk.walking">
+	<select id="recruitDog" parameterType="String" resultType="walking">
+		select * from ani_dog d left outer join ani_member m
+		on m.mem_id=d.mem_id
+		left outer join ani_dog_img i
+		on d.dog_id=i.dog_id
+		where m.mem_nickname = #{mem_nickname}
+	</select>
+	<insert id="recruitInsert" parameterType="walking">
+		insert into ani_walking(walking_id, recruit_mem_id, dog_id, walk_date, walk_start_time,
+		walk_end_time, recruit_notices, recruit_location)
+		values('walking'||lpad(seq_walking.nextval,5,0),#{recruit_mem_id},#{dog_id},to_date(#{walk_date},'YYYY-MM-DD'),
+		#{walk_start_time},#{walk_end_time},#{recruit_notices},#{recruit_location})	
+	</insert>
+
+</mapper>

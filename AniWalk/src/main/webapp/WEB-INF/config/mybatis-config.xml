@@ -9,10 +9,12 @@
     </settings>
 	<typeAliases>
 		<typeAlias type="kr.pandorabox.aniwalk.walker.WalkerDTO" alias="walker"/>
+		<typeAlias type="kr.pandorabox.aniwalk.walking.WalkingDTO" alias="walking"/>
 		<typeAlias type="kr.pandorabox.aniwalk.member.JoinMemberDogImgDTO" alias="joinMemberDogImage"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/member.xml"/>
 		<mapper resource="mapper/walker.xml"/>
+		<mapper resource="mapper/walking.xml"/>
 	</mappers>
 </configuration>
