@@ -1,6 +1,7 @@
 package kr.pandorabox.aniwalk.member;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -67,6 +68,18 @@ public class MemberController {
 		} else {
 			mav.setViewName("login");
 		}	
+		return mav;
+	}
+	
+	@RequestMapping("/owner/my.do")
+	public ModelAndView ownerMy(HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+		String mem_nickname = (String) req.getSession().getAttribute("mem_nickname");
+		
+		List<JoinMemberDogImgDTO> joinDtos = memverService.myPage(mem_nickname);
+		
+		mav.addObject("joinDtos", joinDtos);
+		mav.setViewName("owner/my");
 		return mav;
 	}
 }

@@ -1,6 +1,7 @@
 package kr.pandorabox.aniwalk.member;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,5 +31,10 @@ public class MemberServiceImpl implements MemberService {
 			}
 		}	
 		return result;
+	}
+	
+	@Override
+	public List<JoinMemberDogImgDTO> myPage(String mem_nickname) {
+		return memberDAO.myPage(mem_nickname);
 	}
 }

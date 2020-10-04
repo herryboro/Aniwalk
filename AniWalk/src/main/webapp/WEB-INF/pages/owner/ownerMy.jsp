@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,12 +20,12 @@
 		<ul>
 			<li>
 				<label>포인트 : </label>
-				<span>20200 point</span>
+				<span>${joinDtos.get(0).getMem_point()} point</span>
 				<button class="btn btn-success" type="button">포인트 충전</button>
 			</li>
 			<li>
 				<label>가입날짜 : </label>
-				<span>2020-09-24</span>
+				<span><fmt:formatDate value="${joinDtos.get(0).getMem_join_date()}" pattern="yyyy-MM-dd"/></span>
 			</li>
 		</ul>
 		<button class="btn btn-primary" type="button">개인정보수정</button>
@@ -34,28 +36,30 @@
 		<div class="subtitle">
 			<h4>반려견 정보</h4>
 		</div>
+		
+		<c:forEach items="${joinDtos}" var="joinDto">
 		<div class="mydog-item">
-			<div class="mydog-name">반려견이름</div>
-			<img class="img-thumbnail" src="${pageContext.request.contextPath}/images/mydog.jpg" alt="">
+			<div class="mydog-name">${joinDto.dog_name}</div>
+			<img class="img-thumbnail" src="/member/${joinDto.dog_image}" alt="">
 			<ul>
 				<li class="first">
 					<label>견종</label>
-					<span>포메라니안</span>
+					<span>${joinDto.dog_type}</span>
 				</li>
 				<li>
 					<label>생일</label>
-					<span>2019년 11월 14일</span>
+					<span>${joinDto.dog_birth}</span>
 				</li>
 				<li>
-					<label>성격</label>
+					<label>정보</label>
 					<span class="text-area">
-						성격은<br>
-						br태그를 달고<br>
-						나타내야한다
+						${joinDto.dog_info}
 					</span>
 				</li>
 			</ul>
 		</div>
+		</c:forEach>
+		
 		<div class="mydog-add">
 			<i class="far fa-plus-square"></i>
 			<label>반려견 추가</label>

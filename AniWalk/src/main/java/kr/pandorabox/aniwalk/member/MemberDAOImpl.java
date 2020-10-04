@@ -2,6 +2,7 @@ package kr.pandorabox.aniwalk.member;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -37,4 +38,8 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.insert("kr.pandorabox.aniwalk.member.fileinsert", paramMap);
 	}
 	
+	@Override
+	public List<JoinMemberDogImgDTO> myPage(String mem_nickname) {
+		return sqlSession.selectList("kr.pandorabox.aniwalk.member.myPage",mem_nickname);
+	}
 }

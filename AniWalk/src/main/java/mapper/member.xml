@@ -25,5 +25,14 @@
 		</foreach>
 		select * from dual
 	</insert>
+	
+	<select id="myPage" parameterType="String" resultType="joinMemberDogImage">
+		select * from ani_dog d 
+		left outer join ani_member m
+		on d.mem_id = m.mem_id
+		left outer join ani_dog_img i
+		on i.dog_id = d.dog_id
+		where mem_nickname=#{mem_nickname}
+	</select>
 
 </mapper>
