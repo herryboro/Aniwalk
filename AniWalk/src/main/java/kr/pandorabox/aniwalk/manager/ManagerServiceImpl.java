@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.pandorabox.aniwalk.member.JoinMemberDogImgDTO;
 import kr.pandorabox.aniwalk.walker.WalkerDTO;
 
 @Service
@@ -44,5 +45,13 @@ public class ManagerServiceImpl implements ManagerService{
 	public List<WalkerDTO> walkerList() {
 		List<WalkerDTO> walkerList = managerDAO.walkerList();
 		return walkerList;
+	}
+	
+	@Override
+	public List<JoinMemberDogImgDTO> userInfo(String kakao_id) {
+		System.out.println("service kakao_id: " + kakao_id);
+		List<JoinMemberDogImgDTO> userlist = managerDAO.userInfo(kakao_id);
+		System.out.println(userlist.get(0).getMem_nickname());
+		return userlist;
 	}
 }

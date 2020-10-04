@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.pandorabox.aniwalk.member.JoinMemberDogImgDTO;
 import kr.pandorabox.aniwalk.walker.WalkerDTO;
 
 @Controller
@@ -47,6 +48,22 @@ public class ManagerController {
 		List<WalkerDTO> walkerList = managerService.walkerList();
 		mav.addObject("applierList", walkerList);
 		mav.setViewName("manager/walker");
+		return mav;
+	}
+	
+	@RequestMapping("manager/userInfo.do")
+	public ModelAndView userInfo(String kakao_id) {
+		System.out.println("controller kakao_id: " + kakao_id);
+		
+		ModelAndView mav = new ModelAndView();
+		List<JoinMemberDogImgDTO> userList = managerService.userInfo(kakao_id);
+		
+		System.out.println("닉네임: " + userList.get(0).getMem_nickname());
+		System.out.println(userList.get(0).getDog_name());
+		System.out.println("userList객체: " + userList);
+		
+		mav.addObject("userList", userList);
+		mav.setViewName("manager/userInfo");
 		return mav;
 	}
 }

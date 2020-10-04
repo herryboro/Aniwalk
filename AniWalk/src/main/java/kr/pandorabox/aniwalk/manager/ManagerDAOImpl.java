@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.pandorabox.aniwalk.member.JoinMemberDogImgDTO;
 import kr.pandorabox.aniwalk.walker.WalkerDTO;
 
 @Repository
@@ -37,5 +38,11 @@ public class ManagerDAOImpl implements ManagerDAO {
 	@Override
 	public List<WalkerDTO> walkerList() {
 		return sqlSession.selectList("kr.pandorabox.aniwalk.manager.walkerlist");
+	}
+	
+	@Override
+	public List<JoinMemberDogImgDTO> userInfo(String kakao_id) {
+		System.out.println("dao kakao_id: " + kakao_id);
+		return sqlSession.selectList("kr.pandorabox.aniwalk.manager.userinfo", kakao_id);
 	}
 }

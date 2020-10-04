@@ -19,5 +19,15 @@
 	<select id="walkerlist" resultType="walker">
 		select * from ani_walker
 	</select>
+	
+	<select id="userinfo" parameterType="String" resultType="joinMemberDogImage">
+		select m.mem_id, m.mem_nickname, m.kakao_id, d.dog_name, d.dog_type, d.dog_info, i.dog_image
+			from ani_member m
+			join ani_dog d
+			on m.mem_id = d.mem_id
+			join ani_dog_img i
+			on d.dog_id = i.dog_id
+		where kakao_id=#{kakao_id}
+	</select>
 	 
 </mapper>

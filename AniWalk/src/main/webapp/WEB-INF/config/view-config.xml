@@ -14,7 +14,6 @@
 	<view-controller path="/owner/index.do" view-name="owner/index"/>
 	<view-controller path="/manager/index.do" view-name="manager/index"/>
 	<view-controller path="/manager/user.do" view-name="manager/user"/>
-	<view-controller path="/manager/userInfo.do" view-name="manager/userInfo"/>
 	<view-controller path="/manager/walkerInfo.do" view-name="manager/walkerInfo"/>
 	<view-controller path="/owner/walker.do" view-name="owner/walkerList"/>
 	<view-controller path="/owner/talk.do" view-name="owner/talkList"/>
