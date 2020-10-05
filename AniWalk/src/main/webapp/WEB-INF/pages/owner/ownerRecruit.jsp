@@ -143,7 +143,7 @@ function coord2Address(coord) {
             detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
             document.getElementById('centerAddr').innerHTML = detailAddr;
             
-            document.getElementById('recruit_location').value = result[0].road_address.address_name;
+            document.getElementById('recruit_location').value = result[0].address.address_name;
          }
      };
      message = '<div style="padding:5px;">현재위치</div>';
