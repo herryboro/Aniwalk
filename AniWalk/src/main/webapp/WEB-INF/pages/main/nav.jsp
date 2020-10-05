@@ -14,7 +14,7 @@
 		<li><a href="/aniwalk/index.do">Home</a></li>
 		<li>사용방법</li>
 		<li>사용후기</li>
-		<li>프렌즈 Login</li>
+		<li><a href="/aniwalk/walker/index.do">프렌즈 Login</a></li>
 		<li><a href="/aniwalk/walkerApply.do">프렌즈 신청</a></li>
 	</ul>
 </div>
