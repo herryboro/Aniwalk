@@ -51,7 +51,7 @@ public class MemberController {
 		
 		MultipartFile[] files = joinMemberDogImgDTO.getFiles();
 		ArrayList<String> filelist = new ArrayList<String>();
-		String path = "C:/member";
+		String path = "C:/owner";
 		for(int i=0; i<files.length; i++) {
 			String fileName = files[i].getOriginalFilename();
 			System.out.println("fileName: " + fileName);
