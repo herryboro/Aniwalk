@@ -43,6 +43,7 @@
 	<!-- ======================어노테이션============================== -->
 	<context:component-scan base-package="kr.pandorabox.aniwalk" />
 	<context:component-scan base-package="main" />
+	<aop:aspectj-autoproxy/>
 
 	<!-- ======================tiles를 사용하기 위한 설정=================== -->
 	<!-- 1. tiles설정파일 등록하기 -->
@@ -105,4 +106,19 @@
 			 id="walkerApply"/>
 		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="walkerApply"/>
 	</aop:config>
+	
+	<!-- 인터셉터 객체 생성 -->
+	<beans:bean id="LoginInterceptor" class="kr.pandorabox.aniwalk.LoginInterceptor">
+	</beans:bean>
+	<!-- Interceptor 설정 -->
+	<interceptors>
+	    <interceptor>
+	        <mapping path="/owner/*"/>  
+	        <mapping path="/walker/*"/>     
+	        <exclude-mapping path="/resources/**"/>
+	        <exclude-mapping path="/walker/index.do"/>
+	        <beans:ref bean="LoginInterceptor"/>
+	    </interceptor>
+	</interceptors>
+	
 </beans:beans>
