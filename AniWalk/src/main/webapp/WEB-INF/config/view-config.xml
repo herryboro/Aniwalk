@@ -22,5 +22,4 @@
 	<view-controller path="/walker/index.do" view-name="walker/index"/>
 	<view-controller path="/walker/main.do" view-name="walker/main"/>
 	<view-controller path="/walker/recruitlist.do" view-name="walker/recruitlist"/>
-	<view-controller path="/walker/myInfo.do" view-name="walker/myInfo"/>
 </beans:beans>

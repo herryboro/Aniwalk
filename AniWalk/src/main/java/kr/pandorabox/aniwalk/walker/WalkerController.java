@@ -178,4 +178,23 @@ public class WalkerController {
 		return result;
 	}
 	
+	//개인정보 수정하기
+	@RequestMapping("/walker/myInfo.do")
+	public ModelAndView myInfoUpdate(HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+		String walker_id = (String) req.getSession().getAttribute("walker_id");
+		WalkerDTO walkerDto = walkerService.myInfo(walker_id);
+		mav.addObject("walkerDto", walkerDto);
+		mav.setViewName("walker/myInfo");
+		return mav;
+	}
+	
+	//개인정보 수정완료
+	
+	@RequestMapping("/walker/myInfoModify.do")
+	public String myInfoModify() {
+		
+		return "redirect:/walker/my.do";
+	}
+	
 }

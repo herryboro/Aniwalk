@@ -54,4 +54,8 @@
 		where w.walker_id = #{walker_id} 
 	</select>
 	
+	<select id="myInfo" parameterType="String" resultType="walker">
+		select * from ani_walker where walker_id = #{walker_id}
+	</select>
+	
 </mapper>

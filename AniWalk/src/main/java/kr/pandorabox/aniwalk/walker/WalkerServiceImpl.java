@@ -132,4 +132,9 @@ public class WalkerServiceImpl implements WalkerService {
 	public List<WalkerDTO> review(String walker_id) {
 		return walkerDao.review(walker_id);
 	}
+	
+	@Override
+	public WalkerDTO myInfo(String walker_id) {
+		return walkerDao.myInfo(walker_id);
+	}
 }
