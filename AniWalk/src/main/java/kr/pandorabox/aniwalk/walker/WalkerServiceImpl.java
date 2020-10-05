@@ -137,4 +137,9 @@ public class WalkerServiceImpl implements WalkerService {
 	public WalkerDTO myInfo(String walker_id) {
 		return walkerDao.myInfo(walker_id);
 	}
+	//개인정보수정
+	@Override
+	public int myInfoUpdate(WalkerDTO walker) {
+		return walkerDao.myInfoUpdate(walker);
+	}
 }

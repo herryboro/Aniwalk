@@ -192,7 +192,13 @@ public class WalkerController {
 	//개인정보 수정완료
 	
 	@RequestMapping("/walker/myInfoModify.do")
-	public String myInfoModify() {
+	public String myInfoModify(WalkerDTO walker,String sido2,String gugun2,String sido1,String gugun1) {
+		System.out.println("시군구"+sido2+gugun2);
+		String wk_location1 = sido1 + " " + gugun1;
+		String wk_location2 = sido2 + " " + gugun2;
+		walker.setWk_location1(wk_location1);
+		walker.setWk_location2(wk_location2);
+		walkerService.myInfoUpdate(walker);
 		
 		return "redirect:/walker/my.do";
 	}

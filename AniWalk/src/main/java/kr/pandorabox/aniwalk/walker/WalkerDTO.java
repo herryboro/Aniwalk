@@ -20,6 +20,7 @@ public class WalkerDTO {
 	private String wk_event_agree;
 	private String wk_location1;
 	private String wk_location2;
+	private String wk_intro;
 	private int wk_point;
 	private Date apply_date;
 	private int apply_state;
@@ -37,21 +38,18 @@ public class WalkerDTO {
 	private String mem_nickname;
 	
 	
-	
-	
-	
 	@Override
 	public String toString() {
 		return "WalkerDTO [wk_id=" + wk_id + ", wk_name=" + wk_name + ", walker_id=" + walker_id + ", wk_pw=" + wk_pw
 				+ ", wk_phone=" + wk_phone + ", wk_birth=" + wk_birth + ", wk_email=" + wk_email + ", wk_addr="
 				+ wk_addr + ", wk_profile_img1=" + wk_profile_img1 + ", wk_profile_img2=" + wk_profile_img2
 				+ ", wk_profile_img3=" + wk_profile_img3 + ", wk_event_agree=" + wk_event_agree + ", wk_location1="
-				+ wk_location1 + ", wk_location2=" + wk_location2 + ", wk_point=" + wk_point + ", apply_date="
-				+ apply_date + ", apply_state=" + apply_state + ", activity_start_date=" + activity_start_date
-				+ ", activity_state=" + activity_state + ", wk_profile_imgs=" + Arrays.toString(wk_profile_imgs)
-				+ ", files=" + Arrays.toString(files) + ", review_id=" + review_id + ", mem_id=" + mem_id
-				+ ", review_contents=" + review_contents + ", review_score=" + review_score + ", review_date="
-				+ review_date + ", mem_nickname=" + mem_nickname + "]";
+				+ wk_location1 + ", wk_location2=" + wk_location2 + ", wk_intro=" + wk_intro + ", wk_point=" + wk_point
+				+ ", apply_date=" + apply_date + ", apply_state=" + apply_state + ", activity_start_date="
+				+ activity_start_date + ", activity_state=" + activity_state + ", wk_profile_imgs="
+				+ Arrays.toString(wk_profile_imgs) + ", files=" + Arrays.toString(files) + ", review_id=" + review_id
+				+ ", mem_id=" + mem_id + ", review_contents=" + review_contents + ", review_score=" + review_score
+				+ ", review_date=" + review_date + ", mem_nickname=" + mem_nickname + "]";
 	}
 	public String getWk_id() {
 		return wk_id;
@@ -230,6 +228,12 @@ public class WalkerDTO {
 	}
 	public void setWk_location2(String wk_location2) {
 		this.wk_location2 = wk_location2;
+	}
+	public String getWk_intro() {
+		return wk_intro;
+	}
+	public void setWk_intro(String wk_intro) {
+		this.wk_intro = wk_intro;
 	}
 	
 

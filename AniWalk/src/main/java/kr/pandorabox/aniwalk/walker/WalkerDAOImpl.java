@@ -62,4 +62,9 @@ public class WalkerDAOImpl implements WalkerDAO{
 	public WalkerDTO myInfo(String walker_id) {
 		return session.selectOne("kr.pandorabox.aniwalk.walker.myInfo",walker_id);
 	}
+	//개인정보 수정
+	@Override
+	public int myInfoUpdate(WalkerDTO walker) {
+		return session.update("kr.pandorabox.aniwalk.walker.myInfoUpdate",walker);
+	}
 }

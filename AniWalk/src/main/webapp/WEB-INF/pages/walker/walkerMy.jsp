@@ -24,7 +24,7 @@
 			<table>
 				<tr>
 					<th>활동지역</th>
-					<td>${walkerDto.wk_location}</td>
+					<td>${walkerDto.wk_location1} / ${walkerDto.wk_location2}</td>
 				</tr>
 				<tr>
 					<th>포인트</th>

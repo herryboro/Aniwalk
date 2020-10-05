@@ -19,8 +19,8 @@ public interface WalkerDAO {
 	
 	//워커 산책 후기
 	public List<WalkerDTO> review(String walker_id);
-	
 	//개인정보 불러오기
 	public WalkerDTO myInfo(String walker_id);
-
+	//개인정보 수정
+	public int myInfoUpdate(WalkerDTO walker);
 }

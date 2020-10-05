@@ -15,4 +15,5 @@ public interface WalkerService {
 	public WalkerDTO walkerInfo(String walker_id);
 	public List<WalkerDTO> review(String walker_id);
 	public WalkerDTO myInfo(String walker_id);
+	public int myInfoUpdate(WalkerDTO walker);
 }

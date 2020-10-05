@@ -57,5 +57,8 @@
 	<select id="myInfo" parameterType="String" resultType="walker">
 		select * from ani_walker where walker_id = #{walker_id}
 	</select>
-	
+	<update id="myInfoUpdate" parameterType="walker">
+		update ani_walker set wk_pw=#{wk_pw}, wk_location1=#{wk_location1}, wk_location2=#{wk_location2},
+		wk_intro=#{wk_intro}, activity_state=#{activity_state} where walker_id=#{walker_id}
+	</update>
 </mapper>

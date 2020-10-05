@@ -15,6 +15,8 @@
 	<div class="myinfo-update">
 
 		<form action="/aniwalk/walker/myInfoModify.do">
+		<input type="hidden" name="walker_id" value="${walkerDto.walker_id}">
+		<input type="hidden" name="activity_state" id="activity_state" value="${walkerDto.activity_state}">
 			<h3>개인정보수정</h3>
 			<table class="table">
 				<tr>
@@ -24,7 +26,7 @@
 				<tr>
 					<th>비밀번호</th>
 					<td>
-						<input type="password" class="form-control" placeholder="비밀번호 입력">
+						<input type="password" class="form-control" placeholder="비밀번호 입력" name="wk_pw">
 						<span class="text-primary"></span>
 						<span class="text-danger"></span>
 					</td>
@@ -46,7 +48,7 @@
 						변경됩니다.
 					</th>
 					<td class="select-city">1
-						<select class="form-control" name="sido1" id="sido1">
+						<select class="form-control" name="sido1" id="sido1" >
 						</select>
 						<select class="form-control" name="gugun1" id="gugun1">
 						</select>
@@ -63,7 +65,7 @@
 				<tr>
 					<th>짧은 자기소개</th>
 					<td>
-						<input type="text" class="form-control">
+						<input type="text" class="form-control" name="wk_intro" value="${walkerDto.wk_intro}">
 					</td>
 				</tr>
 				<tr>
@@ -71,12 +73,12 @@
 					<c:choose>
 						<c:when test="${walkerDto.activity_state eq 1}">
 							<td>
-								<button type="button" class="btn btn-danger">활동중지</button>
+								<button type="button" id="act_btn" class="btn btn-danger" >활동 중지 신청</button>
 							</td>
 						</c:when>
 						<c:otherwise>
 							<td>
-								<button type="button" class="btn btn-danger">활동시작</button>
+								<button type="button" id="act_btn" class="btn btn-danger" >활동 중지 신청 취소</button>
 							</td>
 						</c:otherwise>
 					</c:choose>
@@ -141,9 +143,34 @@
 	   });
 	  }
 	 });
-
-
+	 
+});
+ var act = "${walkerDto.activity_state}";
+$(function(){
+	$('#act_btn').click(function(){
+		console.log(act);
+		if(act == 1){//상태가 활동 중인 경우
+			act = 2; //비활동으로 변경
+			document.getElementById('activity_state').value = act;
+			$(this).html('활동 중지 신청');
+		}else if(act ==2){//활동 중지인 경우 
+			act = 1; //활동으로 변경
+			document.getElementById('activity_state').value = act;
+			$(this).html('활동 중지 신청 취소');
+		}
 	});
+}); 
+ 
+function activate_state(){
+	var act = "${walkerDto.activity_state}";
+	if(act == 1){ //상태가 활동 중인 경우
+		act = 2; //비활동으로 변경
+		document.getElementById('activity_state').value = act;
+	}else if(act==2){ //활동 중지인 경우 
+		act = 1; //활동으로 변경
+		document.getElementById('activity_state').value = act;
+	}
+}
 </script>
 	</body>
 </html>
