@@ -112,6 +112,8 @@ public class WalkerController {
 	// 펫 프렌즈 신청
 	@RequestMapping("/walker/apply.do")
 	public String walkerApply(WalkerDTO walker, HttpServletRequest req) throws Exception {
+		System.out.println(walker.getWk_location1());
+		System.out.println(walker.getWk_location2());
 		MultipartFile[] certifications = walker.getFiles();
 		MultipartFile[] profile_imgs = walker.getWk_profile_imgs();
 		ArrayList<String> filelist = new ArrayList<String>();

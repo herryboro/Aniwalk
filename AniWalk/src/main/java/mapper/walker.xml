@@ -10,7 +10,7 @@
 		values('walker'||lpad(seq_walker.nextval,5,0), #{wk_name}, 'temp'||seq_walker.nextval, 
 			'temp'||seq_walker.nextval, #{wk_phone}, to_date(#{wk_birth}, 'YYYYMMDD'), #{wk_email}, #{wk_addr},
 			 #{wk_profile_img1}, #{wk_profile_img2}, #{wk_profile_img3}, #{wk_event_agree}, 
-			 #{wk_location}, 0, sysdate, 1, sysdate, 0)
+			 #{wk_location1}, #{wk_location2}, #{wk_intro}, 0, sysdate, 1, sysdate, 0)
 	</insert> 
 	
 	<!-- 펫 프렌즈 자격증 insert -->

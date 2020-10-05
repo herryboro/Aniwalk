@@ -30,8 +30,8 @@
             <td>신청자</td>
             <td>이메일</td>
             <td>핸드폰</td>
-            <td>신청지역</td>
-            <td>신청날짜</td>
+            <td>시</td>
+            <td>구/읍</td>
             <td>합격여부</td>
         </tr>
         </thead>
@@ -41,7 +41,8 @@
 	            <td>${applier.wk_name}</td>
 	            <td>${applier.wk_email}</td>
 	            <td>${applier.wk_phone}</td>
-	            <td>${applier.wk_location}</td>
+	            <td>${applier.wk_location1}</td>
+	            <td>${applier.wk_location2}</td>
 	            <td>${applier.apply_date}</td>
 	            <td>${applier.apply_state}</td>
 	        </tr>

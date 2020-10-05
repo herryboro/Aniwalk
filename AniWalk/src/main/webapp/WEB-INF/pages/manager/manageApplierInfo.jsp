@@ -50,8 +50,12 @@
                     <span>${walkerInfo[0].apply_date}</span>
                 </li>
                 <li>
-                    <label>활동지역</label>
-                    <span>${walkerInfo[0].wk_location}</span>
+                    <label>시</label>
+                    <span>${walkerInfo[0].wk_location1}</span>
+                </li>
+                <li>
+                    <label>구 / 군</label>
+                    <span>${walkerInfo[0].wk_location1}</span>
                 </li>
                 <li>
                     <label>신청상태</label>

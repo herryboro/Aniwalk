@@ -105,12 +105,12 @@
 				<h3>[필수] 활동하실 지역을 선택해 주세요</h3>
 			</li>
 			<li>
-				<select id='area' class="form-control" required>
+				<select id='area' class="form-control" name='wk_location1' required>
 					<option value="">선택하세요</option>
 				</select>
 			</li>
 			<li>
-				<select id='city' name='wk_location' class="form-control" required>
+				<select id='city' name='wk_location2' class="form-control" required>
 					<option value="">선택하세요</option>
 				</select>
 			</li>
