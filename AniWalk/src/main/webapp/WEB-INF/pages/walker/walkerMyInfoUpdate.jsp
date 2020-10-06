@@ -161,16 +161,6 @@ $(function(){
 	});
 }); 
  
-function activate_state(){
-	var act = "${walkerDto.activity_state}";
-	if(act == 1){ //상태가 활동 중인 경우
-		act = 2; //비활동으로 변경
-		document.getElementById('activity_state').value = act;
-	}else if(act==2){ //활동 중지인 경우 
-		act = 1; //활동으로 변경
-		document.getElementById('activity_state').value = act;
-	}
-}
 </script>
 	</body>
 </html>
