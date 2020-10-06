@@ -23,7 +23,7 @@
 	</div>
 	<div class="register-right">
 		<h2>회원 정보 등록</h2>
-		<form class="form-horizontal" method="post" action="/aniwalk/owner/signIn.do" enctype="multipart/form-data">
+		<form class="form-horizontal" method="post" action="/aniwalk/signIn.do" enctype="multipart/form-data">
 		
 			<div class="form-group">
 				<label class="col-sm-2 control-label">닉네임</label>

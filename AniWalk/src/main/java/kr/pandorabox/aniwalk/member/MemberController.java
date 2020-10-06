@@ -42,7 +42,7 @@ public class MemberController {
 		}			
 	}
 	 
-	@RequestMapping(value = "/owner/signIn.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/signIn.do", method = RequestMethod.POST)
 	public ModelAndView joinMember(JoinMemberDogImgDTO joinMemberDogImgDTO, HttpServletRequest request) throws Exception {
 		String kakao_id = joinMemberDogImgDTO.getKakao_id();
 		System.out.println("kakao_id: " + kakao_id);

@@ -8,7 +8,6 @@ public interface MemberDAO {
 	int joinMember(JoinMemberDogImgDTO joinMemberDogImgDTO);
 	int joinDog(JoinMemberDogImgDTO joinMemberDogImgDTO);
 	int fileInsert(ArrayList<String> filelist);
-	
 	//owner my page
 	public List<JoinMemberDogImgDTO> myPage(String mem_nickname);
 }
