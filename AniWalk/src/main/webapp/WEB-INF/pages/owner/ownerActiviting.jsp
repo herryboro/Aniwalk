@@ -13,6 +13,8 @@
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2521c7cc3e67ced68e19182536406c54"></script>
 	<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2521c7cc3e67ced68e19182536406c54&libraries=services,clusterer,drawing"></script>
+	<!-- jquery -->
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <div class="activing">
@@ -53,14 +55,35 @@
 				<img src="../../images/mydog.jpg" alt="" class="img-rounded">
 				<img src="../../images/mydog.jpg" alt="" class="img-rounded">
 			</div>
-			<button class="btn btn-primary">산책완료</button>
+			<button id="activeDone" class="btn btn-primary">산책완료</button>
 		</div>
 	</div>
-
 </div>
 
 
+<div class="modal-bg hidden">
+	<div class="modal-content" onclick="event.stopPropagation()">
+		<button type="button" class="close">&times;</button>
+		<form class="review-form">
+			<h2>산책에 대한 평점을 주세요</h2>
+			<input class="star-score" type="hidden" value="5">
+			<div class="starRev">
+				<span class="starR on">별1</span>
+				<span class="starR on">별2</span>
+				<span class="starR on">별3</span>
+				<span class="starR on">별4</span>
+				<span class="starR on">별5</span>
+			</div>
+			<label>
+				<textarea class="form-control" placeholder="평가후기를 남겨주세요."></textarea>
+			</label>
+			<h4>이미지 혹은 영상을 업로드 해주세요</h4>
+			<input type="file" class="form-control" >
+			<button class="btn btn-primary" type="submit">확인</button>
+		</form>
 
+	</div>
+</div>
 
 
 
@@ -124,7 +147,29 @@
 		map.setCenter(locPosition);
 	}
 </script>
+<script>
+	const activeDone = document.getElementById('activeDone');
+	const modalBg = document.querySelector('.modal-bg');
+	const close = document.querySelector('.close');
+	const modalClose = function(){
+		modalBg.classList.add('hidden');
+	}
 
+	activeDone.addEventListener('click',function(){
+		modalBg.classList.remove('hidden');
+	});
+
+	modalBg.addEventListener('click',modalClose);
+	close.addEventListener('click',modalClose);
+
+
+	$('.starRev span').click(function(){
+		$(this).parent().children('span').removeClass('on');
+		$(this).addClass('on').prevAll('span').addClass('on');
+		$('.star-score').val($(this).text().replace('별', ''));
+		return false;
+	});
+</script>
 
 </body>
 </html>
