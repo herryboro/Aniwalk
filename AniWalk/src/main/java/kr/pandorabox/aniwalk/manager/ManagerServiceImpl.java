@@ -42,12 +42,6 @@ public class ManagerServiceImpl implements ManagerService{
 	}
 	
 	@Override
-	public List<WalkerDTO> walkerList() {
-		List<WalkerDTO> walkerList = managerDAO.walkerList();
-		return walkerList;
-	}
-	
-	@Override
 	public List<JoinMemberDogImgDTO> userInfo(String kakao_id) {
 		System.out.println("service kakao_id: " + kakao_id);
 		List<JoinMemberDogImgDTO> userlist = managerDAO.userInfo(kakao_id);

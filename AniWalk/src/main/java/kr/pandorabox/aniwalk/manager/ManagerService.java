@@ -8,6 +8,5 @@ import kr.pandorabox.aniwalk.walker.WalkerDTO;
 public interface ManagerService {
 	public int managerLogin(String manager_id, String manage_pw);
 	public List<MemberDTO> memberList();
-	public List<WalkerDTO> walkerList();
 	public List<JoinMemberDogImgDTO> userInfo(String kakao_id);
 } 

@@ -6,12 +6,12 @@
 <meta charset="UTF-8">
 <title>메인메뉴</title>
 </head>
-<link rel="stylesheet" type="text/css" href="../../static/css/manager.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/manager.css">
 <body>
 <div class="dash-nav">
 	<ul>
 		<li><a href="/aniwalk/manager/user.do">유저관리</a></li>
-		<li><a href="/aniwalk/manager/walkerlist.do">워커관리</a></li>
+		<li><a href="/aniwalk/manager/walker.do">워커관리</a></li>
 		<li>예약관리</li>
 		<li>포인트관리</li>
 	</ul>
