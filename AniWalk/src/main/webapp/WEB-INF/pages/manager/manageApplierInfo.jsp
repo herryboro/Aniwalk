@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +25,7 @@
                 </li>
                 <li>
                     <label>생년월일</label>
-                    <span>${walkerInfo[0].wk_birth}</span>
+                    <span>${fn:substring(walkerInfo[0].wk_birth, 0, 10)}</span>
                 </li>
                 <li>
                     <label>핸드폰</label>

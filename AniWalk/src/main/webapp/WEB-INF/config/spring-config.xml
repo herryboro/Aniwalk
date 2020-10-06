@@ -110,7 +110,7 @@
 	<!-- 인터셉터 객체 생성 -->
 	<beans:bean id="LoginInterceptor" class="kr.pandorabox.aniwalk.LoginInterceptor">
 	</beans:bean>
-	<!-- Interceptor 설정 -->
+	<!-- Interceptor 설정 
 	<interceptors>
 	    <interceptor>
 	        <mapping path="/owner/*"/>  
@@ -121,6 +121,6 @@
 	        <exclude-mapping path="/walker/*auth*"/>
 	        <beans:ref bean="LoginInterceptor"/>
 	    </interceptor>
-	</interceptors>
+	</interceptors>-->
 	
 </beans:beans>

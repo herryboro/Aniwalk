@@ -41,16 +41,6 @@ public class ManagerController {
 		return mav;
 	}
 	
-	@RequestMapping("manager/walkerlist.do")
-	public ModelAndView walkerList() {
-		ModelAndView mav = new ModelAndView();
-		
-		List<WalkerDTO> walkerList = managerService.walkerList();
-		mav.addObject("applierList", walkerList);
-		mav.setViewName("manager/walker");
-		return mav;
-	}
-	
 	@RequestMapping("manager/userInfo.do")
 	public ModelAndView userInfo(String kakao_id) {
 		System.out.println("controller kakao_id: " + kakao_id);

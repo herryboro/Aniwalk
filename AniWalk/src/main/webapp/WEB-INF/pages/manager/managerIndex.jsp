@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>index</title>
 </head>
-<link rel="stylesheet" type="text/css" href="../../static/css/manager.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/manager.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <body>
 <div>
