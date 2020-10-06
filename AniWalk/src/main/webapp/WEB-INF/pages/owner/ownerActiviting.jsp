@@ -79,7 +79,10 @@
 			</label>
 			<h4>이미지 혹은 영상을 업로드 해주세요</h4>
 			<input type="file" class="form-control" >
-			<button class="btn btn-primary" type="submit">확인</button>
+			<div class="btn-line">
+				<button class="btn btn-primary" type="submit">확인</button>
+				<button id="jumpBtn" class="btn btn-default" type="button">건너뛰기</button>
+			</div>
 		</form>
 
 	</div>
@@ -148,6 +151,7 @@
 	}
 </script>
 <script>
+	//모달
 	const activeDone = document.getElementById('activeDone');
 	const modalBg = document.querySelector('.modal-bg');
 	const close = document.querySelector('.close');
@@ -162,7 +166,7 @@
 	modalBg.addEventListener('click',modalClose);
 	close.addEventListener('click',modalClose);
 
-
+	//별점
 	$('.starRev span').click(function(){
 		$(this).parent().children('span').removeClass('on');
 		$(this).addClass('on').prevAll('span').addClass('on');
@@ -170,6 +174,12 @@
 		return false;
 	});
 </script>
-
+<script>
+	//건너뛰기 버튼 클릭시
+	const jumpBtn = document.getElementById('jumpBtn');
+	jumpBtn.addEventListener('click',function(){
+		location.href = '#';
+	})
+</script>
 </body>
 </html>
