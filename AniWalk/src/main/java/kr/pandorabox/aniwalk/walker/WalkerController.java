@@ -187,6 +187,14 @@ public class WalkerController {
 		ModelAndView mav = new ModelAndView();
 		String walker_id = (String) req.getSession().getAttribute("walker_id");
 		WalkerDTO walkerDto = walkerService.myInfo(walker_id);
+		
+		List<String[]> location = new ArrayList<String[]>();
+		location.add(walkerDto.getWk_location1().split(" "));
+		if(walkerDto.getWk_location2()!=null ||! walkerDto.getWk_location2().equals("")) {
+			location.add(walkerDto.getWk_location2().split(" "));
+		}
+		
+		mav.addObject("location", location);
 		mav.addObject("walkerDto", walkerDto);
 		mav.setViewName("walker/myInfo");
 		return mav;
