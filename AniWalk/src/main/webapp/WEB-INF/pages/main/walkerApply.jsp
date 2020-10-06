@@ -22,7 +22,7 @@
 <div class="container">
 	<h3>서비스약관동의</h3>
 	<form id="applyForm1" class="walker-apply-form" method="POST" onsubmit="return applyCheck()"
-		enctype="multipart/form-data" name='walker' action="/aniwalk/walker/apply.do">
+		enctype="multipart/form-data" name='walker' action="/aniwalk/apply.do">
 		<ul class="terms">
 			<li>
 				<div class="all-agree">
@@ -190,7 +190,7 @@
 		$('#area').attr('option')
 		$('#area').on('change', function(){
 			$.ajax({
-				url:"/aniwalk/walker/region.do",
+				url:"/aniwalk/walker/regionCheck.do",
 				type:"get",
 				data:{
 					"area" : $('#area').val()

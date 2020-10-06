@@ -33,8 +33,6 @@ public class WalkerController {
 	//main
 	@RequestMapping("/walker/main.do")
 	public String main(HttpServletRequest request, String walker_id) {
-		request.getSession().setAttribute("walker_id", walker_id);
-		System.out.println("세션---->"+request.getSession().getAttribute("walker_id"));
 		return "walker/main";
 	}	
 	
@@ -101,7 +99,7 @@ public class WalkerController {
 	
 	// 지역
 	@ResponseBody
-	@RequestMapping(value="/walker/region.do", 
+	@RequestMapping(value="/walker/regionCheck.do", 
 			method = RequestMethod.GET,
 			produces = "application/json;charset=utf-8")
 	public String[] city(String area) {
@@ -110,7 +108,7 @@ public class WalkerController {
 	}
 	
 	// 펫 프렌즈 신청
-	@RequestMapping("/walker/apply.do")
+	@RequestMapping("/apply.do")
 	public String walkerApply(WalkerDTO walker, HttpServletRequest req) throws Exception {
 		System.out.println(walker.getWk_location1());
 		System.out.println(walker.getWk_location2());
@@ -147,8 +145,11 @@ public class WalkerController {
 	@RequestMapping(value="/walker/loginCheck.do",
 			method=RequestMethod.GET,
 			produces = "application/json;charset=utf-8")
-	public @ResponseBody int login(String walker_id, String wk_pw) {
+	public @ResponseBody int login(String walker_id, String wk_pw, HttpServletRequest request) {
 		int result = walkerService.walkerLogin(walker_id,wk_pw);
+		if(result > 0) {
+			request.getSession().setAttribute("walker_id", walker_id);
+		}
 		return result;
 	}
 	

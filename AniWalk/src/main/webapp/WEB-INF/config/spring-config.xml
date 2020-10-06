@@ -117,6 +117,8 @@
 	        <mapping path="/walker/*"/>     
 	        <exclude-mapping path="/resources/**"/>
 	        <exclude-mapping path="/walker/index.do"/>
+	        <exclude-mapping path="/walker/*Check.do"/>
+	        <exclude-mapping path="/walker/*auth*"/>
 	        <beans:ref bean="LoginInterceptor"/>
 	    </interceptor>
 	</interceptors>
