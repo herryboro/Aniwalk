@@ -15,6 +15,5 @@
 		<nav><tiles:insertAttribute name="nav"></tiles:insertAttribute></nav>
 		<section><tiles:insertAttribute name="content"></tiles:insertAttribute></section>
 	</article>
-	<footer>관리자 일 똑바로해라</footer>
 </body>
 </html>

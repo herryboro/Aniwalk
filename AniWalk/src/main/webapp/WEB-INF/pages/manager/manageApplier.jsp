@@ -32,7 +32,8 @@
             <td>핸드폰</td>
             <td>시</td>
             <td>구/읍</td>
-            <td>합격여부</td>
+            <td>신청날짜</td>
+            <td>합격상태</td>
         </tr>
         </thead>
         <tbody>

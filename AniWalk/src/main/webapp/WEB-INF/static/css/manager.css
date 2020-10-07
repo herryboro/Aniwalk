@@ -84,10 +84,12 @@ header{
 }
 article{
     width: 100%;
-    height: 84%;
+    height: 92%;
     display: flex;
     flex-direction: row;
     flex-wrap: nowap;
+    
+    overflow: scroll;
 }
 article nav{
     width: 300px;
@@ -97,14 +99,6 @@ article nav{
 article section{
     width: 100%;
     height: 100%;
-    
-    padding: 20px;
-}
-footer{
-    width: 100%;
-    height: 8%;
-    text-align: center;
-    padding-top: 10px;
 }
 
 /**************************************************
@@ -209,6 +203,9 @@ footer{
     background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
     height: 100%;
 }
+.user-info h4{
+    margin-top: 0px;
+}
 .info-top{
     background: linear-gradient(to right, #0c2646 0%, #204065 60%, #2a5788 100%);
     color: var(--white);
@@ -220,7 +217,7 @@ footer{
 }
 .info-content{
     width: 95%;
-    height: 80%;
+    height: 88%;
     padding: 20px;
 
     background: var(--white);
@@ -229,7 +226,7 @@ footer{
     display: flex;
     flex-wrap: nowrap;
     position: relative;
-    top: -90px;
+    top: -120px;
 
     margin: 1px auto;
     border-radius: 20px;
@@ -253,24 +250,15 @@ footer{
 }
 .left-box ul{
     flex-direction: column;
-    margin: 20px auto;
     font-size: 1.7rem;
 }
 .left-box ul li{
     width: 100%;
-    text-align: center;
-
     margin: 10px auto;
-
 }
-.left-box ul li span{
-    display: block;
+.left-box ul li button{
+	width: 100%;
 }
-.left-box button{
-    background: var(--yellow);
-    color: white;
-}
-
 .right-box{
     display: flex;
     flex-direction: column;
@@ -304,6 +292,23 @@ footer{
 }
 .form-group ul li label{
     display: block;
+}
+.right-box .certificate-group{
+	display: flex;
+	justify-content: center;
+}
+.right-box .certificate-group img{
+	width: 200px;
+	margin: 10px;
+}
+.right-box .certificate-group img:hover{
+	cursor: pointer;
+}
+.right-box .certificate-input-box{
+	display: flex;
+}
+.right-box .certificate-input-box button{
+	margin-left: 10px;
 }
 /**************************************************
 
