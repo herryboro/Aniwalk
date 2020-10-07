@@ -108,8 +108,10 @@
 	</aop:config>
 	
 	<!-- 인터셉터 객체 생성 -->
+	<!--  
 	<beans:bean id="LoginInterceptor" class="kr.pandorabox.aniwalk.LoginInterceptor">
 	</beans:bean>
+	-->
 	<!-- Interceptor 설정 
 	<interceptors>
 	    <interceptor>
