@@ -11,8 +11,6 @@
 	<!-- jquery -->
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
-
-
 <body>
 <div class="container register">
 	<div class="register-left">
@@ -29,7 +27,7 @@
 				<label class="col-sm-2 control-label">닉네임</label>
 				<div class="col-sm-6">
 					<label>																				<!-- get방식을 받으려면  ${param.xx}를 사용-->
-						<input class="form-control" type="text" placeholder="닉네임 입력" name="mem_nickname">${param.kakao_id}
+						<input class="form-control" type="text" placeholder="닉네임 입력" name="mem_nickname">
 						<input class="form-control" type="hidden" name="kakao_id" value="${param.kakao_id}">
 					</label>
 				</div>
@@ -46,7 +44,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label">개정보 등록</label>
+				<label class="col-sm-2 control-label">반려견 정보 등록</label>
 				<div class="col-sm-6">
 					<label>
 						강아지 프로필: <input id="dogAdd" type="file" class="form-control" name="files">
@@ -152,5 +150,10 @@
 		align-items: center;
 	}
 </style>
+<script>
+$(document).ready(function(){
+	$('footer').removeClass('absolute-position');
 
+});
+</script>
 </html>

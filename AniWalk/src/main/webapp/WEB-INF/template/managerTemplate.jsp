@@ -11,7 +11,7 @@
 </head>
 <body>
 	<header><tiles:insertAttribute name="top"></tiles:insertAttribute></header>
-	<article>
+	<article style="display: flex;">
 		<nav><tiles:insertAttribute name="nav"></tiles:insertAttribute></nav>
 		<section><tiles:insertAttribute name="content"></tiles:insertAttribute></section>
 	</article>
