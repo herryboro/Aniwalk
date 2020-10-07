@@ -9,7 +9,9 @@
 </head>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/manager.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<!-- jquery -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <body>
 <div class="user-info">
     <div class="info-top">
@@ -17,7 +19,7 @@
     </div>
     <div class="info-content">
         <div class="left-box">
-            <img class="img-rounded" src="${pageContext.request.contextPath}/images/applier.png" alt="">
+            <img class="img-rounded" src="aniwalk/images/applier.png" alt="">
             <ul>
                 <li>
                     <label>신청자</label>
@@ -37,7 +39,7 @@
                 </li>
                 <li>
                     <label>이메일</label>
-                    <span>${walkerInfo[0].wk_email}</span>
+                    <span id="applierEmail">${walkerInfo[0].wk_email}</span>
                 </li>
                 <!-- 합격상태 and 아이디가 없는 경우 활성화 -->
                 <!-- 아이디 생성 버튼 누르면 email@앞으로 id가 생성되고 비밀번호는 영어숫자랜덤으로 6자리 제공한다 -->
@@ -45,9 +47,9 @@
                 	<button id="walkerIdCreate" type="button" class="btn btn-primary">아이디 생성</button>
                 	<!-- 합격상태 and 아이디가 있는 경우 -->
                 	<!-- 임시비밀번호 발급 버튼을 누르면 현재 비밀번호가 임시 비밀번호로 변경된다. -->
-                	<!-- 
-                	<button id="walkerPwIssue type="button" class="btn btn-danger">임시비밀번호 발급</button>
-                	 -->
+                    <!--
+                    <button id="walkerPwIssue" type="button" class="btn btn-danger">임시비밀번호 발급</button>
+                     -->
                 </li>
             </ul>
         </div>
@@ -94,8 +96,8 @@
                 		 -->
                 		<!-- 등록한 자격증이 있는경우 -->
                 		<!-- 클릭시 모달로 이미지 크게 보이게 할것임 -->
-                		<img src="/aniwalk/images/certificate.jpg">
-                		<img src="/aniwalk/images/certificate.jpg">
+                		<img class="certificate-img" src="/aniwalk/images/certificate.jpg">
+                		<img class="certificate-img" src="/aniwalk/images/walkerMain.png">
                 	</div>
                 </li>
                 <!-- 등록한 자격증이 없을 떄도 있긴해야지 /// 근데 활동중일 때만 나오게 하는게 맞는거지???-->
@@ -147,13 +149,77 @@
         </form>
     </div>
 </div>
+<div class="modal-bg hidden">
+	<div class="modal-content" onclick="event.stopPropagation()">
+		<button class="close-btn" type="button">&times;</button>
+		<img src="aniwalk/images/certificate.jpg" class="img-rounded big-img">
+	</div>
+</div>
 
-<script type="text/javascript">
+<script>
 	$(document).ready(function(){
 		var apply_state = "${walkerInfo[0].apply_state}";
 		$('#apply_state').val(apply_state).attr('selected', 'selected');
 		
 	})
+</script>
+<script>
+	const certificateImg = document.querySelectorAll('.certificate-img');
+	const modalBigImg = document.querySelector('.big-img');
+	const modalBg = document.querySelector('.modal-bg');
+	const closeBtn = document.querySelector('.close-btn');
+
+	for (let i=0; i<certificateImg.length; i++){
+	    certificateImg[i].addEventListener('click',function (){
+	         modalBigImg.src = this.src;
+	         console.log(modalBigImg.src);
+	         modalBg.classList.remove('hidden');
+        })
+    }
+	modalBg.addEventListener('click',function (){
+	    modalBg.classList.add('hidden');
+    });
+    modalBg.addEventListener('click',function (){
+        modalBg.classList.add('hidden');
+    });
+    closeBtn.addEventListener('click',function (){
+        modalBg.classList.add('hidden');
+    });
+</script>
+<script>
+    //아이디 생성 버튼 클릭
+    const walkerIdCreate = document.getElementById('walkerIdCreate');
+    const applierEmail = document.getElementById('applierEmail');
+
+    walkerIdCreate.addEventListener('click',function(){
+        const wk_id = applierEmail.textContent.split('@')[0];
+        const wk_passwd = Math.random().toString(36).substr(2,6);
+        //console.log('프렌즈 id = ' + wk_id + '프렌즈 pw = ' + wk_passwd);
+        $.ajax({
+            type : 'post',
+            url : '/aniwalk/manager/createWalkerId.do',	//이름 바꿔도됨
+            dataType : 'json',
+            data : JSON.stringify({
+                "wk_id" : wk_id,
+                "wk_passwd" : wk_passwd,
+            }),
+            success : function() {
+                alert('아이디가 생성되었습니다.');
+                location.reload();
+            },
+            error : function(a, b, c) {
+                console.log(c);
+            }
+        })
+    });
+</script>
+<script>
+    //임시비밀번호 발급 버튼 클릭
+    const walkerPwIssue = document.getElementById('walkerPwIssue');
+    walkerPwIssue.addEventListener('click',function (){
+        const wk_passwd = Math.random().toString(36).substr(2,6);
+        //console.log(wk_passwd);
+    });
 </script>
 </body>
 
