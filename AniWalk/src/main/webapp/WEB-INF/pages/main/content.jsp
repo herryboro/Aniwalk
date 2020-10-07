@@ -8,7 +8,7 @@
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
 <body>
-<div>
+<div class="main-bg">
 	<div class="innerBox">
 		<label>
 			반려견의<br>
@@ -16,17 +16,13 @@
 			산책을<br>
 			지금 시작해보세요
 		</label>
-		<!-- 
-		<a id="custom-login-btn" href="/aniwalk/login.do">
-			<img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="222"/>
-		</a>
-		 -->
-		
 		<p id="token-result"></p>
 	
-	<a id="kakao-login-btn"></a>
+		<a id="kakao-login-btn"></a>
+	</div>
+</div>
 
-	<script type="text/javascript">
+<script>
 	  // 사용할 앱의 JavaScript 키를 설정해 주세요.
     	Kakao.init('2521c7cc3e67ced68e19182536406c54');  //여기서 아까 발급받은 키 중 javascript키를 사용해준다.
     
@@ -80,8 +76,5 @@
 		    },
 		  })
 	</script>	
-			
-	</div>
-</div>
 </body>
 </html>
