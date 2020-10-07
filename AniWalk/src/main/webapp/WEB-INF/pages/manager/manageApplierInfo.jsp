@@ -105,13 +105,13 @@
                 <li>
                 	<label>자격증 입력</label>
                 	<div class="certificate-input-box">
-                		<input type="text" class="form-control" placeholder="자격증 이름을 입력해주세요">
+                		<input id="certificateName" type="text" class="form-control" placeholder="자격증 이름을 입력해주세요">
                 		<button class="btn btn-success" type="button">등록</button>
                 	</div>
                 </li>
                 <li>
 					<label>자격증 리스트</label>                
-                	<ol>
+                	<ol id="certificateList">
                 		<li>반려동물 케어 자격증</li>
                 		<li>산책 자격증</li>
                 	</ol>
@@ -210,7 +210,7 @@
             error : function(a, b, c) {
                 console.log(c);
             }
-        })
+        });
     });
 </script>
 <script>
@@ -219,6 +219,38 @@
     walkerPwIssue.addEventListener('click',function (){
         const wk_passwd = Math.random().toString(36).substr(2,6);
         //console.log(wk_passwd);
+        $.ajax({
+            type : 'post',
+            url : '/aniwalk/manager/updateWalkerPw.do',	//이름 바꿔도됨
+            dataType : 'text',
+            data :{
+                "wk_passwd" : wk_passwd,
+            },
+            success : function() {
+                alert('비밀번호가 변경되었습니다.');
+            },
+            error : function(a, b, c) {
+                console.log(c);
+            }
+        });
+    });
+</script>
+<script>
+    const certificateName = document.getElementById('certificateName');
+    //자격증 정보 입력했을 때
+    $.ajax({
+        type : 'post',
+        url : '/aniwalk/manager/insertCertificate.do',	//이름 바꿔도됨
+        dataType : 'text',
+        data :{
+            "certificate_name" : certificateName.value,
+        },
+        success : function() {
+            alert('자격증 정보가 추가 되었습니다..');
+        },
+        error : function(a, b, c) {
+            console.log(c);
+        }
     });
 </script>
 </body>
