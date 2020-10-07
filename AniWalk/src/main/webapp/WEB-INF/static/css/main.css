@@ -113,6 +113,9 @@ footer{
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
+    
+    position: relative;
+    top: 20px;
 }
 .main-nav img{
     width: 120px;
