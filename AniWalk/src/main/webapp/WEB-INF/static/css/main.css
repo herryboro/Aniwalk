@@ -67,10 +67,15 @@ nav{
 }
 article{
     width: 100%;
+    height: 100%;
 }
-article div{
-    width: 100%;
-    margin: 2% auto;
+.main-bg{
+	width: 100%;
+	height: 600px;
+	
+	background-image: url("/aniwalk/images/index_bg.jpg");
+	background-repeat : no-repeat;
+	background-size : cover;
 }
 .innerBox{
     width: 300px;
@@ -82,9 +87,9 @@ article div{
     justify-content: center;
     align-items: center;
 
-    position: relative;
-    top: 100px;
-    left: 20%;
+    position: absolute;
+    top: 33%;
+    right: 8%;
 }
 .innerBox label{
     font-size: 2rem;
