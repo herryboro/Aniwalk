@@ -21,7 +21,5 @@
 	<view-controller path="/owner/walkerInfo.do" view-name="owner/walkerInfo"/>
 	<view-controller path="/walker/index.do" view-name="walker/index"/>
 	<view-controller path="/walker/main.do" view-name="walker/main"/>
-	<view-controller path="/walker/talk.do" view-name="walker/talk"/>
-	<view-controller path="/walker/talklist.do" view-name="walker/talklist"/>
 	<view-controller path="/walker/recruitlist.do" view-name="walker/recruitlist"/>
 </beans:beans>
