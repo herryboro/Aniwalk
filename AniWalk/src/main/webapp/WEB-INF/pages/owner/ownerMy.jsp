@@ -10,6 +10,9 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/owner.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+	
+	<!-- jquery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </head>
 <body>
 <div class="my-page">
@@ -92,6 +95,89 @@
 		</div>
 	</section>
 </div>
+<div class="modal-bg hidden">
+	<div class="modal-content" onclick="event.stopPropagation()">
+		<button class="close" type="button">&times;</button>
+		<form class="mydog-input">
+			<div class="input-form">
+				<div>
+					<img id="clickImg" src="../../images/profile_test.png" alt="" class="img-rounded">
+					<h5>&lt;대표사진설정&gt;</h5>
+					<input id="uploadImg" type="file" class="hidden">
+				</div>
+				<div style="width: 40%">
+					<ul>
+						<li>
+							<label>* 이름</label>
+							<input type="text" class="form-control" placeholder="강아지 이름을 입력해주세요">
+						</li>
+						<li>
+							<label>* 견종</label>
+							<select class="form-control">
+								<option value="" selected>견종</option>
+								<option>포메라니안</option>
+								<option>폼피츠</option>
+								<option>사모예드</option>
+							</select>
+						</li>
+						<li>
+							<label>생일</label>
+							<input type="date" class="form-control">
+						</li>
+						<li>
+							<label>특징</label>
+						</li>
+						<li>
+							<label style="width: 100%">
+								<textarea class="form-control" cols="20"></textarea>
+							</label>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary">등록</button>
+		</form>
+	</div>
+</div>
+<script>
+	const mydogAdd = document.querySelector('.mydog-add');
+	const modalBg = document.querySelector('.modal-bg');
+	const close = document.querySelector('.close');
+	mydogAdd.addEventListener('click',function(){
+		modalBg.classList.remove('hidden');
+	});
+	modalBg.addEventListener('click',function (){
+		modalBg.classList.add('hidden');
+	});
+	modalBg.addEventListener('click',function (){
+		modalBg.classList.add('hidden');
+	});
+</script>
+<script>
+	const clickImg = document.getElementById('clickImg');
+	const uploadImg = document.getElementById('uploadImg');
 
+	clickImg.addEventListener('click',function (){
+		uploadImg.click();
+	});
+
+	// profile 사진
+	$('#uploadImg').on('change', function(e){
+		var maxSize = 209715200;
+		var files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
+		filesArr.forEach(function(f) {
+			if(f.size >= maxSize) {
+				alert("파일 사이즈 초과");
+				$('#uploadImg').val('');
+			} else if(!f.type.match("image.*")) {
+				alert("사진과 동영상만 업로드 가능합니다!");
+
+			} else {
+				$('#clickImg').attr('src', URL.createObjectURL(e.target.files[0]));
+			}
+		});
+	});
+</script>
 </body>
 </html>
