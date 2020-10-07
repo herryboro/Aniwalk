@@ -18,7 +18,7 @@ import kr.pandorabox.aniwalk.FileUploadLogic;
 public class MemberController {
 	
 	@Autowired
-	MemberService memverService; 
+	MemberService memberService; 
 	
 	@Autowired
 	FileUploadLogic uploadService;
@@ -27,7 +27,7 @@ public class MemberController {
 	public ModelAndView checkMember(int kakao_id, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		
-		String mem_nickname = memverService.joinCheck(kakao_id);
+		String mem_nickname = memberService.joinCheck(kakao_id);
 		
 		if(mem_nickname == null) {
 			mav.setViewName("login");
@@ -61,7 +61,7 @@ public class MemberController {
 			}
 		}
 		
-		int result = memverService.joinMember(joinMemberDogImgDTO, filelist);
+		int result = memberService.joinMember(joinMemberDogImgDTO, filelist);
 		
 		if(result == 1) {
 			mav.setViewName("owner/index");
@@ -76,7 +76,7 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		String mem_nickname = (String) req.getSession().getAttribute("mem_nickname");
 		
-		List<JoinMemberDogImgDTO> joinDtos = memverService.myPage(mem_nickname);
+		List<JoinMemberDogImgDTO> joinDtos = memberService.myPage(mem_nickname);
 		
 		mav.addObject("joinDtos", joinDtos);
 		mav.setViewName("owner/my");

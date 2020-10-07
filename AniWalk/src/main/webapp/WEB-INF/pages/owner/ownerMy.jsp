@@ -13,6 +13,10 @@
 	
 	<!-- jquery -->
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	
+	<!-- 스와이퍼 -->
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">	
+	<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
 </head>
 <body>
 <div class="my-page">
@@ -39,29 +43,47 @@
 		<div class="subtitle">
 			<h4>반려견 정보</h4>
 		</div>
-		
-		<c:forEach items="${joinDtos}" var="joinDto">
-		<div class="mydog-item">
-			<div class="mydog-name">${joinDto.dog_name}</div>
-			<img class="img-thumbnail" src="/member/${joinDto.dog_image}" alt="">
-			<ul>
-				<li class="first">
-					<label>견종</label>
-					<span>${joinDto.dog_type}</span>
-				</li>
-				<li>
-					<label>생일</label>
-					<span>${joinDto.dog_birth}</span>
-				</li>
-				<li>
-					<label>정보</label>
-					<span class="text-area">
-						${joinDto.dog_info}
-					</span>
-				</li>
-			</ul>
+		<div class="mydogs-slider">
+			<!-- Slider main container -->
+			<div class="swiper-container">
+				<!-- Additional required wrapper -->
+				<div class="swiper-wrapper">
+					<!-- Slides -->
+					<c:forEach items="${joinDtos}" var="joinDto">
+					<div class="swiper-slide">
+						<div class="mydog-item">
+							<div class="mydog-name">${joinDto.dog_name}</div>
+							<div class="mydog-info-part">
+								<img class="img-thumbnail" src="/member/${joinDto.dog_image}" alt="">
+								<ul>
+									<li class="first">
+										<label>견종</label>
+										<span>${joinDto.dog_type}</span>
+									</li>
+									<li>
+										<label>생일</label>
+										<span>${joinDto.dog_birth}</span>
+									</li>
+									<li>
+										<label>정보</label>
+										<span class="text-area">
+											${joinDto.dog_info}
+										</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					</c:forEach>
+				</div>
+				<!-- If we need navigation buttons -->
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+			</div>
 		</div>
-		</c:forEach>
+		
+		
+		
 		
 		<div class="mydog-add">
 			<i class="far fa-plus-square"></i>
@@ -97,11 +119,11 @@
 </div>
 <div class="modal-bg hidden">
 	<div class="modal-content" onclick="event.stopPropagation()">
-		<button class="close" type="button">&times;</button>
+		<button class="close-btn" type="button">&times;</button>
 		<form class="mydog-input">
 			<div class="input-form">
 				<div>
-					<img id="clickImg" src="../../images/profile_test.png" alt="" class="img-rounded">
+					<img id="clickImg" src="${pageContext.request.contextPath}/images/profile_test.png" alt="" class="img-rounded">
 					<h5>&lt;대표사진설정&gt;</h5>
 					<input id="uploadImg" type="file" class="hidden">
 				</div>
@@ -142,14 +164,14 @@
 <script>
 	const mydogAdd = document.querySelector('.mydog-add');
 	const modalBg = document.querySelector('.modal-bg');
-	const close = document.querySelector('.close');
+	const closeBtn = document.querySelector('.close-btn');
 	mydogAdd.addEventListener('click',function(){
 		modalBg.classList.remove('hidden');
 	});
 	modalBg.addEventListener('click',function (){
 		modalBg.classList.add('hidden');
 	});
-	modalBg.addEventListener('click',function (){
+	closeBtn.addEventListener('click',function (){
 		modalBg.classList.add('hidden');
 	});
 </script>
@@ -177,6 +199,15 @@
 				$('#clickImg').attr('src', URL.createObjectURL(e.target.files[0]));
 			}
 		});
+	});
+</script>
+<script>
+//슬라이더
+	var swiper = new Swiper('.swiper-container', {
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		},
 	});
 </script>
 </body>

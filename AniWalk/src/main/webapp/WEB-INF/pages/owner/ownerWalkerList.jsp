@@ -27,9 +27,9 @@
 		</div>
 		<div class="items">
 			<c:forEach var="walker" items="${walkerList}">
-				<ul class="list-item">
+				<ul class="list-item" onclick="location.href='/aniwalk/owner/walkerInfo.do?wk_id=${walker.wk_id}'">
 					<li>
-						<a href="/aniwalk/owner/walkerInfo.do?wk_id=${walker.wk_id}"><img src="/walker/${walker.wk_profile_img1}" alt=""></a>
+						<img src="/walker/${walker.wk_profile_img1}" alt=""></a>
 					</li>
 					<li>
 						<ul>

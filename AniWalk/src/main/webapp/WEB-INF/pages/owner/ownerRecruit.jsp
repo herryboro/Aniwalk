@@ -243,13 +243,4 @@ function removeMarker() {
 		},
 	});
 </script>
-
-<script>
-	//모달로 정보넘기는 작업
-	let recruitModalInfo = function(){
-		$.document.ready(function (){
-
-		});
-	}
-</script>
 </html>

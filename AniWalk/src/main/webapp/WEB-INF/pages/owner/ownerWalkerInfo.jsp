@@ -126,4 +126,10 @@
 	</div>
 </div>
 </body>
+<script>
+	const backBtn = document.querySelector('.glyphicon-remove');
+	backBtn.addEventListener('click',function(){
+		window.history.back();
+	});
+</script>
 </html>
