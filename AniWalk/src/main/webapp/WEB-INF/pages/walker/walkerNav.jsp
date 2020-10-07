@@ -14,7 +14,7 @@
 <div class="walker-nav">
 	<a href="/aniwalk/walker/main.do"><span class="glyphicon glyphicon-home"></span></a>
 	<a href="/aniwalk/walker/recruitlist.do"><span class="glyphicon glyphicon-list-alt"></span></a>
-	<i class="far fa-comment"></i>
+	<a href="/aniwalk/walker/talklist.do"><i class="far fa-comment"></i></a>
 	<span class="glyphicon glyphicon-map-marker"></span>
 	<a href="/aniwalk/walker/my.do"><span class="glyphicon glyphicon-user"></span></a>
 </div>

@@ -14,6 +14,16 @@ public class WalkingController {
 	@Autowired
 	private WalkingService walkingService;
 	
+	// 모집글 리스트
+	@RequestMapping("/walker/recruitlist.do")
+	public ModelAndView recruitlist(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		List<WalkingDTO> list = walkingService.getRecruitList();
+		mav.addObject("recruitList", list);
+		mav.setViewName("walker/recruitlist");
+		return mav;
+	}
+	
 	//모집글 올리기 
 	@RequestMapping("/owner/recruit.do")
 	public ModelAndView recruit(HttpServletRequest request) {

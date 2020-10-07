@@ -22,4 +22,10 @@ public class WalkingDAOImpl implements WalkingDAO{
 	public List<WalkingDTO> recruitDog(String mem_nickname) {
 		return session.selectList("kr.pandorabox.aniwalk.walking.recruitDog",mem_nickname);
 	}
+	
+	//모집글 리스트
+	@Override
+	public List<WalkingDTO> getRecruitList() {
+		return session.selectList("kr.pandorabox.aniwalk.walking.getRecruitList");
+	}
 }

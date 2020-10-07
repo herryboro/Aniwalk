@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,101 +31,25 @@
 	<div class="list-part">
 		<div class="row">
 
-			<!-- 1개의 글 /// 작업할 땐 주석 지워도됨-->
-			<div class="form-group col-md-3">
-				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
-				<ul>
-					<li>
-						<label>견종 : </label>
-						<span>포메라니안</span>
-					</li>
-					<li>
-						<label>장소 : </label>
-						<span>서울시 서초구 반포대로 13길 26</span>
-					</li>
-					<li>
-						<label>시간 : </label>
-						<span>오후 1:30 ~ 오후 2:00</span>
-					</li>
-				</ul>
-			</div>
-			<!-- 1개의 글 끝 -->
-			<!-- 1개의 글 /// 작업할 땐 주석 지워도됨-->
-			<div class="form-group col-md-3">
-				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
-				<ul>
-					<li>
-						<label>견종 : </label>
-						<span>포메라니안</span>
-					</li>
-					<li>
-						<label>장소 : </label>
-						<span>서울시 서초구 반포대로 13길 26</span>
-					</li>
-					<li>
-						<label>시간 : </label>
-						<span>오후 1:30 ~ 오후 2:00</span>
-					</li>
-				</ul>
-			</div>
-			<!-- 1개의 글 끝 -->
-			<!-- 1개의 글 /// 작업할 땐 주석 지워도됨-->
-			<div class="form-group col-md-3">
-				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
-				<ul>
-					<li>
-						<label>견종 : </label>
-						<span>포메라니안</span>
-					</li>
-					<li>
-						<label>장소 : </label>
-						<span>서울시 서초구 반포대로 13길 26</span>
-					</li>
-					<li>
-						<label>시간 : </label>
-						<span>오후 1:30 ~ 오후 2:00</span>
-					</li>
-				</ul>
-			</div>
-			<!-- 1개의 글 끝 -->
-			<!-- 1개의 글 /// 작업할 땐 주석 지워도됨-->
-			<div class="form-group col-md-3">
-				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
-				<ul>
-					<li>
-						<label>견종 : </label>
-						<span>포메라니안</span>
-					</li>
-					<li>
-						<label>장소 : </label>
-						<span>서울시 서초구 반포대로 13길 26</span>
-					</li>
-					<li>
-						<label>시간 : </label>
-						<span>오후 1:30 ~ 오후 2:00</span>
-					</li>
-				</ul>
-			</div>
-			<!-- 1개의 글 끝 -->
-			<!-- 1개의 글 /// 작업할 땐 주석 지워도됨-->
-			<div class="form-group col-md-3">
-				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
-				<ul>
-					<li>
-						<label>견종 : </label>
-						<span>포메라니안</span>
-					</li>
-					<li>
-						<label>장소 : </label>
-						<span>서울시 서초구 반포대로 13길 26</span>
-					</li>
-					<li>
-						<label>시간 : </label>
-						<span>오후 1:30 ~ 오후 2:00</span>
-					</li>
-				</ul>
-			</div>
-			<!-- 1개의 글 끝 -->
+			<c:forEach var="recruit" items="${recruitList}">
+				<div class="form-group col-md-3">
+					<a href="/aniwalk/walker/"><img src="/owner/${recruit.dog_image}" alt="" class="img-rounded"></a>
+					<ul>
+						<li>
+							<label>견종 : </label>
+							<span>${recruit.dog_type}</span>
+						</li>
+						<li>
+							<label>장소 : </label>
+							<span>${recruit.recruit_location}</span>
+						</li>
+						<li>
+							<label>시간 : </label>
+							<span>${recruit.walk_start_time} - ${recruit.walk_end_time}</span>
+						</li>
+					</ul>
+				</div>
+			</c:forEach>
 		</div>
 	</div>
 </section>
