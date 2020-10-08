@@ -33,7 +33,7 @@ public class WalkerController {
 	@RequestMapping("/manager/updateWalker.do")
 	public String UpdateWalker(WalkerDTO walkerDto) {
 		System.out.println(walkerDto.getWk_id());
-		//int result = walkerService.updateWalker(walkerDto);
+		int result = walkerService.updateWalker(walkerDto);
 		return "redirect:/manager/walkerInfo.do?wk_id="+walkerDto.getWk_id();
 	}
 	

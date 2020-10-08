@@ -44,12 +44,12 @@
                 </li>
                 <!-- 합격상태 and 아이디가 없는 경우 활성화 -->
                 <!-- 아이디 생성 버튼 누르면 email@앞으로 id가 생성되고 비밀번호는 영어숫자랜덤으로 6자리 제공한다 -->
-                <c:if test="${walkerInfo[0].apply_state eq 4 && walkerInfo[0].walker_id eq null}">
+                <c:if test="${walkerInfo[0].apply_state eq 4 && walkerInfo[0].walker_id != ''}">
 	                <li>
-	               		<button id="walkerIdCreate" type="button" class="btn btn-primary hidden">아이디 생성</button>
+	               		<button id="walkerIdCreate" type="button" class="btn btn-primary">아이디 생성</button>
 	               	</li>
                	</c:if>
-               	<c:if test="${walkerInfo[0].apply_state eq 4 && walkerInfo[0].walker_id ne null}">
+               	<c:if test="${walkerInfo[0].apply_state eq 4 && walkerInfo[0].walker_id == ''}">
 	               	<li>
 	                	<!-- 합격상태 and 아이디가 있는 경우 -->
 	   	            	<!-- 임시비밀번호 발급 버튼을 누르면 현재 비밀번호가 임시 비밀번호로 변경된다. -->
@@ -60,7 +60,7 @@
         </div>
 
         <form class="right-box" method="post" action="/aniwalk/manager/updateWalker.do" onkeydown="return captureReturnKey(event)">
-            <input type="hidden" name="wk_id" value="${wk_id}">
+            <input type="hidden" name="wk_id" value="${walkerInfo[0].wk_id}">
             <c:if test="${walkerInfo[0].apply_state ne 4}">
 	            <h4>신청정보</h4>
 	            <ul class="applier-info">
@@ -74,7 +74,7 @@
 	                </li>
 	                <li>
 	                    <label>신청상태</label>
-	                    <select id="apply_state">
+	                    <select name="apply_state" id="apply_state">
 	                        <option value="1">서류 검토 중</option>
 	                        <option value="2">교육 대기</option>
 	                        <option value="3">교육 수료</option>
