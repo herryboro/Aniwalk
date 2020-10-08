@@ -20,12 +20,12 @@
 		</p>
 	</div>
 	<div class="register-right">
-		<form class="form-horizontal" method="post" action="/aniwalk/signIn.do" enctype="multipart/form-data">
+		<form class="form-horizontal" name="signUpForm" method="post" action="/aniwalk/signIn.do" enctype="multipart/form-data" onsubmit="return signUpCheck()">
 			<div class="form-group">
 				<label class="col-sm-2">닉네임</label>
 				<div class="col-sm-6">
 					<label>																				<!-- get방식을 받으려면  ${param.xx}를 사용-->
-						<input class="form-control" type="text" placeholder="닉네임 입력" name="mem_nickname">
+						<input class="form-control" type="text" placeholder="닉네임 입력" name="mem_nickname" maxlength="10" required>
 						<input class="form-control" type="hidden" name="kakao_id" value="${param.kakao_id}">
 					</label>
 				</div>
@@ -33,9 +33,9 @@
 			<div class="form-group">
 				<label class="col-sm-2">핸드폰번호</label>
 				<div class="col-sm-6">
-					<span>
-						<input class="form-control" type="text" placeholder="핸드폰번호">
-					</span>
+					<label>
+						<input name="mem_phone" class="form-control" type="text" placeholder="핸드폰번호" minlength="10" maxlength="11" required>
+					</label>
 					<!-- 
 					<button class="btn btn-default">인증번호 받기</button>
 					<input class="form-control" type="text" placeholder="인증번호입력">
@@ -51,16 +51,16 @@
 					<ul>
 						<li>
 							<label>대표사진: </label>
-							<input type="file" class="form-control" name="files">
+							<input type="file" class="form-control" name="files" required>
 						</li>
 						<li>
 							<label>이름 : </label>
-							<input type="text" class="form-control" name="dog_name">
+							<input type="text" class="form-control" name="dog_name" maxlength="10" required>
 						</li>
 						<li>
 							<label>견종 : </label>
-							<select class="form-control" name="dog_type">
-								<option value="null">견종</option>
+							<select class="form-control" name="dog_type" required>
+								<option value="">견종</option>
 								<option>포메라니안</option>
 								<option>폼피츠</option>
 								<option>사모예드</option>
@@ -70,7 +70,7 @@
 						</li>
 						<li>
 							<label>생일: </label>
-							<input type="date" class="form-control" name="dog_birth">
+							<input type="date" class="form-control" name="dog_birth" required>
 						</li>
 						<li>
 							<label>특징: </label>
@@ -90,7 +90,7 @@
 				<div class="col-sm-offset-2 col-sm-10">
 					<div class="checkbox">
 						<label>
-							<input type="checkbox"> 개인정보 수집에 대한 동의
+							<input type="checkbox" required> 개인정보 수집에 대한 동의
 						</label>
 					</div>
 				</div>

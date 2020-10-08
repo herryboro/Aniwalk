@@ -20,9 +20,6 @@ const check_passwd = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,10}$/;               
 
 
 
-
-출처: https://suyou.tistory.com/150 [수유산장]
-
 //워커신청 유효성
 applyCheck =  function(){
     let wkNameValue = applyForm1.wk_name.value;
@@ -96,3 +93,4 @@ phoneUnusable = function(){
     unuse.innerHTML = unusable;
     authPart.innerHTML = '';
 }
+

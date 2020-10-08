@@ -8,6 +8,7 @@ public class JoinMemberDogImgDTO {
 	private String mem_id;
 	private String mem_nickname;
 	private String kakao_id;
+	private String mem_phone;
 	private int mem_point;
 	private String mem_profile_img;
 	private Date mem_join_date;
@@ -21,6 +22,13 @@ public class JoinMemberDogImgDTO {
 	private String dog_image;
 	private MultipartFile[] files;
 	
+	
+	public String getMem_phone() {
+		return mem_phone;
+	}
+	public void setMem_phone(String mem_phone) {
+		this.mem_phone = mem_phone;
+	}
 	public String getMem_id() {
 		return mem_id;
 	}
