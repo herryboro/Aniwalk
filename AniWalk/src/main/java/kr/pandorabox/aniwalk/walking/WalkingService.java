@@ -9,4 +9,5 @@ public interface WalkingService {
 	public int recruitInsert(WalkingDTO walking);
 	public List<WalkingDTO> recruitDog(String mem_nickname);
 	public List<WalkingDTO> getRecruitList();
+	public List<WalkingDTO> recruitlist(String mem_nickname);
 }

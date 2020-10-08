@@ -10,5 +10,7 @@ public interface WalkingDAO {
 	public List<WalkingDTO> recruitDog(String mem_nickname);
 
 	public List<WalkingDTO> getRecruitList();
+	//내가 작성한 모집글 리스트(날짜별)
+	public List<WalkingDTO> recruitlist(String mem_nickname);
 
 }

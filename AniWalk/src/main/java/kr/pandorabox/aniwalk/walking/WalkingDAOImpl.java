@@ -24,8 +24,16 @@ public class WalkingDAOImpl implements WalkingDAO{
 	}
 	
 	//모집글 리스트
+   @Override
+   public List<WalkingDTO> getRecruitList() {
+      return session.selectList("kr.pandorabox.aniwalk.walking.getRecruitList");
+   }
+	
+	//내가 쓴 모집글 리스트(날짜별)
 	@Override
-	public List<WalkingDTO> getRecruitList() {
-		return session.selectList("kr.pandorabox.aniwalk.walking.getRecruitList");
+	public List<WalkingDTO> recruitlist(String mem_nickname) {
+		return session.selectList("kr.pandorabox.aniwalk.walking.recruitlist",mem_nickname);
 	}
+	
+	
 }

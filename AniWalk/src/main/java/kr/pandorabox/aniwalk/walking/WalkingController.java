@@ -47,4 +47,17 @@ public class WalkingController {
 		walkingService.recruitInsert(walking);
 		return "owner/index";
 	}
+	//내 모집글 list
+	@RequestMapping("/owner/recruitList.do")
+	public ModelAndView list(HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+		String mem_nickname = (String) req.getSession().getAttribute("mem_nickname");
+		List<WalkingDTO> walkingDtos= walkingService.recruitlist(mem_nickname);
+		
+		mav.setViewName("owner/recruitList");
+		mav.addObject("mem_nickname", mem_nickname);
+		mav.addObject("walkingDtos", walkingDtos);
+		return mav;
+	}
+	
 }

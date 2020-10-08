@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,140 +17,99 @@
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
+<input type="hidden" value="${mem_nickname}" id="mem_nickname">
 	<div class="recruit-list">
-
 		<div class="list-part">
-
+		
 			<!-- 날짜별 모집글 리스트 -->
-			<div class="subtitle">
-				<label>2020-10-03</label>
-				<hr width="80%" color="gray"/>
-			</div>
-
-			<div class="list-group">
-				<div class="list-item">
-					<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
-					<ul>
-						<li>
-							<label>견종 : </label>
-							<span>포메라니안</span>
-						</li>
-						<li>
-							<label>장소 : </label>
-							<span>서울시 서초구 반포대로 13길 26</span>
-						</li>
-						<li>
-							<label>시간 : </label>
-							<span>오후 1:30 ~ 오후 2:00</span>
-						</li>
-					</ul>
-				</div>
-
-				<div class="list-item">
-					<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
-					<ul>
-						<li>
-							<label>견종 : </label>
-							<span>포메라니안</span>
-						</li>
-						<li>
-							<label>장소 : </label>
-							<span>서울시 서초구 반포대로 13길 26</span>
-						</li>
-						<li>
-							<label>시간 : </label>
-							<span>오후 1:30 ~ 오후 2:00</span>
-						</li>
-					</ul>
-				</div>
-
-				<div class="list-item">
-					<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
-					<ul>
-						<li>
-							<label>견종 : </label>
-							<span>포메라니안</span>
-						</li>
-						<li>
-							<label>장소 : </label>
-							<span>서울시 서초구 반포대로 13길 26</span>
-						</li>
-						<li>
-							<label>시간 : </label>
-							<span>오후 1:30 ~ 오후 2:00</span>
-						</li>
-					</ul>
-				</div>
-
-				<div class="list-item">
-					<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
-					<ul>
-						<li>
-							<label>견종 : </label>
-							<span>포메라니안</span>
-						</li>
-						<li>
-							<label>장소 : </label>
-							<span>서울시 서초구 반포대로 13길 26</span>
-						</li>
-						<li>
-							<label>시간 : </label>
-							<span>오후 1:30 ~ 오후 2:00</span>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<!-- 1일 리스트 끝 -->
-
-			<!-- 날짜별 모집글 리스트 -->
-			<div class="subtitle">
-				<label>2020-10-05</label>
-				<hr width="80%" color="gray"/>
-			</div>
-
-			<div class="list-group">
-				<div class="list-item">
-					<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
-					<ul>
-						<li>
-							<label>견종 : </label>
-							<span>포메라니안</span>
-						</li>
-						<li>
-							<label>장소 : </label>
-							<span>서울시 서초구 반포대로 13길 26</span>
-						</li>
-						<li>
-							<label>시간 : </label>
-							<span>오후 1:30 ~ 오후 2:00</span>
-						</li>
-					</ul>
-				</div>
-
-				<div class="list-item">
-					<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
-					<ul>
-						<li>
-							<label>견종 : </label>
-							<span>포메라니안</span>
-						</li>
-						<li>
-							<label>장소 : </label>
-							<span>서울시 서초구 반포대로 13길 26</span>
-						</li>
-						<li>
-							<label>시간 : </label>
-							<span>오후 1:30 ~ 오후 2:00</span>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<!-- 1일 리스트 끝 -->
+			<c:forEach var="walkingDto" items="${walkingDtos}" varStatus="mystatus">
+				<c:choose>
+				
+					<c:when test="${mystatus.index==0} "> <!-- 맨 처음인 경우 -->
+						<div class="subtitle">
+						<label>${walkingDto.recruit_date} </label>
+						<hr width="80%" color="gray"/>
+						</div>
+						<div class="list-group" >
+							<div class="list-item">
+								<img src="/owner/${walkingDto.dog_image}" alt="" class="img-rounded">
+								<ul>
+									<li>
+										<label>견종 : </label>
+										<span>${walkingDto.dog_type}</span>
+									</li>
+									<li>
+										<label>장소 : </label>
+										<span>${walkingDto.recruit_location}</span>
+									</li>
+									<li>
+										<label>시간 : </label>
+										<span>${walkingDto.walk_start_time} ~ ${walkingDto.walk_end_time}</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</c:when>
+					<c:otherwise>	<!-- 맨 처음이 아닌 경우 -->
+						<c:choose>
+							<c:when test="${walkingDtos[mystatus.index-1].recruit_date==walkingDtos[mystatus.index].recruit_date}"> <!-- 위에 날짜와 같은 경우 -->
+								<div class="list-group" >
+								<div class="list-item">
+									<img src="/owner/${walkingDto.dog_image}" alt="" class="img-rounded">
+									<ul>
+										<li>
+											<label>견종 : </label>
+											<span>${walkingDto.dog_type}</span>
+										</li>
+										<li>
+											<label>장소 : </label>
+											<span>${walkingDto.recruit_location}</span>
+										</li>
+										<li>
+											<label>시간 : </label>
+											<span>${walkingDto.walk_start_time} ~ ${walkingDto.walk_end_time}</span>
+										</li>
+									</ul>
+								</div>
+								</div>
+							</c:when>
+						
+							<c:otherwise>	<!-- 위의 날짜와 다른 경우 -->
+								
+								<div class="subtitle">
+									<label>${walkingDto.recruit_date}</label>
+									<hr width="80%" color="gray"/>
+								</div>
+								<div class="list-group">
+									<div class="list-item">
+										<img src="/owner/${walkingDto.dog_image}" alt="" class="img-rounded">
+										<ul>
+											<li>
+												<label>견종 : </label>
+												<span>${walkingDto.dog_type}</span>
+											</li>
+											<li>
+												<label>장소 : </label>
+												<span>${walkingDto.recruit_location}</span>
+											</li>
+											<li>
+												<label>시간 : </label>
+												<span>${walkingDto.walk_start_time} ~ ${walkingDto.walk_end_time}</span>
+											</li>
+										</ul>
+									</div>
+								</div>
+								
+							</c:otherwise>
+						</c:choose>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
 
 		</div>
 
 		<div class="btn-part">
-			<button class="btn btn-default" type="button">모집글 작성하기</button>
+			<button class="btn btn-default" type="button" onclick="location.href='/aniwalk/owner/recruit.do'">모집글 작성하기</button>
 		</div>
 
 	</div>

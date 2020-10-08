@@ -22,4 +22,7 @@
 	<definition name="owner/talkContent" extends="ownerTemplate">
 		<put-attribute name="content" value="/WEB-INF/pages/owner/ownerTalkContent.jsp"/>
 	</definition>
+	<definition name="owner/recruitList" extends="ownerTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/owner/ownerRecruitList.jsp"/>
+	</definition>
 </tiles-definitions>

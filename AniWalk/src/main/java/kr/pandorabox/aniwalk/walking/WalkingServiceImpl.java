@@ -23,4 +23,9 @@ public class WalkingServiceImpl implements WalkingService{
 	public List<WalkingDTO> getRecruitList() {
 		return walkingDao.getRecruitList();
 	}
+	@Override
+	public List<WalkingDTO> recruitlist(String mem_nickname) {
+		return walkingDao.recruitlist(mem_nickname);
+	}
+
 }

@@ -18,10 +18,22 @@
 		#{walk_start_time},#{walk_end_time},#{recruit_notices},#{recruit_location})	
 	</insert>
 	<!-- 모집글 리스트 -->
-	<select id="getRecruitList" resultType="walking">
+   <select id="getRecruitList" resultType="walking">
+      select * from ani_walking w left outer join ani_dog d
+      on d.dog_id = w.dog_id
+      left outer join ani_dog_img i
+      on d.dog_id = i.dog_id
+   </select>
+	<select id="recruitlist" parameterType="String" resultType="walking">
 		select * from ani_walking w left outer join ani_dog d
-		on d.dog_id = w.dog_id
+		on w.dog_id=d.dog_id
 		left outer join ani_dog_img i
-		on d.dog_id = i.dog_id
+		on i.dog_id=d.dog_id
+        left outer join ani_member m
+        on m.mem_id=w.recruit_mem_id
+        where m.mem_nickname=#{mem_nickname} order by recruit_date desc 
+		
 	</select>
+	
+
 </mapper>

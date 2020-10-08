@@ -611,7 +611,7 @@ body{
     margin-bottom: 40px;
     overflow-x: scroll;
     display: -webkit-inline-box;
-    width: 100%;
+    width: 44%;
 }
 .list-group .list-item{
     border-radius: 10px;
