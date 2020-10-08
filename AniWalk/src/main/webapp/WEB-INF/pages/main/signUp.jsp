@@ -12,7 +12,7 @@
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 <body>
-<div class="container register">
+<div class="container register" style="width: 100%; height: 100%;">
 	<div class="register-left">
 		<img src="${pageContext.request.contextPath}/images/main_logo.png" alt="">
 		<p>
@@ -20,11 +20,9 @@
 		</p>
 	</div>
 	<div class="register-right">
-		<h2>회원 정보 등록</h2>
 		<form class="form-horizontal" method="post" action="/aniwalk/signIn.do" enctype="multipart/form-data">
-		
 			<div class="form-group">
-				<label class="col-sm-2 control-label">닉네임</label>
+				<label class="col-sm-2">닉네임</label>
 				<div class="col-sm-6">
 					<label>																				<!-- get방식을 받으려면  ${param.xx}를 사용-->
 						<input class="form-control" type="text" placeholder="닉네임 입력" name="mem_nickname">
@@ -33,26 +31,54 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label">핸드폰번호</label>
+				<label class="col-sm-2">핸드폰번호</label>
 				<div class="col-sm-6">
 					<span>
 						<input class="form-control" type="text" placeholder="핸드폰번호">
 					</span>
+					<!-- 
 					<button class="btn btn-default">인증번호 받기</button>
 					<input class="form-control" type="text" placeholder="인증번호입력">
 					<button class="btn btn-primary">인증하기</button>
+					 -->
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label">반려견 정보 등록</label>
+				<label class="col-sm-2">반려견 정보 등록</label>
 				<div class="col-sm-6">
-					<label>
-						강아지 프로필: <input id="dogAdd" type="file" class="form-control" name="files">
-						강아지 이름: <input id="dogAdd" type="text" class="form-control" name="dog_name">
-						견종: <input id="dogAdd" type="text" class="form-control" name="dog_type">
-						크기: <input id="dogAdd" type="text" class="form-control" name="dog_size">
-						강아지 정보: <input id="dogAdd" type="text" class="form-control" name="dog_info">
-					</label>
+				
+				<div class="mydog-input">
+					<ul>
+						<li>
+							<label>대표사진: </label>
+							<input type="file" class="form-control" name="files">
+						</li>
+						<li>
+							<label>이름 : </label>
+							<input type="text" class="form-control" name="dog_name">
+						</li>
+						<li>
+							<label>견종 : </label>
+							<select class="form-control" name="dog_type">
+								<option value="null">견종</option>
+								<option>포메라니안</option>
+								<option>폼피츠</option>
+								<option>사모예드</option>
+								<option>진돗개</option>
+								<option>치와와</option>
+							</select> 
+						</li>
+						<li>
+							<label>생일: </label>
+							<input type="date" class="form-control" name="dog_birth">
+						</li>
+						<li>
+							<label>특징: </label>
+							<input type="text" class="form-control" name="dog_info">
+						</li>
+					</ul>
+				</div>
+					
 				</div>
 			</div>
 		
@@ -71,76 +97,13 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-default">Sign in</button>
+					<button type="submit" class="btn btn-primary">Sign in</button>
 				</div>
 			</div>
 		</form>
 	</div>
 </div>
 
-
-<script>
-	const dogAddBtn = document.getElementById('dogAdd');
-	const modalBg = document.querySelector('.modal-bg');
-
-	removeModalHidden = () => {
-		modalBg.classList.remove('hidden');
-	}
-	addModalHidden = () => {
-		modalBg.classList.add('hidden');
-	}
-
-	dogAddBtn.addEventListener('click',removeModalHidden);
-	modalBg.addEventListener('click',addModalHidden);
-</script>
-<script>
-	const dogList = document.getElementById('dogList');
-
-	let mydogList = [];
-	addDog = function() {
-
-		let dog_name = document.getElementsByName('dog_name')[0].value;
-		let dog_type = document.getElementsByName('dog_type')[0].value;
-		let dog_notice = document.getElementsByName('dog_notice')[0].value;
-		let dog_images = document.getElementsByName('dog_images')[0].value;
-
-		let mydog = {
-			name: dog_name,
-			type: dog_type,
-			notice: dog_notice,
-			images: dog_images
-		}
-
-		if (mydogList.length >= 0) {
-			dogList.classList.remove('hidden');
-		}
-
-		const addmydog = `
-			<div name="item" class="col-sm-offset-2 col-sm-10">
-				<img src="../../images/main_logo.png" alt="" width="100px"; height="100px";>
-				<ul>
-					<li>이름 :` + mydog.name + `</li>
-					<li>견종 :` + mydog.type + `</li>
-					<li>주의사항 :` + mydog.notice + `</li>
-				</ul>
-			</div>
-			`;
-
-
-		console.log(mydog);
-		mydogList.push(mydog);
-
-		dogList.innerHTML += addmydog;
-
-		console.log(mydogList);
-
-		addModalHidden();
-		const items = document.getElementsByName('item');
-		for(let i=0; i<items.length; i++){
-			items[i].classList.add('list-item');
-		}
-	}
-</script>
 </body>
 <style>
 	.list-item{

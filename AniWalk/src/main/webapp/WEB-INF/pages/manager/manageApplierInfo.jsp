@@ -19,6 +19,7 @@
     </div>
     <div class="info-content">
         <div class="left-box">
+        	<!-- 사진없다... -->
             <img class="img-rounded" src="aniwalk/images/applier.png" alt="">
             <ul>
                 <li>

@@ -248,6 +248,16 @@ body{
 ***************************************************/
 .index-img{
     background: rgba(52, 152, 219, 0.6);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+}
+.owner-content{
+	width: 70%;
+    text-align: center;
+    margin: 12% auto;
 }
 
 /**************************************************

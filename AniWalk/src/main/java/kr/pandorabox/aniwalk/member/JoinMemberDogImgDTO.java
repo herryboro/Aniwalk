@@ -5,21 +5,21 @@ import java.util.Date;
 import org.springframework.web.multipart.MultipartFile;
 
 public class JoinMemberDogImgDTO {
-	String mem_id;
-	String mem_nickname;
-	String kakao_id;
-	int mem_point;
-	String mem_profile_img;
-	Date mem_join_date;
-	String dog_id;
-	String dog_name;
-	String dog_type;
-	String dog_size;
-	String dog_info;
-	Date dog_birth;
-	String dog_img_id;
-	String dog_image;
-	MultipartFile[] files;
+	private String mem_id;
+	private String mem_nickname;
+	private String kakao_id;
+	private int mem_point;
+	private String mem_profile_img;
+	private Date mem_join_date;
+	private String dog_id;
+	private String dog_name;
+	private String dog_type;
+	private String dog_size;
+	private String dog_info;
+	private String dog_birth;
+	private String dog_img_id;
+	private String dog_image;
+	private MultipartFile[] files;
 	
 	public String getMem_id() {
 		return mem_id;
@@ -87,10 +87,10 @@ public class JoinMemberDogImgDTO {
 	public void setDog_info(String dog_info) {
 		this.dog_info = dog_info;
 	}
-	public Date getDog_birth() {
+	public String getDog_birth() {
 		return dog_birth;
 	}
-	public void setDog_birth(Date dog_birth) {
+	public void setDog_birth(String dog_birth) {
 		this.dog_birth = dog_birth;
 	}
 	public String getDog_img_id() {
@@ -111,9 +111,6 @@ public class JoinMemberDogImgDTO {
 	public void setFiles(MultipartFile[] files) {
 		this.files = files;
 	}
-	
-	
-	
 	
 	
 }

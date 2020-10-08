@@ -14,8 +14,8 @@
 	</insert>
 	
 	<insert id="joindog" parameterType="joinMemberDogImage">
-		insert into ani_dog (dog_id, dog_name, dog_type, dog_size, dog_info, dog_birth, mem_id) 
-		values('dog'||lpad(seq_dog.nextval,5,0), #{dog_name}, #{dog_type}, #{dog_size}, #{dog_info}, #{dog_birth}, 'member'||lpad(seq_member.currval,5,0))
+		insert into ani_dog (dog_id, dog_name, dog_type, dog_info, dog_birth, mem_id) 
+		values('dog'||lpad(seq_dog.nextval,5,0), #{dog_name}, #{dog_type}, #{dog_info}, #{dog_birth}, 'member'||lpad(seq_member.currval,5,0))
 	</insert>
 	
 	<insert id="fileinsert" parameterType="Map">

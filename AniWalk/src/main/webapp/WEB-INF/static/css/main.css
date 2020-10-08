@@ -51,16 +51,18 @@ ul {
 ***************************************************/
 html{
     width: 100%;
+    height: 100%;
     font-family: 'Noto Sans KR', sans-serif
 }
 body{
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
 nav{
     width: 100%;
-    height: 10%;
+    height: 70px;
   	border-bottom: 1px solid #80808026;
 
     padding: 5px;
@@ -118,9 +120,6 @@ footer{
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    
-    position: relative;
-    top: 20px;
 }
 .main-nav img{
     width: 120px;
@@ -162,9 +161,13 @@ footer{
 ***************************************************/
 .container{
 	display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
+    
+    width: 100%;
+    padding: 20px;
+    
 }
 .register{
     background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
@@ -172,6 +175,8 @@ footer{
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
+    
+    height: 100%;
 
     width: 100%;
     height: 90%;
@@ -179,7 +184,7 @@ footer{
 }
 
 .register-left{
-    width: 30%;
+    width: 25%;
     height: 90%;
 
     display: flex;
@@ -189,13 +194,29 @@ footer{
     font-size: 1.6rem;
 }
 .register-right{
-    width: 70%;
+    width: 75%;
     height: 90%;
     padding: 20px;
+    border-radius: 10px;
 
     background: var(--white);
     overflow: scroll;
     -ms-overflow-style: none; /* IE and Edge */
+}
+.form-group	 .control-label{
+	text-align: left;
+}
+.register-right ul{
+	margin: 0;
+}
+.register-right button{
+	width: 60%;
+}
+.register-right .mydog-input ul li{
+	display: flex;
+	flex-direction: column;
+	
+	margin: 10px 0;
 }
 ::-webkit-scrollbar {
      display: none; /* Chrome, Safari, Opera*/

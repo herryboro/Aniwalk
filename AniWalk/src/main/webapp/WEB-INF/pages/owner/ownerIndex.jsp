@@ -11,6 +11,7 @@
 		<div class="index-img">
 			<img src="${pageContext.request.contextPath}/images/ownerindex.png" alt="">
 		</div>
+		<h2>&lt;안녕하세요. 애니워크입니다&gt;</h2>
 	</div>
 	
 </body>

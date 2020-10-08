@@ -54,7 +54,7 @@
 						<div class="mydog-item">
 							<div class="mydog-name">${joinDto.dog_name}</div>
 							<div class="mydog-info-part">
-								<img class="img-thumbnail" src="/member/${joinDto.dog_image}" alt="">
+								<img class="img-thumbnail" src="/owner/${joinDto.dog_image}" alt="">
 								<ul>
 									<li class="first">
 										<label>견종</label>
@@ -183,7 +183,7 @@
 		uploadImg.click();
 	});
 
-	// profile 사진
+	// 반려견 사진
 	$('#uploadImg').on('change', function(e){
 		var maxSize = 209715200;
 		var files = e.target.files;
@@ -194,9 +194,9 @@
 				$('#uploadImg').val('');
 			} else if(!f.type.match("image.*")) {
 				alert("사진과 동영상만 업로드 가능합니다!");
-
 			} else {
 				$('#clickImg').attr('src', URL.createObjectURL(e.target.files[0]));
+				console.log(uploadImg.value);
 			}
 		});
 	});
