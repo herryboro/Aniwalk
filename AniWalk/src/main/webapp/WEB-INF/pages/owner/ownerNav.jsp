@@ -20,7 +20,7 @@
 			<label onclick="location.href='/aniwalk/owner/my.do'"> ${mem_nickname} </label>
 		</li>
 		<li>
-			<button class="btn btn-primary" type="button" onclick="location.href='/aniwalk/owner/recruit.do'">산책모집</button>
+			<button class="btn btn-primary" type="button" onclick="location.href='/aniwalk/owner/recruitList.do'">산책모집</button>
 		</li>
 		<li>
 			<button class="btn btn-primary" type="button" onclick="location.href='/aniwalk/owner/walker.do'">펫프렌즈 리스트</button>
