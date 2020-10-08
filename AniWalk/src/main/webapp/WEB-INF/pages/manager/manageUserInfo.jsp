@@ -20,20 +20,20 @@
             <ul>
             	<c:forEach items="${userList}" var="List">
 	                <li>
-	                    <label>user nickname</label>
+	                    <label>닉네임 : </label>
 	                    <span>${List.mem_nickname}</span>
 	                </li>
 	                <li>
-	                    <label>user phone number</label>
+	                    <label>핸드폰 : </label>
 	                    <span>010-3938-4995</span>
 	                </li>
 	                <li>
-	                    <label>user nickname</label>
+	                    <label>주소 : </label>
 	                    <span>서울시 서초구 반포대로16길 42</span>
 	                    <span>롯데캐슬 1004동 209호</span>
 	                </li>
 	                <li>
-	                    <label>user kakao id</label>
+	                    <label>카카오톡 ID : </label>
 	                    <span>${List.kakao_id}</span>
 	                </li>
             	</c:forEach>

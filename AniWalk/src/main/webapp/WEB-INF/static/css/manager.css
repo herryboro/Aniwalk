@@ -247,6 +247,13 @@ article section{
     width: 100px;
     height: 100px;
 }
+.info-content .left-box img{
+    width: 150px;
+    height: 140px;
+
+    position: relative;
+    top: -30px;
+}
 .left-box{
     display: flex;
     flex-direction: column;

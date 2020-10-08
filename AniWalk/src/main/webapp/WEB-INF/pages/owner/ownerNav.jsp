@@ -12,7 +12,8 @@
 
 
 <div class="ownerNav">
-	<img src="${pageContext.request.contextPath}/images/main_logo.png" alt="">
+	<img src="${pageContext.request.contextPath}/images/main_logo.png" alt=""
+			onclick="location.href='/aniwalk/owner/index.do'">
 	<ul>
 		<li>
 			<img class="img-circle" src="${pageContext.request.contextPath}/images/profile_test.png" alt="" onclick="location.href='/aniwalk/owner/my.do'">

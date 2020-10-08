@@ -26,9 +26,8 @@
 <body>
 	<form class="recruit-write" action="/aniwalk/owner/recruitInsert.do">
 	<input type="hidden" value="${recruit_mem_id}" name="recruit_mem_id">
-		<div>
-			<h4>모집글작성</h4>
-			<hr width="90%" color="gray">
+		<div class="subtitle">
+			<h4>모집글 작성</h4>
 		</div>
 		
 		<section>

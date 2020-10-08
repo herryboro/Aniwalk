@@ -19,7 +19,7 @@
     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
 <body>
-<div class="container">
+<div class="container" style="display: flex; flex-direction: column;">
 	<h3>서비스약관동의</h3>
 	<form id="applyForm1" class="walker-apply-form" method="POST" onsubmit="return applyCheck()"
 		enctype="multipart/form-data" name='walker' action="/aniwalk/apply.do">
@@ -92,7 +92,7 @@
 			<li style="display: flex; justify-content: center; align-items: center;">
 				<h3>[필수] 프로필사진을 등록해주세요</h3><span>(1장 이상)</span>
 			</li>
-			<li>
+			<li style="text-align: center">
 				<i class="fas fa-angle-left"></i>
 				<img id='wk_img' alt="" src="${pageContext.request.contextPath}/images/main_logo.png">
 				<i class="fas fa-angle-right"></i>
@@ -260,7 +260,6 @@
 <script>
 $(document).ready(function(){
 	$('footer').removeClass('absolute-position');
-
 });
 </script>
 
