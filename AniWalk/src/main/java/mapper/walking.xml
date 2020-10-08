@@ -24,14 +24,18 @@
       left outer join ani_dog_img i
       on d.dog_id = i.dog_id
    </select>
+   <!-- 자신이 올린 모집글 리스트-->
 	<select id="recruitlist" parameterType="String" resultType="walking">
-		select * from ani_walking w left outer join ani_dog d
+		select to_char(w.recruit_date,'YYYY-MM-DD') as recruit_date,d.dog_type,w.recruit_location,
+        w.walk_start_time, w.walk_end_time, i.dog_image
+        from ani_walking w left outer join ani_dog d
 		on w.dog_id=d.dog_id
 		left outer join ani_dog_img i
 		on i.dog_id=d.dog_id
         left outer join ani_member m
         on m.mem_id=w.recruit_mem_id
-        where m.mem_nickname=#{mem_nickname} order by recruit_date desc 
+        where m.mem_nickname=#{mem_nickname} 
+        order by recruit_date desc 
 		
 	</select>
 	
