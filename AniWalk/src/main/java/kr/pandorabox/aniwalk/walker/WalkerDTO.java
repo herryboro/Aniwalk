@@ -20,6 +20,7 @@ public class WalkerDTO {
 	private String wk_event_agree;
 	private String wk_location1;
 	private String wk_location2;
+	private String wk_certificate_list;
 	private String wk_intro;
 	private int wk_point;
 	private Date apply_date;
@@ -88,6 +89,12 @@ public class WalkerDTO {
 		return wk_event_agree;
 	}
 	
+	public String getWk_certificate_list() {
+		return wk_certificate_list;
+	}
+	public void setWk_certificate_list(String wk_certificate_list) {
+		this.wk_certificate_list = wk_certificate_list;
+	}
 	public int getWk_point() {
 		return wk_point;
 	}

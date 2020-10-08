@@ -23,4 +23,5 @@ public interface WalkerDAO {
 	public WalkerDTO myInfo(String walker_id);
 	//개인정보 수정
 	public int myInfoUpdate(WalkerDTO walker);
+	public int updateWalker(WalkerDTO walkerDto);
 }

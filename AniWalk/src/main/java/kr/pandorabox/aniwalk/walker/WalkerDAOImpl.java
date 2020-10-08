@@ -13,6 +13,13 @@ public class WalkerDAOImpl implements WalkerDAO{
 	@Autowired
 	SqlSession session;
 	
+	// 펫 프렌즈 신청 관리
+	@Override
+	public int updateWalker(WalkerDTO walkerDto) {
+		return session.update("kr.pandorabox.aniwalk.walker.updateWalker", walkerDto);
+	}
+	
+	
 	// 펫프렌즈 list
 	@Override
 	public List<WalkerDTO> applyierList(String wk_id) {

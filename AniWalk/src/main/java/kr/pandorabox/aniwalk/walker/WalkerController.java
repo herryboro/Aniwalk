@@ -29,6 +29,22 @@ public class WalkerController {
 	@Autowired
 	private SHA256 hash;
 	
+	// 펫 프렌즈 신청 관리
+	@RequestMapping("/manager/updateWalker.do")
+	public String UpdateWalker(WalkerDTO walkerDto) {
+		System.out.println(walkerDto.getWk_id());
+		//int result = walkerService.updateWalker(walkerDto);
+		return "redirect:/manager/walkerInfo.do?wk_id="+walkerDto.getWk_id();
+	}
+	
+	// 펫 프렌즈 아이디 생성
+	@ResponseBody
+	@RequestMapping(value = "/manager/createWalkerId.do",
+			method = RequestMethod.POST,
+			produces = "application/text;charset=utf-8")
+	public String CreateWalkerId() {
+		return null;
+	}
 	
 	//main
 	@RequestMapping("/walker/main.do")

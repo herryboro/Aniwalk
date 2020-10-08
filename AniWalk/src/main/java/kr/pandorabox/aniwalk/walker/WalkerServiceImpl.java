@@ -18,6 +18,12 @@ public class WalkerServiceImpl implements WalkerService {
 		return walkerDao.applyierList(wk_id);
 	}
 	
+	// 펫 프렌즈 신청 관리
+	@Override
+	public int updateWalker(WalkerDTO walkerDto) {
+		return walkerDao.updateWalker(walkerDto);
+	}
+	
 	// 펫프렌즈 신청
 	@Override
 	public int walkerApply(WalkerDTO walker, ArrayList<String> filelist) {
