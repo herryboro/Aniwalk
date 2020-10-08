@@ -99,7 +99,7 @@ article{
     height: 92%;
     display: flex;
     flex-direction: row;
-    flex-wrap: nowap;
+    flex-wrap: nowrap;
     
     overflow: scroll;
 }

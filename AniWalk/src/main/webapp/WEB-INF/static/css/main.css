@@ -203,9 +203,6 @@ footer{
     overflow: scroll;
     -ms-overflow-style: none; /* IE and Edge */
 }
-.form-group	 .control-label{
-	text-align: left;
-}
 .register-right ul{
 	margin: 0;
 }

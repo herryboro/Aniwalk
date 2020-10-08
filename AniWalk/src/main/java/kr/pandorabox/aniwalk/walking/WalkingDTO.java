@@ -11,7 +11,7 @@ public class WalkingDTO {
 	private String walking_id;
 	private String recruit_mem_id;
 	private String dog_id;
-	private Date recruit_date;
+	private String recruit_date;
 	private String walk_date;
 	private String walk_start_time;
 	private String walk_end_time;
@@ -72,10 +72,10 @@ public class WalkingDTO {
 	public void setDog_id(String dog_id) {
 		this.dog_id = dog_id;
 	}
-	public Date getRecruit_date() {
+	public String getRecruit_date() {
 		return recruit_date;
 	}
-	public void setRecruit_date(Date recruit_date) {
+	public void setRecruit_date(String recruit_date) {
 		this.recruit_date = recruit_date;
 	}
 	public String getWalk_start_time() {

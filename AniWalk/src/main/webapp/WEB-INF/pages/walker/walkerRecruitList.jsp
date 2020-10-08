@@ -32,8 +32,8 @@
 		<div class="row">
 
 			<c:forEach var="recruit" items="${recruitList}">
-				<div class="form-group col-md-3">
-					<a href="/aniwalk/walker/"><img src="/owner/${recruit.dog_image}" alt="" class="img-rounded"></a>
+				<div class="form-group col-md-3" onclick="location.href='#'">
+					<img src="/owner/${recruit.dog_image}" alt="" class="img-rounded">
 					<ul>
 						<li>
 							<label>견종 : </label>
@@ -42,6 +42,10 @@
 						<li>
 							<label>장소 : </label>
 							<span>${recruit.recruit_location}</span>
+						</li>
+						<li>
+							<label>날짜 : </label>
+							<span>${recruit.recruit_date}</span>
 						</li>
 						<li>
 							<label>시간 : </label>

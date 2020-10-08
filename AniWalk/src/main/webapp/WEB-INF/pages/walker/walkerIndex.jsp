@@ -23,13 +23,13 @@
 			<img src="${pageContext.request.contextPath}/images/main_logo.png" alt="">
 			<ul>
 				<li>
-					<label>아이디</label>
+					<h5>아이디</h5>
 					<label>
 						<input type="text" class="form-control" id="walker_id">
 					</label>
 				</li>
 				<li>
-					<label>비밀번호</label>
+					<h5>비밀번호</h5>
 					<label>
 						<input type="password" class="form-control" id="wk_pw">
 					</label>

@@ -63,7 +63,7 @@
 	
 				</div>
 				<label>
-					<input type="date" class="form-control" name="walk_date">
+					<input type="date" class="form-control" name="walk_date" required>
 				</label>
 			</div>
 			<div class="form-group">
@@ -73,11 +73,11 @@
 				</div>
 				<label>
 					<span>시작시간 : </span>
-					<input type="time" class="form-control" name="walk_start_time">
+					<input type="time" class="form-control" name="walk_start_time" required>
 				</label>
 				<label>
 					<span>종료시간 : </span>
-					<input type="time" class="form-control" name="walk_end_time">
+					<input type="time" class="form-control" name="walk_end_time" required>
 				</label>
 			</div>
 		</section>

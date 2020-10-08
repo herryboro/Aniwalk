@@ -156,6 +156,12 @@ button:hover{
     justify-content: space-between;
     padding: 10px 0;
 }
+.walker-login ul li label{
+    width: 70%;
+}
+.walker-login ul li label input{
+    border-radius: 20px;
+}
 .text-center div{
     width: 100%;
     text-align: center;
@@ -267,7 +273,7 @@ article{
     walkerRecruitList
 
 ***************************************************/
-section{
+.walker-recruit-list{
     width: 100%;
     height: 100%;
 
@@ -298,23 +304,30 @@ section .search-part form label{
     margin-top: 50px;
 }
 .list-part .form-group{
-    border-radius: 10px;
-    border: 1px solid;
-
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
 
-    padding: 20px 0 5px 0;
+    padding: 25px 0 20px 0;
     margin-left: 30px;
+    min-width: 300px;
+
+    background: rgba(52, 152, 219, 0.28);
+    border-radius: 10px;
 }
 .list-part .form-group img{
-    width: 250px;
-    height: 200px;
+    width: 70%;
+    height: 230px;
+
+    margin-bottom: 20px;
 }
 .list-part .form-group ul{
     font-size: 1.5rem;
+    padding: 20px;
+
+    background: white;
+    border-radius: 20px;
 }
 
 
@@ -438,7 +451,14 @@ section .search-part form label{
     margin: 50px auto 0 auto;
 }
 
+/**************************************************
 
+    walkerMy
+
+***************************************************/
+.walker-my{
+    padding: 20px;
+}
 /**************************************************
 
     walkerMyInfoUpdate
