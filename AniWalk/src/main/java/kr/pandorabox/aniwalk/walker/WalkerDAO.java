@@ -24,4 +24,6 @@ public interface WalkerDAO {
 	//개인정보 수정
 	public int myInfoUpdate(WalkerDTO walker);
 	public int updateWalker(WalkerDTO walkerDto);
+	public int createWalkerId(WalkerDTO walkerDto);
+	public List<String> certificateImg(String wk_id);
 }

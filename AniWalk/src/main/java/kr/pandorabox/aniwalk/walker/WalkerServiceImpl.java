@@ -12,6 +12,19 @@ public class WalkerServiceImpl implements WalkerService {
 	@Autowired
 	private WalkerDAO walkerDao;
 	
+	// 펫 프렌즈 자격증 정보 
+	@Override
+	public List<String> certificateImg(String wk_id) {
+		return walkerDao.certificateImg(wk_id);
+	}
+	
+	// 펫 프렌즈 아이디 생성
+	@Override
+	public int createWakerId(WalkerDTO walkerDto) {
+		return walkerDao.createWalkerId(walkerDto);
+	}
+	
+	
 	// 펫프렌즈 리스트
 	@Override
 	public List<WalkerDTO> applierList(String wk_id) {

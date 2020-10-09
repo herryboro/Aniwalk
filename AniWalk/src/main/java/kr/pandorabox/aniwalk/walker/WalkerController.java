@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,7 +33,6 @@ public class WalkerController {
 	// 펫 프렌즈 신청 관리
 	@RequestMapping("/manager/updateWalker.do")
 	public String UpdateWalker(WalkerDTO walkerDto) {
-		System.out.println(walkerDto.getWk_id());
 		int result = walkerService.updateWalker(walkerDto);
 		return "redirect:/manager/walkerInfo.do?wk_id="+walkerDto.getWk_id();
 	}
@@ -42,8 +42,12 @@ public class WalkerController {
 	@RequestMapping(value = "/manager/createWalkerId.do",
 			method = RequestMethod.POST,
 			produces = "application/text;charset=utf-8")
-	public String CreateWalkerId() {
-		return null;
+	public String CreateWalkerId(WalkerDTO walkerDto) {
+		int result = walkerService.createWakerId(walkerDto);
+		if(result == 1) {
+			return "success";
+		}
+		return "fail";
 	}
 	
 	//main
@@ -65,8 +69,11 @@ public class WalkerController {
 	// owner페이지  펫 프렌즈 상세 정보
 	@RequestMapping("owner/walkerInfo.do")
 	public ModelAndView ownerWalkerInfo(String wk_id) {
+		ModelAndView mav = new ModelAndView();
 		List<WalkerDTO> walkerInfo = walkerService.applierList(wk_id);
-		return new ModelAndView("owner/walkerInfo", "walkerInfo", walkerInfo);
+		mav.setViewName("owner/walkerInfo");
+		mav.addObject("walkerInfo", walkerInfo);
+		return mav;
 	}
 	
 	// 인증번호 확인 
@@ -99,8 +106,13 @@ public class WalkerController {
 	// 펫 프렌즈 상세 정보
 	@RequestMapping("manager/walkerInfo.do")
 	public ModelAndView walkerInfo(String wk_id) {
+		ModelAndView mav = new ModelAndView();
 		List<WalkerDTO> walkerInfo = walkerService.applierList(wk_id);
-		return new ModelAndView("manager/walkerInfo", "walkerInfo", walkerInfo);
+		List<String> certificateImg = walkerService.certificateImg(wk_id); 
+		mav.setViewName("manager/walkerInfo");
+		mav.addObject("walkerInfo", walkerInfo);
+		mav.addObject("certificateImg", certificateImg);
+		return mav;
 	}
 	
 	// 펫 프렌즈 리스트

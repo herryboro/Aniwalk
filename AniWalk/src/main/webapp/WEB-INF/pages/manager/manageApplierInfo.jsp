@@ -42,28 +42,24 @@
                     <label>이메일</label>
                     <span id="applierEmail">${walkerInfo[0].wk_email}</span>
                 </li>
-                <!-- 합격상태 and 아이디가 없는 경우 활성화 -->
-                <!-- 아이디 생성 버튼 누르면 email@앞으로 id가 생성되고 비밀번호는 영어숫자랜덤으로 6자리 제공한다 -->
-                <c:if test="${walkerInfo[0].apply_state eq 4 && walkerInfo[0].walker_id != ''}">
+                <c:if test="${walkerInfo[0].apply_state eq 4}">
 	                <li>
+		                <!-- 합격상태 and 아이디가 없는 경우 활성화 -->
+		                <!-- 아이디 생성 버튼 누르면 email@앞으로 id가 생성되고 비밀번호는 영어숫자랜덤으로 6자리 제공한다 -->
 	               		<button id="walkerIdCreate" type="button" class="btn btn-primary">아이디 생성</button>
+	               		<!-- 합격상태 and 아이디가 있는 경우 -->
+	   	            	<!-- 임시비밀번호 발급 버튼을 누르면 현재 비밀번호가 임시 비밀번호로 변경된다. -->
+	               		<button id="walkerPwIssue" type="button" class="btn btn-danger">임시비밀번호 발급</button>
 	               	</li>
                	</c:if>
-               	<c:if test="${walkerInfo[0].apply_state eq 4 && walkerInfo[0].walker_id == ''}">
-	               	<li>
-	                	<!-- 합격상태 and 아이디가 있는 경우 -->
-	   	            	<!-- 임시비밀번호 발급 버튼을 누르면 현재 비밀번호가 임시 비밀번호로 변경된다. -->
-	                    	<button id="walkerPwIssue" type="button" class="btn btn-danger">임시비밀번호 발급</button>
-	                </li>
-                </c:if>
             </ul>
         </div>
 
         <form class="right-box" method="post" action="/aniwalk/manager/updateWalker.do" onkeydown="return captureReturnKey(event)">
             <input type="hidden" name="wk_id" value="${walkerInfo[0].wk_id}">
-            <c:if test="${walkerInfo[0].apply_state ne 4}">
-	            <h4>신청정보</h4>
-	            <ul class="applier-info">
+            <ul class="applier-info">
+	            <c:if test="${walkerInfo[0].apply_state ne 4}">
+	            	<h4>신청정보</h4>
 	                <li>
 	                    <label>신청날짜</label>
 	                    <span>${walkerInfo[0].apply_date}</span>
@@ -82,41 +78,12 @@
 	                        <option value="5">불합격</option>
 	                    </select>
 	                </li>
-	                <li>
-	                	<label>등록한 자격정보</label>
-	                	<div class="certificate-group">
-	                		<!-- 등록한 자격증이 없는 경우 -->
-	                		<!-- 
-	                		<h3>등록한 자격증 정보가 없습니다.</h3>
-	                		 -->
-	                		<!-- 등록한 자격증이 있는경우 -->
-	                		<!-- 클릭시 모달로 이미지 크게 보이게 할것임 -->
-	                		<img class="certificate-img" src="/aniwalk/images/certificate.jpg">
-	                		<img class="certificate-img" src="/aniwalk/images/walkerMain.png">
-	                	</div>
-	                </li>
-	                <!-- 등록한 자격증이 없을 떄도 있긴해야지 /// 근데 활동중일 때만 나오게 하는게 맞는거지???-->
-	                <!-- ajax로 처리하는게 get방식으로 처리하는 것보다 나을듯? -->
-	                <li>
-	                	<label>자격증 입력</label>
-	                	<div class="certificate-input-box">
-	                		<input id='cert-name' onkeydown="certName()" type="text" class="form-control" placeholder="자격증 이름을 입력해주세요">
-	                		<button id='cert-btn' class="btn btn-success" type="button">등록</button>
-	                	</div>
-	                </li>
-	                <li>
-						<label>자격증 리스트</label>                
-	                	<ol id='cert-list'>
-	                	</ol>
-	                </li>
-	            </ul>
-	        </c:if>
-            <c:if test="${walkerInfo[0].apply_state eq 4}">
-	            <h4>활동정보</h4>
-	            <ul class="applier-info">
-	                <li>
+	            </c:if>
+	            <c:if test="${walkerInfo[0].apply_state eq 4}">
+	               	<h4>활동정보</h4>
+	               	<li>
 	                    <label>아이디</label>
-	                    <span>${walkerInfo[0].walker_id}</span>
+	                    <span id="walker_id">${walkerInfo[0].walker_id}</span>
 	                </li>
 	                <li>
 	                    <label>활동시작 날짜</label>
@@ -128,38 +95,46 @@
 	                </li>
 	                <li>
 	                    <label>활동상태</label>
-	                    <select>
+	                    <select name="activity_state" id="activity_state">
 	                        <option value='1'>활동</option>
 	                        <option value='2'>중지</option>
 	                    </select>
 	                </li>
-	                <li>
-	                	<label>등록한 자격정보</label>
-	                	<div class="certificate-group">
-	                		<!-- 등록한 자격증이 없는 경우 -->
-	                		<!-- 
-	                		<h3>등록한 자격증 정보가 없습니다.</h3>
-	                		 -->
-	                		<!-- 등록한 자격증이 있는경우 -->
-	                		<!-- 클릭시 모달로 이미지 크게 보이게 할것임 -->
-	                		<img class="certificate-img" src="/aniwalk/images/certificate.jpg">
-	                		<img class="certificate-img" src="/aniwalk/images/walkerMain.png">
-	                	</div>
-	                </li>
-	                <li>
-	                	<label>자격증 입력</label>
-	                	<div class="certificate-input-box">
-	                		<input id='cert-name' onkeydown="certName()" type="text" class="form-control" placeholder="자격증 이름을 입력해주세요">
-	                		<button id='cert-btn' class="btn btn-success" type="button">등록</button>
-	                	</div>
-	                </li>
-	                <li>
-						<label>자격증 리스트</label>                
-	                	<ol id='cert-list'>
-	                	</ol>
-	                </li>
-	            </ul>
-            </c:if>
+	            </c:if>
+                <li>
+                	<label>등록한 자격정보</label>
+                	<div class="certificate-group">
+                		<!-- 등록한 자격증이 없는 경우 -->
+                		<c:if test="${certificateImg.size() == 0}">
+                			<h3>등록한 자격증 정보가 없습니다.</h3>
+                		</c:if>
+                		<!-- 등록한 자격증이 있는경우 -->
+                		<!-- 클릭시 모달로 이미지 크게 보이게 할것임 -->
+                		<c:forEach var="img" items="${certificateImg}">
+	                		<img class="certificate-img" src="/walker/${img}">
+                		</c:forEach>
+                	</div>
+                </li>
+                <li>
+                	<label>자격증 입력</label>
+                	<div class="certificate-input-box">
+                		<input id='cert-name' onkeydown="certName()" type="text" class="form-control" placeholder="자격증 이름을 입력해주세요">
+                		<button id='cert-btn' class="btn btn-success" type="button">등록</button>
+                	</div>
+                </li>
+                <li>
+					<label>자격증 리스트</label>                
+                	<ol id='cert-list'>
+                		<c:set var="wk_certificate_list" value="${fn:split(walkerInfo[0].wk_certificate_list,'/')}"/>
+                		<c:forEach var="certi" items="${wk_certificate_list}">
+                			<c:if test="${certi != ''}">
+                				<li>${certi}	<input onclick="delCert(this)" class="btn btn-light" type="button" value='삭제'></li>
+                			</c:if>
+                		</c:forEach>
+                	</ol>
+                </li>
+            </ul>
+            <input type="hidden" name="wk_certificate_list" id="wk_certificate_list">
             <div class="btn-line">
                 <button class="btn btn-primary" type="submit">수정</button>
                 <button class="btn btn-danger" type="button">취소</button>
@@ -177,22 +152,76 @@
 <script>
 	$(document).ready(function(){
 		var apply_state = "${walkerInfo[0].apply_state}";
+		var activity_state = "${walkerInfo[0].activity_state}";
+		var walker_id = "${walkerInfo[0].walker_id}";
 		$('#apply_state').val(apply_state).attr('selected', 'selected');
-		
+		$('#activity_state').val(activity_state).attr('selected', 'selected');
+		if(walker_id != null && walker_id != '') {
+			$('#walkerIdCreate').addClass('hidden');
+		} else {
+			$('#walkerPwIssue').addClass('hidden');
+		}
+		wk_certificate_list();
 	})
 </script>
-<script> 
-    function captureReturnKey(e) { 
-            if(e.keyCode == 13 && e.srcElement.type != 'input') 
-                return false; 
-    } 
-</script>
 <script>
-	function certName(){
-		if(event.keyCode == 13) {
-			$('#cert-list').append('<li>'+ $('#cert-name').val() + '</li>')
-			$('#cert-name').val('');
+	function captureReturnKey(e) { 
+	    if(e.keyCode == 13 && e.srcElement.type != 'input') 
+	        return false; 
+	}
+	
+	function wk_certificate_list() {
+		var wk_certificate_list = '';
+		for(var i=1;i<=$('#cert-list li').length; i++) {
+			wk_certificate_list += $('#cert-list > li:nth-child('+ (i) +')').text() + '/';
 		}
+		$('#wk_certificate_list').val(wk_certificate_list);
+	}
+
+	function certName(){
+		if(event.keyCode == 13 && $('#cert-name').val() != '') {
+			$('#cert-list').append('<li>'+ $('#cert-name').val() + '	<input onclick="delCert(this)" class="btn btn-light" type="button" value="삭제"></li>');
+			$('#cert-name').val('');
+			wk_certificate_list();
+		}
+	}
+	$('#cert-btn').on('click', function(){
+		if($('#cert-name').val() != ''){
+			$('#cert-list').append('<li>'+ $('#cert-name').val() + '	<input onclick="delCert(this)" class="btn btn-light" type="button" value="삭제"></li>');
+			$('#cert-name').val('');
+			wk_certificate_list();
+		}
+	})
+	
+	function createWalkerIdAndPw(){
+    const walker_id = applierEmail.innerText;
+    const wk_pw = Math.random().toString(36).substr(2,6);
+	    $.ajax({
+	        url : '/aniwalk/manager/createWalkerId.do',	//이름 바꿔도됨
+	        type : 'post',
+	        data :{
+	            "walker_id" : walker_id,
+	            "wk_pw" : wk_pw,
+	            "wk_id" : "${walkerInfo[0].wk_id}"
+	        },
+	        success : function(data) {
+	            if(data == 'success'){
+	            	$('#walker_id').text(walker_id);
+	            	$('#walkerIdCreate').addClass('hidden');
+	            	$('#walkerPwIssue').removeClass('hidden');
+	            } else {
+	            	alert('아이디가 생성 실패');
+	            }
+	        },
+	        error : function(a, b, c) {
+	            console.log(c);
+	        }
+	    })
+	}
+	
+	function delCert(cert){
+		cert.parentNode.parentNode.removeChild(cert.parentNode);
+		wk_certificate_list();
 	}
 </script>
 <script>
@@ -219,42 +248,19 @@
     });
 </script>
 <script>
-    //아이디 생성 버튼 클릭
-    const walkerIdCreate = document.getElementById('walkerIdCreate');
-    const applierEmail = document.getElementById('applierEmail');
-
-    walkerIdCreate.addEventListener('click',function(){
-        const walker_id = applierEmail.textContent.split('@')[0];
-        const wk_pw = Math.random().toString(36).substr(2,6);
-        //onsole.logc('프렌즈 id = ' + wk_id + '프렌즈 pw = ' + wk_passwd);
-        /*
-        $.ajax({
-            type : 'post',
-            url : '/aniwalk/manager/createWalkerId.do',	//이름 바꿔도됨
-            dataType : 'json',
-            data : JSON.stringify({
-                "walker_id" : wk_id,
-                "wk_pw" : wk_passwd,
-            }),
-            success : function() {
-                alert('아이디가 생성되었습니다.');
-                location.reload();
-            },
-            error : function(a, b, c) {
-                console.log(c);
-            }
-        })
-        */
-    });
-</script>
-<script>
-    //임시비밀번호 발급 버튼 클릭
-    const walkerPwIssue = document.getElementById('walkerPwIssue');
-    walkerPwIssue.addEventListener('click',function (){
-        const wk_passwd = Math.random().toString(36).substr(2,6);
-        //console.log(wk_passwd);
-    });
+	const walkerPwIssue = document.getElementById('walkerPwIssue');
+	const walkerIdCreate = document.getElementById('walkerIdCreate');
+	
+	//임시비밀번호 발급 버튼 클릭
+	walkerPwIssue.addEventListener('click', function() {
+		alert('임시비밀번호가 생성되었습니다.');
+		createWalkerIdAndPw();
+	});
+	//아이디 생성 버튼 클릭
+	walkerIdCreate.addEventListener('click',function() {
+		alert('아이디가 생성되었습니다.');
+		createWalkerIdAndPw();
+	});
 </script>
 </body>
-
 </html>
