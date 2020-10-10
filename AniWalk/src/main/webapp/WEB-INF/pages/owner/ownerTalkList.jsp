@@ -26,7 +26,7 @@
 			<div class="talk-item">
 				<ul>
 					<li>
-						<a href="/aniwalk/owner/talkContent.do"><img class="img-circle" src="${pageContext.request.contextPath}/images/applier.png" alt=""></a>
+						<a href="/aniwalk/owner/talkContent.do?mem_nickname='${mem_nickname}'"><img class="img-circle" src="${pageContext.request.contextPath}/images/applier.png" alt=""></a>
 					</li>
 					<li>
 						<div>

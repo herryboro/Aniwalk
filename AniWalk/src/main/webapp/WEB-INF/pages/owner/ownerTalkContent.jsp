@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,13 +14,17 @@
 
 	<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2521c7cc3e67ced68e19182536406c54&libraries=services,clusterer,drawing"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+	<!-- SocketJS CDN -->
+	<script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
 </head>
 <body>
 	<div class="talk-content">
 		<div class="reserve-btn">산책 예약하기</div>
-		<div class="content-part">
-			<!-- 여기 아래부터 톡글 시작 -->
-			<!-- 상대방 -->
+		
+		<div class="content-part" id="messageWindow">
+			<!-- 여기 아래부터 톡글 시작 
+			 상대방
 			<div class="you">
 				<img src="${pageContext.request.contextPath}/images/applier.png" class="img-circle" alt="">
 				<ul>
@@ -31,8 +38,7 @@
 				</ul>
 			</div>
 
-
-			<!-- 자신 -->
+			<!-- 자신 
 			<div class="my">
 				<ul>
 					<li style="min-width: 60px">
@@ -43,7 +49,7 @@
 					</li>
 				</ul>
 			</div>
-
+		
 			<div class="reserve-box-my">
 				<ul>
 					<li>
@@ -74,7 +80,7 @@
 				<button class="btn btn-primary" type="button">예약 정보 수정</button>
 			</div>
 
-
+		
 			<div class="you">
 				<img src="${pageContext.request.contextPath}/images/applier.png" class="img-circle" alt="">
 				<ul>
@@ -90,15 +96,17 @@
 					</li>
 				</ul>
 			</div>
-			<!-- 끝 -->
+			 끝 -->
 		</div>
 	</div>
+
 	<!-- 대화입력창 -->
 	<form class="talk-inputForm">
+	<input type="hidden" value="${mem_nickname}" id="chat_id" name="mem_nickname">
 		<label>
-			<input type="text" class="form-control">
+			<input type="text" class="form-control" id="inputMessage" onkeyup="enterkey()">
 		</label>
-		<button class="btn btn-primary">입력</button>
+		<button class="btn btn-primary" type="button" id="send">입력</button>
 	</form>
 	<div class="modal-bg hidden">
 		<div class="modal-content" onclick="event.stopPropagation()">
@@ -156,8 +164,8 @@
 				</div>
 				<!-- 예약, 취소 버튼 -->
 				<div class="btn-line">
-					<button class="btn btn-primary">예약하기</button>
-					<button class="btn btn-default cancel-btn">취소</button>
+					<button type="button" class="btn btn-primary">예약하기</button>
+					<button type="button" class="btn btn-default cancel-btn">취소</button>
 				</div>
 			</div>
 		</div>
@@ -192,7 +200,97 @@
 			listItem[i].classList.add('on-click');
 		});
 	}
+
+
 </script>
+
+<script type="text/javascript">
+//채팅
+	//현재시간
+	var Now = new Date();
+	var NowTime = Now.getFullYear();
+	NowTime += '-' + Now.getMonth() + 1 ;
+	NowTime += '-' + Now.getDate();
+
+    //var textarea = document.getElementById('messageWindow');
+    var webSocket = new WebSocket("ws://localhost:8080/aniwalk/broadcasting");
+    var inputMessage = document.getElementById('inputMessage');
+    webSocket.onerror = function(event) {
+        onError(event)
+    };
+    webSocket.onopen = function(event) {
+        onOpen(event)
+        console.log("open");
+    };
+    webSocket.onmessage = function(event) {
+    	console.log("onmessage");
+    	onMessage(event)
+        
+    };
+    function onMessage(event) {
+        var message = event.data.split("|");
+        var sender = message[0];
+        var content = message[1];
+        console.log(sender + content);
+        var chatToInsert ='';
+        if (content == "") {
+            
+        } else {
+        	if(sender == $("#chat_id").val()){ //내가 보낸 메시지
+        		//나
+            	chatToInsert += '<div class="my"><ul><li style="min-width: 60px"><span>'+NowTime+'</span></li>';
+            	chatToInsert += '<li><div class="my-talk-content">'+content+'</div></li></ul></div>';
+            	$("#messageWindow").append(chatToInsert)
+        	}else{ //상대방
+        		chatToInsert += '<div class="you">';
+        		chatToInsert += '<img src="${pageContext.request.contextPath}/images/applier.png" class="img-circle" alt="">';
+        		chatToInsert += '<ul><li><label>'+sender+'</label></li><li><div>'+content+'</div><span>'+NowTime+'</span></li></ul></div>';
+        		$("#messageWindow").append(chatToInsert)	
+        	}
+        }
+    }
+    function onOpen(event) {
+        $("#messageWindow").append("연결 성공");
+    }
+    function onError(event) {
+        alert(event.data);
+    }
+
+   	$("#send").click(function(event){
+   		console.log("onclick send()");
+   		send();
+   	})
+
+    function send() {
+        if (inputMessage.value == "") {
+        } else {	//내가 메시지 보냈을 때
+        	console.log('send()')
+        	var chatToInsert ='';
+        	chatToInsert += '<div class="my"><ul><li style="min-width: 60px"><span>'+NowTime+'</span></li>';
+        	chatToInsert += '<li><div class="my-talk-content">'+inputMessage.value+'</div></li></ul></div>';
+        	$("#messageWindow").append(chatToInsert) 
+        }
+        
+        webSocket.send($("#chat_id").val() + "|" + inputMessage.value);
+        inputMessage.value = "";
+
+    }
+    
+    //     엔터키를 통해 send함
+    function enterkey() {
+        if (window.event.keyCode == 13) {
+            send();
+        }
+    }
+    //     채팅이 많아져 스크롤바가 넘어가더라도 자동적으로 스크롤바가 내려가게함
+    window.setInterval(function() {
+        var elem = document.getElementById('messageWindow');
+        elem.scrollTop = elem.scrollHeight;
+    }, 0);
+    
+</script>
+
+
 </body>
 <style>
 	.on-click{

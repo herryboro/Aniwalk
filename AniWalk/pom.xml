@@ -177,6 +177,11 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.4.6</version>
 		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.4.2</version>
+		</dependency>
 		
 		<!-- AOP기능 -->
 		<dependency>
@@ -195,7 +200,29 @@
 		    <groupId>net.nurigo</groupId>
 		    <artifactId>javaSDK</artifactId>
 		    <version>2.2</version>
-		</dependency>      
+		</dependency>
+		
+		<!-- spring-websocket -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-websocket</artifactId>
+		    <version>4.2.4.RELEASE</version>
+		</dependency>
+		<dependency> 
+			<groupId>javax.websocket</groupId> 
+			<artifactId>javax.websocket-api</artifactId> 
+			<version>1.1</version> 
+		</dependency>
+
+
+		<!-- mongodb -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+			<version>1.6.0.RELEASE</version>
+		</dependency>
+		
+		      
 	</dependencies>
     <build>
         <plugins>
