@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.pandorabox.aniwalk.member.JoinMemberDogImgDTO;
-import kr.pandorabox.aniwalk.walker.WalkerDTO;
 
 @Controller
 public class ManagerController {

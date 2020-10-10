@@ -10,4 +10,9 @@ public interface MemberDAO {
 	int fileInsert(ArrayList<String> filelist);
 	//owner my page
 	public List<JoinMemberDogImgDTO> myPage(String mem_nickname);
+	public int addDog(JoinMemberDogImgDTO joinMemberDogImgDTO);
+	public int addfileInsert(ArrayList<String> filelist);
+	public String getMem_id(String mem_nickname);
+	public String getDog_id(String getForeign_Mem_id);
+	
 }

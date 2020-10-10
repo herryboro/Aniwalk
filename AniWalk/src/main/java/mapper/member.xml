@@ -9,8 +9,8 @@
 	</select>
 
 	<insert id="joinmember" parameterType="joinMemberDogImage">
-		insert into ani_member (mem_id, mem_nickname, kakao_id, mem_point, mem_profile_img) 
-		values('member'||lpad(seq_member.nextval,5,0), #{mem_nickname}, #{kakao_id}, #{mem_point}, #{mem_profile_img})
+		insert into ani_member (mem_id, mem_nickname, kakao_id, mem_point, mem_phone, mem_profile_img) 
+		values('member'||lpad(seq_member.nextval,5,0), #{mem_nickname}, #{kakao_id}, #{mem_point}, #{mem_phone}, #{mem_profile_img})
 	</insert>
 	
 	<insert id="joindog" parameterType="joinMemberDogImage">
@@ -25,7 +25,7 @@
 		</foreach>
 		select * from dual
 	</insert>
-	
+ 
 	<select id="myPage" parameterType="String" resultType="joinMemberDogImage">
 		select * from ani_dog d 
 		left outer join ani_member m
@@ -34,5 +34,32 @@
 		on i.dog_id = d.dog_id
 		where mem_nickname=#{mem_nickname}
 	</select>
-
+	  
+	<select id="getMem_id" parameterType="String" resultType="String">
+		select mem_id from ani_member where mem_nickname=#{mem_nickname}
+	</select>
+	
+	<select id="getDog_id" parameterType="String" resultType="String">
+		select i.dog_id
+		from ani_member m
+		join ani_dog d
+		on m.mem_id = d.mem_id
+		join ani_dog_img i
+		on d.dog_id = i.dog_id
+		where m.mem_id = #{getForeign_Mem_id}
+	</select>
+	
+	<insert id="addDog" parameterType="joinMemberDogImage">
+		insert into ani_dog (dog_id, dog_name, dog_type, dog_info, dog_birth, mem_id) 
+		values('dog'||lpad(seq_dog.nextval,5,0), #{dog_name}, #{dog_type}, #{dog_info}, #{dog_birth}, #{mem_id})
+	</insert>
+	  
+	<insert id="addDogImg" parameterType="Map">
+		insert all
+		<foreach collection="filelist" item="file" separator=" ">
+			into ani_dog_img values ('dog_img'||lpad(seq_dog_img.nextval,5,0), #{file}, 'dog'||lpad(seq_dog.currval,5,0))
+		</foreach>
+		select * from dual
+	</insert>
+	
 </mapper>

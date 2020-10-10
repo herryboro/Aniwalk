@@ -120,22 +120,22 @@
 <div class="modal-bg hidden">
 	<div class="modal-content" onclick="event.stopPropagation()">
 		<button class="close-btn" type="button">&times;</button>
-		<form class="mydog-input">
+		<form class="mydog-input" enctype="multipart/form-data" action="/aniwalk/owner/myPro.do" method="post">
 			<div class="input-form">
 				<div>
 					<img id="clickImg" src="${pageContext.request.contextPath}/images/profile_test.png" alt="" class="img-rounded">
 					<h5>&lt;대표사진설정&gt;</h5>
-					<input id="uploadImg" type="file" class="hidden">
+					<input id="uploadImg" type="file" class="hidden" name="files">
 				</div>
 				<div style="width: 40%">
 					<ul>
 						<li>
 							<label>* 이름</label>
-							<input type="text" class="form-control" placeholder="강아지 이름을 입력해주세요">
+							<input type="text" class="form-control" name="dog_name" placeholder="강아지 이름을 입력해주세요">
 						</li>
 						<li>
 							<label>* 견종</label>
-							<select class="form-control">
+							<select class="form-control" name="dog_type">
 								<option value="" selected>견종</option>
 								<option>포메라니안</option>
 								<option>폼피츠</option>
@@ -144,14 +144,14 @@
 						</li>
 						<li>
 							<label>생일</label>
-							<input type="date" class="form-control">
+							<input type="date" name="dog_birth" class="form-control">
 						</li>
 						<li>
 							<label>특징</label>
 						</li>
 						<li>
 							<label style="width: 100%">
-								<textarea class="form-control" cols="20"></textarea>
+								<textarea class="form-control" name="dog_info" cols="20"></textarea>
 							</label>
 						</li>
 					</ul>
