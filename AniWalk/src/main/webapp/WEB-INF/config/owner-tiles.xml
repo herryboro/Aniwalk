@@ -25,4 +25,10 @@
 	<definition name="owner/recruitList" extends="ownerTemplate">
 		<put-attribute name="content" value="/WEB-INF/pages/owner/ownerRecruitList.jsp"/>
 	</definition>
+	<definition name="owner/activityList" extends="ownerTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/owner/ownerActivityList.jsp"/>
+	</definition>
+	<definition name="owner/activity" extends="ownerTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/owner/ownerActiviting.jsp"/>
+	</definition>
 </tiles-definitions>

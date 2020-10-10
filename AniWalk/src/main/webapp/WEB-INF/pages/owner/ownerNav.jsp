@@ -29,7 +29,7 @@
 			<button class="btn btn-primary" type="button" onclick="location.href='/aniwalk/owner/talk.do'">대화리스트</button>
 		</li>
 		<li>
-			<button class="btn btn-primary" type="button" >산책정보</button>
+			<button class="btn btn-primary" type="button" onclick="location.href='/aniwalk/owner/activityList.do'" >산책정보</button>
 		</li>
 	</ul>
 </div>

@@ -86,6 +86,10 @@
 				<label>이메일 주소</label>
 				<label><input name='wk_email' class="form-control" type="text" placeholder="이메일 주소 입력" required></label>
 			</li>
+			<li>
+				<label>자기소개</label>
+				<label><textarea name='wk_intro' class="form-control" rows="3" placeholder="ex) 안녕하세요? 애니워크입니다.&#13;&#10;저는 애견미용사 이고 강아지를 너무 좋아해요." required></textarea></label>
+			</li>
 		</ul>
 		
 		<ul class="apply-list">
