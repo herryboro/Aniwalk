@@ -5,19 +5,19 @@
 <head>
 	<meta charset="UTF-8">
 	<title>산책활동리스트</title>
-	<link rel="stylesheet" type="text/css" href="../../static/css/owner.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/owner.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="active-list">
-	<img src="../../images/ownerindex.png" alt="" class="img-rounded" style="background: rgba(52, 152, 219, 0.6)">
+	<img src="${pageContext.request.contextPath}/images/ownerindex.png" alt="" class="img-rounded" style="background: rgba(52, 152, 219, 0.6)">
 	<h2>오늘 123개의 산책일정이 있습니다.</h2>
 	<div class="list-part">
 		<!-- 1개 시작 -->
 		<ul class="list-item onair">
 			<li style="justify-content: center">
-				<img class="img-rounded" alt="" src="../../images/applier.png">
+				<img class="img-rounded" alt="" src="${pageContext.request.contextPath}/images/applier.png">
 				<h4>프렌즈이름</h4>
 			</li>
 			<li>
@@ -53,7 +53,7 @@
 		<!-- 1개 시작 -->
 		<ul class="list-item">
 			<li style="justify-content: center">
-				<img class="img-rounded" alt="" src="../../images/applier.png">
+				<img class="img-rounded" alt="" src="${pageContext.request.contextPath}/images/applier.png">
 				<h4>프렌즈이름</h4>
 			</li>
 			<li>
@@ -89,7 +89,7 @@
 		<!-- 1개 시작 -->
 		<ul class="list-item onair">
 			<li style="justify-content: center">
-				<img class="img-rounded" alt="" src="../../images/applier.png">
+				<img class="img-rounded" alt="" src="${pageContext.request.contextPath}/images/applier.png">
 				<h4>프렌즈이름</h4>
 			</li>
 			<li>
@@ -125,7 +125,7 @@
 		<!-- 1개 시작 -->
 		<ul class="list-item">
 			<li style="justify-content: center">
-				<img class="img-rounded" alt="" src="../../images/applier.png">
+				<img class="img-rounded" alt="" src="${pageContext.request.contextPath}/images/applier.png">
 				<h4>프렌즈이름</h4>
 			</li>
 			<li>
@@ -178,7 +178,7 @@
 	for(var i=0; i<listItem.length; i++){
 		listItem[i].addEventListener('click',function(){
 			if(this.classList.contains('onair')){
-				location.href = '#';
+				location.href = '/aniwalk/owner/activity.do';
 			}else {
 				modalBg.classList.remove('hidden');
 			}

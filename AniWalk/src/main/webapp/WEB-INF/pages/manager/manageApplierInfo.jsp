@@ -101,6 +101,10 @@
 	                    </select>
 	                </li>
 	            </c:if>
+            	<li>
+                    <label>자기소개</label>
+                    <pre><span>${walkerInfo[0].wk_intro}</span></pre>
+                </li>
                 <li>
                 	<label>등록한 자격정보</label>
                 	<div class="certificate-group">

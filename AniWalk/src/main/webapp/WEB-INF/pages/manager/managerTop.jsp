@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <body>
 <div class="top">
-	<img src="${pageContext.request.contextPath}/images/main_logo.png" alt="">
+	<a href="/aniwalk/index.do"><img src="${pageContext.request.contextPath}/images/main_logo.png" alt=""></a>
 
 	<ul class="nav-ul">
 		<li>로그인</li>

@@ -5,12 +5,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>산책중인 정보</title>
-	<link rel="stylesheet" type="text/css" href="../../static/css/owner.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/owner.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 
-	<!-- 카카오톡지도 -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2521c7cc3e67ced68e19182536406c54"></script>
 	<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2521c7cc3e67ced68e19182536406c54&libraries=services,clusterer,drawing"></script>
 	<!-- jquery -->
@@ -33,8 +31,8 @@
 				<span>시작시간</span>
 			</div>
 			<div class="img-list">
-				<img src="../../images/mydog.jpg" alt="" class="img-rounded">
-				<img src="../../images/mydog.jpg" alt="" class="img-rounded">
+				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
+				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
 			</div>
 		</div>
 		<div class="active-mission">
@@ -43,7 +41,7 @@
 				<span>미션등록시간</span>
 			</div>
 			<div class="img-list">
-				<img src="../../images/mydog.jpg" alt="" class="img-rounded">
+				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
 			</div>
 		</div>
 		<div class="active-end">
@@ -52,8 +50,8 @@
 				<span>미션등록시간</span>
 			</div>
 			<div class="img-list">
-				<img src="../../images/mydog.jpg" alt="" class="img-rounded">
-				<img src="../../images/mydog.jpg" alt="" class="img-rounded">
+				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
+				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
 			</div>
 			<button id="activeDone" class="btn btn-primary">산책완료</button>
 		</div>
