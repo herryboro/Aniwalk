@@ -1,7 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
-/*배민주아체
+/*나토산스
 font-family: 'Noto Sans KR', sans-serif;
 */
+
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+/*배민주아체
+font-family: 'Jua', sans-serif;
+*/
+
 
 :root{
     --main-color: #71d5c2;
@@ -63,6 +69,10 @@ button:hover{
 
 .subtitle{
     display: flex;
+}
+
+.color-white{
+    color: white;
 }
 
 
@@ -155,12 +165,6 @@ button:hover{
     display: flex;
     justify-content: space-between;
     padding: 10px 0;
-}
-.walker-login ul li label{
-    width: 70%;
-}
-.walker-login ul li label input{
-    border-radius: 20px;
 }
 .text-center div{
     width: 100%;
@@ -273,7 +277,7 @@ article{
     walkerRecruitList
 
 ***************************************************/
-.walker-recruit-list{
+section{
     width: 100%;
     height: 100%;
 
@@ -304,30 +308,23 @@ section .search-part form label{
     margin-top: 50px;
 }
 .list-part .form-group{
+    border-radius: 10px;
+    border: 1px solid;
+
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
 
-    padding: 25px 0 20px 0;
+    padding: 20px 0 5px 0;
     margin-left: 30px;
-    min-width: 300px;
-
-    background: rgba(52, 152, 219, 0.28);
-    border-radius: 10px;
 }
 .list-part .form-group img{
-    width: 70%;
-    height: 230px;
-
-    margin-bottom: 20px;
+    width: 250px;
+    height: 200px;
 }
 .list-part .form-group ul{
     font-size: 1.5rem;
-    padding: 20px;
-
-    background: white;
-    border-radius: 20px;
 }
 
 
@@ -451,14 +448,7 @@ section .search-part form label{
     margin: 50px auto 0 auto;
 }
 
-/**************************************************
 
-    walkerMy
-
-***************************************************/
-.walker-my{
-    padding: 20px;
-}
 /**************************************************
 
     walkerMyInfoUpdate
@@ -631,7 +621,7 @@ section .search-part form label{
 }
 /**************************************************
 
-    ownerTalkContent - 예약정보box
+    walkerTalkContent - 예약정보box
 
 ***************************************************/
 .reserve-box-my{
@@ -671,4 +661,53 @@ section .search-part form label{
     width: 100%;
     display: flex;
     border: none;
+}
+
+/**************************************************
+
+    walkerActiving
+
+***************************************************/
+.walker-activing{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 20px;
+    background: rgb(127, 127, 127);
+
+    font-family: 'Jua', sans-serif;
+}
+.walker-activing .activing-input{
+    width: 35%;
+}
+.walker-activing .active-title h4{
+    color: var(--white);
+    margin: 0;
+
+    border-bottom: 3px solid var(--white);
+    padding-bottom: 10px;
+}
+
+.walker-activing .activing-map{
+    text-align: center;
+}
+
+.walker-activing .upload-part{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.walker-activing .active-menu{
+    background: rgba(155, 89, 182, 0.5);
+    font-size: 4rem;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
 }
