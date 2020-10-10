@@ -21,6 +21,8 @@ public class MemberServiceImpl implements MemberService {
 	public int joinMember(JoinMemberDogImgDTO joinMemberDogImgDTO, ArrayList<String> filelist) {
 		int result1 = memberDAO.joinMember(joinMemberDogImgDTO);
 		int result2 = memberDAO.joinDog(joinMemberDogImgDTO);
+		System.out.println("result1 :" + result1 );
+		System.out.println("result2 :" + result2 );
 		int result = 0;
 		
 		if(filelist.size() != 0) {

@@ -68,10 +68,12 @@
 								<option>치와와</option>
 							</select> 
 						</li>
+						
 						<li>
 							<label>생일: </label>
 							<input type="date" class="form-control" name="dog_birth" required>
 						</li>
+						 
 						<li>
 							<label>특징: </label>
 							<input type="text" class="form-control" name="dog_info">

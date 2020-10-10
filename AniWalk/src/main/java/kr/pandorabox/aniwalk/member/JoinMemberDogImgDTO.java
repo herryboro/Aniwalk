@@ -22,13 +22,6 @@ public class JoinMemberDogImgDTO {
 	private String dog_image;
 	private MultipartFile[] files;
 	
-	
-	public String getMem_phone() {
-		return mem_phone;
-	}
-	public void setMem_phone(String mem_phone) {
-		this.mem_phone = mem_phone;
-	}
 	public String getMem_id() {
 		return mem_id;
 	}
@@ -46,6 +39,12 @@ public class JoinMemberDogImgDTO {
 	}
 	public void setKakao_id(String kakao_id) {
 		this.kakao_id = kakao_id;
+	}
+	public String getMem_phone() {
+		return mem_phone;
+	}
+	public void setMem_phone(String mem_phone) {
+		this.mem_phone = mem_phone;
 	}
 	public int getMem_point() {
 		return mem_point;
