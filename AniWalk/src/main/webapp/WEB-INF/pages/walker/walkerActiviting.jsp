@@ -29,16 +29,12 @@
 					<h4>산책시작</h4>
 				</div>
 				<form name="startImgForm" class="upload-part">
-					<img src="${pageContext.request.contextPath}/images/main_logo.png" alt="" class="img-rounded" onclick="startImgClick()">
+					<img src="../../images/main_logo.png" alt="" class="img-rounded" onclick="startImgClick()">
 					<input id="startImg" type="file" class="hidden" multiple="multiple">
 					<button class="btn btn-primary" type="button" id="startUpload">사진업로드</button>
 				</form>
-				<div class="result-part">
-					<div>
-						<img src="${pageContext.request.contextPath}/images/mydog.jpg" class="img-rounded" alt="">
-						<img src="${pageContext.request.contextPath}/images/mydog.jpg" class="img-rounded" alt="">
-					</div>
-					<button class="btn btn-success"></button>
+				<div class="output start-output">
+
 				</div>
 			</li>
 			<li class="mission-part hidden">
@@ -47,17 +43,20 @@
 					<h4>mission이름 미션</h4>
 				</div>
 				<form name="missionImgForm" class="upload-part">
-					<img src="${pageContext.request.contextPath}/images/main_logo.png" alt="" class="img-rounded">
+					<img src="../../images/main_logo.png" alt="" class="img-rounded">
 					<input id="endImg" type="file" class="hidden" multiple="multiple">
 					<button class="btn btn-primary" type="button">사진업로드</button>
 				</form>
+				<div class="output mission-output">
+
+				</div>
 			</li>
 			<li class="end-part hidden">
 				<div class="active-title">
 					<h4>산책종료</h4>
 				</div>
 				<form name="endImgForm" class="upload-part">
-					<img src="${pageContext.request.contextPath}/images/main_logo.png" alt="" class="img-rounded" onclick="endImgClick()">
+					<img src="../../images/main_logo.png" alt="" class="img-rounded" onclick="endImgClick()">
 					<button class="btn btn-primary" type="button" id="endUpload" >사진업로드</button>
 				</form>
 				<div class="output end-output">
@@ -190,6 +189,7 @@
 	}
 </script>
 <script>
+	//메뉴 클릭했을 때 이벤트
 	const activeBtn = document.getElementsByTagName('i');
 
 	removeWhite = function(){
@@ -218,6 +218,28 @@
 		addWhite();
 	});
 
+</script>
+<script>
+	const startUploadBtn = document.getElementById('startUpload');
+	const endUploadBtn = document.getElementById('endUpload');
+
+	startUploadBtn.addEventListener('click',function (){
+		$.ajax({
+			type: 'post',
+			url: '#',
+			dataType: 'text',
+			data:{
+
+			},
+			success:function (){
+				document.querySelector('.start-output').innerHTML
+				=
+			},
+			error: function (a,b,c){
+
+			}
+		})
+	})
 </script>
 </body>
 </html>
