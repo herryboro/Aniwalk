@@ -124,9 +124,112 @@
 
 	</div>
 	<div class="modal-bg hidden">
-		<div class="modal-content" onclick="event.stopPropagation()">
+		<div class="modal-content " onclick="event.stopPropagation()" style="flex-direction: column; justify-content: flex-start">
 			<button class="close" type="button">&times;</button>
-
+			<div class="subtitle">
+				<h4>신청자 리스트</h4>
+			</div>
+			<div class="recruit-walker-list">
+				<!--loof start-->
+				<div class="list-item">
+					<img src="/aniwalk/images/applier.png" alt="" class="img-rounded">
+					<div class="right-part">
+						<ul>
+							<li>
+								<div>
+									<div class="star-rating">
+										<span style="width:30%"></span>
+									</div>
+								</div>
+							</li>
+							<li>
+								<h4>짧은 자기소개</h4>
+							</li>
+							<li>
+								<h3>이름</h3>
+							</li>
+							<li>
+								<ul>
+									<li class="addr">주소</li>
+									<li>이 밑부터는 자격증 적는란</li>
+									<li>없으면 안써도되고</li>
+									<li>있으면 4개까지 적을 수잇음</li>
+								</ul>
+							</li>
+							<li>
+								<button class="btn btn-primary" type="submit">대화하기</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!--loof end-->
+				<!--loof start-->
+				<div class="list-item">
+					<img src="/aniwalk/images/certificate.jpg" alt="" class="img-rounded">
+					<div class="right-part">
+						<ul>
+							<li>
+								<div>
+									<div class="star-rating">
+										<span style="width:30%"></span>
+									</div>
+								</div>
+							</li>
+							<li>
+								<h4>짧은 자기소개</h4>
+							</li>
+							<li>
+								<h3>이름</h3>
+							</li>
+							<li>
+								<ul>
+									<li class="addr">주소</li>
+									<li>이 밑부터는 자격증 적는란</li>
+									<li>없으면 안써도되고</li>
+									<li>있으면 4개까지 적을 수잇음</li>
+								</ul>
+							</li>
+							<li>
+								<button class="btn btn-primary" type="submit">대화하기</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!--loof end-->
+				<!--loof start-->
+				<div class="list-item">
+					<img src="/aniwalk/images/ownerindex.png" alt="" class="img-rounded">
+					<div class="right-part">
+						<ul>
+							<li>
+								<div>
+									<div class="star-rating">
+										<span style="width:30%"></span>
+									</div>
+								</div>
+							</li>
+							<li>
+								<h4>짧은 자기소개</h4>
+							</li>
+							<li>
+								<h3>이름</h3>
+							</li>
+							<li>
+								<ul>
+									<li class="addr">주소</li>
+									<li>이 밑부터는 자격증 적는란</li>
+									<li>없으면 안써도되고</li>
+									<li>있으면 4개까지 적을 수잇음</li>
+								</ul>
+							</li>
+							<li>
+								<button class="btn btn-primary" type="submit">대화하기</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!--loof end-->
+			</div>
 		</div>
 	</div>
 
