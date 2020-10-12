@@ -305,9 +305,10 @@ section .search-part form label{
 }
 .walker-recruit-list .list-part {
     margin-top: 50px;
+    margin-left: 5%;
 }
 .walker-recruit-list .list-part .form-group{
-    border-radius: 10px;
+    width: 30%;
 
     display: flex;
     flex-direction: column;
@@ -315,8 +316,9 @@ section .search-part form label{
     align-items: center;
 
     padding: 20px 0;
-    margin-left: 30px;
+    margin: 10px;
 
+    border-radius: 10px;
     background: rgba(52, 152, 219, 0.28);
 }
 .walker-recruit-list .list-part .form-group img{

@@ -33,7 +33,7 @@
 	<div class="list-part">
 		<div class="row">
 			<c:forEach var="recruit" items="${recruitList}">
-				<div class="form-group col-md-3" onclick="location.href='#'">
+				<div class="form-group col-md-4" onclick="location.href='#'">
 					<img src="/owner/${recruit.dog_image}" alt="" class="img-rounded">
 					<input type="hidden" value="recruit_id">
 					<ul>
