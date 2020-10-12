@@ -663,9 +663,78 @@ section .search-part form label{
     border: none;
 }
 
+
 /**************************************************
 
-    walkerActiving
+    walkerActivityList
+
+***************************************************/
+.walker-active-list{
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    display: flex;
+}
+.walker-active-list .today-part{
+    width: 100%;
+    padding: 20px;
+    background: rgba(155, 89, 182, 0.5);
+
+    text-align: center;
+    font-size: 2.2rem;
+}
+.walker-active-list .color-blue{
+    color: rgb(52, 152, 219);
+}
+.walker-active-list .color-purple{
+    color: rgb(155, 89, 182);
+}
+.walker-active-list .list-part{
+    padding: 10px;
+    margin-top: 0;
+    margin-left: 5%;
+    overflow: auto;
+}
+.walker-active-list .list-part .list-item{
+    padding: 20px;
+    border-radius: 10px;
+
+    background: rgba(52, 152, 219, 0.28);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin:10px;
+
+    width: 30%;
+}
+.walker-active-list .list-item img{
+    width: 250px;
+    height: 200px;
+    margin-bottom: 30px;
+}
+.walker-active-list .list-item ul{
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    margin:0;
+}
+.walker-active-list .list-item button{
+    width: 100%;
+    height: 50px;
+
+    margin-top: 20px;
+    border: none;
+    font-weight: bold;
+
+    background: rgb(155, 89, 182);
+}
+
+/**************************************************
+
+    walkerActiviting
 
 ***************************************************/
 .walker-activing{
@@ -687,7 +756,10 @@ section .search-part form label{
     border-bottom: 3px solid var(--white);
     padding-bottom: 10px;
 }
-
+.walker-activing .activing-input .output{
+    display: flex;
+    justify-content: space-around;
+}
 .walker-activing .activing-map{
     text-align: center;
 }
