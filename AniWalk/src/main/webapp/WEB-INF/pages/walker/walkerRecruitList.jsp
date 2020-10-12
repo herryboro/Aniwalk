@@ -9,6 +9,8 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/walker.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+	<!-- jquery -->
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <section class="walker-recruit-list">
@@ -49,7 +51,11 @@
 						</li>
 						<li>
 							<label>시간 : </label>
-							<span>${recruit.walk_start_time} - ${recruit.walk_end_time}</span>
+							<span class="active-time">${recruit.walk_start_time} - ${recruit.walk_end_time}</span>
+						</li>
+						<li>
+							<label>가격 : </label>
+							<span></span>
 						</li>
 					</ul>
 					<button class="btn btn-default" value="recruit_id">산책 신청하기</button>
@@ -118,16 +124,7 @@
 		</form>
 	</div>
 </div>
-<!-- 산책 신청버튼 클릭시 -->
-<div class="recruit-modal-bg hidden">
-	<div class="recruit-modal-content" onclick="event.stopPropagation()">
-		<button class="close-btn" type="button">&times;</button>
-		<form class="apply-input">
-			<input id="recruitId" type="hidden">
-			<h4></h4>
-		</form>
-	</div>
-</div>
+
 <script>
 	//상세조건으로 검색하는 모달창
 	const detailBtn = document.getElementById('detailBtn');
@@ -150,23 +147,6 @@
 		detailBtn.innerText = '상세 검색 조건으로 검색';
 	});
 </script>
-<script>
-	//산책 신청하는 버튼 클릭시 나오는 모달창
-	const applyBtn = document.querySelectorAll('.btn-default');
-	const recruitModal = document.querySelector('.recruit-modal-bg');
-	const closeBtn = document.querySelector('.close-btn');
-	for (let i=0; i<applyBtn.length; i++){
-		applyBtn[i].addEventListener('click',function (){
-			recruitModal.classList.remove('hidden');
-		})
-	}
-	recruitModal.addEventListener('click',function (){
-		recruitModal.classList.add('hidden');
-	});
-	closeBtn.addEventListener('click',function (){
-		recruitModal.classList.add('hidden');
-	});
 
-</script>
 </body>
 </html>
