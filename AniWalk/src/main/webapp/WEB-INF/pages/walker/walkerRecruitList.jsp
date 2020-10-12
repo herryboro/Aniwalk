@@ -30,10 +30,10 @@
 	<!-- 모집글 리스트 -->
 	<div class="list-part">
 		<div class="row">
-
 			<c:forEach var="recruit" items="${recruitList}">
 				<div class="form-group col-md-3" onclick="location.href='#'">
 					<img src="/owner/${recruit.dog_image}" alt="" class="img-rounded">
+					<input type="hidden" value="recruit_id">
 					<ul>
 						<li>
 							<label>견종 : </label>
@@ -52,6 +52,7 @@
 							<span>${recruit.walk_start_time} - ${recruit.walk_end_time}</span>
 						</li>
 					</ul>
+					<button class="btn btn-default" value="recruit_id">산책 신청하기</button>
 				</div>
 			</c:forEach>
 		</div>
@@ -117,7 +118,18 @@
 		</form>
 	</div>
 </div>
+<!-- 산책 신청버튼 클릭시 -->
+<div class="recruit-modal-bg hidden">
+	<div class="recruit-modal-content" onclick="event.stopPropagation()">
+		<button class="close-btn" type="button">&times;</button>
+		<form class="apply-input">
+			<input id="recruitId" type="hidden">
+			<h4></h4>
+		</form>
+	</div>
+</div>
 <script>
+	//상세조건으로 검색하는 모달창
 	const detailBtn = document.getElementById('detailBtn');
 	const modalBg = document.querySelector('.modal-bg');
 	const direction = document.getElementById('direction');
@@ -137,6 +149,24 @@
 
 		detailBtn.innerText = '상세 검색 조건으로 검색';
 	});
+</script>
+<script>
+	//산책 신청하는 버튼 클릭시 나오는 모달창
+	const applyBtn = document.querySelectorAll('.btn-default');
+	const recruitModal = document.querySelector('.recruit-modal-bg');
+	const closeBtn = document.querySelector('.close-btn');
+	for (let i=0; i<applyBtn.length; i++){
+		applyBtn[i].addEventListener('click',function (){
+			recruitModal.classList.remove('hidden');
+		})
+	}
+	recruitModal.addEventListener('click',function (){
+		recruitModal.classList.add('hidden');
+	});
+	closeBtn.addEventListener('click',function (){
+		recruitModal.classList.add('hidden');
+	});
+
 </script>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>톡방</title>
-	<link rel="stylesheet" type="text/css" href="../../static/css/walker.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/walker.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 
@@ -18,7 +18,7 @@
 		<!-- 여기 아래부터 톡글 시작 -->
 		<!-- 상대방 -->
 		<div class="you">
-			<img src="../../images/applier.png" class="img-circle" alt="">
+			<img src="/aniwalk/images/applier.png" class="img-circle" alt="">
 			<ul>
 				<li>
 					<label>프렌즈네임</label>
@@ -31,7 +31,7 @@
 		</div>
 
 		<div class="you">
-			<img src="../../images/applier.png" class="img-circle" alt="">
+			<img src="/aniwalk/images/applier.png" class="img-circle" alt="">
 			<ul>
 				<li>
 					<label>프렌즈네임</label>

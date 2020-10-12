@@ -518,6 +518,14 @@ body{
     margin: auto;
     height: 200px;
 }
+.recruit-write .pay {
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.recruit-write .pay .input-label{
+    width: 50%;
+    margin-right: 10px;
+}
 .recruit-write .btn-line{
     display: flex;
     justify-content: space-around;
@@ -625,7 +633,7 @@ body{
     margin: auto 10px;
 
     width: 350px;
-    height: 350px;
+    height: 400px;
 
     background: rgba(52, 152, 219, 0.28);
 }
@@ -636,8 +644,8 @@ body{
     background: white;
     position: fixed;
     bottom: 0;
-    left: 0;
-    width: 100%;
+    right: 10px;
+    width: 70%;
 
     display: flex;
     justify-content: center;
@@ -647,7 +655,7 @@ body{
 .btn-part .btn-default{
     background: var(--darkgray);
     color: white;
-    width: 50%;
+    width: 100%;
     height: 50px;
 }
 .list-group .list-item img{
@@ -1157,6 +1165,7 @@ body{
 .active-list .list-item .notice{
     overflow: scroll;
 }
+
 .list-part .onair{
     background: lightcoral;
 }

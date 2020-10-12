@@ -303,31 +303,76 @@ section .search-part form label{
 .detail-search:hover{
     cursor: pointer;
 }
-
-.list-part{
+.walker-recruit-list .list-part {
     margin-top: 50px;
 }
-.list-part .form-group{
+.walker-recruit-list .list-part .form-group{
     border-radius: 10px;
-    border: 1px solid;
 
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
 
-    padding: 20px 0 5px 0;
+    padding: 20px 0;
     margin-left: 30px;
+
+    background: rgba(52, 152, 219, 0.28);
 }
-.list-part .form-group img{
+.walker-recruit-list .list-part .form-group img{
     width: 250px;
     height: 200px;
+
+    margin-bottom: 20px;
 }
-.list-part .form-group ul{
+.walker-recruit-list .list-part .form-group ul{
     font-size: 1.5rem;
+    padding: 10px;
+    border-radius: 10px;
+    background: var(--white);
+
+}
+.walker-recruit-list .list-part .form-group button{
+    width: 85%;
+    height: 50px;
+    background: rgb(155, 89, 182);
+    border:none;
+    color: var(--white);
+    font-weight: bold;
 }
 
+/**************************************************
 
+    walkerRecruitList - 산책신청모달
+
+***************************************************/
+.recruit-modal-bg{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.recruit-modal-content{
+    width: 50%;
+    height: 50%;
+    background: var(--white);
+    padding: 10px;
+    border-radius: 10px;
+
+    display: flex;
+}
+.recruit-modal-content .close-btn{
+    position: absolute;
+    right: 26%;
+    background: none;
+}
 /**************************************************
 
     walkerMy
