@@ -20,6 +20,8 @@
 	<view-controller path="/owner/walkerInfo.do" view-name="owner/walkerInfo"/>
 	<view-controller path="/walker/index.do" view-name="walker/index"/>
 	<view-controller path="/walker/main.do" view-name="walker/main"/>
+	<view-controller path="/walker/activiting.do" view-name="walker/activiting"/>
+	<view-controller path="/walker/activList.do" view-name="walker/activList"/>
 	<view-controller path="/owner/talkContent.do" view-name="owner/talkContent"/>
 	<view-controller path="/owner/activityList.do" view-name="owner/activityList"/>
 	<view-controller path="/owner/activity.do" view-name="owner/activity"/>

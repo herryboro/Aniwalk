@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>프렌즈 산책활동</title>
-	<link rel="stylesheet" type="text/css" href="../../static/css/walker.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/walker.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 
@@ -29,14 +29,14 @@
 					<h4>산책시작</h4>
 				</div>
 				<form name="startImgForm" class="upload-part">
-					<img src="../../images/main_logo.png" alt="" class="img-rounded" onclick="startImgClick()">
+					<img src="${pageContext.request.contextPath}/images/main_logo.png" alt="" class="img-rounded" onclick="startImgClick()">
 					<input id="startImg" type="file" class="hidden" multiple="multiple">
 					<button class="btn btn-primary" type="button" id="startUpload">사진업로드</button>
 				</form>
 				<div class="result-part">
 					<div>
-						<img src="../../images/mydog.jpg" class="img-rounded" alt="">
-						<img src="../../images/mydog.jpg" class="img-rounded" alt="">
+						<img src="${pageContext.request.contextPath}/images/mydog.jpg" class="img-rounded" alt="">
+						<img src="${pageContext.request.contextPath}/images/mydog.jpg" class="img-rounded" alt="">
 					</div>
 					<button class="btn btn-success"></button>
 				</div>
@@ -47,7 +47,7 @@
 					<h4>mission이름 미션</h4>
 				</div>
 				<form name="missionImgForm" class="upload-part">
-					<img src="../../images/main_logo.png" alt="" class="img-rounded">
+					<img src="${pageContext.request.contextPath}/images/main_logo.png" alt="" class="img-rounded">
 					<input id="endImg" type="file" class="hidden" multiple="multiple">
 					<button class="btn btn-primary" type="button">사진업로드</button>
 				</form>
@@ -57,7 +57,7 @@
 					<h4>산책종료</h4>
 				</div>
 				<form name="endImgForm" class="upload-part">
-					<img src="../../images/main_logo.png" alt="" class="img-rounded" onclick="endImgClick()">
+					<img src="${pageContext.request.contextPath}/images/main_logo.png" alt="" class="img-rounded" onclick="endImgClick()">
 					<button class="btn btn-primary" type="button" id="endUpload" >사진업로드</button>
 				</form>
 				<div class="output end-output">
