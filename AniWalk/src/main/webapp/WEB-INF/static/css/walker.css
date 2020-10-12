@@ -190,7 +190,7 @@ nav{
     max-width: 7%;
 }
 article{
-    width: 93%;
+    width: 100%;
     height: 100%;
 }
 
@@ -784,26 +784,41 @@ section .search-part form label{
 ***************************************************/
 .walker-activing{
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: space-between;
     width: 100%;
-    padding: 20px;
+    height: 100%;
+    padding: 20px 0 0 0;
     background: rgb(127, 127, 127);
 
     font-family: 'Jua', sans-serif;
 }
+.walker-activing .content-part{
+    display: flex;
+    justify-content: space-around;
+}
 .walker-activing .activing-input{
     width: 35%;
 }
-.walker-activing .active-title h4{
+.walker-activing .activing-input .output img{
+    width: 45%;
+
+}
+.walker-activing .active-title{
     color: var(--white);
     margin: 0;
 
     border-bottom: 3px solid var(--white);
     padding-bottom: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .walker-activing .activing-input .output{
     display: flex;
     justify-content: space-around;
+    margin-top: 15px;
 }
 .walker-activing .activing-map{
     text-align: center;
@@ -823,8 +838,9 @@ section .search-part form label{
     justify-content: space-around;
     align-items: center;
 
-    position: absolute;
-    bottom: 0;
     width: 100%;
     height: 70px;
+}
+.walker-activing .active-menu i{
+    padding-top: 10px;
 }
