@@ -60,7 +60,7 @@ public class WalkerController {
 	@RequestMapping("owner/walker.do")
 	public ModelAndView walkerList(String wk_id) {
 		ModelAndView mav = new ModelAndView();
-		List<WalkerDTO> list = walkerService.applierList(wk_id);
+		List<WalkerDTO> list = walkerService.selectApplierList(wk_id);
 		mav.addObject("walkerList",list);
 		mav.setViewName("owner/walkerList");
 		return mav;
