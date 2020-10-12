@@ -85,7 +85,7 @@
 		<h4>4.주소선택</h4>
 		<section>
 				<input type="text" id="addr"  placeholder="주소검색" ><button type="button" onclick="searchAddr()">검색</button>
-				<input type="hidden" id="recruit_location" name="recruit_location" value="">
+				<input type="hidden" id="recruit_location" name="recruit_location" value="" required>
 				<div id="map" style="width: 500px; height: 400px;" class="kakao-map"></div>
 				<label id="centerAddr">현재주소</label>
 		</section>
@@ -93,10 +93,19 @@
 		<h4>5.주의사항</h4>
 		<section class="notice">
 			<label>
-				<textarea class="form-control" cols="200" name="recruit_notices"></textarea>
+				<textarea class="form-control" cols="200" name="recruit_notices"
+					placeholder="산책시 주의사항을 적어주세요."></textarea>
 			</label>
 		</section>
-		
+
+		<h4>6.지불 비용</h4>
+		<section class="pay">
+			<label class="input-label">
+				<input type="number" class="form-control" name="" required
+					   placeholder="산책후 지불할 포인트를 적어주세요.">
+			</label>
+			<label>포인트</label>
+		</section>
 		<div class="btn-line">
 			<button id="recruitBtn" type="submit" class="btn btn-primary">모집글 작성</button>
 			<button type="button" class="btn btn-default">취소</button>
