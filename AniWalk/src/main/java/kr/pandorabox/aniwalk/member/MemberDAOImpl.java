@@ -61,10 +61,10 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	
 	// 반려견 추가시 외래키dog_id 값을 얻기위한 메소드
-	@Override
-	public String getDog_id(String getForeign_Mem_id) {
-		return sqlSession.selectOne("kr.pandorabox.aniwalk.member.getDog_id", getForeign_Mem_id);
-	}
+//	@Override
+//	public String getDog_id(String getForeign_Mem_id) {
+//		return sqlSession.selectOne("kr.pandorabox.aniwalk.member.getDog_id", getForeign_Mem_id);
+//	}
 	
 	
 }
