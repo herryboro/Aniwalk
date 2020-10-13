@@ -28,9 +28,11 @@
 				</li>
 				<li>
 					<h4>짧은 자기소개</h4>
+					${walkerInfo[0].wk_intro}
 				</li>
 				<li>
-					<h3>${walkerInfo[0].wk_name}</h3>
+					<h4>이름</h4>
+					${walkerInfo[0].wk_name}
 				</li>
 				<li>
 					<ul>

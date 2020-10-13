@@ -121,7 +121,7 @@ public class WalkerController {
 		ModelAndView mav = new ModelAndView();
 		List<WalkerDTO> list = walkerService.applierList(wk_id);
 		mav.addObject("applierList",list);
-		mav.setViewName("manager/walker");
+		mav.setViewName("manager/walker");	// manageApplier.jsp
 		return mav;
 	}
 	
