@@ -62,7 +62,7 @@ public class WalkerController {
 		ModelAndView mav = new ModelAndView();
 		List<WalkerDTO> list = walkerService.selectApplierList(wk_id);
 		mav.addObject("walkerList",list);
-		mav.setViewName("owner/walkerList");
+		mav.setViewName("owner/walkerList"); // ownerWalkerList.jsp
 		return mav;
 	}
 	
@@ -71,7 +71,7 @@ public class WalkerController {
 	public ModelAndView ownerWalkerInfo(String wk_id) {
 		ModelAndView mav = new ModelAndView();
 		List<WalkerDTO> walkerInfo = walkerService.applierList(wk_id);
-		mav.setViewName("owner/walkerInfo");
+		mav.setViewName("owner/walkerInfo");	// ownerWalkerInfo.jsp
 		mav.addObject("walkerInfo", walkerInfo);
 		return mav;
 	}

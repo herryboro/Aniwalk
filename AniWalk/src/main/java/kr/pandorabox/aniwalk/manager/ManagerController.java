@@ -36,7 +36,7 @@ public class ManagerController {
 		
 		List<MemberDTO> memlist = managerService.memberList();
 		mav.addObject("memlist", memlist);
-		mav.setViewName("manager/user");
+		mav.setViewName("manager/user");	// manageUser.jsp
 		return mav;
 	}
 	
@@ -45,14 +45,10 @@ public class ManagerController {
 		System.out.println("controller kakao_id: " + kakao_id);
 		
 		ModelAndView mav = new ModelAndView();
-		List<JoinMemberDogImgDTO> userList = managerService.userInfo(kakao_id);
-		
-		System.out.println("닉네임: " + userList.get(0).getMem_nickname());
-		System.out.println(userList.get(0).getDog_name());
-		System.out.println("userList객체: " + userList);
+		List<JoinMemberDogImgDTO> userList = managerService.userInfo(kakao_id);		
 		
 		mav.addObject("userList", userList);
-		mav.setViewName("manager/userInfo");
+		mav.setViewName("manager/userInfo");	// manageUserInfo.jsp
 		return mav;
 	}
 }

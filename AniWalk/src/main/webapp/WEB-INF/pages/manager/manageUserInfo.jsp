@@ -17,26 +17,25 @@
     <div class="info-content">
         <div class="left-box">
             <img class="img-rounded" src="${pageContext.request.contextPath}/images/profile_test.png" alt="">
-            <ul>
-            	<c:forEach items="${userList}" var="List">
-	                <li>
-	                    <label>닉네임 : </label>
-	                    <span>${List.mem_nickname}</span>
-	                </li>
-	                <li>
-	                    <label>핸드폰 : </label>
-	                    <span>010-3938-4995</span>
-	                </li>
-	                <li>
-	                    <label>주소 : </label>
-	                    <span>서울시 서초구 반포대로16길 42</span>
-	                    <span>롯데캐슬 1004동 209호</span>
-	                </li>
-	                <li>
-	                    <label>카카오톡 ID : </label>
-	                    <span>${List.kakao_id}</span>
-	                </li>
-            	</c:forEach>
+            <ul>        
+                <li>
+                    <label>닉네임 : </label>
+                    <span>${userList[0].mem_nickname}</span>
+                </li>
+                <li>
+                    <label>핸드폰 : </label>
+                    <span>${userList[0].mem_phone}</span>
+                </li>
+                <li>
+                    <label>주소 : </label>
+                    <span>서울시 서초구 반포대로16길 42</span>
+                    <span>롯데캐슬 1004동 209호</span>
+                </li>
+                <li>
+                    <label>카카오톡 ID : </label>
+                    <span>${userList[0].kakao_id}</span>
+                </li>
+            	
             </ul>
             <button class="btn" type="button">카카오톡 메세지 보내기</button>
         </div>
@@ -45,23 +44,21 @@
             <h4>반려견 리스트</h4>
             <div class="form-group">
                 <img class="img-rounded" src="${pageContext.request.contextPath}/images/mydog.jpg" alt="">
-                <ul>
-                	<c:forEach items="${userList}" var="List">
-	                    <li>
-	                        <label>강아지이름</label>
-	                        <span>${List.dog_name}</span>
-	                    </li>
-	                    <li>
-	                        <label>견종</label>
-	                        <span>${List.dog_type}</span>
-	                    </li>
-	                    <li>
-	                        <label>강아지성격</label>
-	                        <div class="textarea-label">
-	                        	${List.dog_info}
-	                        </div>
-	                    </li>
-              		</c:forEach>
+                <ul>           	
+                    <li>
+                        <label>강아지이름</label>
+                        <span>${userList[0].dog_name}</span>
+                    </li>
+                    <li>
+                        <label>견종</label>
+                        <span>${userList[0].dog_type}</span>
+                    </li>
+                    <li>
+                        <label>강아지성격</label>
+                        <div class="textarea-label">
+                        	${userList[0].dog_info}
+                        </div>
+                    </li>            	
                 </ul>
             </div>
             <!--  

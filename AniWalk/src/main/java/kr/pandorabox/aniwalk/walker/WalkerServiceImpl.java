@@ -28,6 +28,7 @@ public class WalkerServiceImpl implements WalkerService {
 	// 펫프렌즈 리스트
 	@Override
 	public List<WalkerDTO> applierList(String wk_id) {
+		System.out.println("s walkerDao.applyierList(wk_id): " + walkerDao.applyierList(wk_id).get(0).getWk_location1()); 
 		return walkerDao.applyierList(wk_id);
 	}
 	
@@ -42,6 +43,7 @@ public class WalkerServiceImpl implements WalkerService {
 				walkers.add(walkerList.get(i));
 			} 
 		}
+		System.out.println("s walkers: " + walkers.get(0).getWk_profile_img1()); 
 		return walkers;
 		
 	}

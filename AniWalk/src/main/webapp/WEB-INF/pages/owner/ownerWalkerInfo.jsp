@@ -35,9 +35,8 @@
 				<li>
 					<ul>
 						<li class="addr">${walkerInfo[0].wk_addr}</li>
-						<li>이 밑부터는 자격증 적는란</li>
-						<li>없으면 안써도되고</li>
-						<li>있으면 4개까지 적을 수잇음</li>
+						<li>${walkerInfo[0].wk_certificate_list}</li>
+						
 					</ul>
 				</li>
 				<li>
