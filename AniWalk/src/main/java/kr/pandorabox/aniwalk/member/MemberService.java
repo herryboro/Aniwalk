@@ -9,7 +9,7 @@ public interface MemberService {
 	public List<JoinMemberDogImgDTO> myPage(String mem_nickname);
 	int addDog(JoinMemberDogImgDTO joinMemberDogImgDTO, ArrayList<String> filelist);
 	public String getMem_id(String mem_nickname);
-	public String getDog_id(String getForeign_Mem_id);
+//	public String getDog_id(String getForeign_Mem_id);
 	
 	
 	 

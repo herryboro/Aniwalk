@@ -85,15 +85,16 @@ public class MemberController {
 		return mav;
 	}
 	
+	// 반려견 정보 추가
 	@RequestMapping("/owner/myPro.do")
 	public ModelAndView addDog(JoinMemberDogImgDTO joinMemberDogImgDTO, HttpServletRequest request) {
 		String mem_nickname = (String) request.getSession().getAttribute("mem_nickname");
 		
 		String getForeign_Mem_id = memberService.getMem_id(mem_nickname);
-		String getForeign_Dog_id = memberService.getDog_id(getForeign_Mem_id);
+//		String getForeign_Dog_id = memberService.getDog_id(getForeign_Mem_id);
 		
 		joinMemberDogImgDTO.setMem_id(getForeign_Mem_id);
-		joinMemberDogImgDTO.setDog_id(getForeign_Dog_id);
+//		joinMemberDogImgDTO.setDog_id(getForeign_Dog_id);
 	
 		ModelAndView mav = new ModelAndView();
 		
@@ -112,7 +113,7 @@ public class MemberController {
 		int result = memberService.addDog(joinMemberDogImgDTO, filelist);
 		
 		if(result == 1) {
-			mav.setViewName("owner/my");
+			mav.setViewName("redirect:/owner/my.do");
 		} else {
 			mav.setViewName("owner/index");
 		}	

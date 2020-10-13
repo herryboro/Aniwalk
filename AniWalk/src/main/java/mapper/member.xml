@@ -38,7 +38,7 @@
 	<select id="getMem_id" parameterType="String" resultType="String">
 		select mem_id from ani_member where mem_nickname=#{mem_nickname}
 	</select>
-	
+	<!--  
 	<select id="getDog_id" parameterType="String" resultType="String">
 		select i.dog_id
 		from ani_member m
@@ -48,7 +48,7 @@
 		on d.dog_id = i.dog_id
 		where m.mem_id = #{getForeign_Mem_id}
 	</select>
-	
+	-->
 	<insert id="addDog" parameterType="joinMemberDogImage">
 		insert into ani_dog (dog_id, dog_name, dog_type, dog_info, dog_birth, mem_id) 
 		values('dog'||lpad(seq_dog.nextval,5,0), #{dog_name}, #{dog_type}, #{dog_info}, #{dog_birth}, #{mem_id})

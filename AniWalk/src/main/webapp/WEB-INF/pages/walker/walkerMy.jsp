@@ -20,7 +20,7 @@
 			<hr width="80%" color="gray"/>
 		</div>
 		<div class="info-part">
-			<img class="img-rounded" src="${pageContext.request.contextPath}/images/applier.png" alt="">
+			<img class="img-rounded" src="/aniwalk/images/applier.png" alt="">
 			<table>
 				<tr>
 					<th>활동지역</th>
@@ -59,10 +59,10 @@
 			</div>
 			<c:forEach items="${reviewDtos}" var="reviewDto">
 				<div class="list-item">
-					<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
+					<img src="/aniwalk/images/mydog.jpg" alt="" class="img-rounded">
 					<ul>
 						<li class="bottom-margin">
-							<img src="${pageContext.request.contextPath}/images/profile_test.png" alt="" class="img-circle">
+							<img src="/aniwalk/images/profile_test.png" alt="" class="img-circle">
 							<label>${reviewDto.mem_nickname}</label>
 							<div class="star-rating">
 								<span style="width:30%"></span>

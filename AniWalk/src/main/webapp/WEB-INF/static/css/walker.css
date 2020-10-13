@@ -190,7 +190,7 @@ nav{
     max-width: 7%;
 }
 article{
-    width: 93%;
+    width: 100%;
     height: 100%;
 }
 
@@ -303,31 +303,78 @@ section .search-part form label{
 .detail-search:hover{
     cursor: pointer;
 }
-
-.list-part{
+.walker-recruit-list .list-part {
     margin-top: 50px;
+    margin-left: 5%;
 }
-.list-part .form-group{
-    border-radius: 10px;
-    border: 1px solid;
+.walker-recruit-list .list-part .form-group{
+    width: 30%;
 
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
 
-    padding: 20px 0 5px 0;
-    margin-left: 30px;
+    padding: 20px 0;
+    margin: 10px;
+
+    border-radius: 10px;
+    background: rgba(52, 152, 219, 0.28);
 }
-.list-part .form-group img{
+.walker-recruit-list .list-part .form-group img{
     width: 250px;
     height: 200px;
+
+    margin-bottom: 20px;
 }
-.list-part .form-group ul{
+.walker-recruit-list .list-part .form-group ul{
     font-size: 1.5rem;
+    padding: 10px;
+    border-radius: 10px;
+    background: var(--white);
+
+}
+.walker-recruit-list .list-part .form-group button{
+    width: 85%;
+    height: 50px;
+    background: rgb(155, 89, 182);
+    border:none;
+    color: var(--white);
+    font-weight: bold;
 }
 
+/**************************************************
 
+    walkerRecruitList - 산책신청모달
+
+***************************************************/
+.recruit-modal-bg{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.recruit-modal-content{
+    width: 50%;
+    height: 50%;
+    background: var(--white);
+    padding: 10px;
+    border-radius: 10px;
+
+    display: flex;
+}
+.recruit-modal-content .close-btn{
+    position: absolute;
+    right: 26%;
+    background: none;
+}
 /**************************************************
 
     walkerMy
@@ -663,31 +710,118 @@ section .search-part form label{
     border: none;
 }
 
+
 /**************************************************
 
-    walkerActiving
+    walkerActivityList
+
+***************************************************/
+.walker-active-list{
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    display: flex;
+}
+.walker-active-list .today-part{
+    width: 100%;
+    padding: 20px;
+    background: rgba(155, 89, 182, 0.5);
+
+    text-align: center;
+    font-size: 2.2rem;
+}
+.walker-active-list .color-blue{
+    color: rgb(52, 152, 219);
+}
+.walker-active-list .color-purple{
+    color: rgb(155, 89, 182);
+}
+.walker-active-list .list-part{
+    padding: 10px;
+    margin-top: 0;
+    margin-left: 5%;
+    overflow: auto;
+}
+.walker-active-list .list-part .list-item{
+    padding: 20px;
+    border-radius: 10px;
+
+    background: rgba(52, 152, 219, 0.28);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin:10px;
+
+    width: 30%;
+}
+.walker-active-list .list-item img{
+    width: 250px;
+    height: 200px;
+    margin-bottom: 30px;
+}
+.walker-active-list .list-item ul{
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    margin:0;
+}
+.walker-active-list .list-item button{
+    width: 100%;
+    height: 50px;
+
+    margin-top: 20px;
+    border: none;
+    font-weight: bold;
+
+    background: rgb(155, 89, 182);
+}
+
+/**************************************************
+
+    walkerActiviting
 
 ***************************************************/
 .walker-activing{
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: space-between;
     width: 100%;
-    padding: 20px;
+    height: 100%;
+    padding: 20px 0 0 0;
     background: rgb(127, 127, 127);
 
     font-family: 'Jua', sans-serif;
 }
+.walker-activing .content-part{
+    display: flex;
+    justify-content: space-around;
+}
 .walker-activing .activing-input{
     width: 35%;
 }
-.walker-activing .active-title h4{
+.walker-activing .activing-input .output img{
+    width: 45%;
+
+}
+.walker-activing .active-title{
     color: var(--white);
     margin: 0;
 
     border-bottom: 3px solid var(--white);
     padding-bottom: 10px;
-}
 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.walker-activing .activing-input .output{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+}
 .walker-activing .activing-map{
     text-align: center;
 }
@@ -706,8 +840,9 @@ section .search-part form label{
     justify-content: space-around;
     align-items: center;
 
-    position: absolute;
-    bottom: 0;
     width: 100%;
     height: 70px;
+}
+.walker-activing .active-menu i{
+    padding-top: 10px;
 }

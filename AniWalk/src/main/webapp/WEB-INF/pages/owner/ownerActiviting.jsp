@@ -22,7 +22,6 @@
 
 	<div class="subtitle">
 		<h4>실시간 산책정보</h4>
-		<hr width="80%" color="black" style="border-top: 1px solid black">
 	</div>
 	<div class="activing-info">
 		<div class="active-start">

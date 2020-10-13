@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>프렌즈 산책활동</title>
-	<link rel="stylesheet" type="text/css" href="../../static/css/walker.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/walker.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 
@@ -16,58 +16,61 @@
 </head>
 <body>
 <div class="walker-activing">
-	<div class="activing-map">
-		<input type="hidden" id="recruit_location" name="recruit_location" value="">
-		<div id="map" style="width: 500px; height: 400px;" class="kakao-map"></div>
-		<label id="centerAddr">현재주소</label>
-	</div>
-	<!-- 이 부분은 javascript로 관리할 예정 -->
-	<div class="activing-input">
-		<ul id="input-list">
-			<li class="start-part">
-				<div class="active-title">
-					<h4>산책시작</h4>
-				</div>
-				<form name="startImgForm" class="upload-part">
-					<img src="../../images/main_logo.png" alt="" class="img-rounded" onclick="startImgClick()">
-					<input id="startImg" type="file" class="hidden" multiple="multiple">
-					<button class="btn btn-primary" type="button" id="startUpload">사진업로드</button>
-				</form>
-				<div class="result-part">
-					<div>
-						<img src="../../images/mydog.jpg" class="img-rounded" alt="">
-						<img src="../../images/mydog.jpg" class="img-rounded" alt="">
+	<div class="content-part">
+		<div class="activing-map">
+			<input type="hidden" id="recruit_location" name="recruit_location" value="">
+			<div id="map" style="width: 500px; height: 400px;" class="kakao-map"></div>
+			<label id="centerAddr">현재주소</label>
+		</div>
+		<!-- 이 부분은 javascript로 관리할 예정 -->
+		<div class="activing-input">
+			<ul id="input-list">
+				<li class="start-part">
+					<div class="active-title">
+						<h4>산책시작</h4>
+						<span id="walkingStartTime"></span>
 					</div>
-					<button class="btn btn-success"></button>
-				</div>
-			</li>
-			<li class="mission-part hidden">
-				<div class="active-title">
-					<input name="missionType" type="hidden" >
-					<h4>mission이름 미션</h4>
-				</div>
-				<form name="missionImgForm" class="upload-part">
-					<img src="../../images/main_logo.png" alt="" class="img-rounded">
-					<input id="endImg" type="file" class="hidden" multiple="multiple">
-					<button class="btn btn-primary" type="button">사진업로드</button>
-				</form>
-			</li>
-			<li class="end-part hidden">
-				<div class="active-title">
-					<h4>산책종료</h4>
-				</div>
-				<form name="endImgForm" class="upload-part">
-					<img src="../../images/main_logo.png" alt="" class="img-rounded" onclick="endImgClick()">
-					<button class="btn btn-primary" type="button" id="endUpload" >사진업로드</button>
-				</form>
-				<div class="output end-output">
+					<form name="startImgForm" class="upload-part">
+						<img src="/aniwalk/images/main_logo.png" alt="" class="img-rounded" onclick="startImgClick()">
+						<input id="startImg" type="file" class="hidden" multiple="multiple">
+						<button class="btn btn-primary" type="button" id="startUpload">사진업로드</button>
+					</form>
+					<div class="output start-output hidden">
+						<img src="/aniwalk/images/mydog.jpg" class="img-rounded" alt="">
+						<img src="/aniwalk/images/mydog.jpg" class="img-rounded" alt="">
+					</div>
+				</li>
+				<li class="mission-part hidden">
+					<div class="active-title">
+						<input name="missionType" type="hidden" >
+						<h4>mission이름 미션</h4>
+					</div>
+					<form name="missionImgForm" class="upload-part">
+						<img src="/aniwalk/images/main_logo.png" alt="" class="img-rounded">
+						<input id="endImg" type="file" class="hidden" multiple="multiple">
+						<button class="btn btn-primary" type="button">사진업로드</button>
+					</form>
+					<div class="output mission-output">
 
-				</div>
-			</li>
-		</ul>
+					</div>
+				</li>
+				<li class="end-part hidden">
+					<div class="active-title">
+						<h4>산책종료</h4>
+					</div>
+					<form name="endImgForm" class="upload-part">
+						<img src="/aniwalk/images/main_logo.png" alt="" class="img-rounded" onclick="endImgClick()">
+						<button class="btn btn-primary" type="button" id="endUpload" >사진업로드</button>
+					</form>
+					<div class="output end-output">
+
+					</div>
+				</li>
+			</ul>
+		</div>
 	</div>
 	<div class="active-menu">
-		<i class="fas fa-walking"></i>
+		<i class="fas fa-walking color-white"></i>
 		<i class="fas fa-tint"></i>
 		<i class="fas fa-drumstick-bite"></i>
 		<i class="fas fa-toilet"></i>
@@ -190,6 +193,7 @@
 	}
 </script>
 <script>
+	//메뉴 클릭했을 때 이벤트
 	const activeBtn = document.getElementsByTagName('i');
 
 	removeWhite = function(){
@@ -197,27 +201,79 @@
 			activeBtn[j].classList.remove('color-white');
 		}
 	}
-	addWhite = function (){
-		this.classList.add('color-white');
-	}
 	addHidden = function (){
 		$('#input-list > li').addClass('hidden');
 	}
 
-	activeBtn[1].addEventListener('click',function (){
+	//급수
+	activeBtn[2].addEventListener('click',function (){
 		addHidden();
 		document.querySelector('.mission-part').classList.remove('hidden');
 		removeWhite();
-		addWhite();
+		this.classList.add('color-white');
 	});
 
+	//간식
+	activeBtn[3].addEventListener('click',function (){
+		addHidden();
+		document.querySelector('.mission-part').classList.remove('hidden');
+		removeWhite();
+		this.classList.add('color-white');
+	});
+
+	//배변
+	activeBtn[4].addEventListener('click',function (){
+		addHidden();
+		document.querySelector('.mission-part').classList.remove('hidden');
+		removeWhite();
+		this.classList.add('color-white');
+	});
+
+	//돌발상황
 	activeBtn[5].addEventListener('click',function (){
+		addHidden();
+		document.querySelector('.mission-part').classList.remove('hidden');
+		removeWhite();
+		this.classList.add('color-white');
+	});
+
+	//산책종료
+	activeBtn[6].addEventListener('click',function (){
 		addHidden();
 		document.querySelector('.end-part').classList.remove('hidden');
 		removeWhite();
-		addWhite();
+		this.classList.add('color-white');
 	});
 
+</script>
+<script>
+	const startUploadBtn = document.getElementById('startUpload');
+	const endUploadBtn = document.getElementById('endUpload');
+	const today = new Date;
+	let nowHour = today.getHours();
+	let nowMinute = today.getMinutes();
+
+	startUploadBtn.addEventListener('click',function (){
+		document.querySelectorAll('.upload-part')[0].classList.add('hidden');
+		document.querySelector('.start-output').classList.remove('hidden');
+		document.getElementById('walkingStartTime').innerText = nowHour+'시 ' + nowMinute+'분';
+		/*
+		$.ajax({
+			type: 'post',
+			url: '#',
+			dataType: 'text',
+			data:{
+
+			},
+			success:function (){
+
+			},
+			error: function (a,b,c){
+
+			}
+		})
+		*/
+	})
 </script>
 </body>
 </html>

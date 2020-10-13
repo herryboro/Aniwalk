@@ -9,6 +9,8 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/walker.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+	<!-- jquery -->
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <section class="walker-recruit-list">
@@ -30,10 +32,10 @@
 	<!-- 모집글 리스트 -->
 	<div class="list-part">
 		<div class="row">
-
 			<c:forEach var="recruit" items="${recruitList}">
-				<div class="form-group col-md-3" onclick="location.href='#'">
+				<div class="form-group col-md-4" onclick="location.href='#'">
 					<img src="/owner/${recruit.dog_image}" alt="" class="img-rounded">
+					<input type="hidden" value="recruit_id">
 					<ul>
 						<li>
 							<label>견종 : </label>
@@ -49,9 +51,14 @@
 						</li>
 						<li>
 							<label>시간 : </label>
-							<span>${recruit.walk_start_time} - ${recruit.walk_end_time}</span>
+							<span class="active-time">${recruit.walk_start_time} - ${recruit.walk_end_time}</span>
+						</li>
+						<li>
+							<label>가격 : </label>
+							<span></span>
 						</li>
 					</ul>
+					<button class="btn btn-default" value="recruit_id">산책 신청하기</button>
 				</div>
 			</c:forEach>
 		</div>
@@ -117,7 +124,9 @@
 		</form>
 	</div>
 </div>
+
 <script>
+	//상세조건으로 검색하는 모달창
 	const detailBtn = document.getElementById('detailBtn');
 	const modalBg = document.querySelector('.modal-bg');
 	const direction = document.getElementById('direction');
@@ -138,5 +147,6 @@
 		detailBtn.innerText = '상세 검색 조건으로 검색';
 	});
 </script>
+
 </body>
 </html>

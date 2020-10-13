@@ -518,6 +518,14 @@ body{
     margin: auto;
     height: 200px;
 }
+.recruit-write .pay {
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.recruit-write .pay .input-label{
+    width: 50%;
+    margin-right: 10px;
+}
 .recruit-write .btn-line{
     display: flex;
     justify-content: space-around;
@@ -625,7 +633,7 @@ body{
     margin: auto 10px;
 
     width: 350px;
-    height: 350px;
+    height: 400px;
 
     background: rgba(52, 152, 219, 0.28);
 }
@@ -636,8 +644,8 @@ body{
     background: white;
     position: fixed;
     bottom: 0;
-    left: 0;
-    width: 100%;
+    right: 10px;
+    width: 70%;
 
     display: flex;
     justify-content: center;
@@ -647,7 +655,7 @@ body{
 .btn-part .btn-default{
     background: var(--darkgray);
     color: white;
-    width: 50%;
+    width: 100%;
     height: 50px;
 }
 .list-group .list-item img{
@@ -680,7 +688,64 @@ body{
     height: 45px;
 }
 
+/**************************************************
 
+    ownerRecruitList 모달
+
+***************************************************/
+.recruit-walker-list{
+    width: 100%;
+    height: 100%;
+
+    overflow: scroll;
+
+    display: flex;
+    flex-direction: column;
+}
+.recruit-walker-list .list-item{
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    background: rgba(52, 152, 219, 0.3);
+    border-radius: 10px;
+    margin: 10px;
+}
+.recruit-walker-list .list-item .left-part{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.5rem;
+}
+.recruit-walker-list .list-item .left-part img{
+    margin-bottom: 15px;
+
+    width: 30%;
+}
+.recruit-walker-list .list-item .right-part{
+    width: 50%;
+}
+.recruit-walker-list .list-item .star-rating {
+    width: 170px;
+}
+.recruit-walker-list .list-item .star-rating, .recruit-walker-list .list-item .star-rating span {
+    display:inline-block;
+    height:27px;
+    overflow:hidden;
+    background:url("../../images/littlestar.png")no-repeat;
+}
+.recruit-walker-list .list-item .star-rating span{
+    background-position:left bottom;
+    line-height:0;
+    vertical-align:top;
+}
+.recruit-walker-list .list-item .right-part button{
+    background: rgb(142, 68, 173);
+    height: 40px;
+    width: 100%;
+    margin-top: 30px;
+}
 /**************************************************
 
     ownerWalkerList
@@ -1157,6 +1222,7 @@ body{
 .active-list .list-item .notice{
     overflow: scroll;
 }
+
 .list-part .onair{
     background: lightcoral;
 }
