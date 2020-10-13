@@ -23,6 +23,36 @@
 		<div class="reserve-btn">산책 예약하기</div>
 		
 		<div class="content-part" id="messageWindow">
+			<c:forEach var="chatDto" items="${chatDtos}">
+				<c:choose> 
+					<c:when test="${chatDto.send_nickname eq mem_nickname}"> <!-- 내가 보낸 내용 -->
+						<div class="my">
+							<ul>
+								<li style="min-width: 60px">
+									<span>${chatDto.chat_date}</span>
+								</li>
+								<li>
+									<div class="my-talk-content">${chatDto.contents }</div>
+								</li>
+							</ul>
+						</div>
+					</c:when>
+					<c:otherwise><!-- 상대방이 보낸 내용 -->
+						<div class="you">
+							<img src="${pageContext.request.contextPath}/images/applier.png" class="img-circle" alt="">
+							<ul>
+								<li>
+									<label>${chatDto.walker_id}</label>
+								</li>
+								<li>
+									<div>${chatDto.contents }</div>
+									<span>${chatDto.chat_date}</span>
+								</li>
+							</ul>
+						</div>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
 			<!-- 여기 아래부터 톡글 시작 
 			 상대방
 			<div class="you">
@@ -103,6 +133,7 @@
 	<!-- 대화입력창 -->
 	<form class="talk-inputForm">
 	<input type="hidden" value="${mem_nickname}" id="chat_id" name="mem_nickname">
+	<input type="hidden" value="${walker_id}" id="walker_id" name="walker_id">
 		<label>
 			<input type="text" class="form-control" id="inputMessage" onkeyup="enterkey()">
 		</label>
@@ -207,11 +238,30 @@
 <script type="text/javascript">
 //채팅
 	//현재시간
-	var Now = new Date();
-	var NowTime = Now.getFullYear();
-	NowTime += '-' + Now.getMonth() + 1 ;
-	NowTime += '-' + Now.getDate();
+	function getTimeStamp() {
+	   var d = new Date();
+	   var s =
+	     leadingZeros(d.getFullYear(), 4) + '-' +
+	     leadingZeros(d.getMonth() + 1, 2) + '-' +
+	     leadingZeros(d.getDate(), 2) + ' ' +
+	
+	     leadingZeros(d.getHours(), 2) + ':' +
+	     leadingZeros(d.getMinutes(), 2) + ':' +
+	     leadingZeros(d.getSeconds(), 2);
+	
+	   return s;
+	 }   
+     function leadingZeros(n, digits) {
+    	   var zero = '';
+    	   n = n.toString();
 
+    	   if (n.length < digits) {
+    	     for (i = 0; i < digits - n.length; i++)
+    	       zero += '0';
+    	   }
+    	   return zero + n;
+    	 }
+	     
     //var textarea = document.getElementById('messageWindow');
     var webSocket = new WebSocket("ws://localhost:8080/aniwalk/broadcasting");
     var inputMessage = document.getElementById('inputMessage');
@@ -228,6 +278,7 @@
         
     };
     function onMessage(event) {
+    	var NowTime = getTimeStamp();
         var message = event.data.split("|");
         var sender = message[0];
         var content = message[1];
@@ -258,18 +309,47 @@
 
    	$("#send").click(function(event){
    		console.log("onclick send()");
+   		
    		send();
    	})
 
     function send() {
         if (inputMessage.value == "") {
         } else {	//내가 메시지 보냈을 때
+        	var NowTime = getTimeStamp();
         	console.log('send()')
         	var chatToInsert ='';
         	chatToInsert += '<div class="my"><ul><li style="min-width: 60px"><span>'+NowTime+'</span></li>';
         	chatToInsert += '<li><div class="my-talk-content">'+inputMessage.value+'</div></li></ul></div>';
-        	$("#messageWindow").append(chatToInsert) 
-        }
+        	$("#messageWindow").append(chatToInsert)
+        	
+        	var trans_object = {
+        		'mem_nickname' : $("#chat_id").val(),
+        		'walker_id' : $("#walker_id").val(),
+        		'send_nickname' : $("#chat_id").val(),
+        		'receive_nickname' : $("#walker_id").val(),
+        		'chat_date' : NowTime,
+        		'contents' : inputMessage.value
+        	}
+        	var trans_json = JSON.stringify(trans_object); //json으로 변환
+        	
+        	$.ajax({ //mongodb insert
+        		url : "/aniwalk/owner/chatInsert.do",
+        		type: 'post',
+        		dataType : 'json',
+        		data : trans_json,
+        		contentType : 'application/json',
+        		momeType : 'application/json',
+        		success: function(retVal){
+        			alert("success"+retVal.val);
+        		},
+        		error : function(retVal,status,er){
+        			alert("error"+retVal);
+        		}
+        	});
+        	
+        	
+        }//else 
         
         webSocket.send($("#chat_id").val() + "|" + inputMessage.value);
         inputMessage.value = "";

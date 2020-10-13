@@ -1,4 +1,4 @@
-package kr.pandorabox.aniwalk.member;
+package kr.pandorabox.aniwalk.chat;
 
 import java.io.IOException;
 import java.util.Collections;

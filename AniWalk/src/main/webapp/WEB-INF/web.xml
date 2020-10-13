@@ -23,6 +23,7 @@
 			<param-value>
 			/WEB-INF/config/spring-config.xml
 			/WEB-INF/config/view-config.xml
+			/WEB-INF/config/mongo-config.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>

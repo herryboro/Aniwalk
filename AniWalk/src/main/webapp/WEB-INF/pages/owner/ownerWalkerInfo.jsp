@@ -41,7 +41,7 @@
 					</ul>
 				</li>
 				<li>
-					<button class="btn" type="submit">대화하기</button>
+					<button class="btn" type="submit" onclick="location.href='/aniwalk/owner/talkContent.do?walker_id=${walkerInfo[0].walker_id}'">대화하기</button>
 				</li>
 			</ul>
 		</div>
