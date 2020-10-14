@@ -40,14 +40,6 @@ ul {
     width: 200px;
     margin: auto 20px;
 }
-
-.modal-content .close{
-    padding: 10px;
-    z-index: 1;
-    position: absolute;
-    top: 2px;
-    right: 3%;
-}
 /**************************************************
 
     modal-bg
@@ -76,6 +68,18 @@ ul {
     justify-content: center;
     align-items: center;
 }
+.modal-content .close-btn{
+    padding: 10px;
+    z-index: 1;
+    position: absolute;
+    top: -7px;
+    right: 0;
+
+    border: none;
+    background: none;
+    font-size: 2.3rem;
+    color: #8080808a;
+}
 .hidden{
     display: none;
 }
@@ -92,24 +96,21 @@ header{
 }
 article{
     width: 100%;
-    height: 84%;
+    height: 92%;
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    overflow: scroll;
 }
 article nav{
-    width: 300px;
+    width: 250px;
     height: 100%;
-    background: orange;
+    border-right: 1px solid gray;
 }
 article section{
     width: 100%;
     height: 100%;
-    background: green;
-}
-footer{
-    width: 100%;
-    height: 8%;
-    text-align: center;
-    padding-top: 10px;
 }
 
 /**************************************************
@@ -156,12 +157,50 @@ footer{
     font-size: 1.8rem;
     border-bottom-left-radius: 50px;
     border-top-left-radius: 50px;
-    width: 50%;
+    width: 100%;
     text-align: right;
     padding: 10px;
     background: var(--white);
 }
+/**************************************************
 
+    mamagerTemplate
+
+***************************************************/
+.manager-login{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 80%;
+    justify-content: center;
+    align-items: center;
+}
+.manager-login form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.manager-login form ul{
+    display: flex;
+    flex-direction: column;
+}
+.manager-login form ul li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.manager-login form ul li button{
+    width: 100%;
+    margin-top: 50px;
+}
+.manager-login form label{
+    margin-right: 20px;
+}
+.manager-login form label input{
+    border-radius: 20px;
+}
 /**************************************************
 
     manageUser
@@ -178,12 +217,9 @@ footer{
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-
-    background: beige;
-    border-radius: 10px;
 }
 .search-form label{
-    width: 95%;
+    width: 90%;
 }
 .search-form button{
     border: none;
@@ -217,6 +253,9 @@ footer{
     background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
     height: 100%;
 }
+.user-info h4{
+    margin-top: 0px;
+}
 .info-top{
     background: linear-gradient(to right, #0c2646 0%, #204065 60%, #2a5788 100%);
     color: var(--white);
@@ -228,7 +267,7 @@ footer{
 }
 .info-content{
     width: 95%;
-    height: 80%;
+    height: 88%;
     padding: 20px;
 
     background: var(--white);
@@ -237,7 +276,7 @@ footer{
     display: flex;
     flex-wrap: nowrap;
     position: relative;
-    top: -90px;
+    top: -120px;
 
     margin: 1px auto;
     border-radius: 20px;
@@ -245,6 +284,13 @@ footer{
 .img-rounded{
     width: 100px;
     height: 100px;
+}
+.info-content .left-box img{
+    width: 150px;
+    height: 140px;
+
+    position: relative;
+    top: -30px;
 }
 .left-box{
     display: flex;
@@ -261,24 +307,15 @@ footer{
 }
 .left-box ul{
     flex-direction: column;
-    margin: 20px auto;
     font-size: 1.7rem;
 }
 .left-box ul li{
     width: 100%;
-    text-align: center;
-
     margin: 10px auto;
-
 }
-.left-box ul li span{
-    display: block;
+.left-box ul li button{
+    width: 100%;
 }
-.left-box button{
-    background: var(--yellow);
-    color: white;
-}
-
 .right-box{
     display: flex;
     flex-direction: column;
@@ -313,6 +350,23 @@ footer{
 .form-group ul li label{
     display: block;
 }
+.right-box .certificate-group{
+    display: flex;
+    justify-content: center;
+}
+.right-box .certificate-group img{
+    width: 200px;
+    margin: 10px;
+}
+.right-box .certificate-group img:hover{
+    cursor: pointer;
+}
+.right-box .certificate-input-box{
+    display: flex;
+}
+.right-box .certificate-input-box button{
+    margin-left: 10px;
+}
 /**************************************************
 
     manageApplierInfo
@@ -325,6 +379,16 @@ footer{
 }
 .applier-info li{
     margin: 10px 0;
+}
+
+/**************************************************
+
+    manageApplierInfo - 이미지 크게보기
+
+***************************************************/
+.big-img{
+    width: 100%;
+    height: 100%;
 }
 
 /**************************************************

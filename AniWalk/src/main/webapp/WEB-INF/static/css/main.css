@@ -13,6 +13,9 @@ ul {
     padding: 0;
     margin: 20px;
 }
+::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
 /**************************************************
 
     modal-bg
@@ -217,15 +220,43 @@ footer{
 	
 	margin: 10px 0;
 }
-::-webkit-scrollbar {
-     display: none; /* Chrome, Safari, Opera*/
- }
 
-.addDog{
+
+
+.mydog-input{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    width: 80%;
+    height: 90%;
+}
+.mydog-input .input-form{
+    display: flex;
+    justify-content: space-around;
+}
+.mydog-input .input-form div{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.mydog-input .input-form img{
+    width: 200px;
+}
+.mydog-input .input-form img:hover{
+    cursor: pointer;
+}
+.mydog-input .input-form ul{
+    width: 100%;
+}
+.mydog-input .input-form ul li{
+    margin: 10px 0;
+}
+.mydog-input button{
+    width: 85%;
+    height: 50px;
+    margin: 0 auto;
 }
 
 /**************************************************

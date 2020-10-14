@@ -11,13 +11,6 @@
 
 	<!-- js -->
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-
-	<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
-
-    <!-- Add Firebase products that you want to use -->
-    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
 <body>
 <div class="container" style="display: flex; flex-direction: column;">
 	<h3>서비스약관동의</h3>
@@ -64,9 +57,11 @@
 			</li>
 			<li>
 				<label>휴대폰번호</label>
-				<label><input id='wk_phone' name='wk_phone' class="form-control" type="text"
+				<label>
+					<input id='wk_phone' name='wk_phone' class="form-control" type="text"
 							  placeholder="휴대폰번호 11자리를 입력해주세요(-빼고 입력해주세요)" required minlength="11" maxlength="11">
-				<input id='auth-btn' type="button" class="btn btn-primary auth-btn" value="휴대폰 인증하기"></label>
+					<input id='auth-btn' type="button" class="btn btn-primary auth-btn" value="휴대폰 인증하기">
+				</label>
 			</li>
 			<li>
 				<input type="hidden" id="authResult" name="auth_pass">

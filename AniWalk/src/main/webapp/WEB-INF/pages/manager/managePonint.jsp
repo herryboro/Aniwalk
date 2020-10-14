@@ -14,7 +14,7 @@
 
 <body>
 <div class="manage-point">
-    <h3>포인트 사용 대상자 검색</h3>
+    <h4>포인트 사용 대상자 검색</h4>
     <form class="search-form">
         <label>
             <input type="search" class="form-control" placeholder="반려견 주인이나 프렌즈 이름으로 검색">
@@ -25,7 +25,7 @@
     </form>
 
     <div class="search-result">
-        <h3>검색결과</h3>
+        <h4>검색결과</h4>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -49,7 +49,7 @@
     </div>
 
     <div class="point-used">
-        <h3>포인트 내역 확인</h3>
+        <h4>포인트 내역 확인</h4>
 
         <table class="table table-striped">
             <thead>

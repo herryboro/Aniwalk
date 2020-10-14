@@ -14,7 +14,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 
 <!-- js -->
-<script src="${pageContext.request.contextPath}/static/js/main.js"></script>
+<script src="/aniwalk/static/js/main.js"></script>
 
 <style>
 	.absolute-position{
