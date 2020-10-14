@@ -1,0 +1,392 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+/*배민주아체
+font-family: 'Jua', sans-serif;
+*/
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
+/*나눔고딕
+font-family: 'Nanum Gothic', sans-serif;
+*/
+
+
+:root{
+    --white: #fafafa;
+    --black: #212121;
+    --purple: rgb(155, 89, 182);
+    --blue: #13b3ef;
+    --softblue: rgba(52, 152, 219, 0.28);
+    --yellow: rgb(241, 196, 15);
+    --darkgray: rgb(94, 94, 94);
+
+}
+/**************************************************
+
+    공통
+
+***************************************************/
+
+.login{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15%;
+    padding: 10px;
+}
+header{
+    font-family: 'Jua', sans-serif;
+    background: var(--blue);
+    color: var(--white);
+}
+header h1:hover{
+    cursor: pointer;
+}
+
+.nav{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    background: #f6f6f6;
+}
+.nav a{
+    border: none;
+}
+.nav i{
+    font-size: 1.5rem;
+}
+.nav ul li{
+    padding: 5px;
+}
+.content{
+    font-family: 'Nanum Gothic', sans-serif;
+    margin-bottom: 40px;
+}
+.content ul{
+    list-style: none;
+    padding: 0;
+}
+
+::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+.btn-line{
+    display: flex;
+}
+/**************************************************
+
+    mOwnerMain
+
+***************************************************/
+.main-info{
+    text-align: center;
+    margin-top: 25%;
+}
+.main-info img{
+    width: 100%;
+}
+.main-info h3 span{
+    color: var(--purple);
+}
+
+/**************************************************
+
+    mOwnerMy
+
+***************************************************/
+.my-info{
+    padding: 20px;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow:  20px 20px 60px #d9d9d9,
+                -20px -20px 60px #ffffff;
+}
+.my-info ul li{
+    margin: 10px 0;
+}
+.my-info .ui-corner-all{
+    color: var(--white);
+    background: var(--darkgray);
+}
+.my-info .ui-btn-a{
+    color: var(--white);
+    background: var(--blue);
+}
+.mydogs-slider{
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow:  20px 20px 60px #d9d9d9,
+                -20px -20px 60px #ffffff;
+    padding: 10px 0 5px 0;
+}
+.mydog-item .mydog-name{
+    text-align: center;
+}
+.mydogs-slider .mydog-item .mydog-info-part{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.mydog-item .mydog-info-part img{
+    width: 120px;
+    height: 110px;
+}
+
+.mydog-item .mydog-info-part ul li{
+    display: flex;
+    margin: 5px 0;
+}
+.mydog-add{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    margin: 10px auto;
+}
+.mydog-add i{
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+.my-walking-list{
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow:  20px 20px 60px #d9d9d9,
+    -20px -20px 60px #ffffff;
+    padding: 10px;
+}
+.my-walking-list .walked-month{
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid black;
+}
+.my-walking-list .walked-info{
+    display: flex;
+    justify-content: space-around;
+    margin: 10px auto;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dfdad1;
+}
+.my-walking-list .walked-info img{
+    width: 120px;
+}
+
+/**************************************************
+
+    mOwnerRecruitList
+
+***************************************************/
+.recruit-list{
+    display: flex;
+    flex-direction: column;
+}
+.recruit-list .list-part{
+    margin-bottom: 40px;
+}
+.recruit-list .list-part .subtitle{
+    padding-bottom: 5px;
+    border-bottom: 1px solid black;
+    margin-bottom: 5px;
+}
+.recruit-list .list-part .list-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0 5px 0;
+    background: var(--softblue);
+    border-radius: 10px;
+    margin: 10px auto;
+}
+
+.recruit-list .list-part .list-item div{
+    text-align: center;
+}
+.recruit-list .list-part .list-item ul{
+    padding: 10px;
+    border-radius: 10px;
+    background: var(--white);
+}
+
+.recruit-list .list-part .list-item ul li{
+    display: flex;
+}
+.recruit-list .list-part .list-item img{
+    width: 120px;
+}
+.recruit-list button{
+    position: fixed;
+    left: 0;
+    bottom: 43px;
+}
+
+
+/**************************************************
+
+    mOwnerRecruit
+
+***************************************************/
+.recruit-write .mydogs-list-part ol{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.recruit-write .mydogs-list-part ol li{
+    display: flex;
+}
+.recruit-write .mydogs-list-part ol li img{
+    width: 120px;
+}
+
+
+
+/**************************************************
+
+    mOwnerWalkerList
+
+***************************************************/
+.walker-list{
+    width: 100%;
+    height: 100%;
+
+    overflow: scroll;
+}
+.search-part form{
+    display: flex;
+}
+.search-part form label{
+    width: 100%;
+}
+.search-part form button{
+    width: 20%;
+    height: 35px;
+    padding: 0
+}
+.walker-list .list-item{
+    display: flex;
+    justify-content: space-around;
+
+    padding: 20px 0 10px 0;
+    background: rgba(52, 152, 219, 0.28);
+    border-radius: 10px;
+
+    margin: 10px auto;
+}
+.walker-list .list-item img{
+    width: 120px;
+}
+.walker-list .star-rating {
+    width: 90px;
+}
+.walker-list .star-rating, .walker-list .star-rating span {
+    display:inline-block;
+    height: 14px;
+    overflow:hidden;
+    background:url("../../images/morelittlestar.png")no-repeat;
+}
+.walker-list .star-rating span{
+    background-position:left bottom;
+    line-height:0;
+    vertical-align:top;
+}
+/**************************************************
+
+    mOwnerActivityList
+
+***************************************************/
+.active-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.active-list h5{
+    text-align: center;
+}
+.active-list .list-part{
+    margin-top: 10px;
+}
+.active-list .list-part .list-item{
+    box-shadow: 1px 1px 3px 3px var(--softblue);
+    border-radius: 10px;
+    padding: 5px 0 10px 0;
+    margin: 20px auto;
+}
+.active-list .list-part .list-item .matching-part{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.active-list .list-part .list-item .matching-text{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.active-list .list-part .list-item .matching-part img{
+    width: 35%;
+    height: 100px;
+}
+.active-list .list-part .list-item .matching-part i{
+    color: #f1b1bf;
+    font-size: 2rem;
+}
+
+.active-list .list-item .title-part{
+    padding: 10px;
+    font-size: 0.9rem;
+}
+.active-list .list-item .title-part label{
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+
+
+/**************************************************
+
+    ownerTalkList
+
+***************************************************/
+.talk-list .search-part form{
+    display: flex;
+    justify-content: center;
+}
+.talk-list .search-part form label{
+    width: 88%;
+}
+.talk-list .list-part{
+    width: 100%;
+}
+.list-part .talk-item{
+    display: flex;
+    justify-content: center;
+    background: rgb(224, 224, 224);
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--darkgray);
+    margin: 10px auto;
+}
+.list-part .talk-item ul{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 0;
+}
+.list-part .talk-item ul img{
+    width: 60px;
+    height: 60px;
+}
+.list-part .talk-item ul div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.list-part .talk-item ul .right-part{
+    width: 70%;
+}
