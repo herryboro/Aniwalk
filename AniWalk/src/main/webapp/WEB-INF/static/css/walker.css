@@ -135,8 +135,32 @@ button:hover{
 .hidden{
     display: none;
 }
+/**************************************************
 
+    popup
 
+***************************************************/
+.popup-bg{
+    width: 100%;
+    height: 100%;
+
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,0.4);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.popup-bg .popup-content{
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+
+    width: 35%;
+}
 /**************************************************
 
     walkerIndex
@@ -342,7 +366,16 @@ section .search-part form label{
     color: var(--white);
     font-weight: bold;
 }
+.recruit-apply-modal-form{
+    width: 100%;
 
+    display: flex;
+    justify-content: space-around;
+}
+.recruit-apply-modal-form button{
+    width: 40%;
+    height: 45px;
+}
 /**************************************************
 
     walkerRecruitList - 산책신청모달
