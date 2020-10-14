@@ -61,6 +61,7 @@ public class WalkerController {
 	public ModelAndView walkerList(String wk_id) {
 		ModelAndView mav = new ModelAndView();
 		List<WalkerDTO> list = walkerService.selectApplierList(wk_id);
+		System.out.println("c list: " + list);
 		mav.addObject("walkerList",list);
 		mav.setViewName("owner/walkerList"); // ownerWalkerList.jsp
 		return mav;

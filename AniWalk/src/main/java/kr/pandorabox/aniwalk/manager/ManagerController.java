@@ -68,4 +68,18 @@ public class ManagerController {
 		mav.setViewName("manager/userInfo");	// manageUserInfo.jsp
 		return mav;
 	}
+	
+	@RequestMapping("manager/manageMatching.do")
+	public ModelAndView manageMatching() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("manager/manageMatching");
+		return mav;
+	}
+	
+	@RequestMapping("manager/managePoint.do")
+	public ModelAndView managePonint() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("manager/managePoint");
+		return mav;
+	}
 }

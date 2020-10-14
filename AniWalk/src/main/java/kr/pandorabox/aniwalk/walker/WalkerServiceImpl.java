@@ -40,10 +40,11 @@ public class WalkerServiceImpl implements WalkerService {
 		
 		for(int i = 0; i < walkerList.size(); i++) {
 			if(walkerList.get(i).getApply_state() == 4 && walkerList.get(i).getActivity_state() == 1) {
+				System.out.println(walkerList.get(i));
 				walkers.add(walkerList.get(i));
 			} 
 		}
-		System.out.println("s walkers: " + walkers.get(0).getWk_profile_img1()); 
+		System.out.println("s walkers: " + walkers); 
 		return walkers;
 		
 	}

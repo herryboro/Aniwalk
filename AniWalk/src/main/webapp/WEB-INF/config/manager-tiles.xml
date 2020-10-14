@@ -20,5 +20,12 @@
 	<definition name="manager/walkerInfo" extends="managerTemplate">
 		<put-attribute name="content" value="/WEB-INF/pages/manager/manageApplierInfo.jsp"/>
 	</definition>
-	
+	<!-- 예약관리 -->
+	<definition name="manager/manageMatching" extends="managerTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/manager/manageMatching.jsp"/>
+	</definition>
+	<!-- 포인트 관리 -->
+	<definition name="manager/managePoint" extends="managerTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/manager/managePonint.jsp"/>
+	</definition>
 </tiles-definitions>
