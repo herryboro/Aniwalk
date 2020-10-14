@@ -6,11 +6,11 @@
 <meta charset="UTF-8">
 <title>index</title>
 </head>
-<link rel="stylesheet" type="text/css" href="../../static/css/manager.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/manager.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <!-- js -->
-<script src="../../static/js/manager.js"></script>
+<script src="/aniwalk/static/js/manager.js"></script>
 
 <body>
 <div class="manage-point">
@@ -84,7 +84,7 @@
             <div class="form-group">
                 <div class="walked-month">09-24 목요일 12:00</div>
                 <div class="walked-info">
-                    <img class="img-thumbnail" src="../../images/moveInfo.png" alt="">
+                    <img class="img-thumbnail" src="/aniwalk/images/moveInfo.png" alt="">
                     <ul>
                         <li>
                             <label>펫프렌즈</label>
