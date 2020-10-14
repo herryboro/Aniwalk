@@ -29,7 +29,7 @@ public class MemberController {
 		String mem_nickname = memberService.joinCheck(kakao_id);
 		
 		if(mem_nickname == null) {
-			mav.setViewName("login");
+			mav.setViewName("login");		// main/signUp.jsp
 			return mav;
 		} else {
 			request.getSession().setAttribute("mem_nickname", mem_nickname);
@@ -81,7 +81,7 @@ public class MemberController {
 		List<JoinMemberDogImgDTO> joinDtos = memberService.myPage(mem_nickname);
 		
 		mav.addObject("joinDtos", joinDtos);
-		mav.setViewName("owner/my");
+		mav.setViewName("owner/my");		//ownerMy.jsp
 		return mav;
 	}
 	
