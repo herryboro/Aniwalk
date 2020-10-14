@@ -27,7 +27,7 @@
 			<hr width="80%" color="gray"/>
 		</div>
 		<div class="info-part">
-			<img class="img-rounded" src="/aniwalk/images/applier.png" alt="">
+			<img class="img-rounded" src="/walker/${walkerDto.wk_profile_img1}" alt="">
 			<table>
 				<tr>
 					<th>활동지역</th>

@@ -62,7 +62,7 @@
 									</li>
 									<li>
 										<label>생일</label>
-										<span>${joinDto.dog_birth}</span>
+										<span class="dog-birth">${joinDto.dog_birth}</span>
 									</li>
 									<li>
 										<label>정보</label>
@@ -165,14 +165,14 @@
 <script>
 	const mydogAdd = document.querySelector('.mydog-add');
 	const modalBg = document.querySelector('.modal-bg');
-	const closeBtn = document.querySelector('.close-btn');
+	const close = document.querySelector('.close-btn');
 	mydogAdd.addEventListener('click',function(){
 		modalBg.classList.remove('hidden');
 	});
 	modalBg.addEventListener('click',function (){
 		modalBg.classList.add('hidden');
 	});
-	closeBtn.addEventListener('click',function (){
+	close.addEventListener('click',function (){
 		modalBg.classList.add('hidden');
 	});
 </script>
@@ -210,6 +210,13 @@
 			prevEl: '.swiper-button-prev',
 		},
 	});
+</script>
+
+<script>
+	const dogBirth = document.querySelectorAll('.dog-birth');
+	for(let i=0; i<dogBirth.length; i++){
+		dogBirth[i].innerText = dogBirth[i].textContent.split(' ')[0];
+	}
 </script>
 </body>
 </html>
