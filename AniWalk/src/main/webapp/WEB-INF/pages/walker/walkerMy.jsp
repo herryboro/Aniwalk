@@ -88,7 +88,7 @@
 					<input type="password" class="form-control" id="pw" placeholder="비밀번호를 입력하세요" id="pw_check">
 				</label>
 			</div>
-			<button type="button" class="btn btn-primary" onclick="check()">비밀번호 입력</button>
+			<button type="submit" class="btn btn-primary" onclick="check()">비밀번호 입력</button>
 		</form>
 	</div>
 </div>

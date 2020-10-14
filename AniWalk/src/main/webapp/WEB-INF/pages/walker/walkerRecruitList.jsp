@@ -58,7 +58,7 @@
 							<span></span>
 						</li>
 					</ul>
-					<button class="btn btn-default" value="recruit_id">산책 신청하기</button>
+					<button type="button" class="btn btn-default" value="recruit_id">산책 신청하기</button>
 				</div>
 			</c:forEach>
 		</div>
@@ -125,6 +125,18 @@
 	</div>
 </div>
 
+<!-- 신청시 팝업 -->
+<div class="popup-bg hidden">
+	<div class="popup-content" onclick="event.stopPropagation()">
+		<h3 style="text-align: center; margin-bottom: 50px;">신청하시겠습니까?</h3>
+		<form class="recruit-apply-modal-form">
+			<input type="hidden" value="">
+			<button class="btn btn-primary" type="submit">신청</button>
+			<button class="btn btn-danger" type="button">취소</button>
+		</form>
+	</div>
+</div>
+
 <script>
 	//상세조건으로 검색하는 모달창
 	const detailBtn = document.getElementById('detailBtn');
@@ -145,6 +157,20 @@
 		direction.classList.add('fa-angle-double-down');
 
 		detailBtn.innerText = '상세 검색 조건으로 검색';
+	});
+</script>
+
+<!--신청하시겠습니까? 팝업창-->
+<script>
+	const popupBg = document.querySelector('.popup-bg');
+	const applyBtn = document.querySelectorAll('.btn-default');
+	for(let i=0; i<applyBtn.length; i++){
+		applyBtn[i].addEventListener('click',function (){
+			popupBg.classList.remove('hidden');
+		});
+	}
+	popupBg.addEventListener('click',function (){
+		popupBg.classList.add('hidden');
 	});
 </script>
 
