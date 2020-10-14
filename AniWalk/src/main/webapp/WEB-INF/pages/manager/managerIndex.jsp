@@ -8,43 +8,37 @@
 </head>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/manager.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<script src="/aniwalk/static/js/manager.js" type="text/javascript"></script>
 <body>
-<div>
-    <h1>관리자 로그인 해야된다</h1>
-
-    <h3 id="showToday"></h3>
+<div class="manager-login">
     <form action="${pageContext.request.contextPath}/manager/indexPro.do" method="post">
-	    <div>
-	         	관리자 아이디: <input name="manager_id">
-	    </div>
-    	<div>
-    		관리자 비밀번호: <input name="manage_pw">
-    	</div>
-    	<button class="btn btn-primary">로그인</button>
+    	<img src="/aniwalk/images/main_logo.png" alt="">
+	    <ul>
+	    	<li>
+	    		<label>관리자 아이디</label>
+	    		<label>
+	    			<input type="text" class="form-control" name="manager_id">
+	    		</label>
+	    	</li>
+	    	<li>
+	    		<label>관리자 비밀번호</label>
+	    		<label>
+	    			<input type="password" class="form-control" name="manager_id">
+	    		</label>
+	    	</li>
+			<li>
+				<button type="submit" class="btn btn-primary">로그인</button>
+			</li>
+	    </ul>
     </form>
-    
+	<h3 id="showToday"></h3>
 </div>
 <script>
-
-    let today = new Date();
-    let dd = today.getDate();
-    let mm = today.getMonth()+1; //January is 0!
-    let yyyy = today.getFullYear();
-    let now = today.getHours() + '시 ' + today.getMinutes() + '분 '
-            + today.getSeconds() + '초';
-
-    if(dd<10) {
-        dd='0'+dd
+    function init() {
+        clock();
+        setInterval(clock, 1000);
     }
-
-    if(mm<10) {
-        mm='0'+mm
-    }
-
-    today = yyyy + '년 ' + mm+'월 '+dd+'일' + now;
-
-    const showToday = document.getElementById('showToday');
-    showToday.innerHTML = today;
+    init();
 </script>
 </body>
 </html>
