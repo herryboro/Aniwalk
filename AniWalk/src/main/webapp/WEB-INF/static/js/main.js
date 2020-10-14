@@ -54,9 +54,8 @@ addPhoneAuthForm = function(){
             <button onclick="auth()" id="authNum" type="button" class="btn btn-primary">인증번호입력</button>
         </form>
     `;
-
-    const wk_phone = document.getElementById('wk_phone');
-    let phoneNum = wk_phone.value.split('');
+    const inputPhoneNum = document.getElementById('phoneNum');
+    let phoneNum = inputPhoneNum.value.split('');
     let minusError = 0;
     for(let i=0; i<phoneNum.length; i++){
         if(phoneNum[i] === '-'){
@@ -67,10 +66,10 @@ addPhoneAuthForm = function(){
     if(minusError >= 1){
         authPart.innerHTML = phoneMinusError;
         return false;
-    }else if (wk_phone.value.length < 11){
+    }else if (inputPhoneNum.value.length < 11){
         authPart.innerHTML = phoneInputError;
         return false;
-    }else if (check_kor.test(wk_phone.value) || check_eng.test(wk_phone.value) || check_spc.test(wk_phone.value) ){
+    }else if (check_kor.test(inputPhoneNum.value) || check_eng.test(inputPhoneNum.value) || check_spc.test(inputPhoneNum.value) ){
         authPart.innerHTML = phoneInputError;
         return false;
     }

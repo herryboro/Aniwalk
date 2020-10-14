@@ -58,7 +58,7 @@
 			<li>
 				<label>휴대폰번호</label>
 				<label>
-					<input id='wk_phone' name='wk_phone' class="form-control" type="text"
+					<input id='phoneNum' name='wk_phone' class="form-control" type="text"
 							  placeholder="휴대폰번호 11자리를 입력해주세요(-빼고 입력해주세요)" required minlength="11" maxlength="11">
 					<input id='auth-btn' type="button" class="btn btn-primary auth-btn" value="휴대폰 인증하기">
 				</label>
@@ -270,20 +270,20 @@ $(document).ready(function(){
 			url:"/aniwalk/walker/phoneCheck.do",
 			type:"get",
 			data:{
-				"phoneNum" : $('#wk_phone').val()
+				"phoneNum" : $('#phoneNum').val()
 			},
 			success:function(data){
 				if(data === ''){
 					addPhoneAuthForm();
 					if(addPhoneAuthForm()){
-						$('#wk_phone').attr("readonly", "readonly");
+						$('#phoneNum').attr("readonly", "readonly");
 						$('.auth-phone').empty();
 						$('#auth-btn').val('인증번호 다시받기');
 						$.ajax({
 							url:"/aniwalk/walker/auth.do",
 							type:"post",
 							data:{
-								"wk_phone" : $('#wk_phone').val()
+								"wk_phone" : $('#phoneNum').val()
 							},
 							success:function(data){
 								var auth_num = $('#auth_num').val(data);
