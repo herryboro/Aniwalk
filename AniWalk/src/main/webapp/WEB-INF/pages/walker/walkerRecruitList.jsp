@@ -35,7 +35,6 @@
 			<c:forEach var="recruit" items="${recruitList}">
 				<div class="form-group col-md-4" onclick="location.href='#'">
 					<img src="/owner/${recruit.dog_image}" alt="" class="img-rounded">
-					<input type="hidden" value="recruit_id">
 					<ul>
 						<li>
 							<label>견종 : </label>
@@ -58,7 +57,7 @@
 							<span></span>
 						</li>
 					</ul>
-					<button type="button" class="btn btn-default" value="recruit_id">산책 신청하기</button>
+					<button type="button" class="btn btn-default" value="recruit_id값">산책 신청하기</button>
 				</div>
 			</c:forEach>
 		</div>
@@ -130,7 +129,7 @@
 	<div class="popup-content" onclick="event.stopPropagation()">
 		<h3 style="text-align: center; margin-bottom: 50px;">신청하시겠습니까?</h3>
 		<form class="recruit-apply-modal-form">
-			<input type="hidden" value="">
+			<input id="sendRecruitId" type="hidden" value="">
 			<button class="btn btn-primary" type="submit">신청</button>
 			<button class="btn btn-danger" type="button">취소</button>
 		</form>
@@ -164,14 +163,21 @@
 <script>
 	const popupBg = document.querySelector('.popup-bg');
 	const applyBtn = document.querySelectorAll('.btn-default');
+	const cancelBtn = document.querySelector('.btn-danger');
+	const sendRecruitId = document.getElementById('sendRecruitId');
+
 	for(let i=0; i<applyBtn.length; i++){
 		applyBtn[i].addEventListener('click',function (){
 			popupBg.classList.remove('hidden');
+			sendRecruitId.value = this.value;
 		});
 	}
 	popupBg.addEventListener('click',function (){
 		popupBg.classList.add('hidden');
 	});
+	cancelBtn.addEventListener('click',function (){
+		popupBg.classList.add('hidden');
+	})
 </script>
 
 </body>
