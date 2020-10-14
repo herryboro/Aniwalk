@@ -19,12 +19,10 @@ public class ManagerController {
 	
 	@RequestMapping("manager/indexPro.do")
 	public String index(String manager_id, String manager_pw, HttpServletRequest req) {
-		System.out.println(manager_id);
-		System.out.println(manager_pw);
 		int result = managerService.managerLogin(manager_id, manager_pw);
-		System.out.println("index result: " + result);
+
 		if(result != 1) {
-			return "manager/index";		// managerIndex.jsp
+			return "redirect:/manager/index.do";		// managerIndex.jsp
 		} else {
 			req.getSession().setAttribute("manager_id", manager_id);
 			return "redirect:/manager/user.do";
@@ -34,6 +32,13 @@ public class ManagerController {
 	
 	@RequestMapping("manager/user.do")
 	public ModelAndView memberList(HttpServletRequest req) {
+		
+		if(req.getSession().getAttribute("manager_id") == null) {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("redirect:/manager/index.do");
+			return mav;
+		}
+		
 		String manager_id = (String)req.getSession().getAttribute("manager_id");		
 		
 		if(manager_id.equals("super") && manager_id != null) {	
@@ -46,7 +51,7 @@ public class ManagerController {
 		} else {
 			ModelAndView mav = new ModelAndView();
 			System.out.println("뮝미");
-			mav.setViewName("manager/index");
+			mav.setViewName("manager/index");		// manager/managerIndex.jsp
 			return mav;
 		}
 		
