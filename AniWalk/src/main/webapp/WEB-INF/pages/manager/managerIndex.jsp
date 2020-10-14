@@ -23,7 +23,7 @@
 	    	<li>
 	    		<label>관리자 비밀번호</label>
 	    		<label>
-	    			<input type="password" class="form-control" name="manager_id">
+	    			<input type="password" class="form-control" name="manager_pw">
 	    		</label>
 	    	</li>
 			<li>
