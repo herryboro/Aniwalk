@@ -49,9 +49,6 @@
 	</div>
 </body>
 <script>
-
-	
-
 	const indexDiv = document.querySelector('.walker-index');
 	const loginDiv = document.querySelector('.walker-login');
 	const btn = document.querySelector('.btn-primary');

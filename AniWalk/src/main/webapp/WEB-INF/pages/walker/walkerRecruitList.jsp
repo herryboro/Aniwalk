@@ -128,7 +128,7 @@
 <div class="popup-bg hidden">
 	<div class="popup-content" onclick="event.stopPropagation()">
 		<h3 style="text-align: center; margin-bottom: 50px;">신청하시겠습니까?</h3>
-		<form class="recruit-apply-modal-form">
+		<form class="recruit-apply-modal-form" action="recruitlist.do">
 			<input id="sendRecruitId" type="hidden" value="">
 			<button class="btn btn-primary" type="submit">신청</button>
 			<button class="btn btn-danger" type="button">취소</button>

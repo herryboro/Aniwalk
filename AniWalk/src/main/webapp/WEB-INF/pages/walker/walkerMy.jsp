@@ -11,6 +11,13 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 	<!-- jQuery -->
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script>
+		document.addEventListener('keydown',function (event){
+			if(event.keyCode === 13){
+				event.preventDefault();
+			}
+		},true);
+	</script>
 </head>
 <body>
 	<section class="walker-my">
@@ -79,7 +86,7 @@
 	</section>
 
 <div class="modal-bg hidden">
-	<div class="modal-content" onclick="event.stopPropagation()">
+	<div class="modal-content" onclick="event.stopPropagation()" style="width: 55%; height: 45%;">
 		<form class="password-field" method="post" >
 			<h3>개인정보수정</h3>
 			<div>
@@ -88,7 +95,7 @@
 					<input type="password" class="form-control" id="pw" placeholder="비밀번호를 입력하세요" id="pw_check">
 				</label>
 			</div>
-			<button type="submit" class="btn btn-primary" onclick="check()">비밀번호 입력</button>
+			<button type="button" class="btn btn-primary" onclick="check()">비밀번호 입력</button>
 		</form>
 	</div>
 </div>
@@ -117,7 +124,6 @@
 				location.href="myInfo.do";
 			}
 		}
-		
 	</script>
 </body>
 </html>
