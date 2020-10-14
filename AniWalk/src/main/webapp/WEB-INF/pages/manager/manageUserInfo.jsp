@@ -42,47 +42,27 @@
 
         <div class="right-box">
             <h4>반려견 리스트</h4>
-            <div class="form-group">
-                <img class="img-rounded" src="${pageContext.request.contextPath}/images/mydog.jpg" alt="">
-                <ul>           	
-                    <li>
-                        <label>강아지이름</label>
-                        <span>${userList[0].dog_name}</span>
-                    </li>
-                    <li>
-                        <label>견종</label>
-                        <span>${userList[0].dog_type}</span>
-                    </li>
-                    <li>
-                        <label>강아지성격</label>
-                        <div class="textarea-label">
-                        	${userList[0].dog_info}
-                        </div>
-                    </li>            	
-                </ul>
-            </div>
-            <!--  
-            <div class="form-group">
-                <img class="img-rounded" src="${pageContext.request.contextPath}/images/mydog.jpg" alt="">
-                <ul>
-                    <li>
-                        <label>강아지이름</label>
-                        <span>크림</span>
-                    </li>
-                    <li>
-                        <label>견종</label>
-                        <span>포메라니안</span>
-                    </li>
-                    <li>
-                        <label>강아지성격</label>
-                        <div class="textarea-label">
-                            강아지 주의사항 적는곳
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            -->
-
+            <c:forEach items="${userList}" var="userList">
+	            <div class="form-group">
+	                <img class="img-rounded" src="/owner/${userList.dog_image}" alt="">
+	                <ul>           	
+	                    <li>
+	                        <label>강아지이름</label>
+	                        <span>${userList.dog_name}</span>
+	                    </li>
+	                    <li>
+	                        <label>견종</label>
+	                        <span>${userList.dog_type}</span>
+	                    </li>
+	                    <li>
+	                        <label>강아지성격</label>
+	                        <div class="textarea-label">
+	                        	${userList.dog_info}
+	                        </div>
+	                    </li>            	
+	                </ul>
+	            </div>
+            </c:forEach> 
         </div>
     </div>
 </div>
