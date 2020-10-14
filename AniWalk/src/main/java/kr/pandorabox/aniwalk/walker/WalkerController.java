@@ -117,7 +117,17 @@ public class WalkerController {
 	
 	// 펫 프렌즈 리스트
 	@RequestMapping("manager/walker.do")
-	public ModelAndView ApplierList(String wk_id) {
+	public ModelAndView ApplierList(String wk_id, HttpServletRequest req) {
+		
+		if(req.getSession().getAttribute("manager_id") == null) {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("redirect:/manager/index.do");
+			return mav;
+		}
+		
+		String manager_id = (String)req.getSession().getAttribute("manager_id");	
+		System.out.println("c manager_i: " + manager_id);
+		
 		ModelAndView mav = new ModelAndView();
 		List<WalkerDTO> list = walkerService.applierList(wk_id);
 		mav.addObject("applierList",list);
