@@ -44,8 +44,6 @@ public class MemberController {
 	@RequestMapping(value = "/signIn.do", method = RequestMethod.POST)
 	public ModelAndView joinMember(JoinMemberDogImgDTO joinMemberDogImgDTO, HttpServletRequest request) throws Exception {
 		String mem_nickname = joinMemberDogImgDTO.getMem_nickname();
-		System.out.println("mem_phone: " + joinMemberDogImgDTO.getMem_phone());
-		System.out.println("mem_nickname: " + mem_nickname);
 		
 		ModelAndView mav = new ModelAndView();
 		

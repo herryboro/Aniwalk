@@ -37,7 +37,7 @@
 	           <tr onclick="location.href='/aniwalk/manager/userInfo.do?kakao_id=${list.kakao_id}'">
 	                <td>${list.kakao_id}</td>
 	                <td>${list.mem_nickname}</td>
-	                <td>phone number</td>
+	                <td>${list.mem_phone}</td>
 	                <td>user location</td>
 	                <td>sign out date</td>
 	            </tr>

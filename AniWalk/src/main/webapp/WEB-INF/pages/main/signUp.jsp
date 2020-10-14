@@ -78,6 +78,9 @@
 										<option>포메라니안</option>
 										<option>폼피츠</option>
 										<option>사모예드</option>
+										<option>진돗개</option>
+										<option>푸들</option>
+										<option>말티즈</option>
 									</select>
 								</li>
 								<li>
