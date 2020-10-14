@@ -18,13 +18,13 @@
 		#{walk_start_time},#{walk_end_time},#{recruit_notices},#{recruit_location})	
 	</insert>
 	<!-- 모집글 리스트 -->
-   <select id="getRecruitList" resultType="walking">
-      select * from ani_walking w left outer join ani_dog d
-      on d.dog_id = w.dog_id
-      left outer join ani_dog_img i
-      on d.dog_id = i.dog_id
-   </select>
-   <!-- 자신이 올린 모집글 리스트-->
+    <select id="getRecruitList" resultType="walking">
+        select * from ani_walking w left outer join ani_dog d
+        on d.dog_id = w.dog_id
+        left outer join ani_dog_img i
+        on d.dog_id = i.dog_id
+    </select>
+    <!-- 자신이 올린 모집글 리스트-->
 	<select id="recruitlist" parameterType="String" resultType="walking">
 		select to_char(w.recruit_date,'YYYY-MM-DD') as recruit_date,d.dog_type,w.recruit_location,
         w.walk_start_time, w.walk_end_time, i.dog_image
@@ -36,8 +36,16 @@
         on m.mem_id=w.recruit_mem_id
         where m.mem_nickname=#{mem_nickname} 
         order by recruit_date desc 
-		
 	</select>
-	
-
+	<!-- 산책 미션 등록 -->
+	<insert id="insertWalkingMission" parameterType="walking">
+		insert into ANI_Walking_Mission
+		values('mission'||lpad(seq_walking_mission.nextval,5,0),#{mission_contents},#{mission_img},
+		#{mission_perform_location}, sysdate, null)
+	</insert>
+	<!-- 산책 미션 리스트 -->
+	<select id="getMissionList" parameterType="String" resultType="walking">
+		select * from ANI_Walking_Mission 
+		order by mission_perform_time
+	</select>
 </mapper>

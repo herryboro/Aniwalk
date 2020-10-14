@@ -11,6 +11,18 @@ public class WalkingDAOImpl implements WalkingDAO{
 	@Autowired
 	SqlSession session;
 	
+	//산책 미션 가져오기
+	@Override
+	public List<WalkingDTO> getMissionList(String walking_id) {
+		return session.selectList("kr.pandorabox.aniwalk.walking.getMissionList", walking_id);
+	}
+	
+	//산책 미션 저장
+	@Override
+	public int insertWalkingMission(WalkingDTO walkingDto) {
+		return session.insert("kr.pandorabox.aniwalk.walking.insertWalkingMission", walkingDto);
+	}
+	
 	//모집글 등록
 	@Override
 	public int recruitInsert(WalkingDTO walking) {

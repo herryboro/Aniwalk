@@ -1,6 +1,9 @@
 package kr.pandorabox.aniwalk.walking;
 
 import java.sql.Date;
+import java.util.Arrays;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class WalkingDTO {
 	
@@ -22,6 +25,14 @@ public class WalkingDTO {
 	private String walking_map_path;
 	private String map_capture_img;
 	
+	//walking mission
+	private String mission_id;
+	private String mission_contents;
+	private String mission_img;
+	private String mission_perform_location;
+	private Date mission_perform_time;
+	private MultipartFile[] files;
+	
 	//dog
 	private String dog_name;
 	private String dog_type;
@@ -35,16 +46,92 @@ public class WalkingDTO {
 	private String dog_image;
 	
 	
+	
+	
 	@Override
 	public String toString() {
 		return "WalkingDTO [mem_nickname=" + mem_nickname + ", walking_id=" + walking_id + ", recruit_mem_id="
-				+ recruit_mem_id + ", dog_id=" + dog_id + ", recruit_date=" + recruit_date + ", walk_start_time="
-				+ walk_start_time + ", walk_end_time=" + walk_end_time + ", recruit_notices=" + recruit_notices
-				+ ", recruit_location=" + recruit_location + ", recruit_close_yn=" + recruit_close_yn + ", match_wk_id="
-				+ match_wk_id + ", walking_map_path=" + walking_map_path + ", map_capture_img=" + map_capture_img
-				+ ", dog_name=" + dog_name + ", dog_type=" + dog_type + ", dog_size=" + dog_size + ", dog_info="
-				+ dog_info + ", dog_birth=" + dog_birth + ", mem_id=" + mem_id + ", dog_img_id=" + dog_img_id
-				+ ", dog_image=" + dog_image + "]";
+				+ recruit_mem_id + ", dog_id=" + dog_id + ", recruit_date=" + recruit_date + ", walk_date=" + walk_date
+				+ ", walk_start_time=" + walk_start_time + ", walk_end_time=" + walk_end_time + ", recruit_notices="
+				+ recruit_notices + ", recruit_location=" + recruit_location + ", recruit_close_yn=" + recruit_close_yn
+				+ ", match_wk_id=" + match_wk_id + ", walking_map_path=" + walking_map_path + ", map_capture_img="
+				+ map_capture_img + ", mission_id=" + mission_id + ", mission_contents=" + mission_contents
+				+ ", mission_img=" + mission_img + ", mission_perform_location=" + mission_perform_location
+				+ ", mission_perform_time=" + mission_perform_time + ", files=" + Arrays.toString(files) + ", dog_name="
+				+ dog_name + ", dog_type=" + dog_type + ", dog_size=" + dog_size + ", dog_info=" + dog_info
+				+ ", dog_birth=" + dog_birth + ", mem_id=" + mem_id + ", dog_img_id=" + dog_img_id + ", dog_image="
+				+ dog_image + "]";
+	}
+
+
+
+	public String getMission_id() {
+		return mission_id;
+	}
+
+
+
+	public void setMission_id(String mission_id) {
+		this.mission_id = mission_id;
+	}
+
+
+
+	public String getMission_contents() {
+		return mission_contents;
+	}
+
+
+
+	public void setMission_contents(String mission_contents) {
+		this.mission_contents = mission_contents;
+	}
+
+
+
+	public String getMission_img() {
+		return mission_img;
+	}
+
+
+
+	public void setMission_img(String mission_img) {
+		this.mission_img = mission_img;
+	}
+
+
+
+	public String getMission_perform_location() {
+		return mission_perform_location;
+	}
+
+
+
+	public void setMission_perform_location(String mission_perform_location) {
+		this.mission_perform_location = mission_perform_location;
+	}
+
+
+
+	public Date getMission_perform_time() {
+		return mission_perform_time;
+	}
+
+
+
+	public void setMission_perform_time(Date mission_perform_time) {
+		this.mission_perform_time = mission_perform_time;
+	}
+
+
+
+	public MultipartFile[] getFiles() {
+		return files;
+	}
+
+
+	public void setFiles(MultipartFile[] files) {
+		this.files = files;
 	}
 
 

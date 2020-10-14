@@ -7,12 +7,38 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class WalkingController {
 	@Autowired
 	private WalkingService walkingService;
+	
+	// 산책 시작 
+	@ResponseBody
+	@RequestMapping(value = "/walking/walkingStart.do",
+			method = RequestMethod.POST,
+			consumes ={"multipart/form-data"})
+	public List<WalkingDTO> walking(WalkingDTO walkingDto) {
+		System.out.println(walkingDto.getWalking_id());
+		System.out.println(walkingDto.getMission_perform_location());
+		System.out.println(walkingDto.getMission_contents());
+		int result = walkingService.insertWalkingData(walkingDto);
+		List<WalkingDTO> list = walkingService.getMissionList(walkingDto.getWalking_id());
+		return list;
+	}
+	
+	// 산책 정보 가져오기
+	@RequestMapping("/walker/activiting.do")
+	public ModelAndView getMissionList(String walking_id) {
+		List<WalkingDTO> list = walkingService.getMissionList(walking_id);
+		for (WalkingDTO walkingDTO : list) {
+			if(walkingDTO.getMission_contents().equals("end")) list = null;
+		}
+		return new ModelAndView("walker/activiting", "missionList", list);
+	}
 	
 	// 모집글 리스트
 	@RequestMapping("/walker/recruitlist.do")

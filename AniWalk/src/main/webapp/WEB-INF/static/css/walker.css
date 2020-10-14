@@ -749,6 +749,11 @@ section .search-part form label{
     walkerActivityList
 
 ***************************************************/
+.activ-img {
+	width : 200px;
+	height : 200px;
+}
+
 .walker-active-list{
     width: 100%;
     height: 100%;

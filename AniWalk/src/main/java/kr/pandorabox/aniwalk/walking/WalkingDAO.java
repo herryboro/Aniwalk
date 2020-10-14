@@ -13,4 +13,8 @@ public interface WalkingDAO {
 	//내가 작성한 모집글 리스트(날짜별)
 	public List<WalkingDTO> recruitlist(String mem_nickname);
 
+	public int insertWalkingMission(WalkingDTO walkingDto);
+
+	public List<WalkingDTO> getMissionList(String walking_id);
+
 }
