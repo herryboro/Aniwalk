@@ -23,6 +23,7 @@
         on d.dog_id = w.dog_id
         left outer join ani_dog_img i
         on d.dog_id = i.dog_id
+        where w.recruit_close_yn=0
         order by w.walk_date desc
     </select>
    <!-- 자신이 올린 모집글 리스트-->
