@@ -120,11 +120,11 @@ public class WalkerController {
 	@RequestMapping("manager/walker.do")
 	public ModelAndView ApplierList(String wk_id, HttpServletRequest req) {
 		
-		if(req.getSession().getAttribute("manager_id") == null) {
-			ModelAndView mav = new ModelAndView();
-			mav.setViewName("redirect:/manager/index.do");
-			return mav;
-		}
+//		if(req.getSession().getAttribute("manager_id") == null) {
+//			ModelAndView mav = new ModelAndView();
+//			mav.setViewName("redirect:/manager/index.do");
+//			return mav;
+//		}
 		
 		String manager_id = (String)req.getSession().getAttribute("manager_id");	
 		System.out.println("c manager_i: " + manager_id);
@@ -149,32 +149,9 @@ public class WalkerController {
 	// 펫 프렌즈 신청
 	@RequestMapping("/apply.do")
 	public String walkerApply(WalkerDTO walker, HttpServletRequest req) throws Exception {
-		System.out.println(walker.getWk_location1());
-		System.out.println(walker.getWk_location2());
-		MultipartFile[] certifications = walker.getFiles();
-		MultipartFile[] profile_imgs = walker.getWk_profile_imgs();
-		ArrayList<String> filelist = new ArrayList<String>();
-		ArrayList<String> profileImgList = new ArrayList<String>();
-		String path = "C:/walker";
-		for(int i=0; i<certifications.length; i++) {
-			String fileName = certifications[i].getOriginalFilename();
-			if(fileName.length()!=0) {
-				String new_file = uploadService.upload(certifications[i], path, "certi" + fileName);
-				filelist.add(new_file);
-			}
-		}
-		for(int i=0; i<profile_imgs.length; i++) {
-			String fileName = "profile" + profile_imgs[i].getOriginalFilename();
-			String new_file = uploadService.upload(profile_imgs[i], path, fileName);
-			profileImgList.add(new_file);
-		}
-		switch(profileImgList.size()) {
-		case 3: walker.setWk_profile_img3(profileImgList.get(2));
-		case 2: walker.setWk_profile_img2(profileImgList.get(1));
-		case 1: walker.setWk_profile_img1(profileImgList.get(0));
-		default: break;
-		}
-		walkerService.walkerApply(walker, filelist);
+		walker.setWk_location1(walker.getWk_location1()+" "+walker.getWk_location2());
+		walker.setWk_location2(null);
+		walkerService.walkerApply(walker);
 		return "index";
 	}
 

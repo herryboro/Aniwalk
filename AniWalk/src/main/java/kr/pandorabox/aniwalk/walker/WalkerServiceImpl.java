@@ -6,11 +6,16 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import kr.pandorabox.aniwalk.FileUploadLogic;
 
 @Service
 public class WalkerServiceImpl implements WalkerService {
 	@Autowired
 	private WalkerDAO walkerDao;
+	@Autowired
+	private FileUploadLogic uploadService;
 	
 	// 펫 프렌즈 자격증 정보 
 	@Override
@@ -57,7 +62,31 @@ public class WalkerServiceImpl implements WalkerService {
 	
 	// 펫프렌즈 신청
 	@Override
-	public int walkerApply(WalkerDTO walker, ArrayList<String> filelist) {
+	public int walkerApply(WalkerDTO walker) {
+		MultipartFile[] certifications = walker.getFiles();
+		MultipartFile[] profile_imgs = walker.getWk_profile_imgs();
+		ArrayList<String> filelist = new ArrayList<String>();
+		ArrayList<String> profileImgList = new ArrayList<String>();
+		String path = "C:/walker";
+		for(int i=0; i<certifications.length; i++) {
+			String fileName = certifications[i].getOriginalFilename();
+			if(fileName.length()!=0) {
+				String new_file = uploadService.upload(certifications[i], path, "certi" + fileName);
+				filelist.add(new_file);
+			}
+		}
+		for(int i=0; i<profile_imgs.length; i++) {
+			String fileName = "profile" + profile_imgs[i].getOriginalFilename();
+			String new_file = uploadService.upload(profile_imgs[i], path, fileName);
+			profileImgList.add(new_file);
+		}
+		switch(profileImgList.size()) {
+		case 3: walker.setWk_profile_img3(profileImgList.get(2));
+		case 2: walker.setWk_profile_img2(profileImgList.get(1));
+		case 1: walker.setWk_profile_img1(profileImgList.get(0));
+		default: break;
+		}
+		
 		int result = 0;
 		int walker_result = 0; 
 		int certificate_result = 0; 
