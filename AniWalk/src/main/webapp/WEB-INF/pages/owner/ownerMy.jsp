@@ -82,6 +82,10 @@
 										</span>
 									</li>
 								</ul>
+								<div class="mydog-btn">
+									<button type="button" class="btn btn-primary" value="dog_id">수정</button>
+									<button type="button" class="btn btn-danger mydog-del-btn" value="dog_id">삭제</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -92,10 +96,9 @@
 				<div class="swiper-button-next"></div>
 			</div>
 		</div>
-		
-		
-		
-		
+
+
+
 		<div class="mydog-add">
 			<i class="far fa-plus-square"></i>
 			<label>반려견 추가</label>
@@ -128,6 +131,8 @@
 		</div>
 	</section>
 </div>
+
+<!-- 강아지 추가 모달 -->
 <div class="modal-bg hidden">
 	<div class="modal-content" onclick="event.stopPropagation()">
 		<button class="close-btn" type="button">&times;</button>
@@ -173,6 +178,20 @@
 		</form>
 	</div>
 </div>
+
+
+<!-- 반려견 삭제 팝업 / delete문으로 삭제하면 에러남. update문으로 이름, 생일, 견종을 null로 만들어야함. 리스트 뿌릴때도 name이 아닌 것만 나오게 해주세요-->
+<div class="popup-bg hidden">
+	<div class="popup-content" onclick="event.stopPropagation()">
+		<h3 style="text-align: center; margin-bottom: 50px;">삭제하시겠습니까?</h3>
+		<form class="mydog-del-modal-form" action="recruitlist.do">
+			<input id="delDogId" type="hidden" value="">
+			<button class="btn btn-danger" type="submit">삭제</button>
+			<button id="popupCloseBtn" class="btn btn-default" type="button">취소</button>
+		</form>
+	</div>
+</div>
+
 <script>
 	const mydogAdd = document.querySelector('.mydog-add');
 	const modalBg = document.querySelector('.modal-bg');
@@ -231,5 +250,26 @@
 	}
 </script>
 
+<!--반려견 삭제 팝업창-->
+<script>
+	const popupBg = document.querySelector('.popup-bg');
+	const delBtn = document.querySelectorAll('.mydog-del-btn');
+	const popupCloseBtn = document.getElementById('popupCloseBtn');
+	const delDogId = document.getElementById('delDogId');
+
+	for(let i=0; i<delBtn.length; i++){
+		delBtn[i].addEventListener('click',function (){
+			popupBg.classList.remove('hidden');
+			delDogId.value = this.value;
+		});
+	}
+
+	popupBg.addEventListener('click',function (){
+		popupBg.classList.add('hidden');
+	});
+	popupCloseBtn.addEventListener('click',function (){
+		popupBg.classList.add('hidden');
+	})
+</script>
 </body>
 </html>

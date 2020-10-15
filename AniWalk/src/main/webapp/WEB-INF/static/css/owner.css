@@ -123,7 +123,37 @@ button{
 .hidden{
     display: none;
 }
+/**************************************************
 
+    popup
+
+***************************************************/
+.popup-bg{
+    width: 100%;
+    height: 100%;
+
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,0.4);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.popup-bg .popup-content{
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+
+    width: 35%;
+}
+.popup-bg .popup-content .btn-default{
+    color: var(--white);
+    background: var(--darkgray);
+    border: none;
+}
 /**************************************************
 
     indexTemplate
@@ -351,6 +381,7 @@ body{
 }
 .mydog-item .mydog-info-part{
     display: flex;
+    justify-content: space-around;
     align-items: center;
     
     height: 100%;
@@ -361,8 +392,11 @@ body{
     left: 10px;
 }
 .mydog-item .mydog-info-part ul{
-	margin-left: 40px;
 	font-size: 1.7rem;
+}
+.mydog-item .mydog-info-part .mydog-btn button{
+    width: 100%;
+    margin: 10px auto;
 }
 .mydog-name{
     position: relative;
@@ -499,6 +533,10 @@ body{
     width: 100%;
     height: 50px;
     margin-top: 30px;
+}
+.mydog-del-modal-form button{
+    width: 40%;
+    height: 45px;
 }
 /**************************************************
 
