@@ -14,27 +14,28 @@
 <body>
 	<div class="myinfo-update">
 
-		<form action="">
-		<input type="hidden" name="owner_id">
+		<form action="/aniwalk/owner/ownerMyInfoUpdatePro.do" method="post" enctype="multipart/form-data">
+		
+		<input type="hidden" name="owner_id" value="${mem_nickname}">
 			<h3>개인정보수정</h3>
 			<table class="table">
 				<tr>
 					<th colspan="2">
 						<div class="img-part">
-							<img id="clickImg" src="/aniwalk/images/profile_test.png" alt="" class="img-rounded">
+							<img id="userImg" src="/aniwalk/images/profile_test.png" alt="" class="img-rounded">
 							<h5>&lt;대표사진설정&gt;</h5>
-							<input id="uploadImg" type="file" class="hidden" name="files">
+							<input id="userInputImg" type="file" class="hidden" name="files">
 						</div>
 					</th>
 				</tr>
 				<tr>
 					<th>닉네임</th>
-					<td><input type="text" class="form-control" value="오너닉네임"></td>
+					<td><input type="text" class="form-control" value="오너닉네임" name="mem_nickname"></td>
 				</tr>
 				<tr>
 					<th>전화번호</th>
 					<td>
-						<input type="text" class="form-control" value="오너전화번호" readonly>
+						<input type="text" class="form-control" value="${phone}" name="mem_phone" readonly>
 					</td>
 				</tr>
 				<tr>

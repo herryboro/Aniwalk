@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.web.multipart.MultipartFile;
 
 public class JoinMemberDogImgDTO {
+	private String owner_id;
 	private String mem_id;
 	private String mem_nickname;
 	private String kakao_id;
@@ -118,6 +119,11 @@ public class JoinMemberDogImgDTO {
 	public void setFiles(MultipartFile[] files) {
 		this.files = files;
 	}
-	
+	public String getOwner_id() {
+		return owner_id;
+	}
+	public void setOwner_id(String owner_id) {
+		this.owner_id = owner_id;
+	}
 	
 }

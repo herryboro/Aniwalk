@@ -26,7 +26,7 @@
 		</div>
 		<div class="my-part-info">
 			<div class="img-part">
-				<img id="userImg" src="/aniwalk/images/profile_test.png" alt="" class="img-rounded">
+				<img id="userImg" src="/owner/${filename}" alt="" class="img-rounded">
 				<label>대표 프로필사진</label>
 			</div>
 
@@ -43,7 +43,7 @@
 					<span><fmt:formatDate value="${joinDtos.get(0).getMem_join_date()}" pattern="yyyy-MM-dd"/></span>
 				</li>
 				<li>
-					<button class="btn btn-primary" type="button">개인정보수정</button>
+					<button class="btn btn-primary" type="button" onclick="location.href='/aniwalk/owner/ownerMyInfoUpdate.do'">개인정보수정</button>
 				</li>
 			</ul>
 		</div>

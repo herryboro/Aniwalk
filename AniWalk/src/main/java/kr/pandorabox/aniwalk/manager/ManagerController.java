@@ -70,14 +70,26 @@ public class ManagerController {
 	}
 	
 	@RequestMapping("manager/manageMatching.do")
-	public ModelAndView manageMatching() {
+	public ModelAndView manageMatching(HttpServletRequest req) {
+		if(req.getSession().getAttribute("manager_id") == null) {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("redirect:/manager/index.do");
+			return mav;
+		}
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("manager/manageMatching");
 		return mav;
 	}
 	
 	@RequestMapping("manager/managePoint.do")
-	public ModelAndView managePonint() {
+	public ModelAndView managePonint(HttpServletRequest req) {
+		if(req.getSession().getAttribute("manager_id") == null) {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("redirect:/manager/index.do");
+			return mav;
+		}
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("manager/managePoint");
 		return mav;

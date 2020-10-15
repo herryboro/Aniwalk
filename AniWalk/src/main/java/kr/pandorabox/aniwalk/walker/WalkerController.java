@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.pandorabox.aniwalk.Authentication;
 import kr.pandorabox.aniwalk.FileUploadLogic;
 import kr.pandorabox.aniwalk.SHA256;
+import kr.pandorabox.aniwalk.member.MemberService;
 
 @Controller
 public class WalkerController {
@@ -29,6 +30,8 @@ public class WalkerController {
 	private Authentication auth;
 	@Autowired
 	private SHA256 hash;
+	@Autowired
+	private MemberService memberService;
 	
 	// 펫 프렌즈 신청 관리
 	@RequestMapping("/manager/updateWalker.do")
@@ -58,11 +61,14 @@ public class WalkerController {
 	
 	// owner페이지 펫 프렌즈 리스트
 	@RequestMapping("owner/walker.do")
-	public ModelAndView walkerList(String wk_id) {
+	public ModelAndView walkerList(String wk_id, HttpServletRequest req) {
+		String mem_nickname = (String) req.getSession().getAttribute("mem_nickname");
 		ModelAndView mav = new ModelAndView();
 		List<WalkerDTO> list = walkerService.selectApplierList(wk_id);
+		String filename = memberService.getProfile(mem_nickname);
 		System.out.println("c list: " + list);
 		mav.addObject("walkerList",list);
+		mav.addObject("filename",filename);
 		mav.setViewName("owner/walkerList"); // ownerWalkerList.jsp
 		return mav;
 	}

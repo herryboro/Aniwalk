@@ -27,13 +27,14 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		
 		String mem_nickname = memberService.joinCheck(kakao_id);
+		String filename = memberService.getProfile(mem_nickname);
 		
 		if(mem_nickname == null) {
 			mav.setViewName("login");		// main/signUp.jsp
 			return mav;
 		} else {
 			request.getSession().setAttribute("mem_nickname", mem_nickname);
-			System.out.println(request.getSession().getAttribute("mem_nickname"));
+			mav.addObject("filename", filename);
 			mav.addObject("mem_nickname", mem_nickname);
 			mav.addObject("kakao_id", kakao_id);
 			mav.setViewName("redirect:/owner/index.do");
@@ -74,10 +75,10 @@ public class MemberController {
 	public ModelAndView ownerMy(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		String mem_nickname = (String) req.getSession().getAttribute("mem_nickname");
-		System.out.println("mem_nickname: " + mem_nickname);
+		String filename = memberService.getProfile(mem_nickname);
 		
 		List<JoinMemberDogImgDTO> joinDtos = memberService.myPage(mem_nickname);
-		
+		mav.addObject("filename", filename);
 		mav.addObject("joinDtos", joinDtos);
 		mav.setViewName("owner/my");		//ownerMy.jsp
 		return mav;
@@ -117,4 +118,49 @@ public class MemberController {
 		}	
 		return mav;
 	}
+	
+	// 회원 정보 수정 뷰단
+		@RequestMapping("/owner/ownerMyInfoUpdate.do")
+		public ModelAndView modifyInfo(HttpServletRequest req) {
+			String mem_nickname = (String)req.getSession().getAttribute("mem_nickname");
+			String mem_phone = memberService.getPhone_number(mem_nickname);
+			String filename = memberService.getProfile(mem_nickname);
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("phone", mem_phone);
+			mav.addObject("filename", filename);
+			mav.addObject("mem_nickname", mem_nickname);
+			mav.setViewName("owner/ownerMyInfoUpdateView");		// owner/ownerMyInfoUpdate.jsp
+			return mav;
+		}
+		
+		// 회원정보 수정
+		@RequestMapping("/owner/ownerMyInfoUpdatePro.do")
+		public ModelAndView modifyInfoPro(JoinMemberDogImgDTO joinMemberDogImgDTO, HttpServletRequest req) {
+			String mem_nickname = (String)req.getSession().getAttribute("mem_nickname");
+		
+			ModelAndView mav = new ModelAndView();
+			
+			MultipartFile[] files = joinMemberDogImgDTO.getFiles();
+			ArrayList<String> filelist = new ArrayList<String>();
+			String path = "C:/owner";
+			for(int i=0; i<files.length; i++) {
+				String fileName = files[i].getOriginalFilename();
+				if(fileName.length()!=0) {
+					String new_file = uploadService.upload(files[i], path, fileName);
+					filelist.add(new_file);
+				}
+			}
+			
+			int result = memberService.updateUserInfo(joinMemberDogImgDTO, filelist);
+
+			if(result == 1) {
+				req.getSession().setAttribute("mem_nickname", joinMemberDogImgDTO.getMem_nickname());
+				mav.setViewName("redirect:/owner/my.do");	
+			} else if(result == 2) {
+				mav.setViewName("redirect:/owner/my.do");
+			} else {
+				mav.setViewName("redirect:/owner/ownerMyInfoUpdate.do");
+			}
+			return mav; 
+		}
 }

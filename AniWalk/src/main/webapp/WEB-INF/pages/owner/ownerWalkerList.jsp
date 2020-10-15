@@ -35,6 +35,7 @@
 						<ul>
 							<li>
 								<h4>짧은 자기소개</h4>
+								${walker.wk_intro}
 							</li>
 							<li>
 								<h3>${walker.wk_name}</h3>

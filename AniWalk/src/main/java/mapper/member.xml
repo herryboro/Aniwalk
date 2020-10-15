@@ -62,4 +62,22 @@
 		select * from dual
 	</insert>
 	
+	<select id="getPhone_num" parameterType="String" resultType="String">
+		select mem_phone from ani_member where mem_nickname=#{c}
+	</select>
+	
+	<update id="nickUpdate" parameterType="joinMemberDogImage">
+		update ani_member set mem_nickname=#{mem_nickname} where mem_nickname=#{owner_id}
+	</update>
+	
+	<update id="profileUpdate" parameterType="Map">
+		update ani_member set mem_profile_img = #{filelist} where mem_nickname=#{id}
+	</update>
+	
+	<select id="getProfile" parameterType="String" resultType="String">
+		select mem_profile_img from ani_member where mem_nickname=#{mem_nickname}
+	</select>
+	
+	
+	
 </mapper>

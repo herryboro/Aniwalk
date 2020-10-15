@@ -31,4 +31,7 @@
 	<definition name="owner/activity" extends="ownerTemplate">
 		<put-attribute name="content" value="/WEB-INF/pages/owner/ownerActiviting.jsp"/>
 	</definition>
+	<definition name="owner/ownerMyInfoUpdateView" extends="ownerTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/owner/ownerMyInfoUpdate.jsp"/>
+	</definition>
 </tiles-definitions>
