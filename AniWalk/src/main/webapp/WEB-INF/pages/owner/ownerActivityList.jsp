@@ -19,13 +19,17 @@
 	<div class="list-part">
 		<c:forEach var="today" items="${todayList}">
 		<!-- 1개 시작 -->
-		<ul class="list-item onair">
+		<ul class="list-item">
 			<li style="justify-content: center">
 				<img class="img-rounded" alt="" src="/walker/${today.wk_profile_img1}">
-				<h4> ${today.wk_name}</h4>
+
 			</li>
-			<li>
+			<li style="width: 50%">
 				<ol>
+					<li>
+						<label>펫프렌즈 : </label>
+						<span>${today.wk_name}</span>
+					</li>
 					<li>
 						<label>시간 : </label>
 						<span> ${today.walk_start_time} ~  ${today.walk_end_time}</span>

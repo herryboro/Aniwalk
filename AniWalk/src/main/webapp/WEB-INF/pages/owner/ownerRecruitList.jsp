@@ -25,39 +25,35 @@
 		<input type="hidden" value="${walkingDtos}" id="test" name="test">
 			<!-- 날짜별 모집글 리스트 -->
 			<c:forEach var="walkingDto" items="${walkingDtos}" >
-				
-			
-						<div class="list-group" >
-							<div class="list-item">
-								<img src="/owner/${walkingDto.dog_image}" alt="" class="img-rounded">
-								<ul>
-									<li>
-										<label>견종 :</label>
-										<span>${walkingDto.dog_type}</span>
-									</li>
-									<li>
-										<label>장소 : </label>
-										<span>${walkingDto.recruit_location}</span>
-									</li>
-									<li>
-										<label>날짜 : </label>
-										<span>${walkingDto.walk_date.replace('00:00:00','')}</span>
-									</li>
-									<li>
-										<label>시간 : </label>
-										<span>${walkingDto.walk_start_time} ~ ${walkingDto.walk_end_time}</span>
-									</li>
-									<li>
-										<label>포인트 : </label>
-										<span>${walkingDto.walking_point}</span>
-									</li>
-									<li>
-										<label>모집글 올린 날짜 : </label>
-										<span>${walkingDto.recruit_date}</span>
-									</li>
-								</ul>
-							</div>
-						</div>
+				<div class="list-item">
+					<img src="/owner/${walkingDto.dog_image}" alt="" class="img-rounded">
+					<ul>
+						<li>
+							<label>견종 :</label>
+							<span>${walkingDto.dog_type}</span>
+						</li>
+						<li>
+							<label>장소 : </label>
+							<span>${walkingDto.recruit_location}</span>
+						</li>
+						<li>
+							<label>날짜 : </label>
+							<span>${walkingDto.walk_date.replace('00:00:00','')}</span>
+						</li>
+						<li>
+							<label>시간 : </label>
+							<span>${walkingDto.walk_start_time} ~ ${walkingDto.walk_end_time}</span>
+						</li>
+						<li>
+							<label>포인트 : </label>
+							<span>${walkingDto.walking_point}</span>
+						</li>
+						<li>
+							<label>모집글 올린 날짜 : </label>
+							<span>${walkingDto.recruit_date}</span>
+						</li>
+					</ul>
+				</div>
 			</c:forEach>
 		</div>
 
@@ -68,7 +64,7 @@
 	
 	<div class="modal-bg hidden">
 		<div class="modal-content " onclick="event.stopPropagation()" style="flex-direction: column; justify-content: flex-start">
-			<button class="close" type="button">&times;</button>
+			<button class="close close-btn" type="button">&times;</button>
 			<div class="subtitle">
 				<h4>신청자 리스트</h4>
 			</div>
@@ -83,7 +79,7 @@
 	//모달창
 	const listItems = document.querySelectorAll('.list-item');
 	const modalBg = document.querySelector('.modal-bg');
-	const close = document.querySelector('.close');
+	const closeBtn = document.querySelector('.close-btn');
 
 	const modalClose = function(){
 		modalBg.classList.add('hidden');
@@ -138,10 +134,8 @@
 
 		});
 	}
-	
-
 	modalBg.addEventListener('click',modalClose);
-	close.addEventListener('click',modalClose);
+	closeBtn.addEventListener('click',modalClose);
 </script>
 
 

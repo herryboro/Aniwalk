@@ -711,20 +711,19 @@ body{
     overflow-x: hidden;
 }
 .list-part{
-    margin-bottom: 40px;
+    margin-bottom: 155px;
     width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
 }
 .list-part .subtitle{
     width: 100%;
     display: flex;
 }
-.list-group{
-    margin-bottom: 40px;
-    overflow-x: scroll;
-    display: -webkit-inline-box;
-    width: 44%;
-}
-.list-group .list-item{
+.list-part .list-item{
     border-radius: 10px;
 
     display: flex;
@@ -732,15 +731,15 @@ body{
     justify-content: space-around;
     align-items: center;
 
-    padding: 20px 0 5px 0;
-    margin: auto 10px;
+    padding: 5px 0 0 0;
+    margin: 10px 5px;
 
-    width: 350px;
+    width: 30%;
     height: 400px;
 
     background: rgba(52, 152, 219, 0.28);
 }
-.list-group .list-item:hover{
+.list-part .list-item:hover{
     cursor: pointer;
 }
 .btn-part{
@@ -761,18 +760,17 @@ body{
     width: 100%;
     height: 50px;
 }
-.list-group .list-item img{
-    width: 250px;
+.list-part .list-item img{
+    width: 90%;
     height: 200px;
 }
-.list-group .list-item ul{
-    font-size: 1.6rem;
+.list-part .list-item ul{
+    font-size: 1.4rem;
 
+    width: 90%;
     background: white;
     padding: 10px;
     border-radius: 10px;
-    margin-top: 20px;
-
     font-family: 'Jua', sans-serif;
 }
 
@@ -1287,11 +1285,14 @@ body{
 }
 .active-list .list-item{
     display: flex;
+    flex-direction: row;
 
     background: rgba(52, 152, 219, 0.24);
     font-family: 'Jua', sans-serif;
 
-    width: 80%;
+    width: 90%;
+    height: 250px;
+
     padding: 20px;
     border-radius: 10px;
 }
@@ -1300,19 +1301,20 @@ body{
 }
 .active-list .list-item img{
     width: 250px;
-    height: 180px;
+    height: 230px;
 }
 .active-list .list-item li{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.active-list .list-item h4{
-    margin-top: 20px;
-}
 .active-list .list-item ol{
-    margin-left: 50px;
-    font-size: 2rem;
+    width: 100%;
+    font-size: 1.7rem;
+
+    padding: 10px;
+    border-radius: 10px;
+    background: var(--white);
 }
 .active-list .list-item ol li{
     flex-direction: row;
