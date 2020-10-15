@@ -67,6 +67,16 @@ public class WalkingDAOImpl implements WalkingDAO{
 	public List<WalkingDTO> todayWalking(Map<String, Object> map) {
 		return session.selectList("kr.pandorabox.aniwalk.walking.todayWalking",map);
 	}
+	//워커 인덱스 가져오기
+	@Override
+	public String wkId(String walker_id) {
+		return session.selectOne("kr.pandorabox.aniwalk.walking.wkId",walker_id);
+	}
+	//워커 산책 신청
+	@Override
+	public int walkingRecruit(Map<String, String> map) {
+		return session.insert("kr.pandorabox.aniwalk.walking.walkingRecruit",map);
+	}
 	
 	
 }

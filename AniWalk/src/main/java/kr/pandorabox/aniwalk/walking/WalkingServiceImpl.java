@@ -75,4 +75,12 @@ public class WalkingServiceImpl implements WalkingService{
 	public List<WalkingDTO> todayWalking(Map<String, Object> map) {
 		return walkingDao.todayWalking(map);
 	}
+	@Override
+	public String wkId(String walker_id) {
+		return walkingDao.wkId(walker_id);
+	}
+	@Override
+	public int walkingRecruit(Map<String, String> map) {
+		return walkingDao.walkingRecruit(map);
+	}
 }

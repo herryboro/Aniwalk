@@ -71,10 +71,10 @@
 
 	for(var i=0; i<listItem.length; i++){
 		listItem[i].addEventListener('click',function(){
-			if(this.classList.contains('onair')){
+			if(this.classList.contains('onair')){ //산책 진행 중
 				location.href = '/aniwalk/owner/activity.do';
 			}else {
-				modalBg.classList.remove('hidden');
+				modalBg.classList.remove('hidden'); //산책이 진행 중이 아님
 			}
 		})
 	}

@@ -25,4 +25,8 @@ public interface WalkingDAO {
 	public int matching(Map<String, String> map);
 	//오늘 산책정보
 	public List<WalkingDTO> todayWalking(Map<String,Object> map);
+	//워커 인덱스 가져오기
+	public String wkId(String walker_id);
+	//워커 산책 신청하기
+	public int walkingRecruit(Map<String,String> map);
 }

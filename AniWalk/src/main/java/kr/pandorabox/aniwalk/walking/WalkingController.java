@@ -49,6 +49,10 @@ public class WalkingController {
 	public ModelAndView recruitlist(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		List<WalkingDTO> list = walkingService.getRecruitList();
+		String walker_id = (String) request.getSession().getAttribute("walker_id");
+		//워커 인덱스 가져오기
+		String wk_id = walkingService.wkId(walker_id);
+		mav.addObject("wk_id", wk_id);
 		mav.addObject("recruitList", list);
 		mav.setViewName("walker/recruitlist");
 		return mav;
@@ -135,5 +139,17 @@ public class WalkingController {
 		mav.addObject("todayList", todayList);
 		mav.setViewName("owner/activityList");
 		return mav;
+	}
+	
+	//산책 신청
+	
+	@RequestMapping("walker/walkingRecruit.do")
+	public String walkingRecruit(String walking_id, String wk_id) {
+		System.out.println("산책신청::::"+walking_id+wk_id);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("walking_id", walking_id);
+		map.put("wk_id", wk_id);
+		walkingService.walkingRecruit(map);
+		return "redirect:/walker/recruitlist.do";
 	}
 }

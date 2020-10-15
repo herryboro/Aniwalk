@@ -37,7 +37,7 @@
 					<img src="/owner/${recruit.dog_image}" alt="" class="img-rounded">
 					<ul>
 						<li>
-							<label>견종 : </label>
+							<label>견종 :</label>
 							<span>${recruit.dog_type}</span>
 						</li>
 						<li>
@@ -46,14 +46,14 @@
 						</li>
 						<li>
 							<label>날짜 : </label>
-							<span>${recruit.recruit_date}</span>
+							<span>${recruit.walk_date.replace('00:00:00','')}</span>
 						</li>
 						<li>
 							<label>시간 : </label>
 							<span class="active-time">${recruit.walk_start_time} - ${recruit.walk_end_time}</span>
 						</li>
 						<li>
-							<label>가격 : </label>
+							<label>가격 : ${recruit.walking_point}</label>
 							<span></span>
 						</li>
 					</ul>
@@ -128,8 +128,10 @@
 <div class="popup-bg hidden">
 	<div class="popup-content" onclick="event.stopPropagation()">
 		<h3 style="text-align: center; margin-bottom: 50px;">신청하시겠습니까?</h3>
-		<form class="recruit-apply-modal-form" action="recruitlist.do">
+		<form class="recruit-apply-modal-form" action="/aniwalk/walker/walkingRecruit.do">
 			<input id="sendRecruitId" type="hidden" value="">
+			<input name="wk_id" type="hidden" value="${wk_id}">
+			<input id="setWalking_id" name="walking_id" type="hidden" value="">
 			<button class="btn btn-primary" type="submit">신청</button>
 			<button class="btn btn-danger" type="button">취소</button>
 		</form>
@@ -165,11 +167,19 @@
 	const applyBtn = document.querySelectorAll('.btn-default');
 	const cancelBtn = document.querySelector('.btn-danger');
 	const sendRecruitId = document.getElementById('sendRecruitId');
-
+	
+	var i = 0;
+	var walkingList = new Array();
+	<c:forEach var='info' items='${recruitList}'>
+		walkingList[i] ='${info.walking_id}';
+		i += 1;
+	</c:forEach>
 	for(let i=0; i<applyBtn.length; i++){
 		applyBtn[i].addEventListener('click',function (){
 			popupBg.classList.remove('hidden');
 			sendRecruitId.value = this.value;
+			console.log("Walking_id====>"+walkingList[i]);
+			document.getElementById("setWalking_id").value = walkingList[i];
 		});
 	}
 	popupBg.addEventListener('click',function (){
