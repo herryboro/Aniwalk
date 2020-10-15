@@ -13,9 +13,9 @@
 	</select>
 	<insert id="recruitInsert" parameterType="walking">
 		insert into ani_walking(walking_id, recruit_mem_id, dog_id, walk_date, walk_start_time,
-		walk_end_time, recruit_notices, recruit_location)
+		walk_end_time, recruit_notices, recruit_location,walking_point)
 		values('walking'||lpad(seq_walking.nextval,5,0),#{recruit_mem_id},#{dog_id},to_date(#{walk_date},'YYYY-MM-DD'),
-		#{walk_start_time},#{walk_end_time},#{recruit_notices},#{recruit_location})	
+		#{walk_start_time},#{walk_end_time},#{recruit_notices},#{recruit_location},#{walking_point})	
 	</insert>
 	<!-- 모집글 리스트 -->
     <select id="getRecruitList" resultType="walking">
@@ -24,18 +24,20 @@
         left outer join ani_dog_img i
         on d.dog_id = i.dog_id
     </select>
-    <!-- 자신이 올린 모집글 리스트-->
+   <!-- 자신이 올린 모집글 리스트-->
 	<select id="recruitlist" parameterType="String" resultType="walking">
 		select to_char(w.recruit_date,'YYYY-MM-DD') as recruit_date,d.dog_type,w.recruit_location,
-        w.walk_start_time, w.walk_end_time, i.dog_image
+        w.walk_start_time, w.walk_end_time, i.dog_image, w.walk_date, w.walking_point,w.walking_id
         from ani_walking w left outer join ani_dog d
 		on w.dog_id=d.dog_id
 		left outer join ani_dog_img i
 		on i.dog_id=d.dog_id
         left outer join ani_member m
         on m.mem_id=w.recruit_mem_id
-        where m.mem_nickname=#{mem_nickname} 
-        order by recruit_date desc 
+        where m.mem_nickname=#{mem_nickname}
+        and w.recruit_close_yn=0
+        order by w.recruit_date desc 
+		
 	</select>
 	<!-- 산책 미션 등록 -->
 	<insert id="insertWalkingMission" parameterType="walking">
@@ -48,4 +50,26 @@
 		select * from ANI_Walking_Mission 
 		order by mission_perform_time
 	</select>
+	
+	<!-- 모집글 올리면 포인트 업데이트(member db) -->
+	<update id="recruitUpdate" parameterType="walking">
+		<![CDATA[
+		update ani_member set mem_point=mem_point-#{walking_point} where mem_id=#{recruit_mem_id}
+		]]>
+	</update>
+	
+	<!-- 신청자 리스트 -->
+	<select id="applyList" parameterType="String" resultType="apply">
+		select * from ani_apply a left outer join ani_walking w
+		on a.walking_id = w.walking_id
+		left outer join ani_walker m
+		on m.wk_id = a.apply_wk_id
+		where a.walking_id=#{walking_id}
+	</select>
+	<!-- owner가 워커 선택(매칭)-->
+	<update id="matching" parameterType="Map">
+		update ani_walking set match_wk_id=#{match_wk_id},recruit_close_yn=1 where walking_id=#{walking_id}
+	
+	</update>
+	
 </mapper>

@@ -101,7 +101,7 @@
 		<h4>6.지불 비용</h4>
 		<section class="pay">
 			<label class="input-label">
-				<input type="number" class="form-control" name="" required
+				<input type="number" class="form-control" name="walking_point" required
 					   placeholder="산책후 지불할 포인트를 적어주세요.">
 			</label>
 			<label>포인트</label>

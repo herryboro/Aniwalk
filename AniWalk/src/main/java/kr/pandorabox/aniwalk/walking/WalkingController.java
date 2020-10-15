@@ -1,6 +1,8 @@
 package kr.pandorabox.aniwalk.walking;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -69,9 +71,13 @@ public class WalkingController {
 	//모집글 insert
 	@RequestMapping("/owner/recruitInsert.do")
 	public String recruitInsert(WalkingDTO walking) {
+		System.out.println(walking);
 		System.out.println(walking.getWalk_start_time()+walking.getWalk_end_time());
 		walkingService.recruitInsert(walking);
-		return "owner/index";
+		//산책모집 올리면 member 테이블에 포인트 update
+		walkingService.recruitUpdate(walking);
+		
+		return "redirect:/owner/recruitList.do";
 	}
 	//내 모집글 list
 	@RequestMapping("/owner/recruitList.do")
@@ -84,6 +90,27 @@ public class WalkingController {
 		mav.addObject("mem_nickname", mem_nickname);
 		mav.addObject("walkingDtos", walkingDtos);
 		return mav;
+	}
+	
+	//신청자 list
+	@RequestMapping(value="/walking/ajax_applyList.do",
+			method = RequestMethod.GET,
+			produces = "application/json;charset=utf-8")
+	public @ResponseBody List<ApplyWalkingDTO> ajax_applyList(String walking_id){
+		List<ApplyWalkingDTO> applyList = walkingService.applyList(walking_id);
+		System.out.println(applyList);
+		return applyList;
+	}
+	
+	//매칭 하기
+	@RequestMapping("/walking/matching.do")
+	public String matching(String match_wk_id, String walking_id) {
+		//매칭
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("match_wk_id", match_wk_id);
+		map.put("walking_id", walking_id);
+		walkingService.matching(map);
+		return "owner/activityList";
 	}
 	
 }

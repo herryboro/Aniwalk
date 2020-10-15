@@ -1,6 +1,7 @@
 package kr.pandorabox.aniwalk.walking;
 
 import java.util.List;
+import java.util.Map;
 
 public interface WalkingDAO {
 	//모집글 등록
@@ -16,5 +17,10 @@ public interface WalkingDAO {
 	public int insertWalkingMission(WalkingDTO walkingDto);
 
 	public List<WalkingDTO> getMissionList(String walking_id);
-
+	//모집글 insert하면 point update
+	public int recruitUpdate(WalkingDTO walking);
+	//신청자 리스트
+	public List<ApplyWalkingDTO> applyList(String walking_id);
+	//매칭
+	public int matching(Map<String, String> map);
 }

@@ -1,6 +1,7 @@
 package kr.pandorabox.aniwalk.walking;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,22 @@ public class WalkingDAOImpl implements WalkingDAO{
 	public List<WalkingDTO> recruitlist(String mem_nickname) {
 		return session.selectList("kr.pandorabox.aniwalk.walking.recruitlist",mem_nickname);
 	}
+	@Override
+	public int recruitUpdate(WalkingDTO walking) {
+		return session.update("kr.pandorabox.aniwalk.walking.recruitUpdate",walking);
+	}
+
+	//신청자 리스트
+	@Override
+	public List<ApplyWalkingDTO> applyList(String walking_id) {
+		return session.selectList("kr.pandorabox.aniwalk.walking.applyList",walking_id);
+	}
+	//매칭
+	@Override
+	public int matching(Map<String, String> map) {
+		return session.update("kr.pandorabox.aniwalk.walking.matching",map);
+	}
+	
 	
 	
 }
