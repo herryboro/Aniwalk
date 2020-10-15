@@ -46,7 +46,9 @@ public class WalkingDTO {
 	private String dog_img_id;
 	private String dog_image;
 	
-	
+	//walker
+	private String wk_profile_img1;
+	private String wk_name;
 	
 	
 	@Override
@@ -273,6 +275,18 @@ public class WalkingDTO {
 	}
 	public void setWalking_point(int walking_point) {
 		this.walking_point = walking_point;
+	}
+	public String getWk_profile_img1() {
+		return wk_profile_img1;
+	}
+	public void setWk_profile_img1(String wk_profile_img1) {
+		this.wk_profile_img1 = wk_profile_img1;
+	}
+	public String getWk_name() {
+		return wk_name;
+	}
+	public void setWk_name(String wk_name) {
+		this.wk_name = wk_name;
 	}
 	
 	

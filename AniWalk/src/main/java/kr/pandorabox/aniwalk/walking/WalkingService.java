@@ -16,4 +16,6 @@ public interface WalkingService {
 	public int recruitUpdate(WalkingDTO walking);
 	public List<ApplyWalkingDTO> applyList(String walking_id);
 	public int matching(Map<String, String> map);
+	//오늘 산책 정보
+	public List<WalkingDTO> todayWalking(Map<String,Object> map);
 }

@@ -70,5 +70,9 @@ public class WalkingServiceImpl implements WalkingService{
 	public int matching(Map<String, String> map) {
 		return walkingDao.matching(map);
 	}	
-
+	//오늘 산책 정보
+	@Override
+	public List<WalkingDTO> todayWalking(Map<String, Object> map) {
+		return walkingDao.todayWalking(map);
+	}
 }

@@ -71,5 +71,19 @@
 		update ani_walking set match_wk_id=#{match_wk_id},recruit_close_yn=1 where walking_id=#{walking_id}
 	
 	</update>
-	
+	<!-- 오늘 산책 일정 -->
+	<select id="todayWalking" parameterType="Map" resultType="walking">
+		<![CDATA[
+			select * from ani_walking w left outer join ani_member m
+			on w.recruit_mem_id = m.mem_id
+			left outer join ani_walker f
+			on f.wk_id = w.match_wk_id 
+			left outer join ani_dog d
+			on d.dog_id = w.dog_id
+			where m.mem_nickname = #{mem_nickname} 
+			and walk_date = to_date(#{walk_date},'YYYY-MM-DD')
+			and recruit_close_yn=1
+			and match_wk_id is not null
+		]]>
+	</select>
 </mapper>

@@ -23,4 +23,6 @@ public interface WalkingDAO {
 	public List<ApplyWalkingDTO> applyList(String walking_id);
 	//매칭
 	public int matching(Map<String, String> map);
+	//오늘 산책정보
+	public List<WalkingDTO> todayWalking(Map<String,Object> map);
 }

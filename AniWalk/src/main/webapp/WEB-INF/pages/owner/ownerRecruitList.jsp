@@ -32,7 +32,7 @@
 								<img src="/owner/${walkingDto.dog_image}" alt="" class="img-rounded">
 								<ul>
 									<li>
-										<label>견종 : ${walkingDto.walking_id}</label>
+										<label>견종 :</label>
 										<span>${walkingDto.dog_type}</span>
 									</li>
 									<li>

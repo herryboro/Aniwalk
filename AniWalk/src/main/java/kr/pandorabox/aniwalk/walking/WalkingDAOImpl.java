@@ -62,7 +62,11 @@ public class WalkingDAOImpl implements WalkingDAO{
 	public int matching(Map<String, String> map) {
 		return session.update("kr.pandorabox.aniwalk.walking.matching",map);
 	}
-	
+	//오늘 산책정보
+	@Override
+	public List<WalkingDTO> todayWalking(Map<String, Object> map) {
+		return session.selectList("kr.pandorabox.aniwalk.walking.todayWalking",map);
+	}
 	
 	
 }

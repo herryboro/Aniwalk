@@ -15,46 +15,42 @@
 <body>
 <div class="active-list">
 	<img src="${pageContext.request.contextPath}/images/ownerindex.png" alt="" class="img-rounded" style="background: rgba(52, 152, 219, 0.6)">
-	<h2>오늘 123개의 산책일정이 있습니다.</h2>
+	<h2>오늘 <span>${fn:length(todayList) }</span>개의 산책일정이 있습니다.</h2>
 	<div class="list-part">
-	
+		<c:forEach var="today" items="${todayList}">
 		<!-- 1개 시작 -->
 		<ul class="list-item onair">
 			<li style="justify-content: center">
-				<img class="img-rounded" alt="" src="${pageContext.request.contextPath}/images/applier.png">
-				<h4>프렌즈이름</h4>
+				<img class="img-rounded" alt="" src="/walker/${today.wk_profile_img1}">
+				<h4> ${today.wk_name}</h4>
 			</li>
 			<li>
 				<ol>
 					<li>
 						<label>시간 : </label>
-						<span>시작시간 ~ 종료시간 (분)</span>
+						<span> ${today.walk_start_time} ~  ${today.walk_end_time}</span>
 					</li>
 					<li>
 						<label>반려견 : </label>
-						<span>반려견 이름</span>
+						<span>${today.dog_name}</span>
 					</li>
 					<li>
 						<label>시작장소 : </label>
-						<span>시작 장소 주소</span>
+						<span>${today.recruit_location}</span>
 					</li>
 					<li>
 						<label>주의사항</label>
 					</li>
 					<li>
 						<div class="notice">
-							주의사항 내용주의사항 내용주의사항 내용주의사항 내용주의사항 내용주의사항 내용주의사항 내용주의사항 내용<br>
-							주의사항 내용주의사항 내용주의사항 내용주의사항 내용주의사항 내용<br>
-							주의사항 내용주의사항 내용주의사항 내용주의사항 내용주의사항 내용
-							주의사항 내용주의사항 내용주의사항 내용주의사항 내용주의사항 내용주의사항 내용주의사항 내용주의사항 내용주의사항 내용
-
+							${today.recruit_notices}
 						</div>
 					</li>
 				</ol>
 			</li>
 		</ul>
 		<!-- 1개 끝 -->
-		
+		</c:forEach>
 	</div>
 </div>
 <div class="modal-bg hidden">

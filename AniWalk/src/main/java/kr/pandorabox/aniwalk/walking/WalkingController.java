@@ -1,5 +1,7 @@
 package kr.pandorabox.aniwalk.walking;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -112,5 +114,26 @@ public class WalkingController {
 		walkingService.matching(map);
 		return "owner/activityList";
 	}
-	
+	//오늘 산책 일정
+	@RequestMapping("/owner/activityList.do")
+	public ModelAndView todayWalking(HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+		String mem_nickname = (String) req.getSession().getAttribute("mem_nickname");
+		
+		//현재 날짜
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		Date today = new Date();
+		String walk_date = format1.format(today);
+		System.out.println("222222222:"+walk_date);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mem_nickname", mem_nickname);
+		map.put("walk_date", walk_date);
+		
+		List<WalkingDTO> todayList =walkingService.todayWalking(map);
+		System.out.println("todayList:"+todayList);
+		
+		mav.addObject("todayList", todayList);
+		mav.setViewName("owner/activityList");
+		return mav;
+	}
 }
