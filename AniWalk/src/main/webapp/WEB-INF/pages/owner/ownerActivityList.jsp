@@ -97,38 +97,6 @@
 		</c:forEach>
 	</div>
 </div>
-<div class="modal-bg hidden">
-	<div class="modal-content">
-		<button class="close">&times;</button>
-		<div class="popup">
-			<h2>진행중인 산책이 아닙니다.</h2>
-			<button type="button" class="btn btn-primary close-btn">확인</button>
-		</div>
-	</div>
-</div>
-<script>
-	const listItem = document.querySelectorAll('.list-item');
-	const onAir = document.querySelectorAll('.onair');
-	const modalBg = document.querySelector('.modal-bg');
-	const close = document.querySelector('.close');
-	const closeBtn = document.querySelector('.close-btn');
-
-	for(var i=0; i<listItem.length; i++){
-		listItem[i].addEventListener('click',function(){
-			if(this.classList.contains('onair')){ //산책 진행 중
-				location.href = '/aniwalk/owner/activity.do';
-			}else {
-				modalBg.classList.remove('hidden'); //산책이 진행 중이 아님
-			}
-		})
-	}
-	close.addEventListener('click',function (){
-		modalBg.classList.add('hidden');
-	})
-	closeBtn.addEventListener('click',function (){
-		modalBg.classList.add('hidden');
-	})
-</script>
 
 </body>
 </html>
