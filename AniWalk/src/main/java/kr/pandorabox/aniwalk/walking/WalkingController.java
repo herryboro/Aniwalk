@@ -34,6 +34,16 @@ public class WalkingController {
 		return list;
 	}
 	
+	// 프렌즈 산책 정보 리스트
+	@RequestMapping("/walker/activList.do")
+	public ModelAndView getMissionList(HttpServletRequest req) {
+		String walker_id = (String) req.getSession().getAttribute("walker_id");
+		System.out.println(walker_id);
+		List<WalkingDTO> list = walkingService.getWalkingList(walker_id);
+		return new ModelAndView("walker/activList", "activList", list);
+	}
+
+	
 	// 산책 정보 가져오기
 	@RequestMapping("/walker/activiting.do")
 	public ModelAndView getMissionList(String walking_id) {

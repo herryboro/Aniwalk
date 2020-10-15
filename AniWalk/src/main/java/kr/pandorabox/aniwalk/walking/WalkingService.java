@@ -23,4 +23,6 @@ public interface WalkingService {
 	public int walkingRecruit(Map<String,String> map);
 	//오너 전체 산책 일정
 	public List<WalkingDTO> allWalking(String mem_nickname);
+	
+	public List<WalkingDTO> getWalkingList(String walker_id);
 }

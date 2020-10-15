@@ -16,6 +16,12 @@ public class WalkingServiceImpl implements WalkingService{
 	@Autowired
 	private FileUploadLogic upload;
 	
+	// 프렌즈 산책 리스트
+	@Override
+	public List<WalkingDTO> getWalkingList(String walker_id) {
+		return walkingDao.getWalkingList(walker_id);
+	}
+	
 	// 산책 미션 리스트
 	@Override
 	public List<WalkingDTO> getMissionList(String walking_id) {

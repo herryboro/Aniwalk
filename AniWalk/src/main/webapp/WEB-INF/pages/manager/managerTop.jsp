@@ -13,7 +13,7 @@
 	<a href="/aniwalk/index.do"><img src="${pageContext.request.contextPath}/images/main_logo.png" alt=""></a>
 
 	<ul class="nav-ul">
-		<li>로그인</li>
+		<a href="/aniwalk/manager/index.do"><li>로그인</li></a>
 		<li>로그아웃</li>
 		<li>000 관리자</li>
 	</ul>

@@ -111,4 +111,13 @@
 			order by w.real_walk_end_time desc, w.walk_date 
 		]]>
 	</select>
+	<!-- 프렌즈 산책 리스트 -->
+	<select id="getWalkingList" parameterType="String" resultType="walking">
+		select * from ani_walking w 
+		left outer join ani_dog d
+		on w.dog_id=d.dog_id 
+		left outer join ani_dog_img i
+		on w.dog_id=i.dog_id 
+		where match_wk_id=(select wk_id from ani_walker where walker_id=#{walker_id})
+	</select>
 </mapper>
