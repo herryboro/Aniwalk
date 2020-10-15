@@ -534,6 +534,12 @@ body{
     height: 50px;
     margin-top: 30px;
 }
+.mydog-del-modal-form{
+    width: 100%;
+
+    display: flex;
+    justify-content: space-around;
+}
 .mydog-del-modal-form button{
     width: 40%;
     height: 45px;

@@ -83,7 +83,7 @@
 									</li>
 								</ul>
 								<div class="mydog-btn">
-									<button type="button" class="btn btn-primary" value="dog_id">수정</button>
+									<button type="button" class="btn btn-primary mydog-update-btn" value="dog_id">수정</button>
 									<button type="button" class="btn btn-danger mydog-del-btn" value="dog_id">삭제</button>
 								</div>
 							</div>
@@ -133,7 +133,7 @@
 </div>
 
 <!-- 강아지 추가 모달 -->
-<div class="modal-bg hidden">
+<div class="modal-bg hidden dog-add-modal">
 	<div class="modal-content" onclick="event.stopPropagation()">
 		<button class="close-btn" type="button">&times;</button>
 		<form class="mydog-input" enctype="multipart/form-data" action="/aniwalk/owner/myPro.do" method="post">
@@ -179,6 +179,56 @@
 	</div>
 </div>
 
+<!-- 강아지 수정 모달 -->
+<div class="modal-bg hidden dog-update-modal">
+	<div class="modal-content" onclick="event.stopPropagation()">
+		<button class="close-btn" type="button">&times;</button>
+		<form class="mydog-input" enctype="multipart/form-data" action="/aniwalk/owner/myPro.do" method="post">
+			<div class="input-form">
+				<div>
+					<img id="dogUpdateImg" src="${pageContext.request.contextPath}/images/profile_test.png" alt="" class="img-rounded">
+					<h5>&lt;대표사진설정&gt;</h5>
+					<input id="UpdateuploadImg" type="file" class="hidden" name="files">
+				</div>
+				<div style="width: 40%">
+					<ul>
+						<li>
+							<label>* 이름</label>
+							<input type="text" class="form-control" name="dog_name" placeholder="강아지 이름을 입력해주세요">
+						</li>
+						<li>
+							<label>* 견종</label>
+							<select class="form-control" name="dog_type">
+								<option value="" selected>견종</option>
+								<option>포메라니안</option>
+								<option>폼피츠</option>
+								<option>사모예드</option>
+								<option>푸들</option>
+							</select>
+						</li>
+						<li>
+							<label>생일</label>
+							<input type="date" name="dog_birth" class="form-control">
+						</li>
+						<li>
+							<label>특징</label>
+						</li>
+						<li>
+							<label style="width: 100%">
+								<textarea class="form-control" name="dog_info" cols="20"></textarea>
+							</label>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="btn-line">
+				<button type="submit" class="btn btn-primary">수정</button>
+				<button id="updateModalClose" type="button" class="btn btn-default">취소</button>
+			</div>
+
+		</form>
+	</div>
+</div>
 
 <!-- 반려견 삭제 팝업 / delete문으로 삭제하면 에러남. update문으로 이름, 생일, 견종을 null로 만들어야함. 리스트 뿌릴때도 name이 아닌 것만 나오게 해주세요-->
 <div class="popup-bg hidden">
@@ -194,16 +244,16 @@
 
 <script>
 	const mydogAdd = document.querySelector('.mydog-add');
-	const modalBg = document.querySelector('.modal-bg');
+	const dogAddModal = document.querySelector('.dog-add-modal');
 	const close = document.querySelector('.close-btn');
 	mydogAdd.addEventListener('click',function(){
-		modalBg.classList.remove('hidden');
+		dogAddModal.classList.remove('hidden');
 	});
-	modalBg.addEventListener('click',function (){
-		modalBg.classList.add('hidden');
+	dogAddModal.addEventListener('click',function (){
+		dogAddModal.classList.add('hidden');
 	});
 	close.addEventListener('click',function (){
-		modalBg.classList.add('hidden');
+		dogAddModal.classList.add('hidden');
 	});
 </script>
 <script>
@@ -249,6 +299,27 @@
 		dogBirth[i].innerText = dogBirth[i].textContent.split(' ')[0];
 	}
 </script>
+
+<!--반려견 수정 모달-->
+<script>
+	const dogUpdateModal = document.querySelector('.dog-update-modal');
+	const dogUpdateBtn = document.querySelectorAll('.mydog-update-btn');
+	const updateModalClose = document.getElementById('updateModalClose');
+	for(let i=0; i<dogUpdateBtn.length; i++){
+		dogUpdateBtn[i].addEventListener('click',function (){
+			dogUpdateModal.classList.remove('hidden');
+			/*경찬이형 여기 ajax로 기존에 있는 데이터들 불러와야되요*/
+		});
+	}
+	dogUpdateModal.addEventListener('click',function (){
+		dogUpdateModal.classList.add('hidden');
+	});
+	updateModalClose.addEventListener('click',function (){
+		dogUpdateModal.classList.add('hidden');
+	})
+
+</script>
+
 
 <!--반려견 삭제 팝업창-->
 <script>
