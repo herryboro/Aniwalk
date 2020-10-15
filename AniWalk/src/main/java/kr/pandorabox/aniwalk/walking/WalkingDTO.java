@@ -24,7 +24,8 @@ public class WalkingDTO {
 	private String match_wk_id;
 	private String walking_map_path;
 	private String map_capture_img;
-	
+	private int walking_point;
+
 	//walking mission
 	private String mission_id;
 	private String mission_contents;
@@ -266,6 +267,12 @@ public class WalkingDTO {
 	}
 	public void setWalk_date(String walk_date) {
 		this.walk_date = walk_date;
+	}
+	public int getWalking_point() {
+		return walking_point;
+	}
+	public void setWalking_point(int walking_point) {
+		this.walking_point = walking_point;
 	}
 	
 	

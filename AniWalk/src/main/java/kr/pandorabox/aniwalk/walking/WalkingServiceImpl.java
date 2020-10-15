@@ -1,6 +1,7 @@
 package kr.pandorabox.aniwalk.walking;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,5 +58,17 @@ public class WalkingServiceImpl implements WalkingService{
 	public List<WalkingDTO> recruitlist(String mem_nickname) {
 		return walkingDao.recruitlist(mem_nickname);
 	}
+	@Override
+	public int recruitUpdate(WalkingDTO walking) {
+		return walkingDao.recruitUpdate(walking);
+	}
+	@Override
+	public List<ApplyWalkingDTO> applyList(String walking_id) {
+		return walkingDao.applyList(walking_id);
+	}
+	@Override
+	public int matching(Map<String, String> map) {
+		return walkingDao.matching(map);
+	}	
 
 }

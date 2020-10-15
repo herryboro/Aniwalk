@@ -14,6 +14,7 @@
 		<typeAlias type="kr.pandorabox.aniwalk.member.JoinMemberDogImgDTO" alias="joinMemberDogImage"/>
 		<typeAlias type="kr.pandorabox.aniwalk.manager.MemberDTO" alias="member"/>
 		<typeAlias type="kr.pandorabox.aniwalk.chat.ChatDTO" alias="chat"/>
+		<typeAlias type="kr.pandorabox.aniwalk.walking.ApplyWalkingDTO" alias="apply"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/member.xml"/>
