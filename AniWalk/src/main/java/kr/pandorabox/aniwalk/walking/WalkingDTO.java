@@ -25,6 +25,8 @@ public class WalkingDTO {
 	private String walking_map_path;
 	private String map_capture_img;
 	private int walking_point;
+	private String real_walk_start_time;
+	private String real_walk_end_time;
 
 	//walking mission
 	private String mission_id;
@@ -287,6 +289,18 @@ public class WalkingDTO {
 	}
 	public void setWk_name(String wk_name) {
 		this.wk_name = wk_name;
+	}
+	public String getReal_walk_start_time() {
+		return real_walk_start_time;
+	}
+	public void setReal_walk_start_time(String real_walk_start_time) {
+		this.real_walk_start_time = real_walk_start_time;
+	}
+	public String getReal_walk_end_time() {
+		return real_walk_end_time;
+	}
+	public void setReal_walk_end_time(String real_walk_end_time) {
+		this.real_walk_end_time = real_walk_end_time;
 	}
 	
 	

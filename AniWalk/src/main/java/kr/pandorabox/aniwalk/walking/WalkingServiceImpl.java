@@ -83,4 +83,8 @@ public class WalkingServiceImpl implements WalkingService{
 	public int walkingRecruit(Map<String, String> map) {
 		return walkingDao.walkingRecruit(map);
 	}
+	@Override
+	public List<WalkingDTO> allWalking(String mem_nickname) {
+		return walkingDao.allWalking(mem_nickname);
+	}
 }

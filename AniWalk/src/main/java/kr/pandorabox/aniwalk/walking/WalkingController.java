@@ -118,9 +118,10 @@ public class WalkingController {
 		walkingService.matching(map);
 		return "owner/activityList";
 	}
-	//오늘 산책 일정
-	@RequestMapping("/owner/activityList.do")
-	public ModelAndView todayWalking(HttpServletRequest req) {
+	
+	//오너 인덱스(오늘 산책일정이 여기에 떠야함)
+	@RequestMapping("/owner/index.do")
+	public ModelAndView ownerIndex(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		String mem_nickname = (String) req.getSession().getAttribute("mem_nickname");
 		
@@ -137,6 +138,20 @@ public class WalkingController {
 		System.out.println("todayList:"+todayList);
 		
 		mav.addObject("todayList", todayList);
+		mav.setViewName("owner/index");
+		return mav;
+	}
+	
+	//(전체 산책 일정)
+	@RequestMapping("/owner/activityList.do")
+	public ModelAndView todayWalking(HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+		String mem_nickname = (String) req.getSession().getAttribute("mem_nickname");
+		
+		List<WalkingDTO> allList =walkingService.allWalking(mem_nickname);
+		System.out.println("todayList:"+allList);
+		
+		mav.addObject("allList", allList);
 		mav.setViewName("owner/activityList");
 		return mav;
 	}

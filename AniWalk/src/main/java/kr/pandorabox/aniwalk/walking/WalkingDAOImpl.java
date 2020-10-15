@@ -77,6 +77,10 @@ public class WalkingDAOImpl implements WalkingDAO{
 	public int walkingRecruit(Map<String, String> map) {
 		return session.insert("kr.pandorabox.aniwalk.walking.walkingRecruit",map);
 	}
-	
+	//오너 전체 산책 일정
+	@Override
+	public List<WalkingDTO> allWalking(String mem_nickname) {
+		return session.selectList("kr.pandorabox.aniwalk.walking.allWalking",mem_nickname);
+	}
 	
 }

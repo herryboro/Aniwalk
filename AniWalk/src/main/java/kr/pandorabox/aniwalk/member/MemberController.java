@@ -36,7 +36,7 @@ public class MemberController {
 			System.out.println(request.getSession().getAttribute("mem_nickname"));
 			mav.addObject("mem_nickname", mem_nickname);
 			mav.addObject("kakao_id", kakao_id);
-			mav.setViewName("owner/index");
+			mav.setViewName("redirect:/owner/index.do");
 			return mav;
 		}			
 	}

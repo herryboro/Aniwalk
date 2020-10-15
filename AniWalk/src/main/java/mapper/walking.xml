@@ -96,4 +96,19 @@
 	<insert id="walkingRecruit" parameterType="Map">
 		insert into ani_apply values('apply'||lpad(seq_apply.nextval,5,0),#{wk_id},#{walking_id},sysdate)
 	</insert>
+	<!-- 전체 산책일정(매칭된것만) -->
+	<select id="allWalking" parameterType="String" resultType="walking">
+		<![CDATA[
+			select * from ani_walking w left outer join ani_member m
+			on w.recruit_mem_id = m.mem_id
+			left outer join ani_walker f
+			on f.wk_id = w.match_wk_id 
+			left outer join ani_dog d
+			on d.dog_id = w.dog_id
+			where m.mem_nickname = #{mem_nickname} 
+			and recruit_close_yn=1
+			and match_wk_id is not null
+			order by w.real_walk_end_time desc, w.walk_date 
+		]]>
+	</select>
 </mapper>
