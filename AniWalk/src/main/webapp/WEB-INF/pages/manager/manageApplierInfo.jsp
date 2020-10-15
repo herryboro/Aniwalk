@@ -66,7 +66,7 @@
 	                </li>
 	                <li>
 	                	<label>신청한 활동지역</label>
-	                	<span> ${walkerInfo[0].wk_location1} ${walkerInfo[0].wk_location2} </span>
+	                	<span> ${walkerInfo[0].wk_location1} / ${walkerInfo[0].wk_location2} </span>
 	                </li>
 	                <li>
 	                    <label>신청상태</label>
