@@ -24,18 +24,29 @@
 		<div class="subtitle">
 			<h4>My</h4>
 		</div>
-		<ul>
-			<li>
-				<label>포인트 : </label>
-				<span>${joinDtos.get(0).getMem_point()} point</span>
-				<button class="btn btn-success" type="button">포인트 충전</button>
-			</li>
-			<li>
-				<label>가입날짜 : </label>
-				<span><fmt:formatDate value="${joinDtos.get(0).getMem_join_date()}" pattern="yyyy-MM-dd"/></span>
-			</li>
-		</ul>
-		<button class="btn btn-primary" type="button">개인정보수정</button>
+		<div class="my-part-info">
+			<div class="img-part">
+				<img id="userImg" src="/aniwalk/images/profile_test.png" alt="" class="img-rounded">
+				<label>대표 프로필사진</label>
+			</div>
+
+			<ul>
+				<li>
+					<label>포인트 : </label>
+					<span>${joinDtos.get(0).getMem_point()} point</span>
+				</li>
+				<li>
+					<button class="btn btn-success" type="button">포인트 충전</button>
+				</li>
+				<li>
+					<label>가입날짜 : </label>
+					<span><fmt:formatDate value="${joinDtos.get(0).getMem_join_date()}" pattern="yyyy-MM-dd"/></span>
+				</li>
+				<li>
+					<button class="btn btn-primary" type="button">개인정보수정</button>
+				</li>
+			</ul>
+		</div>
 	</section>
 
 
@@ -213,10 +224,12 @@
 </script>
 
 <script>
+	//반려견 생일 시간 삭제
 	const dogBirth = document.querySelectorAll('.dog-birth');
 	for(let i=0; i<dogBirth.length; i++){
 		dogBirth[i].innerText = dogBirth[i].textContent.split(' ')[0];
 	}
 </script>
+
 </body>
 </html>

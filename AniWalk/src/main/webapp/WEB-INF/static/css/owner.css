@@ -315,17 +315,27 @@ body{
     margin-left: 100px;
     margin-top: 10px;
 }
-.my-part button{
-    margin: 20px auto 0 auto;
-}
+
 .my-part ul{
     position: relative;
     left: 35px;
 
 }
-.my-part ul li button{
-    position: relative;
-    left: 50px;
+.my-part .my-part-info{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 70%;
+    margin-top: 20px;
+}
+.my-part-info .img-part{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.my-part .my-part-info ul button{
+    width: 100%;
+    margin-bottom: 20px;
 }
 .mydogs{
     width: 100%;
@@ -440,6 +450,55 @@ body{
     width: 85%;
     height: 50px;
     margin: 0 auto;
+}
+
+
+/**************************************************
+
+    ownerMyInfoUpdate
+
+***************************************************/
+
+.myinfo-update{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.myinfo-update form{
+    width: 70%;
+    margin: 10px auto;
+}
+.myinfo-update form h3{
+    position: relative;
+    top: -50px;
+}
+.myinfo-update form table .img-part{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.myinfo-update form table input{
+    width: 90%;
+    margin-left: 20px;
+}
+.myinfo-update form table .select-city{
+    display: flex;
+    line-height: 33px;
+}
+.myinfo-update form table .select-city select{
+    margin: 0 10px;
+}
+.myinfo-update form table .btn-danger{
+    width: 150px;
+}
+.myinfo-update form table .btn-primary{
+    width: 100%;
+    height: 50px;
+    margin-top: 30px;
 }
 /**************************************************
 
