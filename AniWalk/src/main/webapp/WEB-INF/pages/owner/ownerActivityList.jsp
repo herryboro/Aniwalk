@@ -15,45 +15,85 @@
 <body>
 <div class="active-list">
 	<img src="${pageContext.request.contextPath}/images/ownerindex.png" alt="" class="img-rounded" style="background: rgba(52, 152, 219, 0.6)">
-	<h2>오늘 <span>${fn:length(todayList) }</span>개의 산책일정이 있습니다.</h2>
+	<h2>총 <span>${fn:length(allList) }</span>개의 산책일정이 있습니다.</h2>
 	<div class="list-part">
-		<c:forEach var="today" items="${todayList}">
-		<!-- 1개 시작 -->
-		<ul class="list-item">
-			<li style="justify-content: center">
-				<img class="img-rounded" alt="" src="/walker/${today.wk_profile_img1}">
-
-			</li>
-			<li style="width: 50%">
-				<ol>
-					<li>
-						<label>펫프렌즈 : </label>
-						<span>${today.wk_name}</span>
+		<c:forEach var="all" items="${allList}">
+			<c:if test="${all.real_walk_end_time eq null}">
+				<!-- 1개 시작 -->
+				<ul class="list-item onair">
+					<li style="justify-content: center">
+						<img class="img-rounded" alt="" src="/walker/${all.wk_profile_img1}">
+		
 					</li>
-					<li>
-						<label>시간 : </label>
-						<span> ${today.walk_start_time} ~  ${today.walk_end_time}</span>
+					<li style="width: 50%">
+						<ol>
+							<li>
+								<label>펫프렌즈 : </label>
+								<span>${all.wk_name}</span>
+							</li>
+							<li>
+								<label>시간 : </label>
+								<span> ${all.walk_start_time} ~  ${all.walk_end_time}</span>
+							</li>
+							<li>
+								<label>반려견 : </label>
+								<span>${all.dog_name}</span>
+							</li>
+							<li>
+								<label>시작장소 : </label>
+								<span>${all.recruit_location}</span>
+							</li>
+							<li>
+								<label>주의사항</label>
+							</li>
+							<li>
+								<div class="notice">
+									${all.recruit_notices}
+								</div>
+							</li>
+						</ol>
 					</li>
-					<li>
-						<label>반려견 : </label>
-						<span>${today.dog_name}</span>
+				</ul>
+				<!-- 1개 끝 -->
+			</c:if>
+			<c:if test="${all.real_walk_end_time ne null}">
+				<!-- 1개 시작 -->
+				<ul class="list-item">
+					<li style="justify-content: center">
+						<img class="img-rounded" alt="" src="/walker/${all.wk_profile_img1}">
+		
 					</li>
-					<li>
-						<label>시작장소 : </label>
-						<span>${today.recruit_location}</span>
+					<li style="width: 50%">
+						<ol>
+							<li>
+								<label>펫프렌즈 : </label>
+								<span>${all.wk_name}</span>
+							</li>
+							<li>
+								<label>시간 : </label>
+								<span> ${all.walk_start_time} ~  ${all.walk_end_time}</span>
+							</li>
+							<li>
+								<label>반려견 : </label>
+								<span>${all.dog_name}</span>
+							</li>
+							<li>
+								<label>시작장소 : </label>
+								<span>${all.recruit_location}</span>
+							</li>
+							<li>
+								<label>주의사항</label>
+							</li>
+							<li>
+								<div class="notice">
+									${all.recruit_notices}
+								</div>
+							</li>
+						</ol>
 					</li>
-					<li>
-						<label>주의사항</label>
-					</li>
-					<li>
-						<div class="notice">
-							${today.recruit_notices}
-						</div>
-					</li>
-				</ol>
-			</li>
-		</ul>
-		<!-- 1개 끝 -->
+				</ul>
+				<!-- 1개 끝 -->
+			</c:if>
 		</c:forEach>
 	</div>
 </div>
