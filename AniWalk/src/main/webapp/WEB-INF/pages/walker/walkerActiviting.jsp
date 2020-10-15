@@ -108,21 +108,6 @@
 				</li>
 			</ul>
 			<div class="mission-img">
-				<c:forEach var="mission" varStatus="status" items="${missionList}">
-				<c:set var="imgList" value="${fn:split(mission.mission_img,'/')}" ></c:set>
-					<c:if test="${status.first}"><div>${mission.mission_contents}</div></c:if>
-					<c:if test="${!status.first && (missionList[status.index].mission_contents != missionList[status.index-1].mission_contents)}">
-						<div>${mission.mission_contents}</div>
-					</c:if>
-					<c:forEach var="img" items="${imgList}">
-						<c:if test="${fn:contains(img, '.mp4') or fn:contains(img, '.avi')}">
-							<video src="/walking/${img}" class="activ-img img-rounded" muted autoplay="autoplay" loop="loop"></video>
-						</c:if>
-						<c:if test="${!fn:contains(img, '.mp4') and !fn:contains(img, '.avi')}">
-			    			<img src="/walking/${img}" alt="" class="activ-img img-rounded">
-			    		</c:if>
-		    		</c:forEach>
-				</c:forEach>
 			</div>
 		</div>
 	</div>
@@ -143,7 +128,7 @@
 	let mapContainer = document.getElementById('map'), // 지도를 표시할 div
 			mapOption = {
 				center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-				level: 5 // 지도의 확대 레벨
+				level: 3 // 지도의 확대 레벨
 			};
 	let map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 	let markers = []; //지도에 표시된 마커 객체를 가지고 있을 배열입니다
@@ -158,24 +143,38 @@
 	map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 	
 	// 지도에 마커 추가
-	const walkingAction = function (lat, lng) {
+	const walkingAction = function (lat, lng, content) {
 		var locPosition = new kakao.maps.LatLng(lat, lng);
+		var imageSrc = '', // 마커이미지의 주소입니다
+		imageSize = new kakao.maps.Size(32, 35), // 마커이미지의 크기입니다
+		imageOption = {offset: new kakao.maps.Point(20, 30)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 		
-		var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
-	    imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
-	    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+		switch(content){
+		case "start" : imageSrc = '/aniwalk/images/start.png'; break;
+		case "water" : imageSrc = '/aniwalk/images/water.png'; break;
+		case "snack" : imageSrc = '/aniwalk/images/snack.png'; break;
+		case "pee" : imageSrc = '/aniwalk/images/pee.png'; break;
+		case "oops" : imageSrc = '/aniwalk/images/oops.png'; break;
+		case "end" : imageSrc = '/aniwalk/images/end.png'; break;
+		case "current" : imageSrc = '/aniwalk/images/current.png';imageSize = new kakao.maps.Size(20, 20); break;
+		}
 	    
-	 	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-	    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
+		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
 		// 마커를 생성합니다
 	    var marker = new kakao.maps.Marker({
 	        position: locPosition, 
 	        image: markerImage // 마커이미지 설정 
 	    });
-		markers.push(marker)
+		
+		if(content=='current'){
+			markers[0] = marker;
+		}else{
+			markers.push(marker)
+		}
 		
 		// 마커가 지도 위에 표시되도록 설정합니다
 		marker.setMap(map);  
+		map.setCenter(locPosition);
 	}
 	
 	// 좌표로 주소 불러오기
@@ -190,7 +189,8 @@
 			}
 		};
 		message = '<div style="padding:5px;">현재위치</div>';
-		displayMarker(coord, message);
+		walkingAction(currentlat,currentlng,'current')
+		//displayMarker(coord, message);
 		geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
 	}
 	
@@ -207,16 +207,18 @@
 				var locPosition = new kakao.maps.LatLng(currentlat, currentlng), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
 						message = '<div style="padding:5px;">현재위치</div>'; // 인포윈도우에 표시될 내용입니다
 				// 마커와 인포윈도우를 표시합니다
-				displayMarker(locPosition, message);
+				//displayMarker(locPosition, message);
 				coord2Address(locPosition)
 			});
 
 		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
 			var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
 					message = 'geolocation을 사용할수 없어요..'
-
-			displayMarker(locPosition, message);
+			
+			
+			//displayMarker(locPosition, message);
 		}
+		walkingAction(currentlat,currentlng,'current')
 	}
 
 	// 지도에 현재 위치의 마커와 인포윈도우를 표시하는 함수입니다
@@ -397,7 +399,7 @@
 					input.prev().prev().empty();
 					input.prev().prev().append('<img src="/aniwalk/images/main_logo.png" alt="" class=" img-rounded">');
 					action();
-					walkingAction(currentlat, currentlng);
+					walkingAction(currentlat, currentlng, $('#mission').val());
 					removeWhite();
 					if($('#mission').val() == 'start') {
 						activeBtn[2].click();
@@ -494,13 +496,34 @@
 		saveImg(e);
 	})
 	
+	
 	$(document).ready(function(){
-		if($('.mission-img').children().length){
+		currentPosition(); // 현재 위치 호출 함수
+		
+		if("${missionList.size()}" != 0){
 			$('#input-list > li').addClass('hidden');
 			action()
 			removeWhite()
+			let location = [];
+			let locationlist = [];
+			let data = [];
+			let datalist = [];
+			<c:forEach var="mission" items="${missionList}">
+				location = "${mission.mission_perform_location}".split(',')
+				location.push("${mission.mission_contents}");
+				locationlist.push(location);
+				data = {
+						mission_contents : "${mission.mission_contents}",
+						mission_img : "${mission.mission_img}",
+				}
+				datalist.push(data);
+			</c:forEach>
+			for(let i=0;i<datalist.length;i++){
+				walkingAction(locationlist[i][0], locationlist[i][1], locationlist[i][2]);
+			}
+			loadImg(datalist);
 		}	
-		currentPosition(); // 현재 위치 호출 함수
+		
 	})
 </script>
 </body>
