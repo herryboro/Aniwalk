@@ -25,7 +25,7 @@
 						<img class="img-rounded" alt="" src="/walker/${all.wk_profile_img1}">
 		
 					</li>
-					<li style="width: 50%">
+					<li style="width: 55%">
 						<ol>
 							<li>
 								<label>펫프렌즈 : </label>

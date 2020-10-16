@@ -22,10 +22,13 @@
 		<ul class="list-item onair">
 			<li style="justify-content: center">
 				<img class="img-rounded" alt="" src="/walker/${today.wk_profile_img1}">
-				<h4> ${today.wk_name}</h4>
 			</li>
-			<li>
+			<li style="width: 55%">
 				<ol>
+					<li>
+						<label>펫프렌즈</label>
+						<label>${today.wk_name}</label>
+					</li>
 					<li>
 						<label>시간 : </label>
 						<span> ${today.walk_start_time} ~  ${today.walk_end_time}</span>

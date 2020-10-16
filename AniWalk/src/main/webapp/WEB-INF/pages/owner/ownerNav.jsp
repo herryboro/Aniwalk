@@ -12,11 +12,13 @@
 
 
 <div class="ownerNav">
-	<img src="${pageContext.request.contextPath}/images/main_logo.png" alt=""
+	<img src="/aniwalk/images/main_logo.png" alt=""
 			onclick="location.href='/aniwalk/owner/index.do'">
 	<ul>
 		<li>
-			<img class="img-circle" src="/owner/${filename}" alt="" onclick="location.href='/aniwalk/owner/my.do'">
+			<img class="img-circle" src="/owner/${filename}" alt=""
+				 onclick="location.href='/aniwalk/owner/my.do'"
+				 onerror="this.src='/aniwalk/images/profile_test.png'">
 			<label onclick="location.href='/aniwalk/owner/my.do'"> ${mem_nickname} </label>
 		</li>
 		<li>

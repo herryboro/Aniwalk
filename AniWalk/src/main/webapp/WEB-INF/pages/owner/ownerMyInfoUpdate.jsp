@@ -22,7 +22,8 @@
 				<tr>
 					<th colspan="2">
 						<div class="img-part">
-							<img id="userImg" src="/aniwalk/images/profile_test.png" alt="" class="img-rounded">
+							<img style="width: 200px;" id="userImg"
+								 src="/aniwalk/images/profile_test.png" alt="" class="img-rounded">
 							<h5>&lt;대표사진설정&gt;</h5>
 							<input id="userInputImg" type="file" class="hidden" name="files">
 						</div>
@@ -30,7 +31,7 @@
 				</tr>
 				<tr>
 					<th>닉네임</th>
-					<td><input type="text" class="form-control" value="오너닉네임" name="mem_nickname"></td>
+					<td><input type="text" class="form-control" value="${mem_nickname}" name="mem_nickname"></td>
 				</tr>
 				<tr>
 					<th>전화번호</th>

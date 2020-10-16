@@ -26,7 +26,8 @@
 		</div>
 		<div class="my-part-info">
 			<div class="img-part">
-				<img id="userImg" src="/owner/${filename}" alt="" class="img-rounded">
+				<img id="userImg" src="/owner/${filename}" alt="" class="img-rounded"
+					 onerror="this.src='/aniwalk/images/profile_test.png'">
 				<label>대표 프로필사진</label>
 			</div>
 
