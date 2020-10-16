@@ -88,5 +88,10 @@ public class WalkingDAOImpl implements WalkingDAO{
 	public List<WalkingDTO> allWalking(String mem_nickname) {
 		return session.selectList("kr.pandorabox.aniwalk.walking.allWalking",mem_nickname);
 	}
+	//워커 모집글 중복 신청 확인
+	@Override
+	public int applyCheck(Map<String, String> map) {
+		return session.selectOne("kr.pandorabox.aniwalk.walking.applyCheck",map);
+	}
 	
 }

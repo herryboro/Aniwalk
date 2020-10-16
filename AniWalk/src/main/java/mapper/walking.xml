@@ -120,4 +120,9 @@
 		on w.dog_id=i.dog_id 
 		where match_wk_id=(select wk_id from ani_walker where walker_id=#{walker_id})
 	</select>
+	<!-- 워커 산책 신청시 중복인지 확인 -->
+	<select id="applyCheck" parameterType="Map" resultType="int">
+		select count(*) from ani_apply where walking_id = #{walking_id}
+		and apply_wk_id = #{wk_id} 
+	</select>
 </mapper>
