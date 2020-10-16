@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -29,7 +31,7 @@
 			<c:forEach var="walker" items="${walkerList}">
 				<ul class="list-item" onclick="location.href='/aniwalk/owner/walkerInfo.do?wk_id=${walker.wk_id}'">
 					<li>
-						<img src="/walker/${walker.wk_profile_img1}" alt=""></a>
+						<img src="/walker/${walker.wk_profile_img1}" alt="">
 					</li>
 					<li>
 						<ul>
@@ -46,8 +48,11 @@
 							</li>
 							<li>
 								<ul>
-									<li class="addr">${walker.wk_addr}</li>						
-									<li>${walker.wk_certificate_list}</li>														
+									<li class="addr">${walker.wk_addr}</li>	
+									<c:set var="certiList" value="${fn:split(walker.wk_certificate_list,'/')}"/>					
+									<c:forEach var="certi" items="${certiList}">
+										<li>${certi}</li>
+									</c:forEach>														
 								</ul>
 							</li>
 						</ul>

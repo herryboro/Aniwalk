@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,8 +39,10 @@
 				<li>
 					<ul>
 						<li class="addr">${walkerInfo[0].wk_addr}</li>
-						<li>${walkerInfo[0].wk_certificate_list}</li>
-						
+						<c:set var="certiList" value="${fn:split(walkerInfo[0].wk_certificate_list,'/')}"/>					
+						<c:forEach var="certi" items="${certiList}">
+							<li>${certi}</li>
+						</c:forEach>
 					</ul>
 				</li>
 				<li>

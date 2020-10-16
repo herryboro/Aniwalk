@@ -116,11 +116,15 @@
 					var end ="'";
 					$('#list').empty();
 					for (var i=0; i<data.length; i++){
+						var certiList = data[i].wk_certificate_list.split('/');
 						add += '<div class="list-item"><img src="/walker/'+data[i].wk_profile_img1+'" alt="" class="img-rounded">' ; 
 						add += '<div class="right-part"><ul><li><div><div class="star-rating"><span style="width:30%"></span>';
 						add += '</div></div></li><li><h4>'+data[i].wk_intro+'</h4></li><li><h3>'+data[i].wk_name+'</h3></li>';
-						add += '<li><ul><li class="addr">'+data[i].wk_addr+'</li><li>'+data[i].wk_certificate_list+'</li></ul></li>' ; 
-						add += '<li><button class="btn btn-primary" type="button" onclick="'+move+data[i].apply_wk_id+'&walking_id='+walking_id+end+'">매칭하기</button></li></ul></div></div>';
+						add += '<li><ul><li class="addr">'+data[i].wk_addr+'</li>';
+						for(var j=0; j<certiList.length-1;j++){
+							add += '<li>'+certiList[j]+'</li>';	
+						}
+						add += '</ul></li><li><button class="btn btn-primary" type="button" onclick="'+move+data[i].apply_wk_id+'&walking_id='+walking_id+end+'">매칭하기</button></li></ul></div></div>';
 					}
 					$('#list').empty();
 					$('#list').append(add);
