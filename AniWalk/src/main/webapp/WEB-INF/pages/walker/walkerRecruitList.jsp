@@ -32,6 +32,7 @@
 	<!-- 모집글 리스트 -->
 	<div class="list-part">
 		<div class="row">
+		<input name="wk_id" id="wk_id" type="hidden" value="${wk_id}">
 			<c:forEach var="recruit" items="${recruitList}">
 				<div class="form-group col-md-4" onclick="location.href='#'">
 					<img src="/owner/${recruit.dog_image}" alt="" class="img-rounded">
@@ -125,8 +126,8 @@
 </div>
 
 <!-- 신청시 팝업 -->
-<div class="popup-bg hidden">
-	<div class="popup-content" onclick="event.stopPropagation()">
+<div class="popup-bg hidden" >
+	<div class="popup-content" id="applyCheck" onclick="event.stopPropagation()">
 		<h3 style="text-align: center; margin-bottom: 50px;">신청하시겠습니까?</h3>
 		<form class="recruit-apply-modal-form" action="/aniwalk/walker/walkingRecruit.do">
 			<input id="sendRecruitId" type="hidden" value="">
@@ -168,18 +169,61 @@
 	const cancelBtn = document.querySelector('.btn-danger');
 	const sendRecruitId = document.getElementById('sendRecruitId');
 	
+	//walking_id 가져오기 
 	var i = 0;
 	var walkingList = new Array();
 	<c:forEach var='info' items='${recruitList}'>
 		walkingList[i] ='${info.walking_id}';
 		i += 1;
 	</c:forEach>
+
 	for(let i=0; i<applyBtn.length; i++){
 		applyBtn[i].addEventListener('click',function (){
-			popupBg.classList.remove('hidden');
-			sendRecruitId.value = this.value;
-			console.log("Walking_id====>"+walkingList[i]);
-			document.getElementById("setWalking_id").value = walkingList[i];
+	
+			//워커가 이 신청글에 신청 했었는지
+			$.ajax({
+				url: "/aniwalk/walking/applyCheck.do" ,
+				type: "get",
+				data:  {
+							"walking_id" : walkingList[i] ,
+							"wk_id" : $('#wk_id').val()
+						},
+				success: function(data){ 
+					console.log(data);
+					if(data>=1){ //신청 이력이 있는 경우 
+						popupBg.classList.remove('hidden');		
+						var add='';
+						add += '<h3 style="text-align: center; margin-bottom: 50px;">이미 신청하셨습니다.</h3>';
+						add += '<p align="center"><button class="btn btn-danger" type="button">확인</button></p>';
+						add += '<input id="sendRecruitId" type="hidden" value="">';
+						$('#applyCheck').empty();
+						$('#applyCheck').append(add);
+						sendRecruitId.value = this.value;
+					}else{ //신청 이력이 없는 경우
+						var add='<h3 style="text-align: center; margin-bottom: 50px;">신청하시겠습니까?</h3>';
+						add += '<form class="recruit-apply-modal-form" action="/aniwalk/walker/walkingRecruit.do">';
+						add += '<input id="sendRecruitId" type="hidden" value="">';
+						add += '<input name="wk_id" id="wk_id" type="hidden" value="${wk_id}">';
+						add += '<input id="setWalking_id" name="walking_id" type="hidden" value="">';
+						add += '<button class="btn btn-primary" type="submit">신청</button>';
+						add += '<button class="btn btn-danger" type="button">취소</button></form>';
+						
+						popupBg.classList.remove('hidden');
+						$('#applyCheck').empty();
+						$('#applyCheck').append(add);
+						
+						sendRecruitId.value = this.value;
+						console.log("Walking_id====>"+walkingList[i]);
+						document.getElementById("setWalking_id").value = walkingList[i];
+					}
+
+				},
+				error: function(a,b,c){ //ajax 실패시 원인
+					alert("에러"+c);00
+				}
+			})
+			
+
 		});
 	}
 	popupBg.addEventListener('click',function (){

@@ -177,4 +177,19 @@ public class WalkingController {
 		walkingService.walkingRecruit(map);
 		return "redirect:/walker/recruitlist.do";
 	}
+	//워커 산책 신청시 신청했었는지 확인
+	
+	@RequestMapping(value="/walking/applyCheck.do",
+			method = RequestMethod.GET,
+			produces = "application/json;charset=utf-8")
+	public @ResponseBody int applyCheck(String walking_id,String wk_id) {
+		System.out.println("신청체크====>"+walking_id+"::"+wk_id);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("walking_id", walking_id);
+		map.put("wk_id", wk_id);
+		
+		int result=walkingService.applyCheck(map);
+		
+		return result;
+	}
 }
