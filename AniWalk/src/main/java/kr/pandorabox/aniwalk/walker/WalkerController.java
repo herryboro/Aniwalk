@@ -212,7 +212,8 @@ public class WalkerController {
 		
 		List<String[]> location = new ArrayList<String[]>();
 		location.add(walkerDto.getWk_location1().split(" "));
-		if(walkerDto.getWk_location2()!=null ||! walkerDto.getWk_location2().equals("")) {
+		System.out.println(walkerDto.getWk_location2());
+		if(walkerDto.getWk_location2() != null && ! walkerDto.getWk_location2().equals("")) {
 			location.add(walkerDto.getWk_location2().split(" "));
 		}
 		
