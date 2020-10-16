@@ -1340,6 +1340,16 @@ body{
     top: 50px;
     height: 50px;
 }
+.active-modal{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.active-modal button{
+    width: 100%;
+}
 /**************************************************
 
     ownerActiviting

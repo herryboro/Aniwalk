@@ -836,13 +836,18 @@ section .search-part form label{
 .walker-activing .content-part{
     display: flex;
     justify-content: space-around;
+    overflow: scroll;
 }
 .walker-activing .activing-input{
     width: 35%;
 }
-.walker-activing .activing-input .output img{
-    width: 45%;
-
+.walker-activing .activing-input .align-center{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.walker-activing .activing-input .align-center img{
+    margin: 10px;
 }
 .walker-activing .active-title{
     color: var(--white);
@@ -883,4 +888,8 @@ section .search-part form label{
 }
 .walker-activing .active-menu i{
     padding-top: 10px;
+}
+
+.walker-activing .content-part .mission-img img{
+    margin: 10px;
 }

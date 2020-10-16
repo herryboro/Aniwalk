@@ -34,7 +34,7 @@
 						<span id="walkingStartTime"></span>
 					</div>
 					<form id='start' name="startImgForm" class="upload-part" enctype="multipart/form-data">
-						<div onclick="startImgClick()">
+						<div class="align-center" onclick="startImgClick()">
 							<img src="/aniwalk/images/main_logo.png" alt="" class="img-rounded">
 						</div>
 						<input id="startImg" name="files" type="file" class="hidden" multiple="multiple">
@@ -47,7 +47,7 @@
 						<h4>mission : 급수</h4><button class="btn" type="button" onclick="closeBtn()">X</button>
 					</div>
 					<form id='water' name="missionImgForm" class="upload-part" enctype="multipart/form-data">
-						<div onclick="waterImgClick()">
+						<div class="align-center" onclick="waterImgClick()">
 							<img src="/aniwalk/images/main_logo.png" alt="" class="img-rounded">
 						</div>
 						<input id="waterImg" name="files" type="file" class="hidden" multiple="multiple">
@@ -60,7 +60,7 @@
 						<h4>mission : 간식</h4><button class="btn" type="button" onclick="closeBtn()">X</button>
 					</div>
 					<form id='snack' name="missionImgForm" class="upload-part" enctype="multipart/form-data">
-						<div onclick="snackImgClick()">
+						<div class="align-center" onclick="snackImgClick()">
 							<img src="/aniwalk/images/main_logo.png" alt="" class="img-rounded">
 						</div>
 						<input id="snackImg" name="files" type="file" class="hidden" multiple="multiple">
@@ -73,7 +73,7 @@
 						<h4>mission : 배변</h4><button class="btn" type="button" onclick="closeBtn()">X</button>
 					</div>
 					<form id='pee' name="missionImgForm" class="upload-part" enctype="multipart/form-data">
-						<div onclick="peeImgClick()">
+						<div class="align-center" onclick="peeImgClick()">
 							<img src="/aniwalk/images/main_logo.png" alt="" class="img-rounded">
 						</div>
 						<input id="peeImg" name="files" type="file" class="hidden" multiple="multiple">
@@ -86,7 +86,7 @@
 						<h4>mission : 긴급</h4><button class="btn" type="button" onclick="closeBtn()">X</button>
 					</div>
 					<form id='oops' name="missionImgForm" class="upload-part" enctype="multipart/form-data">
-						<div onclick="oopsImgClick()">
+						<div class="align-center" onclick="oopsImgClick()">
 							<img src="/aniwalk/images/main_logo.png" alt="" class="img-rounded">
 						</div>
 						<input id="oopsImg" name="files" type="file" class="hidden" multiple="multiple">
@@ -99,7 +99,7 @@
 						<h4>산책종료</h4><button class="btn" type="button" onclick="closeBtn()">X</button>
 					</div>
 					<form id='end' name="missionImgForm" class="upload-part" enctype="multipart/form-data">
-						<div onclick="endImgClick()">
+						<div class="align-center" onclick="endImgClick()">
 							<img src="/aniwalk/images/main_logo.png" alt="" class="img-rounded">
 						</div>
 						<input id="endImg" name="files" type="file" class="hidden" multiple="multiple">
@@ -110,6 +110,7 @@
 			<div class="mission-img">
 			</div>
 		</div>
+
 	</div>
 	<div class="active-menu">
 		<i class="fas fa-walking color-white"></i>
