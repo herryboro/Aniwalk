@@ -92,7 +92,7 @@
 			<div>
 				<label>비밀번호</label>
 				<label class="input-label">
-					<input type="password" class="form-control" id="pw" placeholder="비밀번호를 입력하세요" id="pw_check">
+					<input type="password" class="form-control" id="pw" placeholder="비밀번호를 입력하세요"	>
 				</label>
 			</div>
 			<button type="button" class="btn btn-primary" onclick="check()">비밀번호 입력</button>
@@ -121,7 +121,7 @@
 				alert("비밀번호가 일치하지 않습니다.");
 				$('#pw').val("");
 			}else{
-				location.href="myInfo.do";
+				location.href="/aniwalk/walker/myInfo.do";
 			}
 		}
 	</script>

@@ -91,7 +91,7 @@
 	                </li>
 	                <li>
 	                    <label>활동지역</label>
-	                    <span>서울특별시 서초구</span>
+	                    <span>${walkerInfo[0].wk_location1} / ${walkerInfo[0].wk_location2}</span>
 	                </li>
 	                <li>
 	                    <label>활동상태</label>
