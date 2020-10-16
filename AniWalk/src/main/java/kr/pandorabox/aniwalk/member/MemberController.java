@@ -90,10 +90,7 @@ public class MemberController {
 		String mem_nickname = (String) request.getSession().getAttribute("mem_nickname");
 		
 		String getForeign_Mem_id = memberService.getMem_id(mem_nickname);
-//		String getForeign_Dog_id = memberService.getDog_id(getForeign_Mem_id);
-		
 		joinMemberDogImgDTO.setMem_id(getForeign_Mem_id);
-//		joinMemberDogImgDTO.setDog_id(getForeign_Dog_id);
 	
 		ModelAndView mav = new ModelAndView();
 		
@@ -119,12 +116,28 @@ public class MemberController {
 		return mav;
 	}
 	
+	// 반려견 정보 수정
+	public ModelAndView modifyDogInfo(HttpServletRequest req) {
+		String mem_nickname = (String)req.getSession().getAttribute("mem_nickname");
+		ModelAndView mav = new ModelAndView();
+		
+		return mav;
+	}
+	
+	// 반려견 정보 삭제 
+	public ModelAndView delDogInfo() {
+		ModelAndView mav = new ModelAndView();
+		
+		return mav;
+	}
+	
 	// 회원 정보 수정 뷰단
 		@RequestMapping("/owner/ownerMyInfoUpdate.do")
 		public ModelAndView modifyInfo(HttpServletRequest req) {
 			String mem_nickname = (String)req.getSession().getAttribute("mem_nickname");
 			String mem_phone = memberService.getPhone_number(mem_nickname);
 			String filename = memberService.getProfile(mem_nickname);
+			
 			ModelAndView mav = new ModelAndView();
 			mav.addObject("phone", mem_phone);
 			mav.addObject("filename", filename);
@@ -152,9 +165,12 @@ public class MemberController {
 			}
 			
 			int result = memberService.updateUserInfo(joinMemberDogImgDTO, filelist);
+			String filename = memberService.getProfile(mem_nickname);
 
 			if(result == 1) {
+				req.getSession().setAttribute("filename", filename);
 				req.getSession().setAttribute("mem_nickname", joinMemberDogImgDTO.getMem_nickname());
+				mav.addObject("filename", filename);
 				mav.setViewName("redirect:/owner/my.do");	
 			} else if(result == 2) {
 				mav.setViewName("redirect:/owner/my.do");
