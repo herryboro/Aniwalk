@@ -14,7 +14,7 @@
 
 	<ul class="nav-ul">
 		<a href="/aniwalk/manager/index.do"><li>로그인</li></a>
-		<li>로그아웃</li>
+		<a href="/aniwalk/manager/logout.do"><li>로그아웃</li></a>
 		<li>000 관리자</li>
 	</ul>
 </div>

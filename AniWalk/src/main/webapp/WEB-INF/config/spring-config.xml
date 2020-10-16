@@ -108,21 +108,23 @@
 	</aop:config>
 	
 	<!-- 인터셉터 객체 생성 -->
-	<!--  
+	  
 	<beans:bean id="LoginInterceptor" class="kr.pandorabox.aniwalk.LoginInterceptor">
 	</beans:bean>
-	-->
-	<!-- Interceptor 설정 
+	
+	<!-- Interceptor 설정 -->
 	<interceptors>
 	    <interceptor>
 	        <mapping path="/owner/*"/>  
-	        <mapping path="/walker/*"/>     
+	        <mapping path="/walker/*"/>  
+	        <mapping path="/manager/*"/>   
 	        <exclude-mapping path="/resources/**"/>
-	        <exclude-mapping path="/walker/index.do"/>
+	        <exclude-mapping path="/walker/index*.do"/>
+	        <exclude-mapping path="/manager/index*.do"/>
 	        <exclude-mapping path="/walker/*Check.do"/>
 	        <exclude-mapping path="/walker/*auth*"/>
 	        <beans:ref bean="LoginInterceptor"/>
 	    </interceptor>
-	</interceptors>-->
+	</interceptors>
 	
 </beans:beans>

@@ -17,6 +17,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
         // login처리를 담당하는 사용자 정보를 담고 있는 객체를 가져옴
         Object owner = session.getAttribute("mem_nickname");
         Object walker = session.getAttribute("walker_id");
+        Object manager = session.getAttribute("manager_id");
           
         if ( uri.contains("/owner/") & owner == null ){
             // 로그인이 안되어 있는 상태임으로 로그인 폼으로 다시 돌려보냄(redirect)
@@ -29,10 +30,11 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
         	return false;
         }
         
+        if ( uri.contains("/manager/") & manager == null) {
+        	response.sendRedirect("/aniwalk/manager/index.do");
+        	return false;
+        }
         
-          
-        // preHandle의 return은 컨트롤러 요청 uri로 가도 되냐 안되냐를 허가하는 의미임
-        // 따라서 true로하면 컨트롤러 uri로 가게 됨.
         return true;
     }
 }
