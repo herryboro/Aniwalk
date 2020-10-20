@@ -1,5 +1,6 @@
 package kr.pandorabox.aniwalk.walking;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,14 +19,21 @@ public class WalkingServiceImpl implements WalkingService{
 	
 	// 프렌즈 산책 리스트
 	@Override
-	public List<WalkingDTO> getWalkingList(String walker_id) {
-		return walkingDao.getWalkingList(walker_id);
+	public List<WalkingDTO> getWalkingList(String walking_id) {
+		return walkingDao.getWalkingList(walking_id);
 	}
 	
 	// 산책 미션 리스트
 	@Override
 	public List<WalkingDTO> getMissionList(String walking_id) {
-		return walkingDao.getMissionList(walking_id);
+		List<WalkingDTO> list = walkingDao.getMissionList(walking_id);
+		for (WalkingDTO walkingDTO : list) {
+			if(walkingDTO.getMission_contents().equals("end")) {
+				list = null;
+				break;
+			}
+		}
+		return list;
 	}
 	
 	// 산책 미션 등록
@@ -43,7 +51,14 @@ public class WalkingServiceImpl implements WalkingService{
 		}
 		walkingDto.setMission_img(mission_img);
 		int result = walkingDao.insertWalkingMission(walkingDto);
-		
+		String mission_contents = walkingDto.getMission_contents();
+		String walking_id = walkingDto.getWalking_id();
+		if(mission_contents.equals("start") || mission_contents.equals("end")) {
+			Map<String, String> map = new HashMap<>();
+			map.put("mission_contents", mission_contents);
+			map.put("walking_id", walking_id);
+			result = walkingDao.updateWalkingTime(map);
+		}
 		return result;
 	}
 	

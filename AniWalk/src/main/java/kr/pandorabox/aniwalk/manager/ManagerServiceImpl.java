@@ -14,20 +14,18 @@ public class ManagerServiceImpl implements ManagerService{
 	
 	public int managerLogin(String manager_id, String manage_pw) {
 		
-		int result_id = managerDAO.managerLoginId(manager_id);
+		int result = managerDAO.managerLoginId(manager_id);
 		
-		if(result_id == 1) {
-			int result_pw = managerDAO.managerLoginPw(manage_pw);
-			
-			if(result_pw == 1) {
-				return 1;
-			} else {
+		if(result == 1) {
+			String pw = managerDAO.managerLoginPw(manager_id);
+			if(manage_pw.equals(pw)) {
 				return 2;
+			} else {
+				return 0;
 			}
 		} else {
-			return 2;
+			return 0;
 		}
-		
 	}
 	
 	@Override

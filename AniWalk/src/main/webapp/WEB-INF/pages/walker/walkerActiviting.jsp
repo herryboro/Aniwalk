@@ -170,7 +170,7 @@
 		if(content=='current'){
 			markers[0] = marker;
 		}else{
-			markers.push(marker)
+			markers.push(marker);
 		}
 		
 		// 마커가 지도 위에 표시되도록 설정합니다
@@ -219,7 +219,7 @@
 			
 			//displayMarker(locPosition, message);
 		}
-		walkingAction(currentlat,currentlng,'current')
+		walkingAction(currentlat,currentlng,'current');
 	}
 
 	// 지도에 현재 위치의 마커와 인포윈도우를 표시하는 함수입니다
@@ -258,6 +258,7 @@
 		markers = [];
 	}
 	
+	// 현재 위치 저장하기
 	const missionLoc = function () {
 		$('#loc').val(currentlat + ',' + currentlng);
 	}
@@ -354,7 +355,6 @@
 	    				} else {
 	    					input.prev().append('<img src='+URL.createObjectURL(files[i])+' alt="" class="activ-img img-rounded">');
 	    				}
-	    				missionLoc();
 	    			}
 	    		}
 	    	});
@@ -380,8 +380,11 @@
 	}
 	// 산책 미션 DB에 저장
 	const saveImg = function (e) {
-		var input = $(e.target);
-		var formData = new FormData(input.parent()[0]);
+		currentPosition();
+		missionLoc();
+		let input = $(e.target);
+		let formData = new FormData(input.parent()[0]);
+		alert("${walking_id}")
 		if(input.prev().val()!=''){
 			input.parent().parent().addClass('hidden');
 			document.querySelector('.mission-img').classList.remove('hidden');
@@ -389,7 +392,7 @@
 			$.ajax({
 				type: 'post',
 				enctype: 'multipart/form-data',
-				url: '/aniwalk/walking/walkingStart.do?walking_id=1234&mission_contents='
+				url: '/aniwalk/walking/walkingStart.do?walking_id='+ "${walking_id}" +'&mission_contents='
 						+ $('#mission').val() + '&mission_perform_location=' + $('#loc').val(),
 				data: formData,
 				processData: false,
@@ -524,7 +527,6 @@
 			}
 			loadImg(datalist);
 		}	
-		
 	})
 </script>
 </body>

@@ -20,7 +20,7 @@
 			<c:forEach var="walking" items="${activList}">
 				<!-- item 시작 -->
 				<div class="col-md-3 list-item">
-					<img src="/owner/${walking.dog_img_id}" alt="" class="img-rounded">
+					<img src="/owner/${walking.dog_image}" alt="" class="img-rounded">
 					<ul>
 						<li>
 							<label>견종 : </label>

@@ -43,7 +43,7 @@
 								<img class="img-rounded" src="/owner/${walkingDto.dog_image}" alt="">
 							</li>
 							<li>
-								<input type="radio" name="dog_id" value="${walkingDto.dog_id}"> ${walkingDto.dog_name}
+								<input type="radio" name="dog_id" value="${walkingDto.dog_id}" required> ${walkingDto.dog_name}
 							</li>
 						</ol>
 					</div>

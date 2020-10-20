@@ -26,9 +26,6 @@ public class WalkingController {
 			method = RequestMethod.POST,
 			consumes ={"multipart/form-data"})
 	public List<WalkingDTO> walking(WalkingDTO walkingDto) {
-		System.out.println(walkingDto.getWalking_id());
-		System.out.println(walkingDto.getMission_perform_location());
-		System.out.println(walkingDto.getMission_contents());
 		int result = walkingService.insertWalkingData(walkingDto);
 		List<WalkingDTO> list = walkingService.getMissionList(walkingDto.getWalking_id());
 		return list;
@@ -38,7 +35,6 @@ public class WalkingController {
 	@RequestMapping("/walker/activList.do")
 	public ModelAndView getMissionList(HttpServletRequest req) {
 		String walker_id = (String) req.getSession().getAttribute("walker_id");
-		System.out.println(walker_id);
 		List<WalkingDTO> list = walkingService.getWalkingList(walker_id);
 		return new ModelAndView("walker/activList", "activList", list);
 	}
@@ -47,11 +43,12 @@ public class WalkingController {
 	// 산책 정보 가져오기
 	@RequestMapping("/walker/activiting.do")
 	public ModelAndView getMissionList(String walking_id) {
+		ModelAndView mav = new ModelAndView();
 		List<WalkingDTO> list = walkingService.getMissionList(walking_id);
-		for (WalkingDTO walkingDTO : list) {
-			if(walkingDTO.getMission_contents().equals("end")) list = null;
-		}
-		return new ModelAndView("walker/activiting", "missionList", list);
+		mav.setViewName("walker/activiting");
+		mav.addObject("missionList", list);
+		mav.addObject("walking_id",walking_id);
+		return mav;
 	}
 	
 	// 모집글 리스트
@@ -75,7 +72,6 @@ public class WalkingController {
 		String mem_nickname = (String) request.getSession().getAttribute("mem_nickname");
 		
 		List<WalkingDTO> walkingDtos = walkingService.recruitDog(mem_nickname);
-		System.out.println(walkingDtos);
 		String recruit_mem_id = walkingDtos.get(0).getMem_id();
 		
 		mav.addObject("recruit_mem_id",recruit_mem_id);
@@ -87,8 +83,6 @@ public class WalkingController {
 	//모집글 insert
 	@RequestMapping("/owner/recruitInsert.do")
 	public String recruitInsert(WalkingDTO walking) {
-		System.out.println(walking);
-		System.out.println(walking.getWalk_start_time()+walking.getWalk_end_time());
 		walkingService.recruitInsert(walking);
 		//산책모집 올리면 member 테이블에 포인트 update
 		walkingService.recruitUpdate(walking);
@@ -114,7 +108,6 @@ public class WalkingController {
 			produces = "application/json;charset=utf-8")
 	public @ResponseBody List<ApplyWalkingDTO> ajax_applyList(String walking_id){
 		List<ApplyWalkingDTO> applyList = walkingService.applyList(walking_id);
-		System.out.println(applyList);
 		return applyList;
 	}
 	
@@ -139,13 +132,11 @@ public class WalkingController {
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
 		Date today = new Date();
 		String walk_date = format1.format(today);
-		System.out.println("222222222:"+walk_date);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mem_nickname", mem_nickname);
 		map.put("walk_date", walk_date);
 		
 		List<WalkingDTO> todayList =walkingService.todayWalking(map);
-		System.out.println("todayList:"+todayList);
 		
 		mav.addObject("todayList", todayList);
 		mav.setViewName("owner/index");
@@ -159,7 +150,6 @@ public class WalkingController {
 		String mem_nickname = (String) req.getSession().getAttribute("mem_nickname");
 		
 		List<WalkingDTO> allList =walkingService.allWalking(mem_nickname);
-		System.out.println("todayList:"+allList);
 		
 		mav.addObject("allList", allList);
 		mav.setViewName("owner/activityList");
@@ -170,7 +160,6 @@ public class WalkingController {
 	
 	@RequestMapping("walker/walkingRecruit.do")
 	public String walkingRecruit(String walking_id, String wk_id) {
-		System.out.println("산책신청::::"+walking_id+wk_id);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("walking_id", walking_id);
 		map.put("wk_id", wk_id);
@@ -183,7 +172,6 @@ public class WalkingController {
 			method = RequestMethod.GET,
 			produces = "application/json;charset=utf-8")
 	public @ResponseBody int applyCheck(String walking_id,String wk_id) {
-		System.out.println("신청체크====>"+walking_id+"::"+wk_id);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("walking_id", walking_id);
 		map.put("wk_id", wk_id);

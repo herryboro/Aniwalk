@@ -35,4 +35,6 @@ public interface WalkingDAO {
 	public List<WalkingDTO> getWalkingList(String walker_id);
 	//워커 모집글 중복 확인
 	public int applyCheck(Map<String, String> map);
+
+	public int updateWalkingTime(Map<String, String> map);
 }

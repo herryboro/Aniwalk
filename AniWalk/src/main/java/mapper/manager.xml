@@ -8,8 +8,8 @@
 		select count(*) from ani_manage where manager_id = #{manager_id}
 	</select>
 	
-	<select id="pwcheck" parameterType="String" resultType="int">
-		select count(*) from ani_manage where manage_pw = #{manage_pw}
+	<select id="pwcheck" parameterType="String" resultType="String">
+		select manage_pw from ani_manage where manager_id = #{manager_id}
 	</select>
 	
 	<select id="memberlist" resultType="member">

@@ -12,6 +12,12 @@ public class WalkingDAOImpl implements WalkingDAO{
 	@Autowired
 	SqlSession session;
 	
+	//산책시간 등록
+	@Override
+	public int updateWalkingTime(Map<String, String> map) {
+		return session.update("kr.pandorabox.aniwalk.walking.updateWalkingTime", map);
+	}
+	
 	//프렌즈 산책 리스트
 	@Override
 	public List<WalkingDTO> getWalkingList(String walker_id) {

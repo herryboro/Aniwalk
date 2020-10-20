@@ -45,11 +45,11 @@
 	<insert id="insertWalkingMission" parameterType="walking">
 		insert into ANI_Walking_Mission
 		values('mission'||lpad(seq_walking_mission.nextval,5,0),#{mission_contents},#{mission_img},
-		#{mission_perform_location}, sysdate, null)
+		#{mission_perform_location}, sysdate, #{walking_id})
 	</insert>
 	<!-- 산책 미션 리스트 -->
 	<select id="getMissionList" parameterType="String" resultType="walking">
-		select * from ANI_Walking_Mission 
+		select * from ANI_Walking_Mission where walking_id=#{walking_id} 
 		order by mission_perform_time
 	</select>
 	
@@ -125,4 +125,16 @@
 		select count(*) from ani_apply where walking_id = #{walking_id}
 		and apply_wk_id = #{wk_id} 
 	</select>
+	
+	<!-- 산책시간 등록 -->
+	<update id="updateWalkingTime" parameterType="Map">
+		update ani_walking set 
+		<if test="mission_contents == 'start'">
+			real_walk_start_time=sysdate
+		</if>	
+		<if test="mission_contents == 'end'">
+			real_walk_end_time=sysdate
+		</if>
+		where walking_id=#{walking_id}
+	</update>
 </mapper>

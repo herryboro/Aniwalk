@@ -22,8 +22,8 @@ public class ManagerDAOImpl implements ManagerDAO {
 	}
 	
 	@Override
-	public int managerLoginPw(String manage_pw) {	
-		return sqlSession.selectOne("kr.pandorabox.aniwalk.manager.pwcheck", manage_pw);
+	public String managerLoginPw(String manager_id) {	
+		return sqlSession.selectOne("kr.pandorabox.aniwalk.manager.pwcheck", manager_id);
 	}
 	
 	@Override

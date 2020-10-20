@@ -20,7 +20,6 @@ public class ManagerController {
 	@RequestMapping("manager/indexPro.do")
 	public String index(String manager_id, String manager_pw, HttpServletRequest req) {
 		int result = managerService.managerLogin(manager_id, manager_pw);
-		System.out.println(result);
 		if(result == 0) {
 			return "redirect:/manager/index.do";		// managerIndex.jsp
 		} else {
@@ -34,8 +33,7 @@ public class ManagerController {
 	public ModelAndView memberList(HttpServletRequest req) {
 		
 		String manager_id = (String)req.getSession().getAttribute("manager_id");		
-		System.out.println(manager_id);
-		if(manager_id.equals("super") && manager_id != null) {	
+		if(manager_id != null) {	
 			ModelAndView mav = new ModelAndView();
 			List<MemberDTO> memlist = managerService.memberList();
 			mav.addObject("memlist", memlist);
