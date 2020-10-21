@@ -119,6 +119,7 @@
 		left outer join ani_dog_img i
 		on w.dog_id=i.dog_id 
 		where match_wk_id=(select wk_id from ani_walker where walker_id=#{walker_id})
+		and w.real_walk_end_time is null
 	</select>
 	<!-- 워커 산책 신청시 중복인지 확인 -->
 	<select id="applyCheck" parameterType="Map" resultType="int">
@@ -137,4 +138,9 @@
 		</if>
 		where walking_id=#{walking_id}
 	</update>
+	
+	<!-- 실시간 산책 정보 -->
+	<select id="getWalkingInfo" parameterType="String" resultType="walking">
+		select * from ani_walking where walking_id=#{walking_id}
+	</select>
 </mapper>

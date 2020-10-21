@@ -8,15 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.pandorabox.aniwalk.Authentication;
-import kr.pandorabox.aniwalk.FileUploadLogic;
 import kr.pandorabox.aniwalk.SHA256;
 import kr.pandorabox.aniwalk.member.MemberService;
 
@@ -24,8 +21,6 @@ import kr.pandorabox.aniwalk.member.MemberService;
 public class WalkerController {
 	@Autowired
 	private WalkerService walkerService;
-	@Autowired
-	private FileUploadLogic uploadService;
 	@Autowired
 	private Authentication auth;
 	@Autowired
@@ -231,7 +226,9 @@ public class WalkerController {
 		String wk_location1 = sido1 + " " + gugun1;
 		String wk_location2 = sido2 + " " + gugun2;
 		walker.setWk_location1(wk_location1);
-		walker.setWk_location2(wk_location2);
+		if(!sido2.contains("선택")) {
+			walker.setWk_location2(wk_location2);
+		}
 		walkerService.myInfoUpdate(walker);
 		
 		return "redirect:/walker/my.do";

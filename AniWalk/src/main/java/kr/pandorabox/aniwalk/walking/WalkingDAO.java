@@ -37,4 +37,6 @@ public interface WalkingDAO {
 	public int applyCheck(Map<String, String> map);
 
 	public int updateWalkingTime(Map<String, String> map);
+
+	public WalkingDTO getWalkingInfo(String walking_id);
 }

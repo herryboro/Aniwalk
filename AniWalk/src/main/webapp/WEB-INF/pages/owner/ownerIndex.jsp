@@ -75,7 +75,7 @@
 	for(var i=0; i<listItem.length; i++){
 		listItem[i].addEventListener('click',function(){
 			if(this.classList.contains('onair')){ //산책 진행 중
-				location.href = '/aniwalk/owner/activity.do';
+				location.href = '/aniwalk/owner/activity.do?walking_id="${today.walking_id}"';
 			}else {
 				modalBg.classList.remove('hidden'); //산책이 진행 중이 아님
 			}

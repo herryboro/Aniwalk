@@ -18,10 +18,15 @@
 		</div>
 		<div class="row list-part">
 			<c:forEach var="walking" items="${activList}">
+				<c:if test="${walking.real_walk_end_time eq null}">
 				<!-- item 시작 -->
 				<div class="col-md-3 list-item">
 					<img src="/owner/${walking.dog_image}" alt="" class="img-rounded">
 					<ul>
+						<li>
+							<label>날짜 : </label>
+							<span>${walking.recruit_date}</span>
+						</li>
 						<li>
 							<label>견종 : </label>
 							<span>${walking.dog_type}</span>
@@ -44,6 +49,7 @@
 					<button class="btn btn-primary" type="button" onclick="location.href='/aniwalk/walker/activiting.do?walking_id=${walking.walking_id}'">산책시작</button>
 				</div>
 				<!-- item 끝 -->
+				</c:if>
 			</c:forEach>
 		</div>
 

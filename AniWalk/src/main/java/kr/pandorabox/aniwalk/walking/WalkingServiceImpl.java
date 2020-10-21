@@ -17,10 +17,17 @@ public class WalkingServiceImpl implements WalkingService{
 	@Autowired
 	private FileUploadLogic upload;
 	
-	// 프렌즈 산책 리스트
+	// owner 산책 정보
 	@Override
-	public List<WalkingDTO> getWalkingList(String walking_id) {
-		return walkingDao.getWalkingList(walking_id);
+	public WalkingDTO getWalkingInfo(String walking_id) {
+		return walkingDao.getWalkingInfo(walking_id);
+	}
+	
+	
+	// 프렌즈 현재 예약 중인 산책 리스트
+	@Override
+	public List<WalkingDTO> getWalkingList(String walker_id) {
+		return walkingDao.getWalkingList(walker_id);
 	}
 	
 	// 산책 미션 리스트

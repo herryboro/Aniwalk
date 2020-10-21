@@ -25,7 +25,6 @@
 			<div id="map" style="width: 500px; height: 400px;" class="kakao-map"></div>
 			<label id="centerAddr">현재주소</label>
 		</div>
-		<!-- 이 부분은 javascript로 관리할 예정 -->
 		<div class="activing-input">
 			<ul id="input-list">
 				<li class="start-part">

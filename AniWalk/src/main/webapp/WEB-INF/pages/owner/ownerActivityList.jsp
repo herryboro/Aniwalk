@@ -20,7 +20,7 @@
 		<c:forEach var="all" items="${allList}">
 			<c:if test="${all.real_walk_end_time eq null}">
 				<!-- 1개 시작 -->
-				<ul class="list-item onair">
+				<ul class="list-item onair" onclick="location.href='/aniwalk/owner/activity.do?walking_id=${all.walking_id}'">
 					<li style="justify-content: center">
 						<img class="img-rounded" alt="" src="/walker/${all.wk_profile_img1}">
 		

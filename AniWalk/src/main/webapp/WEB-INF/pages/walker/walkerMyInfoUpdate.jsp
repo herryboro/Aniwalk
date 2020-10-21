@@ -26,7 +26,7 @@
 				<tr>
 					<th>비밀번호</th>
 					<td>
-						<input type="password" class="form-control" placeholder="비밀번호 입력" name="wk_pw">
+						<input id='pw' type="password" class="form-control" placeholder="비밀번호 입력" name="wk_pw" required>
 						<span class="text-primary"></span>
 						<span class="text-danger"></span>
 					</td>
@@ -34,7 +34,7 @@
 				<tr>
 					<th></th>
 					<td>
-						<input type="password" class="form-control" placeholder="비밀번호 재입력">
+						<input id='repw' type="password" class="form-control" placeholder="비밀번호 재입력" required>
 						<span class="text-primary"></span>
 						<span class="text-danger"></span>
 					</td>
@@ -48,9 +48,9 @@
 						변경됩니다.
 					</th>
 					<td class="select-city">1
-						<select class="form-control" name="sido1" id="sido1" >
+						<select class="form-control" name="sido1" id="sido1" required>
 						</select>
-						<select class="form-control" name="gugun1" id="gugun1">
+						<select class="form-control" name="gugun1" id="gugun1" required>
 						</select>
 					</td>
 				</tr>

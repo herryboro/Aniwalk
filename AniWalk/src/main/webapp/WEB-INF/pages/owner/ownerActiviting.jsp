@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,36 +27,45 @@
 		<h4>실시간 산책정보</h4>
 	</div>
 	<div class="activing-info">
-		<div class="active-start">
-			<div class="title">
-				<h2>산책이 시작되었습니다.</h2>
-				<span>시작시간</span>
+		<c:forEach var="mission" items="${missionList}">
+			<div class="walkingInfo">
+				<div class="title">
+					<c:if test="${mission.mission_contents eq 'start'}">
+						<h2>산책이 시작되었습니다.</h2>
+						<span>${walkingInfo.real_walk_start_time}</span>
+					</c:if>
+					<c:if test="${mission.mission_contents eq 'water'}">
+						<h2>물을 마시고 있어요</h2>
+						<span>${mission.mission_perform_time}</span>
+					</c:if>
+					<c:if test="${mission.mission_contents eq 'snack'}">
+						<h2>간식을 먹고 있어요</h2>
+						<span>${mission.mission_perform_time}</span>
+					</c:if>
+					<c:if test="${mission.mission_contents eq 'pee'}">
+						<h2>볼일을 보고 있어요</h2>
+						<span>${mission.mission_perform_time}</span>
+					</c:if>
+					<c:if test="${mission.mission_contents eq 'oops'}">
+						<h2>긴급상황 입니다. 메시지를 확인해 주세요</h2>
+						<span>${mission.mission_perform_time}</span>
+					</c:if>
+					<c:if test="${mission.mission_contents eq 'end'}">
+						<h2>산책을 마쳤습니다. 후기를 작성해 주세요!</h2>
+						<span>${walkingInfo.real_walk_end_time}</span>
+					</c:if>
+					
+				</div>
+				<div class="img-list">
+					<c:forEach var="missionImg" items="${fn:split(mission.mission_img,'/')}">
+						<img src="/walking/${missionImg}" alt="" class="img-rounded">
+					</c:forEach>
+					<c:if test="${mission.mission_contents eq 'end'}">
+						<button id="activeDone" class="btn btn-primary">산책완료</button>
+					</c:if>
+				</div>
 			</div>
-			<div class="img-list">
-				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
-				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
-			</div>
-		</div>
-		<div class="active-mission">
-			<div class="title">
-				<h2>급수/배변중입니다.</h2>
-				<span>미션등록시간</span>
-			</div>
-			<div class="img-list">
-				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
-			</div>
-		</div>
-		<div class="active-end">
-			<div class="title">
-				<h2>산책을 완료했습니다.</h2>
-				<span>미션등록시간</span>
-			</div>
-			<div class="img-list">
-				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
-				<img src="${pageContext.request.contextPath}/images/mydog.jpg" alt="" class="img-rounded">
-			</div>
-			<button id="activeDone" class="btn btn-primary">산책완료</button>
-		</div>
+		</c:forEach>
 	</div>
 </div>
 
@@ -89,61 +101,37 @@
 
 <script>
 	//카카오톡지도
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+	const mapContainer = document.getElementById('map'), // 지도를 표시할 div
 			mapOption = {
 				center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-				level: 5 // 지도의 확대 레벨
+				level: 3 // 지도의 확대 레벨
 			};
+	const map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-	// HTML5의 geolocation으로 사용할 수 있는지 확인합니다
-	if (navigator.geolocation) {
-
-		// GeoLocation을 이용해서 접속 위치를 얻어옵니다
-		navigator.geolocation.getCurrentPosition(function(position) {
-
-			var lat = position.coords.latitude, // 위도
-					lon = position.coords.longitude; // 경도
-
-			var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-					message = '<div style="padding:5px;">현재위치</div>'; // 인포윈도우에 표시될 내용입니다
-
-			// 마커와 인포윈도우를 표시합니다
-			displayMarker(locPosition, message);
-
-		});
-
-	} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-
-		var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
-				message = 'geolocation을 사용할수 없어요..'
-
-		displayMarker(locPosition, message);
-	}
-
-	// 지도에 마커와 인포윈도우를 표시하는 함수입니다
-	function displayMarker(locPosition, message) {
-
+	const walkingAction = function (lat, lng, content) {
+		let locPosition = new kakao.maps.LatLng(lat, lng);
+		let imageSrc = '', // 마커이미지의 주소입니다
+		imageSize = new kakao.maps.Size(32, 35), // 마커이미지의 크기입니다
+		imageOption = {offset: new kakao.maps.Point(20, 30)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+		
+		switch(content){
+		case "start" : imageSrc = '/aniwalk/images/start.png'; break;
+		case "water" : imageSrc = '/aniwalk/images/water.png'; break;
+		case "snack" : imageSrc = '/aniwalk/images/snack.png'; break;
+		case "pee" : imageSrc = '/aniwalk/images/pee.png'; break;
+		case "oops" : imageSrc = '/aniwalk/images/oops.png'; break;
+		case "end" : imageSrc = '/aniwalk/images/end.png'; break;
+		}
+	    
+		let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
 		// 마커를 생성합니다
-		var marker = new kakao.maps.Marker({
-			map: map,
-			position: locPosition
-		});
+	    let marker = new kakao.maps.Marker({
+	        position: locPosition, 
+	        image: markerImage // 마커이미지 설정 
+	    });
 
-		var iwContent = message, // 인포윈도우에 표시할 내용
-				iwRemoveable = true;
-
-		// 인포윈도우를 생성합니다
-		var infowindow = new kakao.maps.InfoWindow({
-			content : iwContent,
-			removable : iwRemoveable
-		});
-
-		// 인포윈도우를 마커위에 표시합니다
-		infowindow.open(map, marker);
-
-		// 지도 중심좌표를 접속위치로 변경합니다
+		// 마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map);  
 		map.setCenter(locPosition);
 	}
 </script>
@@ -177,6 +165,30 @@
 	jumpBtn.addEventListener('click',function(){
 		location.href = '#';
 	})
+</script>
+<script>
+$(document).ready(function(){
+	if("${missionList.size()}" != 0){
+		let location = [];
+		let locationlist = [];
+		let data = [];
+		let datalist = [];
+		<c:forEach var="mission" items="${missionList}">
+			location = "${mission.mission_perform_location}".split(',')
+			location.push("${mission.mission_contents}");
+			locationlist.push(location);
+			data = {
+					mission_contents : "${mission.mission_contents}",
+					mission_img : "${mission.mission_img}",
+			}
+			datalist.push(data);
+		</c:forEach>
+		for(let i=0;i<datalist.length;i++){
+			walkingAction(locationlist[i][0], locationlist[i][1], locationlist[i][2]);
+		}
+	}	
+})
+
 </script>
 </body>
 </html>
