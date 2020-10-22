@@ -17,6 +17,21 @@ public class WalkingServiceImpl implements WalkingService{
 	@Autowired
 	private FileUploadLogic upload;
 	
+	// 산책 path 불러오기
+	@Override
+	public String getWalkingLocation(String walking_id) {
+		return walkingDao.getWalkingLocation(walking_id);
+	}
+	
+	// 산책 path
+	@Override
+	public int insertWalkingLocation(String walking_id, String walking_map_path) {
+		Map<String, String> map = new HashMap<>();
+		map.put("walking_id", walking_id);
+		map.put("walking_map_path", walking_map_path);
+		return walkingDao.insertWalkingLocation(map);
+	}
+	
 	// owner 산책 정보
 	@Override
 	public WalkingDTO getWalkingInfo(String walking_id) {

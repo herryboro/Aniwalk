@@ -28,4 +28,6 @@ public interface WalkingService {
 	//워커 모집글 중복 확인
 	public int applyCheck(Map<String, String> map);
 	public WalkingDTO getWalkingInfo(String walking_id);
+	public int insertWalkingLocation(String walking_id, String walking_map_path);
+	public String getWalkingLocation(String walking_id);
 }

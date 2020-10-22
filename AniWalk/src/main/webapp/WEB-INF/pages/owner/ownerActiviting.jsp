@@ -27,45 +27,12 @@
 		<h4>실시간 산책정보</h4>
 	</div>
 	<div class="activing-info">
-		<c:forEach var="mission" items="${missionList}">
-			<div class="walkingInfo">
-				<div class="title">
-					<c:if test="${mission.mission_contents eq 'start'}">
-						<h2>산책이 시작되었습니다.</h2>
-						<span>${walkingInfo.real_walk_start_time}</span>
-					</c:if>
-					<c:if test="${mission.mission_contents eq 'water'}">
-						<h2>물을 마시고 있어요</h2>
-						<span>${mission.mission_perform_time}</span>
-					</c:if>
-					<c:if test="${mission.mission_contents eq 'snack'}">
-						<h2>간식을 먹고 있어요</h2>
-						<span>${mission.mission_perform_time}</span>
-					</c:if>
-					<c:if test="${mission.mission_contents eq 'pee'}">
-						<h2>볼일을 보고 있어요</h2>
-						<span>${mission.mission_perform_time}</span>
-					</c:if>
-					<c:if test="${mission.mission_contents eq 'oops'}">
-						<h2>긴급상황 입니다. 메시지를 확인해 주세요</h2>
-						<span>${mission.mission_perform_time}</span>
-					</c:if>
-					<c:if test="${mission.mission_contents eq 'end'}">
-						<h2>산책을 마쳤습니다. 후기를 작성해 주세요!</h2>
-						<span>${walkingInfo.real_walk_end_time}</span>
-					</c:if>
-					
-				</div>
-				<div class="img-list">
-					<c:forEach var="missionImg" items="${fn:split(mission.mission_img,'/')}">
-						<img src="/walking/${missionImg}" alt="" class="img-rounded">
-					</c:forEach>
-					<c:if test="${mission.mission_contents eq 'end'}">
-						<button id="activeDone" class="btn btn-primary">산책완료</button>
-					</c:if>
-				</div>
+		<div class="walkingInfo">
+			<div class="title">
 			</div>
-		</c:forEach>
+			<div class="img-list">
+			</div>
+		</div>
 	</div>
 </div>
 
@@ -101,6 +68,9 @@
 
 <script>
 	//카카오톡지도
+	let linePath = [];
+	let currentLat = '';
+	let currentLng = '';
 	const mapContainer = document.getElementById('map'), // 지도를 표시할 div
 			mapOption = {
 				center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -112,7 +82,7 @@
 		let locPosition = new kakao.maps.LatLng(lat, lng);
 		let imageSrc = '', // 마커이미지의 주소입니다
 		imageSize = new kakao.maps.Size(32, 35), // 마커이미지의 크기입니다
-		imageOption = {offset: new kakao.maps.Point(20, 30)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+		imageOption = {offset: new kakao.maps.Point(20, 20)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 		
 		switch(content){
 		case "start" : imageSrc = '/aniwalk/images/start.png'; break;
@@ -132,8 +102,26 @@
 
 		// 마커가 지도 위에 표시되도록 설정합니다
 		marker.setMap(map);  
-		map.setCenter(locPosition);
+		//map.setCenter(locPosition);
 	}
+	
+	const drawLine = function() {
+		// 지도에 표시할 선을 생성합니다
+		let polyline = new kakao.maps.Polyline({
+		    path: linePath, // 선을 구성하는 좌표배열 입니다
+		    strokeWeight: 5, // 선의 두께 입니다
+		    strokeColor: '#FFAE00', // 선의 색깔입니다
+		    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+		    strokeStyle: 'solid' // 선의 스타일입니다
+		});
+		// 지도에 선을 표시합니다 
+		polyline.setMap(map);  
+	}
+	
+	const center = function() {
+		map.setCenter(new kakao.maps.LatLng(currentLat, currentLng));
+	}
+	
 </script>
 <script>
 	//모달
@@ -167,28 +155,93 @@
 	})
 </script>
 <script>
-$(document).ready(function(){
-	if("${missionList.size()}" != 0){
-		let location = [];
-		let locationlist = [];
-		let data = [];
-		let datalist = [];
-		<c:forEach var="mission" items="${missionList}">
-			location = "${mission.mission_perform_location}".split(',')
-			location.push("${mission.mission_contents}");
-			locationlist.push(location);
-			data = {
-					mission_contents : "${mission.mission_contents}",
-					mission_img : "${mission.mission_img}",
+const getWalkingMission = function (e) {
+	$.ajax({
+		type: 'post',
+		url: '/aniwalk/walking/getWalkingMission.do',
+		data:{
+			"walking_id" : "${walkingInfo.walking_id}"
+		},
+		success:function (data){
+			if(data != null){
+				let missionLoc = [];
+				$('.activing-info').empty();
+				for(let i=0;i<data.length;i++){
+					missionLoc = data[i].mission_perform_location.split(',');
+					currentLat = missionLoc[0];
+					currentLng = missionLoc[1];
+					walkingAction(missionLoc[0], missionLoc[1], data[i].mission_contents);
+					viewWalkingMission(data[i])
+				}
+				if(e=='center') center();
 			}
-			datalist.push(data);
-		</c:forEach>
-		for(let i=0;i<datalist.length;i++){
-			walkingAction(locationlist[i][0], locationlist[i][1], locationlist[i][2]);
+		},
+		error: function (a,b,c){
+			alert('xx')
 		}
-	}	
-})
+	})
+}
 
+const viewWalkingMission = function(data) {
+	let message = '';
+	let images = []
+	let image = '';
+	images = data.mission_img.split('/');
+	for(let i=0;i<images.length-1;i++){
+		image += '<img src="/walking/'+ images[i] +'" alt="" class="img-rounded">' 
+	}
+	switch(data.mission_contents){
+	case "start" : message = '산책이 시작되었습니다.'; break;
+	case "water" : message = '물을 마시고 있어요.'; break;
+	case "snack" : message = '간식을 먹고 있어요.'; break;
+	case "pee" : message = '볼일을 보고 있어요.'; break;
+	case "oops" : message = '긴급상황 입니다. 메시지를 확인해 주세요.'; break;
+	case "end" : message = '산책을 마쳤습니다. 후기를 작성해 주세요!';
+				image += '<button id="activeDone" class="btn btn-primary">산책완료</button>'; break;
+	}
+	$('.activing-info').append('<div class="walkingInfo"><div class="title"><h2>'+ message +
+			'</h2><span>'+ data.mission_perform_time +'</span></div><div class="img-list">'+
+			image + '</div></div>');
+	
+}
+
+const getWalkingLocation = function(){
+	let locations = [];
+	let location = [];
+	$.ajax({
+		type: 'post',
+		url: '/aniwalk/walking/getWalkingLocation.do',
+		data:{
+			"walking_id" : "${walkingInfo.walking_id}"
+		},
+		success:function (data){
+			if(data != null){
+				linePath = [];
+				locations = data.split('/');
+				
+				for(let i in locations){
+					if(locations[i] != ''){
+						location = locations[i].split(',');
+						linePath.push(new kakao.maps.LatLng(location[0],location[1]))	
+					}
+				}
+				drawLine();
+			}
+		},
+		error: function (a,b,c){
+			alert('xx')
+		}
+	})
+}
+
+$(document).ready(function(){
+	getWalkingMission('center');
+	getWalkingLocation();
+	let getLocation = setInterval(() => {
+		getWalkingMission();
+		getWalkingLocation();
+	}, 2000);
+})
 </script>
 </body>
 </html>

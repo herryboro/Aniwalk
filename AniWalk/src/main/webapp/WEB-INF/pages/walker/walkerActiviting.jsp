@@ -125,6 +125,84 @@
 
 <script>
 	// 카카오 지도
+	let test = ['37.49848940973516 127.02452016301457',
+		'37.49868314190035 127.02444389220899',
+		'37.49861336571211 127.0241922497157',
+		'37.49857960050564 127.02408197853306',
+		'37.49852557859171 127.02389253979764',
+		'37.49850982525564 127.02382185517129',
+		'37.498489566277364 127.02375399633108',
+		'37.49846705531117 127.02368330963358',
+		'37.49845805317669 127.02364372623782',
+		'37.498367950283644 127.02365500654503',
+		'37.498361204045025 127.02359846084327',
+		'37.49834769403056 127.02357301198829',
+		'37.49832518239297 127.02350515265594',
+		'37.498316181882984 127.02345708782599',
+		'37.498313936659315 127.02342033382392',
+		'37.498422080338656 127.0233044531781',
+		'37.49840856914664 127.02328465871595',
+		'37.498399574104646 127.02320832205935',
+		'37.498390571256394 127.02317156593577',
+		'37.498374811403075 127.02313198055725',
+		'37.49834554472389 127.02304998336464',
+		'37.49831178612858 127.02290013261639',
+		'37.498296031651606 127.02283227557581',
+		'37.49825325945836 127.02269938534587',
+		'37.49822849805111 127.02261456264006',
+		'37.49820824538704 127.02250995113435',
+		'37.498194743738495 127.02243926777116',
+		'37.49815196843229 127.0223205137979',
+		'37.498147474603215 127.02226114187701',
+		'37.498111481495975 127.02200951312659',
+		'37.498088987296235 127.02184270358715',
+		'37.49807548159916 127.02179181063073',
+		'37.498091274683375 127.02165328396262',
+		'37.49808452903642 127.02158825714474',
+		'37.49811609718541 127.0214073273873',
+		'37.498147639573375 127.0213677560025',
+		'37.49835039300544 127.02121797332539',
+		'37.4985058317961 127.0211332017812',
+		'37.49854636644329 127.02119258410367',
+		'37.49858464141758 127.02129154646967',
+		'37.498611658846045 127.02136223384413',
+		'37.498679197331526 127.0215658108131',
+		'37.498755750213945 127.02174394602348',
+		'37.49880302903294 127.02187401071869',
+		'37.498812015996286 127.02199840995054',
+		'37.498751187531845 127.02205493597423',
+		'37.498622775624774 127.02215384980694',
+		'37.49858898205347 127.02218493888356',
+		'37.49853490091913 127.02229518310871',
+		'37.498503337325154 127.02244501447929',
+		'37.49851458914713 127.02250156153653',
+		'37.498550602930315 127.02264010444861',
+		'37.498604625759846 127.02283519672147',
+		'37.49862263220172 127.02290588191829',
+		'37.49866540691571 127.02302463697063',
+		'37.49869017465829 127.02307553401491',
+		'37.49872393136088 127.02323386717477',
+		'37.49866310453373 127.02327908337004',
+		'37.498611288867565 127.02331864791853',
+		'37.49860450389436 127.02345717801383',
+		'37.49862250996404 127.02352786335967',
+		'37.49864276907171 127.02359572225916',
+		'37.4986539799827 127.02385300005156',
+		'37.49868323463296 127.02399154170743',
+		'37.498714754324396 127.02406788597594',
+		'37.49879580265775 127.0242742972284',
+		'37.49884082149987 127.02442698042641',
+		'37.49886558629354 127.02448918684266',
+		'37.498912856193215 127.02464752545042',
+		'37.49896011934588 127.02483696346937',
+		'37.499007398938005 127.02494724004744',
+		'37.499036658303034 127.02505751074304',
+		'37.49891726177278 127.02511966923885',
+		'37.498847428980014 127.02514226342251',
+		'37.498791171757375 127.02487931543605',
+		'37.49874164017713 127.02476621128201',
+		'37.49870787786705 127.02464463088636',
+		'37.49869437632084 127.02457960105063']
 	let mapContainer = document.getElementById('map'), // 지도를 표시할 div
 			mapOption = {
 				center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -136,8 +214,8 @@
 	let mapTypeControl = new kakao.maps.MapTypeControl(); //일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
 	let zoomControl = new kakao.maps.ZoomControl(); // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
 	map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-	let currentlat = ''; // 현재 위도
-	let currentlng = ''; // 현재 경도
+	let currentlat = '37.49848940973516'; // 현재 위도
+	let currentlng = '127.02452016301457'; // 현재 경도
 	// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
 	// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
 	map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
@@ -190,7 +268,6 @@
 		};
 		message = '<div style="padding:5px;">현재위치</div>';
 		walkingAction(currentlat,currentlng,'current')
-		//displayMarker(coord, message);
 		geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
 	}
 	
@@ -206,48 +283,15 @@
 
 				var locPosition = new kakao.maps.LatLng(currentlat, currentlng), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
 						message = '<div style="padding:5px;">현재위치</div>'; // 인포윈도우에 표시될 내용입니다
-				// 마커와 인포윈도우를 표시합니다
-				//displayMarker(locPosition, message);
 				coord2Address(locPosition)
 			});
 
 		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
 			var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
 					message = 'geolocation을 사용할수 없어요..'
-			
-			
-			//displayMarker(locPosition, message);
 		}
 		walkingAction(currentlat,currentlng,'current');
 	}
-
-	// 지도에 현재 위치의 마커와 인포윈도우를 표시하는 함수입니다
-	const displayMarker = function (locPosition, message) {
-		var iwContent = message, // 인포윈도우에 표시할 내용
-				iwRemoveable = true;
-
-		// 인포윈도우를 생성합니다
-		var infowindow = new kakao.maps.InfoWindow({
-			content : iwContent,
-			removable : iwRemoveable
-		});
-		//마커를 생성합니다
-		var marker = new kakao.maps.Marker({
-			map: map,
-			position: locPosition
-		});
-		// 인포윈도우를 마커위에 표시합니다
-		// infowindow.open(map, marker);
-
-		// 마커가 지도 위에 표시되도록 설정합니다
-		marker.setMap(map);
-
-		// 생성된 마커를 배열에 추가합니다
-		markers[0] = marker;
-
-		// 지도 중심좌표를 접속위치로 변경합니다
-		map.setCenter(locPosition);
-	};
 
 	//지도 위에 표시되고 있는 마커를 모두 제거합니다
 	const removeMarker = function () {
@@ -260,6 +304,34 @@
 	// 현재 위치 저장하기
 	const missionLoc = function () {
 		$('#loc').val(currentlat + ',' + currentlng);
+	}
+	
+	// 테스트 
+	const testlocation = function (testlatlng) {
+		let testloc = testlatlng.split(' ');
+		currentlat = testloc[0]
+		currentlng = testloc[1]
+		missionLoc()
+		$.ajax({
+			type: 'post',
+			url: '/aniwalk/walking/walkingLocation.do',
+			data:{
+				"walking_map_path" : $('#loc').val(),
+				"walking_id" : "${walking_id}"
+			},
+			success:function (data){
+			},
+			error: function (a,b,c){
+				alert('xx')
+			}
+		})
+	}
+	const teststart = function () {
+		for(let i in test){
+			setTimeout(() => {
+				testlocation(test[i]);	
+			}, i * 2000)
+		} 
 	}
 	
 </script>
@@ -328,11 +400,11 @@
 	}
 	// 사진 업로드
 	const uploadImg = function (e){
-		var cnt = 0;
-		var maxSize = 209715200;
-		var input = $(e.target)
-		var files = e.target.files;
-		var filesArr = Array.prototype.slice.call(files);
+		let cnt = 0;
+		let maxSize = 209715200;
+		let input = $(e.target)
+		let files = e.target.files;
+		let filesArr = Array.prototype.slice.call(files);
 		if(files.length == 0){
 			input.prev().empty();
 			input.prev().append('<img src="/aniwalk/images/main_logo.png" alt="" class=" img-rounded">');
@@ -379,11 +451,10 @@
 	}
 	// 산책 미션 DB에 저장
 	const saveImg = function (e) {
-		currentPosition();
-		missionLoc();
+		//currentPosition();
+		//missionLoc();
 		let input = $(e.target);
 		let formData = new FormData(input.parent()[0]);
-		alert("${walking_id}")
 		if(input.prev().val()!=''){
 			input.parent().parent().addClass('hidden');
 			document.querySelector('.mission-img').classList.remove('hidden');
@@ -407,7 +478,7 @@
 					if($('#mission').val() == 'start') {
 						activeBtn[2].click();
 					}
-					$('.mission-img').empty()
+					$('.mission-img').empty();
 					loadImg(data)
 				},
 				error: function (a,b,c){
@@ -481,7 +552,9 @@
 	let nowMinute = today.getMinutes();
 
 	startUploadBtn.addEventListener('click',function (e){
+		missionLoc();
 		saveImg(e);
+		teststart(); 
 	})
 	waterUploadBtn.addEventListener('click',function (e){
 		saveImg(e);
@@ -499,10 +572,8 @@
 		saveImg(e);
 	})
 	
-	
 	$(document).ready(function(){
-		currentPosition(); // 현재 위치 호출 함수
-		
+		//currentPosition(); // 현재 위치 호출 함수
 		if("${missionList.size()}" != 0){
 			$('#input-list > li').addClass('hidden');
 			action()
@@ -527,6 +598,7 @@
 			loadImg(datalist);
 		}	
 	})
+	
 </script>
 </body>
 </html>

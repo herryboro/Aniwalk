@@ -143,4 +143,14 @@
 	<select id="getWalkingInfo" parameterType="String" resultType="walking">
 		select * from ani_walking where walking_id=#{walking_id}
 	</select>
+	
+	<!-- 산책 path -->
+	<update id="insertWalkingLocation" parameterType="Map">
+		update ani_walking set walking_map_path=walking_map_path||#{walking_map_path}||'/' where walking_id=#{walking_id}
+	</update>
+	
+	<!-- 산책 path 불러오기 -->
+	<select id="getWalkingLocation" parameterType="String" resultType="String">
+		select walking_map_path from ani_walking where walking_id=#{walking_id}
+	</select>
 </mapper>

@@ -39,4 +39,8 @@ public interface WalkingDAO {
 	public int updateWalkingTime(Map<String, String> map);
 
 	public WalkingDTO getWalkingInfo(String walking_id);
+
+	public int insertWalkingLocation(Map<String, String> map);
+
+	public String getWalkingLocation(String walking_id);
 }

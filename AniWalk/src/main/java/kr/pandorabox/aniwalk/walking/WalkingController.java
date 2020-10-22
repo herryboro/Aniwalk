@@ -20,6 +20,36 @@ public class WalkingController {
 	@Autowired
 	private WalkingService walkingService;
 	
+	// 산책 path 불러오기
+		@ResponseBody
+		@RequestMapping(value = "/walking/getWalkingMission.do",
+				method = RequestMethod.POST,
+				produces = "application/json;charset=utf-8")
+		public List<WalkingDTO> getWalkingMission(String walking_id) {
+			List<WalkingDTO> result = walkingService.getMissionList(walking_id);
+			return result;
+		}	
+	
+	// 산책 path 불러오기
+	@ResponseBody
+	@RequestMapping(value = "/walking/getWalkingLocation.do",
+			method = RequestMethod.POST,
+			produces = "application/text;charset=utf-8")
+	public String getWalkingLocation(String walking_id) {
+		String result = walkingService.getWalkingLocation(walking_id);
+		return result;
+	}	
+	
+	// 산책 path 저장
+	@ResponseBody
+	@RequestMapping(value = "/walking/walkingLocation.do",
+			method = RequestMethod.POST,
+			produces = "application/text;charset=utf-8")
+	public String walkingLocation(String walking_id, String walking_map_path) {
+		int result = walkingService.insertWalkingLocation(walking_id, walking_map_path);
+		return "success";
+	}
+	
 	// 산책 시작 
 	@ResponseBody
 	@RequestMapping(value = "/walking/walkingStart.do",
