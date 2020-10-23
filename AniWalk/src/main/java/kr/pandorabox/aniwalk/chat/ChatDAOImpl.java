@@ -22,7 +22,30 @@ import org.springframework.stereotype.Repository;
 public class ChatDAOImpl implements ChatDAO{
 	@Autowired
 	MongoTemplate mongoTemplate;
+	///워커///
+	@Override
+	public List<ChatDTO> walkerChatList(Map<String, Object> walkerChatList) {
+		Query query = new Query(new Criteria().andOperator(
+				Criteria.where("walker_id").is(walkerChatList.get("walker_id"))
+				));
+		//query.with(new Sort(Sort.Direction.DESC,"walker_id"));
+		query.with(new Sort(Sort.Direction.DESC,"mem_nickname")
+				.and(new Sort(Sort.Direction.DESC,"_id")));
+		List<ChatDTO> docs = mongoTemplate.find(query, ChatDTO.class,"chat");
+		return docs;
+	}
 	
+	@Override
+	public List<ChatDTO> walkerChatFind(Map<String, Object> searchCondition) {
+		Query query = new Query(new Criteria().andOperator(
+				Criteria.where("mem_nickname").is(searchCondition.get("mem_nickname")),
+				Criteria.where("walker_id").is(searchCondition.get("walker_id"))));
+		List<ChatDTO> docs = mongoTemplate.find(query, ChatDTO.class,"chat");
+		return docs;
+	}
+	
+	
+	///오너////
 	@Override
 	public void chatInsert(Map<String, Object> chat) {
 		mongoTemplate.insert(chat,"chat");

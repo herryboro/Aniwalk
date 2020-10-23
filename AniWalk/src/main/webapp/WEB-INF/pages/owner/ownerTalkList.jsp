@@ -31,7 +31,7 @@
 						</li>
 						<li>
 							<div>
-								<label>${chatList.walker_id }</label>
+								<label>${chatList.walker_id}</label>
 								<span>${chatList.contents}</span>
 							</div>
 						</li>

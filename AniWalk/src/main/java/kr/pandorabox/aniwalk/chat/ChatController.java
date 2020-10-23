@@ -19,6 +19,59 @@ import org.springframework.web.servlet.ModelAndView;
 public class ChatController {
 	@Autowired
 	ChatService service;
+	
+	
+	/////////////////////walker/////////////////////
+	
+	//워커 채팅 리스트
+	@RequestMapping("/walker/talkList.do")
+	public ModelAndView walkerChatList(HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+		String walker_id = (String) req.getSession().getAttribute("walker_id");
+		Map<String, Object> walkerChatList = new HashMap<String, Object>();
+		walkerChatList.put("walker_id", walker_id);
+		List<ChatDTO> chatDtos = service.walkerChatList(walkerChatList);
+		List<ChatDTO> chatLists = new ArrayList<ChatDTO>(); //새롭게 만드는 list
+		int chatIndex = 0;
+		for(int i=0;i<chatDtos.size();++i) {
+			if(i==0) {
+				chatLists.add(chatIndex, chatDtos.get(i)) ;
+				chatIndex += 1;
+			}else {
+				if(! (chatDtos.get(i).getMem_nickname()).equals((chatDtos.get(i-1).getMem_nickname())) ) {//새롭게 만든 list에 담기
+					chatLists.add(chatIndex, chatDtos.get(i)) ;
+					chatIndex += 1;
+				}
+			}
+		}
+		mav.addObject("chatLists", chatLists);
+		mav.setViewName("walker/talkList");
+		return mav;
+	}
+	
+	//워커 채팅 content
+	@RequestMapping("/walker/talkContent.do")
+	public ModelAndView walkerChatContent(HttpServletRequest req,String mem_nickname) {
+		ModelAndView mav = new ModelAndView();
+		String walker_id = (String) req.getSession().getAttribute("walker_id");
+		Map<String, Object> searchCondition = new HashMap<String, Object>();
+		searchCondition.put("walker_id", walker_id);
+		searchCondition.put("mem_nickname", mem_nickname);
+		
+		//등록 서비스 호출
+		List<ChatDTO> chatDtos= service.walkerChatFind(searchCondition);
+		
+		mav.addObject("walker_id", walker_id);
+		mav.addObject("mem_nickname", mem_nickname);
+		mav.addObject("chatDtos", chatDtos);
+		mav.setViewName("walker/talkContent");
+		return mav;
+	}
+	
+	
+	
+	
+	/////////////////////onwer//////////////////////
 	//채팅리스트
 	//talkList
 	@RequestMapping("/owner/talk.do")

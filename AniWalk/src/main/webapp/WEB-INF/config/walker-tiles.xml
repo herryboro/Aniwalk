@@ -23,4 +23,10 @@
 	<definition name="walker/activList" extends="walkerTemplate">
 		<put-attribute name="content" value="/WEB-INF/pages/walker/walkerActivityList.jsp"/>
 	</definition>
+	<definition name="walker/talkList" extends="walkerTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/walker/walkerTalkList.jsp"/>
+	</definition>
+	<definition name="walker/talkContent" extends="walkerTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/walker/walkerTalkContent.jsp"/>
+	</definition>
 </tiles-definitions>

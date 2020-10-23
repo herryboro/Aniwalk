@@ -15,8 +15,7 @@
 	<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2521c7cc3e67ced68e19182536406c54&libraries=services,clusterer,drawing"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-	<!-- SocketJS CDN -->
-	<script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
+	
 </head>
 <body>
 	<div class="talk-content">
@@ -263,31 +262,46 @@
     	 }
 	     
     //var textarea = document.getElementById('messageWindow');
-    var webSocket = new WebSocket("ws://localhost:8080/aniwalk/broadcasting");
-    var inputMessage = document.getElementById('inputMessage');
-    webSocket.onerror = function(event) {
-        onError(event)
-    };
-    webSocket.onopen = function(event) {
-        onOpen(event)
-        console.log("open");
-    };
-    webSocket.onmessage = function(event) {
-    	console.log("onmessage");
-    	onMessage(event)
-        
-    };
-    function onMessage(event) {
-    	var NowTime = getTimeStamp();
+    //var webSocket = new WebSocket("ws://localhost:9928/aniwalk/broadcasting");
+    var inputMessage = document.getElementById('inputMessage'); //메시지 내용
+    var ws;
+	var userid = $("#chat_id").val(); //파라미터로 넘겨서 설정할 (내) 아이디
+    
+	function connect() {
+		//웹소켓 객체 생성하는 부분
+		//핸들러 등록(연결 생성, 메시지 수신, 연결 종료)
+
+		//url 연결할 서버의 경로
+		ws = new WebSocket('ws://localhost:8080/aniwalk/chat');	
+
+		ws.onopen = function() {
+			console.log('연결 생성');
+			register();
+		};
+		ws.onmessage = function(e) {
+			console.log('메시지 받음');
+			var data = e.data;
+			//alert("받은 메시지 : " + data);
+			addMsg(data);
+		};
+		ws.onclose = function() {
+			console.log('연결 끊김');
+		};
+	}
+	
+	//원래 채팅 메시지에 방금 받은 메시지 더해서 설정하기
+	function addMsg(msg) { 
+		var NowTime = getTimeStamp();
         var message = event.data.split("|");
-        var sender = message[0];
-        var content = message[1];
+        var sender = message[1];
+        var content = message[0];
+        console.log('제발제발제발제발----->'+sender+"내용:"+content);
         console.log(sender + content);
         var chatToInsert ='';
         if (content == "") {
             
         } else {
-        	if(sender == $("#chat_id").val()){ //내가 보낸 메시지
+        	if(sender != $("#chat_id").val()){ //내가 보낸 메시지
         		//나
             	chatToInsert += '<div class="my"><ul><li style="min-width: 60px"><span>'+NowTime+'</span></li>';
             	chatToInsert += '<li><div class="my-talk-content">'+content+'</div></li></ul></div>';
@@ -299,22 +313,20 @@
         		$("#messageWindow").append(chatToInsert)	
         	}
         }
-    }
-    function onOpen(event) {
-        $("#messageWindow").append("연결 성공");
-    }
-    function onError(event) {
-        alert(event.data);
-    }
-
-   	$("#send").click(function(event){
-   		console.log("onclick send()");
-   		
-   		send();
-   	})
-
-    function send() {
-        if (inputMessage.value == "") {
+	}
+	
+	//메시지 수신을 위한 서버에 id 등록하기
+	function register() { 
+		var msg = {
+			type : "register", //메시지 구분하는 구분자 - 상대방 아이디와 메시지 포함해서 보냄
+			userid : $("#chat_id").val()
+		};
+		ws.send(JSON.stringify(msg));
+	}
+ 	
+	//메시지를 보냈을 때
+	function sendMsg() {
+       if (inputMessage.value == "") {
         } else {	//내가 메시지 보냈을 때
         	var NowTime = getTimeStamp();
         	console.log('send()')
@@ -324,8 +336,8 @@
         	$("#messageWindow").append(chatToInsert)
         	
         	var trans_object = {
-        		'mem_nickname' : $("#chat_id").val(),
         		'walker_id' : $("#walker_id").val(),
+        		'mem_nickname' : $("#chat_id").val(),
         		'send_nickname' : $("#chat_id").val(),
         		'receive_nickname' : $("#walker_id").val(),
         		'chat_date' : NowTime,
@@ -347,14 +359,28 @@
         			alert("error"+retVal);
         		}
         	});
-        	
-        	
-        }//else 
-        
-        webSocket.send($("#chat_id").val() + "|" + inputMessage.value);
-        inputMessage.value = "";
 
-    }
+        }//else 
+      	
+		var msg = {
+			type : "chat", //메시지 구분하는 구분자 - 상대방 아이디와 메시지 포함해서 보냄
+			target : $("#walker_id").val(),
+			message : inputMessage.value
+		};
+		ws.send(JSON.stringify(msg));
+		inputMessage.value="";
+	};
+	
+	//페이지가 로딩되면 connect 실행
+	$(function() {
+		connect();
+		$('#send').on("click", function() {
+			sendMsg();
+			
+		})
+	});
+
+
     
     //     엔터키를 통해 send함
     function enterkey() {

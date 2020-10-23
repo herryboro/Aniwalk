@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,110 +24,24 @@
 
 	<div class="list-part">
 
-		<div class="talk-item">
-			<ul>
-				<li>
-					<a href="/aniwalk/walker/talk.do"><img class="img-circle" src="${pageContext.request.contextPath}/images/applier.png" alt=""></a>
-				</li>
-				<li>
-					<div>
-						<label>반려견주인 닉네임</label>
-						<span>제일 최근 대화 내용</span>
-					</div>
-				</li>
-			</ul>
-			<label>최근 대화 날짜</label>
-		</div>
-
-		<div class="talk-item">
-			<ul>
-				<li>
-					<img class="img-circle" src="${pageContext.request.contextPath}/images/applier.png" alt="">
-				</li>
-				<li>
-					<div>
-						<label>반려견주인 닉네임</label>
-						<span>제일 최근 대화 내용</span>
-					</div>
-				</li>
-			</ul>
-			<label>최근 대화 날짜</label>
-		</div>
-
-		<div class="talk-item">
-			<ul>
-				<li>
-					<img class="img-circle" src="${pageContext.request.contextPath}/images/applier.png" alt="">
-				</li>
-				<li>
-					<div>
-						<label>반려견주인 닉네임</label>
-						<span>제일 최근 대화 내용</span>
-					</div>
-				</li>
-			</ul>
-			<label>최근 대화 날짜</label>
-		</div>
-
-		<div class="talk-item">
-			<ul>
-				<li>
-					<img class="img-circle" src="${pageContext.request.contextPath}/images/applier.png" alt="">
-				</li>
-				<li>
-					<div>
-						<label>반려견주인 닉네임</label>
-						<span>제일 최근 대화 내용</span>
-					</div>
-				</li>
-			</ul>
-			<label>최근 대화 날짜</label>
-		</div>
-
-		<div class="talk-item">
-			<ul>
-				<li>
-					<img class="img-circle" src="${pageContext.request.contextPath}/images/applier.png" alt="">
-				</li>
-				<li>
-					<div>
-						<label>반려견주인 닉네임</label>
-						<span>제일 최근 대화 내용</span>
-					</div>
-				</li>
-			</ul>
-			<label>최근 대화 날짜</label>
-		</div>
-
-		<div class="talk-item">
-			<ul>
-				<li>
-					<img class="img-circle" src="${pageContext.request.contextPath}/images/applier.png" alt="">
-				</li>
-				<li>
-					<div>
-						<label>반려견주인 닉네임</label>
-						<span>제일 최근 대화 내용</span>
-					</div>
-				</li>
-			</ul>
-			<label>최근 대화 날짜</label>
-		</div>
-
-		<div class="talk-item">
-			<ul>
-				<li>
-					<img class="img-circle" src="${pageContext.request.contextPath}/images/applier.png" alt="">
-				</li>
-				<li>
-					<div>
-						<label>반려견주인 닉네임</label>
-						<span>제일 최근 대화 내용</span>
-					</div>
-				</li>
-			</ul>
-			<label>최근 대화 날짜</label>
-		</div>
+		<c:forEach var="chatList" items="${chatLists}">
+			<div class="talk-item">
+				<ul>
+					<li>
+						<a href="/aniwalk/walker/talkContent.do?mem_nickname=${chatList.mem_nickname}"><img class="img-circle" src="${pageContext.request.contextPath}/images/applier.png" alt=""></a>
+					</li>
+					<li>
+						<div>
+							<label>${chatList.mem_nickname}</label>
+							<span>${chatList.contents}</span>
+						</div>
+					</li>
+				</ul>
+				<label>${chatList.chat_date}</label>
+			</div>
+		</c:forEach>
+		
+		
 	</div>
 </div>
 

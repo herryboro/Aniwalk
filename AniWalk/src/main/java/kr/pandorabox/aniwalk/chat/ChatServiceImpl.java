@@ -10,6 +10,19 @@ import org.springframework.stereotype.Service;
 public class ChatServiceImpl implements ChatService{
 	@Autowired
 	ChatDAO dao;
+
+	////////워커///////
+	
+	@Override
+	public List<ChatDTO> walkerChatList(Map<String, Object> walkerChatList) {
+		return dao.walkerChatList(walkerChatList);
+	}
+	@Override
+	public List<ChatDTO> walkerChatFind(Map<String, Object> searchCondition) {
+		return dao.walkerChatFind(searchCondition);
+	}
+	
+	////////오너///////
 	@Override
 	public void chatInsert(Map<String, Object> chat) {
 		dao.chatInsert(chat);
