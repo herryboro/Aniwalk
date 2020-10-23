@@ -330,7 +330,7 @@
 		for(let i in test){
 			setTimeout(() => {
 				testlocation(test[i]);	
-			}, i * 2000)
+			}, i * 1000)
 		} 
 	}
 	

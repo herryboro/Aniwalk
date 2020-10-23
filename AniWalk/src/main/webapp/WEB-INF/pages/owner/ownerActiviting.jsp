@@ -240,7 +240,7 @@ $(document).ready(function(){
 	let getLocation = setInterval(() => {
 		getWalkingMission();
 		getWalkingLocation();
-	}, 2000);
+	}, 1000);
 })
 </script>
 </body>

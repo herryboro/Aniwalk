@@ -304,7 +304,6 @@ $(document).ready(function(){
 <script>
 
 	function auth(){
-		alert($('.auth').val());
 		$.ajax({
 			url:"/aniwalk/walker/authNum.do",
 			type:"post",

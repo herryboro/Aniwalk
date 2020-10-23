@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import net.nurigo.java_sdk.api.Message;
@@ -11,14 +12,16 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 @Service
 public class Authentication {
-	public int auth(String wk_phone) {
+	@Autowired
+	private SHA256 hash;
+	
+	public String auth(String wk_phone) {
 	    String api_key = "NCSZWHTZKWELPOQD";
 	    String api_secret = "XFMSMEGET60Q3DSIQBPALSX7WEEC0OCU";
 	    Message coolsms = new Message(api_key, api_secret);
 	    Random ran = new Random();
-	    int auth = ran.nextInt(999999) + 100000;
+	    String auth = Integer.toString(ran.nextInt(899999) + 100000);
 
-	    // 4 params(to, from, type, text) are mandatory. must be filled
 	    HashMap<String, String> params = new HashMap<String, String>();
 	    params.put("to", wk_phone);
 	    params.put("from", "01092796963");
@@ -33,6 +36,7 @@ public class Authentication {
 	      System.out.println(e.getMessage());
 	      System.out.println(e.getCode());
 	    }
+	    auth = hash.toSHA256(auth);
 	    return auth;
 	  }
 }

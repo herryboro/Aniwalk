@@ -49,12 +49,6 @@ public class WalkingServiceImpl implements WalkingService{
 	@Override
 	public List<WalkingDTO> getMissionList(String walking_id) {
 		List<WalkingDTO> list = walkingDao.getMissionList(walking_id);
-		for (WalkingDTO walkingDTO : list) {
-			if(walkingDTO.getMission_contents().equals("end")) {
-				list = null;
-				break;
-			}
-		}
 		return list;
 	}
 	
