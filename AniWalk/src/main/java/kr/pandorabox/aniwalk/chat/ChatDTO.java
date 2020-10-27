@@ -8,6 +8,10 @@ public class ChatDTO {
 	private String send_nickname;
 	private String receive_nickname;
 	private String contents;
+	private String wk_profile_img1;
+	private String mem_profile_img;
+	
+	
 	public String getChat_date() {
 		return chat_date;
 	}
@@ -43,6 +47,19 @@ public class ChatDTO {
 	}
 	public void setWalker_id(String walker_id) {
 		this.walker_id = walker_id;
+	}
+	
+	public String getWk_profile_img1() {
+		return wk_profile_img1;
+	}
+	public void setWk_profile_img1(String wk_profile_img1) {
+		this.wk_profile_img1 = wk_profile_img1;
+	}
+	public String getMem_profile_img() {
+		return mem_profile_img;
+	}
+	public void setMem_profile_img(String mem_profile_img) {
+		this.mem_profile_img = mem_profile_img;
 	}
 	@Override
 	public String toString() {

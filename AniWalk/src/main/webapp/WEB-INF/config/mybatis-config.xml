@@ -21,5 +21,6 @@
 		<mapper resource="mapper/walker.xml"/>
 		<mapper resource="mapper/manager.xml"/>
 		<mapper resource="mapper/walking.xml"/>
+		<mapper resource="mapper/chat.xml"/>
 	</mappers>
 </configuration>

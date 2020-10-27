@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.pandorabox.aniwalk.walking.WalkingDTO;
+
 @Controller
 public class ChatController {
 	@Autowired
 	ChatService service;
-	
-	
+
 	/////////////////////walker/////////////////////
 	
 	//워커 채팅 리스트
@@ -116,9 +117,13 @@ public class ChatController {
 		System.out.println(searchCondition.get("walker_id") +"find walker_id");
 		System.out.println(searchCondition.get("mem_nickname")+"find mem_nickname");
 		
+		//매칭안된 나의 산책 모집글 가져오기
+		List<WalkingDTO> nonMatchList = service.nonMatchList(mem_nickname);
+		System.out.println("nonMatchList 컨트롤러 : "+nonMatchList);
 		//등록 서비스 호출
 		List<ChatDTO> chatDtos = service.chatFind(searchCondition);
 		System.out.println("size : "+chatDtos.size());
+		mav.addObject("nonMatchList", nonMatchList);
 		mav.addObject("walker_id", walker_id);
 		mav.addObject("mem_nickname", mem_nickname);
 		mav.addObject("chatDtos", chatDtos);
@@ -143,7 +148,16 @@ public class ChatController {
 		return retVal;
 	}
 	
-	
+	//오너 대화 리스트 워커 프로필 사진 가져오기
+		@RequestMapping(value="/chat/getWalkerProfile.do",
+				method = RequestMethod.GET,
+				produces = "application/text;charset=utf-8")
+		public @ResponseBody String getWalkerProfile(String walker_id) {
+			System.out.println("들어오는 walker_id확인"+walker_id);
+			String result = service.getWalkerProfile(walker_id);
+			System.out.println("워커 프로필:::"+result);
+			return result;
+		}
 	
 	
 }

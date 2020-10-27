@@ -144,48 +144,25 @@
 			<div class="reserve-modal">
 				<h3>매칭안된 모집글 리스트</h3>
 				<div class="dont-match-list">
-
-					<!-- 모집글 1개 -->
-					<div class="list-item">
-						<img src="${pageContext.request.contextPath}/images/mydog.jpg" class="img-rounded" alt="">
-						<ul>
-							<li>
-								<label>날짜 : </label>
-								<span>2020-09-30</span>
-							</li>
-							<li>
-								<label>시간 : </label>
-								<span>오후 1:30 ~ 오후 2:00 (30분)</span>
-							</li>
-							<li>
-								<label>장소 : </label>
-								<span>서울특별시 서초구 반포대로 13길 26</span>
-							</li>
-						</ul>
-					</div>
-					<!-- 끝 -->
-
-					<!-- 모집글 1개 -->
-					<div class="list-item">
-						<img src="${pageContext.request.contextPath}/images/mydog.jpg" class="img-rounded" alt="">
-						<ul>
-							<li>
-								<label>날짜 : </label>
-								<span>2020-09-30</span>
-							</li>
-							<li>
-								<label>시간 : </label>
-								<span>오후 1:30 ~ 오후 2:00 (30분)</span>
-							</li>
-							<li>
-								<label>장소 : </label>
-								<span>서울특별시 서초구 반포대로 13길 26</span>
-							</li>
-						</ul>
-					</div>
-					<!-- 끝 -->
-
-
+					<c:forEach var="non" items="${nonMatchList}">
+						<div class="list-item">
+							<img src="/owner/${non.dog_image}" class="img-rounded" alt="">
+							<ul>
+								<li>
+									<label>날짜 : </label>
+									<span>${non.walk_date}</span>
+								</li>
+								<li>
+									<label>시간 : </label>
+									<span>${non.walk_start_time} ~ ${non.walk_end_time}</span>
+								</li>
+								<li>
+									<label>장소 : </label>
+									<span>${non.recruit_location}</span>
+								</li>
+							</ul>
+						</div>
+					</c:forEach>
 				</div>
 				<!-- 모집글 작성 버튼 -->
 				<div class="new-recruit">
@@ -261,8 +238,6 @@
     	   return zero + n;
     	 }
 	     
-    //var textarea = document.getElementById('messageWindow');
-    //var webSocket = new WebSocket("ws://localhost:9928/aniwalk/broadcasting");
     var inputMessage = document.getElementById('inputMessage'); //메시지 내용
     var ws;
 	var userid = $("#chat_id").val(); //파라미터로 넘겨서 설정할 (내) 아이디

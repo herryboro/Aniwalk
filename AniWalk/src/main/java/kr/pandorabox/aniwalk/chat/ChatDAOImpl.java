@@ -12,16 +12,28 @@ import static org.springframework.data.mongodb.core.aggregation.Aggregation.newA
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.domain.Sort;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
+import kr.pandorabox.aniwalk.walking.WalkingDTO;
+
 @Repository
 public class ChatDAOImpl implements ChatDAO{
 	@Autowired
 	MongoTemplate mongoTemplate;
+	@Autowired
+	SqlSession session;
+	//워커 프로필사진(대화리스트)
+	@Override
+	public String getWalkerProfile(String walker_id) {
+		return session.selectOne("kr.pandorabox.aniwalk.chat.getWalkerProfile",walker_id);
+	}
+	
+	
 	///워커///
 	@Override
 	public List<ChatDTO> walkerChatList(Map<String, Object> walkerChatList) {
@@ -77,5 +89,10 @@ public class ChatDAOImpl implements ChatDAO{
 				.and(new Sort(Sort.Direction.DESC,"_id")));
 		List<ChatDTO> docs = mongoTemplate.find(query, ChatDTO.class,"chat");
 		return docs;
+	}
+	
+	@Override
+	public List<WalkingDTO> nonMatchList(String mem_nickname) {
+		return session.selectList("kr.pandorabox.aniwalk.chat.nonMatchList", mem_nickname);
 	}
 }

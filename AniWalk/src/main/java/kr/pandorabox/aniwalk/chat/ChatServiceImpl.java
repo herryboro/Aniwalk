@@ -6,10 +6,17 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.pandorabox.aniwalk.walking.WalkingDTO;
+
 @Service
 public class ChatServiceImpl implements ChatService{
 	@Autowired
 	ChatDAO dao;
+	
+	@Override
+	public String getWalkerProfile(String walker_id) {
+		return dao.getWalkerProfile(walker_id);
+	}
 
 	////////워커///////
 	
@@ -34,5 +41,9 @@ public class ChatServiceImpl implements ChatService{
 	@Override
 	public List<ChatDTO> chatList(Map<String, Object> chatList) {
 		return dao.chatList(chatList);
+	}
+	@Override
+	public List<WalkingDTO> nonMatchList(String mem_nickname) {
+		return dao.nonMatchList(mem_nickname);
 	}
 }

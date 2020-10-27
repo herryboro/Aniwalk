@@ -3,7 +3,11 @@ package kr.pandorabox.aniwalk.chat;
 import java.util.List;
 import java.util.Map;
 
+import kr.pandorabox.aniwalk.walking.WalkingDTO;
+
 public interface ChatService {
+	//워커 프로필(대화 리스트)
+	public String getWalkerProfile(String walker_id);
 	
 	///워커///
 	public List<ChatDTO> walkerChatList(Map<String,Object> walkerChatList);
@@ -13,4 +17,5 @@ public interface ChatService {
 	public void chatInsert(Map<String, Object> chat);
 	public List<ChatDTO> chatFind(Map<String, Object> searchCondition);
 	public List<ChatDTO> chatList(Map<String, Object> chatList);
+	public List<WalkingDTO> nonMatchList(String mem_nickname);
 }
