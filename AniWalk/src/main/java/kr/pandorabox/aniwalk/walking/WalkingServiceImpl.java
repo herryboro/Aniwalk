@@ -17,6 +17,12 @@ public class WalkingServiceImpl implements WalkingService{
 	@Autowired
 	private FileUploadLogic upload;
 	
+	// 모집글 상세검색
+	@Override
+	public List<WalkingDTO> getSearchRecruitList(WalkingDTO walkingDto) {
+		return walkingDao.getSearchRecruitList(walkingDto);
+	}	
+	
 	// 산책 path 불러오기
 	@Override
 	public String getWalkingLocation(String walking_id) {

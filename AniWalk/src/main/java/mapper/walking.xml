@@ -17,6 +17,33 @@
 		values('walking'||lpad(seq_walking.nextval,5,0),#{recruit_mem_id},#{dog_id},to_date(#{walk_date},'YYYY-MM-DD'),
 		#{walk_start_time},#{walk_end_time},#{recruit_notices},#{recruit_location},#{walking_point})	
 	</insert>
+	<!-- 모집글 상세검색 -->
+	<select id="getSearchRecruitList" parameterType="walking" resultType="walking">
+		select * from ani_walking w left outer join ani_dog d
+        on d.dog_id = w.dog_id
+        left outer join ani_dog_img i
+        on d.dog_id = i.dog_id
+        where w.recruit_close_yn=0
+        <if test="dog_type != null and !dog_type.equals('견종')">
+			and d.dog_type=#{dog_type}
+        </if>
+        <if test="recruit_location != null and !recruit_location.equals('')">
+        	and w.recruit_location like '%'||#{recruit_location}||'%'
+        </if>
+        <if test="walk_date != null and !walk_date.equals('')">
+        	and to_char(w.walk_date, 'YYYY-MM-DD')=#{walk_date}
+        </if>
+        <if test="walk_start_time != null and !walk_start_time.equals('')">
+        	and to_number(substr(w.walk_start_time, 1,2)||substr(w.walk_start_time,4,2)) - 
+				to_number(substr(#{walk_start_time}, 1,2)||substr(#{walk_start_time}, 4,2)) &gt; 0
+        </if>
+        <if test="walk_end_time != null and !walk_end_time.equals('')">
+        	and to_number(substr(w.walk_end_time, 1,2)||substr(w.walk_end_time,4,2)) - 
+				to_number(substr(#{walk_end_time}, 1,2)||substr(#{walk_end_time}, 4,2)) &lt; 0
+        </if>
+        order by w.walk_date desc
+	</select>
+	
 	<!-- 모집글 리스트 -->
     <select id="getRecruitList" parameterType="String" resultType="walking">
         select * from ani_walking w left outer join ani_dog d

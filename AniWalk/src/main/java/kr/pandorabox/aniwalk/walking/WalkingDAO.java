@@ -43,4 +43,6 @@ public interface WalkingDAO {
 	public int insertWalkingLocation(Map<String, String> map);
 
 	public String getWalkingLocation(String walking_id);
+
+	public List<WalkingDTO> getSearchRecruitList(WalkingDTO walkingDto);
 }

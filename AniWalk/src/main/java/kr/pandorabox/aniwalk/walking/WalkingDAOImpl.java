@@ -12,6 +12,13 @@ public class WalkingDAOImpl implements WalkingDAO{
 	@Autowired
 	SqlSession session;
 	
+	//모집글 상세검색
+	@Override
+	public List<WalkingDTO> getSearchRecruitList(WalkingDTO walkingDto) {
+		System.out.println(walkingDto);
+		return session.selectList("kr.pandorabox.aniwalk.walking.getSearchRecruitList", walkingDto);
+	}
+	
 	//산책 path 불러오기
 	@Override
 	public String getWalkingLocation(String walking_id) {

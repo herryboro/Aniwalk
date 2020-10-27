@@ -20,15 +20,23 @@ public class WalkingController {
 	@Autowired
 	private WalkingService walkingService;
 	
+	// 모집 리스트 상세 검색
+	@RequestMapping("/walker/recruit/detail.do")
+	public ModelAndView getSearchRecruitList(WalkingDTO walkingDto) {
+		List<WalkingDTO> recruitList = walkingService.getSearchRecruitList(walkingDto);
+		System.out.println(recruitList.size());
+		return new ModelAndView("walker/recruitlist", "recruitList", recruitList);
+	}
+	
 	// 산책 path 불러오기
-		@ResponseBody
-		@RequestMapping(value = "/walking/getWalkingMission.do",
-				method = RequestMethod.POST,
-				produces = "application/json;charset=utf-8")
-		public List<WalkingDTO> getWalkingMission(String walking_id) {
-			List<WalkingDTO> result = walkingService.getMissionList(walking_id);
-			return result;
-		}	
+	@ResponseBody
+	@RequestMapping(value = "/walking/getWalkingMission.do",
+			method = RequestMethod.POST,
+			produces = "application/json;charset=utf-8")
+	public List<WalkingDTO> getWalkingMission(String walking_id) {
+		List<WalkingDTO> result = walkingService.getMissionList(walking_id);
+		return result;
+	}	
 	
 	// 산책 path 불러오기
 	@ResponseBody

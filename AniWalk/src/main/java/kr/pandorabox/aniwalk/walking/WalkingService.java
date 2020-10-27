@@ -30,4 +30,5 @@ public interface WalkingService {
 	public WalkingDTO getWalkingInfo(String walking_id);
 	public int insertWalkingLocation(String walking_id, String walking_map_path);
 	public String getWalkingLocation(String walking_id);
+	public List<WalkingDTO> getSearchRecruitList(WalkingDTO walkingDto);
 }

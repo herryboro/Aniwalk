@@ -68,14 +68,14 @@
 <!-- 상세 검색 조건 -->
 <div class="modal-bg hidden">
 	<div class="modal-content" onclick="event.stopPropagation()">
-		<form>
+		<form method="post" action="/aniwalk/walker/recruit/detail.do">
 			<ul>
 				<li>
 					<label>날짜</label>
 				</li>
 				<li>
 					<label>
-						<input type="date" class="form-control">
+						<input name="walk_date" type="date" class="form-control">
 					</label>
 				</li>
 			</ul>
@@ -85,13 +85,13 @@
 				</li>
 				<li>
 					<label>
-						<input type="time" class="form-control">
+						<input name="walk_start_time" type="time" class="form-control">
 					</label>
 				</li>
 				<li> ~ </li>
 				<li>
 					<label>
-						<input type="time" class="form-control">
+						<input name="walk_end_time" type="time" class="form-control">
 					</label>
 				</li>
 			</ul>
@@ -100,7 +100,7 @@
 					<label>견종</label>
 				</li>
 				<li>
-					<select class="form-control">
+					<select name="dog_type" class="form-control">
 						<option selected>견종</option>
 						<option>포메라니안</option>
 						<option>요크셔테리어</option>
@@ -111,13 +111,10 @@
 			</ul>
 			<ul>
 				<li>
-					<label>활동위치</label>
+					<label>장소</label>
 				</li>
 				<li>
-					<select class="form-control">
-						<option selected>서울특별시 서초구</option>
-						<option selected>서울특별시 강남구</option>
-					</select>
+					<input name="recruit_location" type="text" class="form-control">					
 				</li>
 			</ul>
 			<button class="btn btn-primary">검색</button>
