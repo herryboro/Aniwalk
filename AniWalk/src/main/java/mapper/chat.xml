@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kr.pandorabox.aniwalk.chat">
+	<select id="getWalkerProfile" parameterType="String" resultType="String">
+		select wk_profile_img1 from ani_walker where walker_id = #{walker_id} 
+	</select>
+	<select id="nonMatchList" parameterType="String" resultType="walking">
+		<![CDATA[
+		select * from ani_walking w left outer join ani_member m
+		on w.recruit_mem_id = m.mem_id
+		left outer join ani_dog d
+		on d.mem_id = d.mem_id
+		left outer join ani_dog_img i
+		on i.dog_id = d.dog_id
+		where m.mem_nickname = #{mem_nickname}
+		and w.recruit_close_yn = 0
+		and w.match_wk_id is null
+		]]> 
+	</select>
+</mapper>
