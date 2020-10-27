@@ -88,8 +88,8 @@ public class WalkingServiceImpl implements WalkingService{
 	}
 	
 	@Override
-	public List<WalkingDTO> getRecruitList() {
-		return walkingDao.getRecruitList();
+	public List<WalkingDTO> getRecruitList(String search) {
+		return walkingDao.getRecruitList(search);
 	}
 	@Override
 	public List<WalkingDTO> recruitlist(String mem_nickname) {

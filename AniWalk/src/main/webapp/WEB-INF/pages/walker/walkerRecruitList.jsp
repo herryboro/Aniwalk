@@ -17,9 +17,9 @@
 
 	<!-- 검색 -->
 	<div class="search-part">
-		<form name="recruitSearchForm">
+		<form name="recruitSearchForm" method="post" action="/aniwalk/walker/recruitlist.do">
 			<label>
-				<input class="form-control" type="search" placeholder="이름 및 장소를 검색">
+				<input class="form-control" name="search" type="search" placeholder="이름 및 장소를 검색">
 			</label>
 			<button class="btn btn-primary" type="submit">검색</button>
 		</form>

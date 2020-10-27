@@ -83,9 +83,10 @@ public class WalkingController {
 	
 	// 모집글 리스트
 	@RequestMapping("/walker/recruitlist.do")
-	public ModelAndView recruitlist(HttpServletRequest request) {
+	public ModelAndView recruitlist(String search, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		List<WalkingDTO> list = walkingService.getRecruitList();
+		System.out.println(search);
+		List<WalkingDTO> list = walkingService.getRecruitList(search);
 		String walker_id = (String) request.getSession().getAttribute("walker_id");
 		//워커 인덱스 가져오기
 		String wk_id = walkingService.wkId(walker_id);
