@@ -36,7 +36,7 @@
 				</c:when>
 				<c:otherwise><!-- 상대방이 보낸 내용 -->
 					<div class="you">
-						<img src="${pageContext.request.contextPath}/images/applier.png" class="img-circle" alt="">
+						<img src="/owner/${mem_profile_img}" class="img-circle" alt="">
 						<ul>
 							<li>
 								<label>${chatDto.mem_nickname}</label>
@@ -137,6 +137,7 @@
 <form class="talk-inputForm">
 <input type="hidden" value="${mem_nickname}" id="mem_nickname" name="mem_nickname">
 <input type="hidden" value="${walker_id}" id="chat_id" name="walker_id">
+<input type="hidden" value="${mem_profile_img }" id="mem_profile_img" name="mem_profile_img">
 	<label>
 		<input type="text" class="form-control" id="inputMessage" onkeyup="enterkey()">
 	</label>
@@ -200,6 +201,7 @@
 	
 	//원래 채팅 메시지에 방금 받은 메시지 더해서 설정하기
 	function addMsg(msg) { 
+		var mem_profile_img = $('#mem_profile_img').val();
 		var NowTime = getTimeStamp();
         var message = event.data.split("|");
         var sender = message[1];
@@ -218,7 +220,7 @@
             	$("#messageWindow").append(chatToInsert)
         	}else{ //상대방
         		chatToInsert += '<div class="you">';
-        		chatToInsert += '<img src="${pageContext.request.contextPath}/images/applier.png" class="img-circle" alt="">';
+        		chatToInsert += '<img src="/owner/'+mem_profile_img+'" class="img-circle" alt="">';
         		chatToInsert += '<ul><li><label>'+target+'</label></li><li><div>'+content+'</div><span>'+NowTime+'</span></li></ul></div>';
         		$("#messageWindow").append(chatToInsert)	
         	}
@@ -251,7 +253,8 @@
         		'send_nickname' : $("#chat_id").val(),
         		'receive_nickname' : $("#mem_nickname").val(),
         		'chat_date' : NowTime,
-        		'contents' : inputMessage.value
+        		'contents' : inputMessage.value,
+        		'mem_profile_img' : $('#mem_profile_img').val()
         	}
         	var trans_json = JSON.stringify(trans_object); //json으로 변환
         	

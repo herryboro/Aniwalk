@@ -9,6 +9,9 @@ public interface ChatService {
 	//워커 프로필(대화 리스트)
 	public String getWalkerProfile(String walker_id);
 	
+	//멤버 프로필
+	public String getMemProfile(String mem_nickname);
+	
 	///워커///
 	public List<ChatDTO> walkerChatList(Map<String,Object> walkerChatList);
 	public List<ChatDTO> walkerChatFind(Map<String, Object> searchCondition);

@@ -38,10 +38,10 @@
 					</c:when>
 					<c:otherwise><!-- 상대방이 보낸 내용 -->
 						<div class="you">
-							<img src="/walker/${chatDto.wk_profile_img1}" class="img-circle" alt="">
+							<img src="/walker/${wk_profile_img1}" class="img-circle" alt="">
 							<ul>
 								<li>
-									<label>${chatDto.walker_id}${chatDto.wk_profile_img1}</label>
+									<label>${chatDto.walker_id} </label>
 								</li>
 								<li>
 									<div>${chatDto.contents }</div>

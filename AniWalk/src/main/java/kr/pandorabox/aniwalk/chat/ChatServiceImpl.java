@@ -17,6 +17,10 @@ public class ChatServiceImpl implements ChatService{
 	public String getWalkerProfile(String walker_id) {
 		return dao.getWalkerProfile(walker_id);
 	}
+	@Override
+	public String getMemProfile(String mem_nickname) {
+		return dao.getMemProfile(mem_nickname);
+	}
 
 	////////워커///////
 	

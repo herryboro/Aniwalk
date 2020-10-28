@@ -27,10 +27,15 @@ public class ChatDAOImpl implements ChatDAO{
 	MongoTemplate mongoTemplate;
 	@Autowired
 	SqlSession session;
-	//워커 프로필사진(대화리스트)
+	
+	//프로필사진(대화리스트)
 	@Override
 	public String getWalkerProfile(String walker_id) {
 		return session.selectOne("kr.pandorabox.aniwalk.chat.getWalkerProfile",walker_id);
+	}
+	@Override
+	public String getMemProfile(String mem_nickname) {
+		return session.selectOne("kr.pandorabox.aniwalk.chat.getMemProfile", mem_nickname);
 	}
 	
 	

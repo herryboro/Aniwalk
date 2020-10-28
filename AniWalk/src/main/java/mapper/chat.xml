@@ -7,6 +7,9 @@
 	<select id="getWalkerProfile" parameterType="String" resultType="String">
 		select wk_profile_img1 from ani_walker where walker_id = #{walker_id} 
 	</select>
+	<select id="getMemProfile" parameterType="String" resultType="String">
+		select mem_profile_img from ani_member where mem_nickname = #{mem_nickname}
+	</select>
 	<select id="nonMatchList" parameterType="String" resultType="walking">
 		<![CDATA[
 		select * from ani_walking w left outer join ani_member m

@@ -65,8 +65,10 @@ public class ChatDTO {
 	public String toString() {
 		return "ChatDTO [chat_date=" + chat_date + ", mem_nickname=" + mem_nickname + ", walker_id=" + walker_id
 				+ ", send_nickname=" + send_nickname + ", receive_nickname=" + receive_nickname + ", contents="
-				+ contents + "]";
+				+ contents + ", wk_profile_img1=" + wk_profile_img1 + ", mem_profile_img=" + mem_profile_img + "]";
 	}
+	
+	
 	
 	
 }

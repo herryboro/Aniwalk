@@ -62,6 +62,11 @@ public class ChatController {
 		//등록 서비스 호출
 		List<ChatDTO> chatDtos= service.walkerChatFind(searchCondition);
 		
+		//오너 프로필 사진 가져오기
+		String mem_profile_img = service.getMemProfile(mem_nickname);
+		System.out.println("워커 채팅 컨트롤러 mem_profile_img ::::"+ mem_profile_img);
+		
+		mav.addObject("mem_profile_img", mem_profile_img);
 		mav.addObject("walker_id", walker_id);
 		mav.addObject("mem_nickname", mem_nickname);
 		mav.addObject("chatDtos", chatDtos);
@@ -121,6 +126,7 @@ public class ChatController {
 		
 		//등록 서비스 호출
 		List<ChatDTO> chatDtos = service.chatFind(searchCondition);
+		System.out.println("컨트롤러 chatFind" + chatDtos );
 
 		mav.addObject("wk_profile_img1", wk_profile_img1);
 		mav.addObject("nonMatchList", nonMatchList);
