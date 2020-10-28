@@ -20,7 +20,16 @@ public class WalkingController {
 	@Autowired
 	private WalkingService walkingService;
 	
-	// 모집 리스트 상세 검색
+	
+	// 프렌즈 페이지 - 산책현황 리스트
+	@RequestMapping("/walker/main.do")
+	public ModelAndView main(HttpServletRequest req) {
+		String walker_id = (String) req.getSession().getAttribute("walker_id");
+		List<WalkingDTO> walkingList = walkingService.getAllWalkingList(walker_id);
+		return new ModelAndView("walker/main", "walkingList", walkingList);
+	}	
+	
+	// 오너 페이지 - 모집 리스트 상세 검색
 	@RequestMapping("/walker/recruit/detail.do")
 	public ModelAndView getSearchRecruitList(WalkingDTO walkingDto) {
 		List<WalkingDTO> recruitList = walkingService.getSearchRecruitList(walkingDto);

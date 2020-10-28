@@ -17,6 +17,12 @@ public class WalkingServiceImpl implements WalkingService{
 	@Autowired
 	private FileUploadLogic upload;
 	
+	// 펫 프렌즈 페이지 - 산책 현황 리스트
+	@Override
+	public List<WalkingDTO> getAllWalkingList(String walker_id) {
+		return walkingDao.getAllWalkingList(walker_id);
+	}
+	
 	// 모집글 상세검색
 	@Override
 	public List<WalkingDTO> getSearchRecruitList(WalkingDTO walkingDto) {

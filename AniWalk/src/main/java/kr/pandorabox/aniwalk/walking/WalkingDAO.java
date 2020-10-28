@@ -45,4 +45,6 @@ public interface WalkingDAO {
 	public String getWalkingLocation(String walking_id);
 
 	public List<WalkingDTO> getSearchRecruitList(WalkingDTO walkingDto);
+
+	public List<WalkingDTO> getAllWalkingList(String walker_id);
 }

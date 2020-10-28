@@ -31,7 +31,9 @@
 			<table>
 				<tr>
 					<th>활동지역</th>
-					<td>${walkerDto.wk_location1} / ${walkerDto.wk_location2}</td>
+					<td>${walkerDto.wk_location1}
+						<c:if test="${walkerDto.wk_location2 ne null}"> / ${walkerDto.wk_location2}</c:if>
+					</td>
 				</tr>
 				<tr>
 					<th>포인트</th>

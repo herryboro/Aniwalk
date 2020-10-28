@@ -48,12 +48,6 @@ public class WalkerController {
 		return "fail";
 	}
 	
-	//main
-	@RequestMapping("/walker/main.do")
-	public String main(HttpServletRequest request, String walker_id) {
-		return "walker/main";
-	}	
-	
 	// owner페이지 펫 프렌즈 리스트
 	@RequestMapping("owner/walker.do")
 	public ModelAndView walkerList(String searchWalker, HttpServletRequest req) {

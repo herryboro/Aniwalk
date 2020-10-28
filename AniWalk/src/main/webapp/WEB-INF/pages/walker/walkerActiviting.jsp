@@ -570,6 +570,8 @@
 	})
 	endUploadBtn.addEventListener('click',function (e){
 		saveImg(e);
+		alert('산책이 완료 되었습니다 :)');
+		location.href='/aniwalk/walker/main.do';
 	})
 	
 	$(document).ready(function(){

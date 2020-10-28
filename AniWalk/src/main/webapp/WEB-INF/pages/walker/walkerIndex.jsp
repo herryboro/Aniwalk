@@ -19,7 +19,7 @@
 		<button class="btn btn-primary">활동 시작하기</button>
 	</div>
 	<div class="walker-login hidden">
-		<form>
+		<form onkeydown="return captureReturnKey(event)">
 			<img src="${pageContext.request.contextPath}/images/main_logo.png" alt="">
 			<ul>
 				<li>
@@ -52,12 +52,29 @@
 	const indexDiv = document.querySelector('.walker-index');
 	const loginDiv = document.querySelector('.walker-login');
 	const btn = document.querySelector('.btn-primary');
-
+	
+	const captureReturnKey = function (e) { 
+	    if(e.keyCode == 13 && e.srcElement.type != 'input') 
+	        return false; 
+	}
+	
 	btn.addEventListener('click',function(){
 		indexDiv.classList.add('hidden');
 		loginDiv.classList.remove('hidden');
 
 	});
+	
+	document.getElementById('walker_id').addEventListener('keydown', (event) => {
+		if(event.keyCode == 13){
+			document.getElementById('wk_pw').focus();
+		}
+	})
+	
+	document.getElementById('wk_pw').addEventListener('keydown', (event) => {
+		if(event.keyCode == 13){
+			document.getElementById('loginbt').click();
+		}
+	})
 	
 	$(document).ready(function(){
 		$("#loginbt").click(function(){
