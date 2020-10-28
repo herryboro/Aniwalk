@@ -70,7 +70,7 @@
 	const onAir = document.querySelectorAll('.onair');
 	const modalBg = document.querySelector('.modal-bg');
 	const close = document.querySelector('.close');
-	const closeBtn = document.querySelector('.close-btn');
+	const ownerIndexCloseBtn = document.querySelector('.close-btn');
 
 	for(var i=0; i<listItem.length; i++){
 		listItem[i].addEventListener('click',function(){
@@ -84,7 +84,7 @@
 	close.addEventListener('click',function (){
 		modalBg.classList.add('hidden');
 	})
-	closeBtn.addEventListener('click',function (){
+	ownerIndexCloseBtn.addEventListener('click',function (){
 		modalBg.classList.add('hidden');
 	})
 </script>
