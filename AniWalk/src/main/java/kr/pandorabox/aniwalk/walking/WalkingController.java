@@ -33,7 +33,6 @@ public class WalkingController {
 	@RequestMapping("/walker/recruit/detail.do")
 	public ModelAndView getSearchRecruitList(WalkingDTO walkingDto) {
 		List<WalkingDTO> recruitList = walkingService.getSearchRecruitList(walkingDto);
-		System.out.println(recruitList.size());
 		return new ModelAndView("walker/recruitlist", "recruitList", recruitList);
 	}
 	
@@ -102,7 +101,6 @@ public class WalkingController {
 	@RequestMapping("/walker/recruitlist.do")
 	public ModelAndView recruitlist(String search, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println(search);
 		List<WalkingDTO> list = walkingService.getRecruitList(search);
 		String walker_id = (String) request.getSession().getAttribute("walker_id");
 		//워커 인덱스 가져오기

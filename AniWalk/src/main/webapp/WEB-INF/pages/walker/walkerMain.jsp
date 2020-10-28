@@ -29,8 +29,10 @@
 			<table>
 				<thead>
 				<tr>
+					<th>댕댕이 주인</th>
+					<th>댕댕이 이름</th>
 					<th>장소</th>
-					<th>시간</th>
+					<th>산책시간</th>
 					<th style="text-align: center;">진행현황</th>
 				</tr>
 				</thead>
@@ -38,13 +40,29 @@
 				<c:forEach var="walking" items="${walkingList}">
 				<tr>
 					<td>
+						${walking.mem_nickname}
+					</td>
+					<td>
+						${walking.dog_name}
+					</td>
+					<td>
 						${walking.recruit_location}
 					</td>
 					<td>
 						${walking.real_walk_start_time}  ~   ${walking.real_walk_end_time}
 					</td>
 					<td>
-						<div class="not">산책 완료</div>
+						<c:choose>
+							<c:when test="${walking.real_walk_start_time eq null}">
+								<div class="not">산책 준비중</div>
+							</c:when>
+							<c:when test="${walking.real_walk_end_time ne null}">
+								<div class="done">산책 완료</div>
+							</c:when>
+							<c:otherwise>
+								<div class="not">산책 중</div>
+							</c:otherwise>
+						</c:choose>
 					</td>
 				</tr>
 				</c:forEach>

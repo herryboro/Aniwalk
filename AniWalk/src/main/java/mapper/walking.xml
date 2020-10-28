@@ -154,7 +154,11 @@
 	
 	<!-- 펫 프렌즈 페이지 - 산책 현황 리스트 -->
 	<select id="getAllWalkingList" parameterType="String" resultType="walking">
-		select * from ani_walking 
+		select w.*, m.mem_nickname, d.dog_name from ani_walking w 
+		left outer join ani_member m
+		on w.recruit_mem_id=m.mem_id 
+		left outer join ani_dog d
+		on w.dog_id = d.dog_id
 		where match_wk_id=(select wk_id from ani_walker where walker_id=#{walker_id})
 	</select>
 	
