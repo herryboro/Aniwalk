@@ -203,6 +203,7 @@
 		var NowTime = getTimeStamp();
         var message = event.data.split("|");
         var sender = message[1];
+        var target = $('#mem_nickname').val();
         var content = message[0];
         console.log('제발제발제발제발----->'+sender+"내용:"+content);
         console.log(sender + content);
@@ -218,7 +219,7 @@
         	}else{ //상대방
         		chatToInsert += '<div class="you">';
         		chatToInsert += '<img src="${pageContext.request.contextPath}/images/applier.png" class="img-circle" alt="">';
-        		chatToInsert += '<ul><li><label>'+sender+'</label></li><li><div>'+content+'</div><span>'+NowTime+'</span></li></ul></div>';
+        		chatToInsert += '<ul><li><label>'+target+'</label></li><li><div>'+content+'</div><span>'+NowTime+'</span></li></ul></div>';
         		$("#messageWindow").append(chatToInsert)	
         	}
         }

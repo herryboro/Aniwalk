@@ -105,8 +105,6 @@ public class ChatController {
 	//채팅 content
 	@RequestMapping("/owner/talkContent.do")
 	public ModelAndView chatFind(HttpServletRequest req, String walker_id) {
-		System.out.println("walker_id 들어오는지 확인====>"+walker_id);
-		
 		ModelAndView mav = new ModelAndView();
 		
 		String mem_nickname = (String) req.getSession().getAttribute("mem_nickname");
@@ -114,15 +112,17 @@ public class ChatController {
 		searchCondition.put("mem_nickname", mem_nickname);
 		//walker_id도 추가하기
 		searchCondition.put("walker_id", walker_id);
-		System.out.println(searchCondition.get("walker_id") +"find walker_id");
-		System.out.println(searchCondition.get("mem_nickname")+"find mem_nickname");
 		
 		//매칭안된 나의 산책 모집글 가져오기
 		List<WalkingDTO> nonMatchList = service.nonMatchList(mem_nickname);
-		System.out.println("nonMatchList 컨트롤러 : "+nonMatchList);
+		
+		//워커 프로필사진 가져오기
+		String wk_profile_img1 = service.getWalkerProfile(walker_id);
+		
 		//등록 서비스 호출
 		List<ChatDTO> chatDtos = service.chatFind(searchCondition);
-		System.out.println("size : "+chatDtos.size());
+
+		mav.addObject("wk_profile_img1", wk_profile_img1);
 		mav.addObject("nonMatchList", nonMatchList);
 		mav.addObject("walker_id", walker_id);
 		mav.addObject("mem_nickname", mem_nickname);

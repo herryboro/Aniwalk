@@ -38,10 +38,10 @@
 					</c:when>
 					<c:otherwise><!-- 상대방이 보낸 내용 -->
 						<div class="you">
-							<img src="${pageContext.request.contextPath}/images/applier.png" class="img-circle" alt="">
+							<img src="/walker/${chatDto.wk_profile_img1}" class="img-circle" alt="">
 							<ul>
 								<li>
-									<label>${chatDto.walker_id}</label>
+									<label>${chatDto.walker_id}${chatDto.wk_profile_img1}</label>
 								</li>
 								<li>
 									<div>${chatDto.contents }</div>
@@ -133,6 +133,7 @@
 	<form class="talk-inputForm">
 	<input type="hidden" value="${mem_nickname}" id="chat_id" name="mem_nickname">
 	<input type="hidden" value="${walker_id}" id="walker_id" name="walker_id">
+	<input type="hidden" value="${wk_profile_img1}" id="wk_profile_img1" name="wk_profile_img1">
 		<label>
 			<input type="text" class="form-control" id="inputMessage" onkeyup="enterkey()">
 		</label>
@@ -171,7 +172,7 @@
 				</div>
 				<!-- 예약, 취소 버튼 -->
 				<div class="btn-line">
-					<button type="button" class="btn btn-primary">예약하기</button>
+					<button type="button" class="btn btn-primary" onclick="reservation()">예약하기</button>
 					<button type="button" class="btn btn-default cancel-btn">취소</button>
 				</div>
 			</div>
@@ -266,9 +267,12 @@
 	
 	//원래 채팅 메시지에 방금 받은 메시지 더해서 설정하기
 	function addMsg(msg) { 
+		var wk_profile_img1 = $('#wk_profile_img1').val();
+		console.log("메시지 받았을 때 워커 프로필 주소::::"+wk_profile_img1);
 		var NowTime = getTimeStamp();
         var message = event.data.split("|");
         var sender = message[1];
+        var target = $('#walker_id').val();
         var content = message[0];
         console.log('제발제발제발제발----->'+sender+"내용:"+content);
         console.log(sender + content);
@@ -283,8 +287,8 @@
             	$("#messageWindow").append(chatToInsert)
         	}else{ //상대방
         		chatToInsert += '<div class="you">';
-        		chatToInsert += '<img src="${pageContext.request.contextPath}/images/applier.png" class="img-circle" alt="">';
-        		chatToInsert += '<ul><li><label>'+sender+'</label></li><li><div>'+content+'</div><span>'+NowTime+'</span></li></ul></div>';
+        		chatToInsert += '<img src="/walker/'+wk_profile_img1+'" class="img-circle" alt="">';
+        		chatToInsert += '<ul><li><label>'+target+'</label></li><li><div>'+content+'</div><span>'+NowTime+'</span></li></ul></div>';
         		$("#messageWindow").append(chatToInsert)	
         	}
         }
@@ -303,8 +307,9 @@
 	function sendMsg() {
        if (inputMessage.value == "") {
         } else {	//내가 메시지 보냈을 때
+        	var wk_profile_img1 = $('#wk_profile_img1').val();
         	var NowTime = getTimeStamp();
-        	console.log('send()')
+        
         	var chatToInsert ='';
         	chatToInsert += '<div class="my"><ul><li style="min-width: 60px"><span>'+NowTime+'</span></li>';
         	chatToInsert += '<li><div class="my-talk-content">'+inputMessage.value+'</div></li></ul></div>';
@@ -316,7 +321,8 @@
         		'send_nickname' : $("#chat_id").val(),
         		'receive_nickname' : $("#walker_id").val(),
         		'chat_date' : NowTime,
-        		'contents' : inputMessage.value
+        		'contents' : inputMessage.value,
+        		'wk_profile_img1' : wk_profile_img1
         	}
         	var trans_json = JSON.stringify(trans_object); //json으로 변환
         	
@@ -370,7 +376,11 @@
     }, 0);
     
 </script>
+<script>
+//예약하기 버튼 클릭시 내용 insert
 
+
+</script>
 
 </body>
 <style>
