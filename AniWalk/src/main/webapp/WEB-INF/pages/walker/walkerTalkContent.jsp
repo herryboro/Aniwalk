@@ -204,26 +204,40 @@
 		var mem_profile_img = $('#mem_profile_img').val();
 		var NowTime = getTimeStamp();
         var message = event.data.split("|");
-        var sender = message[1];
+        var type = message[0];
         var target = $('#mem_nickname').val();
-        var content = message[0];
-        console.log('제발제발제발제발----->'+sender+"내용:"+content);
-        console.log(sender + content);
+        
         var chatToInsert ='';
         if (content == "") {
             
         } else {
-        	if(sender != $("#chat_id").val()){ //내가 보낸 메시지
-        		//나
-            	chatToInsert += '<div class="my"><ul><li style="min-width: 60px"><span>'+NowTime+'</span></li>';
-            	chatToInsert += '<li><div class="my-talk-content">'+content+'</div></li></ul></div>';
-            	$("#messageWindow").append(chatToInsert)
-        	}else{ //상대방
-        		chatToInsert += '<div class="you">';
-        		chatToInsert += '<img src="/owner/'+mem_profile_img+'" class="img-circle" alt="">';
-        		chatToInsert += '<ul><li><label>'+target+'</label></li><li><div>'+content+'</div><span>'+NowTime+'</span></li></ul></div>';
-        		$("#messageWindow").append(chatToInsert)	
-        	}
+        	if(type=='reservation'){ //type이 reservation인 경우
+        		var sender = message[1];
+        		var date = message[2];
+        		var start_time = message[3];
+        		var end_time = message[4];
+        		var location = message[5];
+        		var dogName = message[6];
+        		var notices = message[7];
+        		var dogType = message[8];
+        		
+        	}else{ //type이 chat인 경우 
+        		var content = message[1];
+        		var sender = message[2];
+     
+        		if(sender != $("#chat_id").val()){ //내가 보낸 메시지
+            		//나
+                	chatToInsert += '<div class="my"><ul><li style="min-width: 60px"><span>'+NowTime+'</span></li>';
+                	chatToInsert += '<li><div class="my-talk-content">'+content+'</div></li></ul></div>';
+                	$("#messageWindow").append(chatToInsert)
+            	}else{ //상대방
+            		chatToInsert += '<div class="you">';
+            		chatToInsert += '<img src="/owner/'+mem_profile_img+'" class="img-circle" alt="">';
+            		chatToInsert += '<ul><li><label>'+target+'</label></li><li><div>'+content+'</div><span>'+NowTime+'</span></li></ul></div>';
+            		$("#messageWindow").append(chatToInsert)	
+            	}
+        	} 
+
         }
 	}
 	

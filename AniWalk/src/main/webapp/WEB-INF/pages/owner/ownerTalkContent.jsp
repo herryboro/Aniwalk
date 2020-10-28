@@ -23,34 +23,68 @@
 		
 		<div class="content-part" id="messageWindow">
 			<c:forEach var="chatDto" items="${chatDtos}">
-				<c:choose> 
-					<c:when test="${chatDto.send_nickname eq mem_nickname}"> <!-- 내가 보낸 내용 -->
-						<div class="my">
+				<c:choose>
+					<c:when test="${chatDto.walk_date ne null}"> <!-- 예약 내역 -->
+						<div class="reserve-box-my">
 							<ul>
-								<li style="min-width: 60px">
-									<span>${chatDto.chat_date}</span>
+								<li>
+									<label>날짜 : </label>
+									<span>${chatDto.walk_date }</span>
 								</li>
 								<li>
-									<div class="my-talk-content">${chatDto.contents }</div>
+									<label>시간 : </label>
+									<span>${chatDto.walk_start_time  } ~ ${chatDto.walk_end_time  }</span>
+								</li>
+								<li>
+									<label>장소 : </label>
+									<span>${chatDto.recruit_location }</span>
+								</li>
+								<li>
+									<label>반려견 : </label>
+									<span>${chatDto.dog_name }(${chatDto.dog_type })</span>
+								</li>
+								<li>
+									<label>주의사항 : </label>
+									<div>
+										${chatDto.recruit_notices }
+									</div>
 								</li>
 							</ul>
+							<button class="btn btn-primary" type="button">예약 정보 수정</button>
 						</div>
 					</c:when>
-					<c:otherwise><!-- 상대방이 보낸 내용 -->
-						<div class="you">
-							<img src="/walker/${wk_profile_img1}" class="img-circle" alt="">
-							<ul>
-								<li>
-									<label>${chatDto.walker_id} </label>
-								</li>
-								<li>
-									<div>${chatDto.contents }</div>
-									<span>${chatDto.chat_date}</span>
-								</li>
-							</ul>
-						</div>
+					<c:otherwise> <!-- 예약 내역이 아닌 일반 채팅 내용 -->
+						<c:choose> 
+							<c:when test="${chatDto.send_nickname eq mem_nickname}"> <!-- 내가 보낸 내용 -->
+								<div class="my">
+									<ul>
+										<li style="min-width: 60px">
+											<span>${chatDto.chat_date}</span>
+										</li>
+										<li>
+											<div class="my-talk-content">${chatDto.contents }</div>
+										</li>
+									</ul>
+								</div>
+							</c:when>
+							<c:otherwise><!-- 상대방이 보낸 내용 -->
+								<div class="you">
+									<img src="/walker/${wk_profile_img1}" class="img-circle" alt="">
+									<ul>
+										<li>
+											<label>${chatDto.walker_id} </label>
+										</li>
+										<li>
+											<div>${chatDto.contents }</div>
+											<span>${chatDto.chat_date}</span>
+										</li>
+									</ul>
+								</div>
+							</c:otherwise>
+						</c:choose>
 					</c:otherwise>
 				</c:choose>
+				
 			</c:forEach>
 			<!-- 여기 아래부터 톡글 시작 
 			 상대방
@@ -134,6 +168,7 @@
 	<input type="hidden" value="${mem_nickname}" id="chat_id" name="mem_nickname">
 	<input type="hidden" value="${walker_id}" id="walker_id" name="walker_id">
 	<input type="hidden" value="${wk_profile_img1}" id="wk_profile_img1" name="wk_profile_img1">
+	<input type="hidden" value="${wk_id}" id="wk_id">
 		<label>
 			<input type="text" class="form-control" id="inputMessage" onkeyup="enterkey()">
 		</label>
@@ -172,7 +207,7 @@
 				</div>
 				<!-- 예약, 취소 버튼 -->
 				<div class="btn-line">
-					<button type="button" class="btn btn-primary" onclick="reservation()">예약하기</button>
+					<button type="button" class="btn btn-primary reservation-btn" onclick="reservation()">예약하기</button>
 					<button type="button" class="btn btn-default cancel-btn">취소</button>
 				</div>
 			</div>
@@ -184,7 +219,8 @@
 	const modalBg = document.querySelector('.modal-bg');
 	const close = document.querySelector('.close');
 	const cancelBtn = document.querySelector('.cancel-btn');
-
+	const reservationBtn = document.querySelector('.reservation-btn');
+	
 	const modalClose = function(){
 		modalBg.classList.add('hidden');
 	}
@@ -196,17 +232,122 @@
 	modalBg.addEventListener('click',modalClose);
 	close.addEventListener('click',modalClose);
 	cancelBtn.addEventListener('click',modalClose);
+	reservationBtn.addEventListener('click',modalClose);
 </script>
 <script>
 	//매칭안된 모집글 클릭시 이벤트
 	const listItem = document.querySelectorAll('.list-item');
+	var matchingIndex = 0; 
 	for(let i=0; i<listItem.length; i++) {
 		listItem[i].addEventListener('click',function(){
 			for(let j=0; j<listItem.length; j++){
 				listItem[j].classList.remove('on-click');
 			}
 			listItem[i].classList.add('on-click');
+			matchingIndex = i;
+			console.log("matchingIndex::"+matchingIndex);
+			
 		});
+	}
+	
+	//예약하기 버튼 클릭 시 이벤트
+	function reservation(){
+		var nonMatchList = [];
+		var cnt = 0;
+		<c:forEach var="one" items="${nonMatchList}">
+			//nonMatchList[cnt] = '${one}'
+			nonMatchList[cnt] = [];
+			nonMatchList[cnt][0] = '${one.walk_date}';
+			nonMatchList[cnt][1] = '${one.walk_start_time}';
+			nonMatchList[cnt][2] = '${one.walk_end_time}';
+			nonMatchList[cnt][3] = '${one.recruit_location}'
+			nonMatchList[cnt][4] = '${one.dog_name}'  
+			nonMatchList[cnt][5] = '${one.recruit_notices}' //주의사항
+			nonMatchList[cnt][6] = '${one.dog_type}' //견종
+			nonMatchList[cnt][7] = '${one.walking_id}' //walking 테이블 업데이트를 위한 것
+			cnt += 1;
+		</c:forEach>
+		console.log("버튼 클릭 시: nonnonMatchList:"+nonMatchList[matchingIndex][0]);
+		console.log("버튼 클릭 시: matchingIndex:"+matchingIndex);
+		//mongodb에 insert
+		var trans_object = {
+       		'walker_id' : $("#walker_id").val(),
+       		'mem_nickname' : $("#chat_id").val(),
+       		'send_nickname' : $("#chat_id").val(),
+       		'receive_nickname' : $("#walker_id").val(),
+			'walk_date' : nonMatchList[matchingIndex][0],
+			'walk_start_time' : nonMatchList[matchingIndex][1],
+			'walk_end_time' : nonMatchList[matchingIndex][2],
+			'recruit_location' : nonMatchList[matchingIndex][3],
+			'dog_name' : nonMatchList[matchingIndex][4],
+			'recruit_notices' : nonMatchList[matchingIndex][5],
+       		'wk_profile_img1' : $('#wk_profile_img1').val(),
+       		'dog_type' : nonMatchList[matchingIndex][6]
+		
+       	}
+       	var trans_json = JSON.stringify(trans_object); //json으로 변환
+       	
+       	$.ajax({ //mongodb insert
+       		url : "/aniwalk/owner/chatInsert.do",
+       		type: 'post',
+       		dataType : 'json',
+       		data : trans_json,
+       		contentType : 'application/json',
+       		momeType : 'application/json',
+       		success: function(retVal){
+       			//alert("success"+retVal.val);
+       		},
+       		error : function(retVal,status,er){
+       			//alert("error"+retVal);
+       		}
+       	});
+		
+		//walking table update
+		
+		console.log("데이터 오는지 확인::"+nonMatchList[matchingIndex][7] + "||" +$('#wk_id').val());
+		
+		$.ajax({
+				url: "/aniwalk/chat/walkingUpdate.do" ,
+				type: "get",
+				data:  {
+							"walking_id" : nonMatchList[matchingIndex][7],
+							"wk_id" : $('#wk_id').val()
+						},
+				success: function(data){ //익명으로 함수 생성
+					console.log("data 업데이트::"+data);
+				},
+				error: function(a,b,c){ //ajax 실패시 원인
+					alert("에러"+c);
+				}
+			})
+		
+		//소켓에 예약정보 보내기
+		var msg = {
+			type : "reservation", //메시지 구분하는 구분자 - 상대방 아이디와 메시지 포함해서 보냄
+			target : $("#walker_id").val(),
+			walk_date : nonMatchList[matchingIndex][0],
+			walk_start_time : nonMatchList[matchingIndex][1],
+			walk_end_time : nonMatchList[matchingIndex][2],
+			recruit_location : nonMatchList[matchingIndex][3],
+			dog_name : nonMatchList[matchingIndex][4],
+			recruit_notices : nonMatchList[matchingIndex][5],
+			dog_type : nonMatchList[matchingIndex][6]
+		};
+		ws.send(JSON.stringify(msg));
+		
+		//내 채팅창에 추가
+		var chatToInsert ='';
+		chatToInsert += '<div class="reserve-box-my"><ul><li><label>날짜 : </label><span>'+nonMatchList[matchingIndex][0]+'</span></li>';
+		chatToInsert += '<li><label>시간 : </label><span>'+nonMatchList[matchingIndex][1]+' ~ '+nonMatchList[matchingIndex][2]+'</span></li>';
+		chatToInsert += '<li><label>장소 : </label><span>'+nonMatchList[matchingIndex][3]+'</span></li>';
+		chatToInsert += '<li><label>반려견 : </label><span>'+nonMatchList[matchingIndex][4]+'('+nonMatchList[matchingIndex][6]+')</span></li>';
+		chatToInsert += '<li><label>주의사항 : </label><div>'+nonMatchList[matchingIndex][5]+'</div></li></ul>';
+		chatToInsert += '<button class="btn btn-primary" type="button">예약 정보 수정</button></div>';
+
+		$("#messageWindow").append(chatToInsert)	
+		
+		//모달창 닫기
+		
 	}
 
 
@@ -268,28 +409,30 @@
 	//원래 채팅 메시지에 방금 받은 메시지 더해서 설정하기
 	function addMsg(msg) { 
 		var wk_profile_img1 = $('#wk_profile_img1').val();
-		console.log("메시지 받았을 때 워커 프로필 주소::::"+wk_profile_img1);
 		var NowTime = getTimeStamp();
         var message = event.data.split("|");
-        var sender = message[1];
+        var type = message[0];
         var target = $('#walker_id').val();
-        var content = message[0];
-        console.log('제발제발제발제발----->'+sender+"내용:"+content);
-        console.log(sender + content);
         var chatToInsert ='';
+        
         if (content == "") {
-            
-        } else {
-        	if(sender != $("#chat_id").val()){ //내가 보낸 메시지
-        		//나
-            	chatToInsert += '<div class="my"><ul><li style="min-width: 60px"><span>'+NowTime+'</span></li>';
-            	chatToInsert += '<li><div class="my-talk-content">'+content+'</div></li></ul></div>';
-            	$("#messageWindow").append(chatToInsert)
-        	}else{ //상대방
-        		chatToInsert += '<div class="you">';
-        		chatToInsert += '<img src="/walker/'+wk_profile_img1+'" class="img-circle" alt="">';
-        		chatToInsert += '<ul><li><label>'+target+'</label></li><li><div>'+content+'</div><span>'+NowTime+'</span></li></ul></div>';
-        		$("#messageWindow").append(chatToInsert)	
+            alert('채팅을 입력해주세요.');
+        } else { 
+        	
+        	if(type != 'reservation'){ //type이 reservation인 경우
+        		var content = message[1];
+            	var sender = message[2];
+            	if(sender != $("#chat_id").val()){ //내가 보낸 메시지
+            		//나
+                	chatToInsert += '<div class="my"><ul><li style="min-width: 60px"><span>'+NowTime+'</span></li>';
+                	chatToInsert += '<li><div class="my-talk-content">'+content+'</div></li></ul></div>';
+                	$("#messageWindow").append(chatToInsert)
+            	}else{ //상대방
+            		chatToInsert += '<div class="you">';
+            		chatToInsert += '<img src="/walker/'+wk_profile_img1+'" class="img-circle" alt="">';
+            		chatToInsert += '<ul><li><label>'+target+'</label></li><li><div>'+content+'</div><span>'+NowTime+'</span></li></ul></div>';
+            		$("#messageWindow").append(chatToInsert)	
+            	}
         	}
         }
 	}
@@ -376,11 +519,7 @@
     }, 0);
     
 </script>
-<script>
-//예약하기 버튼 클릭시 내용 insert
 
-
-</script>
 
 </body>
 <style>

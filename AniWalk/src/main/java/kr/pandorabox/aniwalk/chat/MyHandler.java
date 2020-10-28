@@ -65,7 +65,25 @@ public class MyHandler extends TextWebSocketHandler{
 			WebSocketSession ws = (WebSocketSession)userMap.get(target);
 			System.out.println("ws::::" +ws);
 			
-			String msg = object.getString("message")+ "|" + target;
+			String msg = type+"|"+object.getString("message")+ "|" + target;
+			System.out.println("msg::::"+msg);
+			if(ws !=null ) {
+				ws.sendMessage(new TextMessage(msg));
+			}
+		}else if(type.equals("reservation")) {
+			System.out.println("타입이 reservation");
+			String target = object.getString("target");
+			WebSocketSession ws = (WebSocketSession)userMap.get(target);
+			String walk_date = object.getString("walk_date");
+			String walk_start_time = object.getString("walk_start_time");
+			String walk_end_time = object.getString("walk_end_time");
+			String recruit_location = object.getString("recruit_location");
+			String dog_name = object.getString("dog_name");
+			String recruit_notices = object.getString("recruit_notices");
+			String dog_type = object.getString("dog_type");
+			
+			//수정하기 msg
+			String msg = type+"|"+target+"|"+walk_date+"|"+walk_start_time+"|"+walk_end_time+"|"+recruit_location+"|"+dog_name+"|"+recruit_notices+"|"+dog_type;
 			System.out.println("msg::::"+msg);
 			if(ws !=null ) {
 				ws.sendMessage(new TextMessage(msg));

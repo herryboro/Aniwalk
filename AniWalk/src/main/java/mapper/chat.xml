@@ -10,6 +10,9 @@
 	<select id="getMemProfile" parameterType="String" resultType="String">
 		select mem_profile_img from ani_member where mem_nickname = #{mem_nickname}
 	</select>
+	<select id="getWkId" parameterType="String" resultType="String">
+		select wk_id from ani_walker where walker_id = #{walker_id}
+	</select>
 	<select id="nonMatchList" parameterType="String" resultType="walking">
 		<![CDATA[
 		select * from ani_walking w left outer join ani_member m
@@ -23,4 +26,7 @@
 		and w.match_wk_id is null
 		]]> 
 	</select>
+	<update id="walkingUpdate" parameterType="Map">
+		update ani_walking set recruit_close_yn=1, match_wk_id =#{wk_id} where walking_id =#{walking_id}
+	</update>
 </mapper>

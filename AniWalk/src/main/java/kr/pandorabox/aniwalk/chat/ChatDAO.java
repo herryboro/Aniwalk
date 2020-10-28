@@ -8,9 +8,12 @@ import kr.pandorabox.aniwalk.walking.WalkingDTO;
 public interface ChatDAO {
 	//워커 프로필 사진
 	public String getWalkerProfile(String walker_id);
-	
+	public String getWkId(String walker_id);
 	//멤버 프로필 사진
 	public String getMemProfile(String mem_nickname);
+	
+	
+	
 	
 	///워커///
 	public List<ChatDTO> walkerChatList(Map<String,Object> walkerChatList);
@@ -21,4 +24,5 @@ public interface ChatDAO {
 	public List<ChatDTO> chatFind(Map<String, Object> searchCondition);
 	public List<ChatDTO> chatList(Map<String, Object> chatList);
 	public List<WalkingDTO> nonMatchList(String mem_nickname);
+	public int walkingUpdate(Map<String, String> map);
 }

@@ -37,7 +37,10 @@ public class ChatDAOImpl implements ChatDAO{
 	public String getMemProfile(String mem_nickname) {
 		return session.selectOne("kr.pandorabox.aniwalk.chat.getMemProfile", mem_nickname);
 	}
-	
+	@Override
+	public String getWkId(String walker_id) {
+		return session.selectOne("kr.pandorabox.aniwalk.chat.getWkId",walker_id);
+	}
 	
 	///워커///
 	@Override
@@ -99,5 +102,9 @@ public class ChatDAOImpl implements ChatDAO{
 	@Override
 	public List<WalkingDTO> nonMatchList(String mem_nickname) {
 		return session.selectList("kr.pandorabox.aniwalk.chat.nonMatchList", mem_nickname);
+	}
+	@Override
+	public int walkingUpdate(Map<String, String> map) {
+		return session.update("kr.pandorabox.aniwalk.chat.walkingUpdate", map);
 	}
 }

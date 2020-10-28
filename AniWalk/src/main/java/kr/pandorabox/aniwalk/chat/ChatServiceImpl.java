@@ -21,6 +21,10 @@ public class ChatServiceImpl implements ChatService{
 	public String getMemProfile(String mem_nickname) {
 		return dao.getMemProfile(mem_nickname);
 	}
+	@Override
+	public String getWkId(String walker_id) {
+		return dao.getWkId(walker_id);
+	}
 
 	////////워커///////
 	
@@ -49,5 +53,9 @@ public class ChatServiceImpl implements ChatService{
 	@Override
 	public List<WalkingDTO> nonMatchList(String mem_nickname) {
 		return dao.nonMatchList(mem_nickname);
+	}
+	@Override
+	public int walkingUpdate(Map<String, String> map) {
+		return dao.walkingUpdate(map);
 	}
 }

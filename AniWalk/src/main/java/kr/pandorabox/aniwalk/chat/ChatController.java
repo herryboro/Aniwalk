@@ -124,10 +124,14 @@ public class ChatController {
 		//워커 프로필사진 가져오기
 		String wk_profile_img1 = service.getWalkerProfile(walker_id);
 		
+		//워커 인덱스 
+		String wk_id = service.getWkId(walker_id);
+		
 		//등록 서비스 호출
 		List<ChatDTO> chatDtos = service.chatFind(searchCondition);
 		System.out.println("컨트롤러 chatFind" + chatDtos );
-
+		
+		mav.addObject("wk_id", wk_id);
 		mav.addObject("wk_profile_img1", wk_profile_img1);
 		mav.addObject("nonMatchList", nonMatchList);
 		mav.addObject("walker_id", walker_id);
@@ -154,14 +158,16 @@ public class ChatController {
 		return retVal;
 	}
 	
-	//오너 대화 리스트 워커 프로필 사진 가져오기
-		@RequestMapping(value="/chat/getWalkerProfile.do",
+	//오너 채팅창에서 예약하기 버튼 클릭시 walking 테이블 update
+		@RequestMapping(value="/chat/walkingUpdate.do",
 				method = RequestMethod.GET,
 				produces = "application/text;charset=utf-8")
-		public @ResponseBody String getWalkerProfile(String walker_id) {
-			System.out.println("들어오는 walker_id확인"+walker_id);
-			String result = service.getWalkerProfile(walker_id);
-			System.out.println("워커 프로필:::"+result);
+		public @ResponseBody int getWalkerProfile(String walking_id,String wk_id) {
+			System.out.println("컨트롤러 데이터 확인:"+walking_id+"||"+wk_id);
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("walking_id", walking_id);
+			map.put("wk_id", wk_id);
+			int result = service.walkingUpdate(map);
 			return result;
 		}
 	

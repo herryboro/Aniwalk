@@ -11,6 +11,14 @@ public class ChatDTO {
 	private String wk_profile_img1;
 	private String mem_profile_img;
 	
+	//대화창에서 매칭
+	private String walk_date;
+	private String walk_start_time;
+	private String walk_end_time;
+	private String recruit_location;
+	private String dog_name ;
+	private String recruit_notices ;
+	private String dog_type;
 	
 	public String getChat_date() {
 		return chat_date;
@@ -61,14 +69,61 @@ public class ChatDTO {
 	public void setMem_profile_img(String mem_profile_img) {
 		this.mem_profile_img = mem_profile_img;
 	}
+	
+	
+	
+	public String getWalk_date() {
+		return walk_date;
+	}
+	public void setWalk_date(String walk_date) {
+		this.walk_date = walk_date;
+	}
+	public String getWalk_start_time() {
+		return walk_start_time;
+	}
+	public void setWalk_start_time(String walk_start_time) {
+		this.walk_start_time = walk_start_time;
+	}
+	public String getWalk_end_time() {
+		return walk_end_time;
+	}
+	public void setWalk_end_time(String walk_end_time) {
+		this.walk_end_time = walk_end_time;
+	}
+	public String getRecruit_location() {
+		return recruit_location;
+	}
+	public void setRecruit_location(String recruit_location) {
+		this.recruit_location = recruit_location;
+	}
+	public String getDog_name() {
+		return dog_name;
+	}
+	public void setDog_name(String dog_name) {
+		this.dog_name = dog_name;
+	}
+	public String getRecruit_notices() {
+		return recruit_notices;
+	}
+	public void setRecruit_notices(String recruit_notices) {
+		this.recruit_notices = recruit_notices;
+	}
+	public String getDog_type() {
+		return dog_type;
+	}
+	public void setDog_type(String dog_type) {
+		this.dog_type = dog_type;
+	}
 	@Override
 	public String toString() {
 		return "ChatDTO [chat_date=" + chat_date + ", mem_nickname=" + mem_nickname + ", walker_id=" + walker_id
 				+ ", send_nickname=" + send_nickname + ", receive_nickname=" + receive_nickname + ", contents="
-				+ contents + ", wk_profile_img1=" + wk_profile_img1 + ", mem_profile_img=" + mem_profile_img + "]";
+				+ contents + ", wk_profile_img1=" + wk_profile_img1 + ", mem_profile_img=" + mem_profile_img
+				+ ", walk_date=" + walk_date + ", walk_start_time=" + walk_start_time + ", walk_end_time="
+				+ walk_end_time + ", recruit_location=" + recruit_location + ", dog_name=" + dog_name
+				+ ", recruit_notices=" + recruit_notices + "]";
 	}
 	
-	
-	
+
 	
 }
