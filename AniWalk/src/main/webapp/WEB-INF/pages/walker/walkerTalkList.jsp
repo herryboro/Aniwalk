@@ -28,7 +28,7 @@
 			<div class="talk-item">
 				<ul>
 					<li>
-						<a href="/aniwalk/walker/talkContent.do?mem_nickname=${chatList.mem_nickname}"><img class="img-circle" src="${pageContext.request.contextPath}/images/applier.png" alt=""></a>
+						<a href="/aniwalk/walker/talkContent.do?mem_nickname=${chatList.mem_nickname}"><img class="img-circle" src="/owner/${chatList.mem_profile_img}" alt=""></a>
 					</li>
 					<li>
 						<div>
