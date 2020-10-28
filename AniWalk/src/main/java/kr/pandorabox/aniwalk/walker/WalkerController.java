@@ -56,12 +56,11 @@ public class WalkerController {
 	
 	// owner페이지 펫 프렌즈 리스트
 	@RequestMapping("owner/walker.do")
-	public ModelAndView walkerList(String wk_id, HttpServletRequest req) {
+	public ModelAndView walkerList(String searchWalker, HttpServletRequest req) {
 		String mem_nickname = (String) req.getSession().getAttribute("mem_nickname");
 		ModelAndView mav = new ModelAndView();
-		List<WalkerDTO> list = walkerService.selectApplierList(wk_id);
+		List<WalkerDTO> list = walkerService.getWalkerList(searchWalker);
 		String filename = memberService.getProfile(mem_nickname);
-		System.out.println("c list: " + list);
 		mav.addObject("walkerList",list);
 		mav.addObject("filename",filename);
 		mav.setViewName("owner/walkerList"); // ownerWalkerList.jsp

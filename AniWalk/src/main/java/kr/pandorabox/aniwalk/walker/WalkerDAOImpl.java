@@ -13,6 +13,12 @@ public class WalkerDAOImpl implements WalkerDAO{
 	@Autowired
 	SqlSession session;
 	
+	// 오너 페이지 - 펫 프렌즈 리스트 
+	@Override
+	public List<WalkerDTO> getWalkerList(String searchWalker) {
+		return session.selectList("kr.pandorabox.aniwalk.walker.getWalkerList", searchWalker);
+	}
+	
 	// 펫 프렌즈 자격증 정보
 	@Override
 		public List<String> certificateImg(String wk_id) {

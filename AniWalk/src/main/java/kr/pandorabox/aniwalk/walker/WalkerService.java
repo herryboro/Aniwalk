@@ -18,5 +18,5 @@ public interface WalkerService {
 	public int updateWalker(WalkerDTO walkerDto);
 	public int createWakerId(WalkerDTO walkerDto);
 	public List<String> certificateImg(String wk_id);
-	public List<WalkerDTO> selectApplierList(String wk_id);
+	public List<WalkerDTO> getWalkerList(String searchWalker);
 }

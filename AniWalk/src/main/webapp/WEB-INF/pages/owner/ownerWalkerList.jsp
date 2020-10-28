@@ -20,9 +20,9 @@
 	<div class="walker-list">
 
 		<div class="search-part">
-			<form name="walkerListSearchForm">
+			<form name="walkerListSearchForm" method="post" action="/aniwalk/owner/walker.do">
 				<label>
-					<input class="form-control" type="search" placeholder="이름 및 장소를 검색">
+					<input name="searchWalker" class="form-control" type="search" placeholder="이름 및 장소를 검색">
 				</label>
 				<button class="btn btn-primary" type="submit">검색</button>
 			</form>
@@ -48,7 +48,9 @@
 							</li>
 							<li>
 								<ul>
-									<li class="addr">${walker.wk_addr}</li>	
+									<li class="addr">${walker.wk_location1}
+										<c:if test="${walker.wk_location2 ne null}"> / ${walker.wk_location2}</c:if>
+									</li>	
 									<c:set var="certiList" value="${fn:split(walker.wk_certificate_list,'/')}"/>					
 									<c:forEach var="certi" items="${certiList}">
 										<li>${certi}</li>
