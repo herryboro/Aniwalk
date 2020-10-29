@@ -20,6 +20,17 @@ public class WalkingController {
 	@Autowired
 	private WalkingService walkingService;
 	
+	// 프렌즈 페이지 - 산책완료 정보
+	@RequestMapping("walker/activDone")
+	public ModelAndView getActivDoneInfo(String walking_id) {
+		ModelAndView mav = new ModelAndView();
+		List<WalkingDTO> missionList = walkingService.getMissionList(walking_id);
+		WalkingDTO walkingInfo = walkingService.getWalkingInfo(walking_id);
+		mav.setViewName("walker/activDone");
+		mav.addObject("missionList", missionList);
+		mav.addObject("walkingInfo", walkingInfo);
+		return mav;
+	}
 	
 	// 프렌즈 페이지 - 산책현황 리스트
 	@RequestMapping("/walker/main.do")
@@ -36,7 +47,7 @@ public class WalkingController {
 		return new ModelAndView("walker/recruitlist", "recruitList", recruitList);
 	}
 	
-	// 산책 path 불러오기
+	// 미션정보 불러오기
 	@ResponseBody
 	@RequestMapping(value = "/walking/getWalkingMission.do",
 			method = RequestMethod.POST,

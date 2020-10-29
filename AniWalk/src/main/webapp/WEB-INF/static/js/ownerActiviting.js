@@ -11,19 +11,6 @@ const mapContainer = document.getElementById('map'), // 지도를 표시할 div
 		};
 const map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-const drawLine = function() {
-	// 지도에 표시할 선을 생성합니다
-	let polyline = new kakao.maps.Polyline({
-	    path: linePath, // 선을 구성하는 좌표배열 입니다
-	    strokeWeight: 5, // 선의 두께 입니다
-	    strokeColor: '#FFAE00', // 선의 색깔입니다
-	    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-	    strokeStyle: 'solid' // 선의 스타일입니다
-	});
-	// 지도에 선을 표시합니다 
-	polyline.setMap(map);  
-}
-
 //모달
 const activeDone = document.getElementById('activeDone');
 const modalBg = document.querySelector('.modal-bg');
@@ -100,36 +87,6 @@ const viewWalkingMission = function(data) {
 			'</h2><span>'+ data.mission_perform_time +'</span></div><div class="img-list">'+
 			image + '</div></div>');
 	
-}
-
-const getWalkingLocation = function(){
-	let locations = [];
-	let location = [];
-	$.ajax({
-		type: 'post',
-		url: '/aniwalk/walking/getWalkingLocation.do',
-		data:{
-			"walking_id" : walking_id
-		},
-		success:function (data){
-			if(data != null){
-				linePath = [];
-				locations = data.split('/');
-				for(let i in locations){
-					if(locations[i] != ''){
-						location = locations[i].split(',');
-						currentlat = location[0];
-						currentlng = location[1];
-						linePath.push(new kakao.maps.LatLng(location[0],location[1]))	
-					}
-				}
-				drawLine();
-			}
-		},
-		error: function (a,b,c){
-			alert('xx')
-		}
-	})
 }
 
 document.getElementById('currentBtn')

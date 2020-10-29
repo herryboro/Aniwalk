@@ -37,7 +37,6 @@ const walkingAction = function (lat, lng, content) {
 	
 	// 마커가 지도 위에 표시되도록 설정합니다
 	marker.setMap(map);  
-//	map.setCenter(locPosition)
 }
 
 const setPositionCenter = function () {
@@ -87,4 +86,66 @@ const removeMarker = function () {
 		markers[i].setMap(null);
 	}
 	markers = [];
+}
+
+//현재 생성중인 산책 미션 불러오기
+const loadImg = function (data) {
+	for(var i=0;i<data.length;i++) {
+		if(i==0) {
+			$('.mission-img').append('<div>'+ data[i].mission_contents +'</div>')	
+		} else if(data[i].mission_contents != data[i-1].mission_contents) {
+			$('.mission-img').append('<div>'+ data[i].mission_contents +'</div>')
+		}
+		var img = data[i].mission_img.split('/')
+		for(var j=0;j<img.length-1;j++) {
+			if(img[j].includes(".mp4") || img[j].includes(".avi")) {
+				$('.mission-img').append('<video src="/walking/'+img[j]+ '" class="activ-img img-rounded" muted autoplay="autoplay" loop="loop"></video>')	
+			} else {
+				$('.mission-img').append('<img src="/walking/'+ img[j] +'" alt="" class="activ-img img-rounded">')
+			}
+		}
+	}
+}
+
+const drawLine = function() {
+	// 지도에 표시할 선을 생성합니다
+	let polyline = new kakao.maps.Polyline({
+	    path: linePath, // 선을 구성하는 좌표배열 입니다
+	    strokeWeight: 5, // 선의 두께 입니다
+	    strokeColor: '#FFAE00', // 선의 색깔입니다
+	    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+	    strokeStyle: 'solid' // 선의 스타일입니다
+	});
+	// 지도에 선을 표시합니다 
+	polyline.setMap(map);  
+}
+
+const getWalkingLocation = function(){
+	let walkingLocations = [];
+	let walkingLocation = [];
+	$.ajax({
+		type: 'post',
+		url: '/aniwalk/walking/getWalkingLocation.do',
+		data:{
+			"walking_id" : walking_id
+		},
+		success:function (data){
+			if(data != null){
+				linePath = [];
+				walkingLocations = data.split('/');
+				for(let i in walkingLocations){
+					if(walkingLocations[i] != ''){
+						walkingLocation = walkingLocations[i].split(',');
+						currentlat = walkingLocation[0];
+						currentlng = walkingLocation[1];
+						linePath.push(new kakao.maps.LatLng(walkingLocation[0],walkingLocation[1]))	
+					}
+				}
+				drawLine();
+			}
+		},
+		error: function (a,b,c){
+			alert('xx')
+		}
+	})
 }

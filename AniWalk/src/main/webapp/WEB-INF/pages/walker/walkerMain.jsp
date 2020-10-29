@@ -57,7 +57,7 @@
 								<div class="not">산책 준비중</div>
 							</c:when>
 							<c:when test="${walking.real_walk_end_time ne null}">
-								<div class="done">산책 완료</div>
+								<div class="done" onclick="location.href='/aniwalk/walker/activDone.do?walking_id=${walking.walking_id}'">산책 완료</div>
 							</c:when>
 							<c:otherwise>
 								<div class="not">산책 중</div>
@@ -71,7 +71,5 @@
 		
 	</div>
 	</c:if>
-
-	
 </body>
 </html>

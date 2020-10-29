@@ -29,4 +29,7 @@
 	<definition name="walker/talkContent" extends="walkerTemplate">
 		<put-attribute name="content" value="/WEB-INF/pages/walker/walkerTalkContent.jsp"/>
 	</definition>
+	<definition name="walker/activDone" extends="walkerTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/walker/walkerActivityDone.jsp"/>
+	</definition>
 </tiles-definitions>

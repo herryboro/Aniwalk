@@ -112,24 +112,6 @@ const uploadImg = function (e){
     	});
 	}
 }
-// 현재 생성중인 산책 미션 불러오기
-const loadImg = function (data) {
-	for(var i=0;i<data.length;i++) {
-		if(i==0) {
-			$('.mission-img').append('<div>'+ data[i].mission_contents +'</div>')	
-		} else if(data[i].mission_contents != data[i-1].mission_contents) {
-			$('.mission-img').append('<div>'+ data[i].mission_contents +'</div>')
-		}
-		var img = data[i].mission_img.split('/')
-		for(var j=0;j<img.length-1;j++) {
-			if(img[j].includes(".mp4") || img[j].includes(".avi")) {
-				$('.mission-img').append('<video src="/walking/'+img[j]+ '" class="activ-img img-rounded" muted autoplay="autoplay" loop="loop"></video>')	
-			} else {
-				$('.mission-img').append('<img src="/walking/'+ img[j] +'" alt="" class="activ-img img-rounded">')
-			}
-		}
-	}
-}
 
 // 산책 미션 DB에 저장
 const saveImg = function (e) {
