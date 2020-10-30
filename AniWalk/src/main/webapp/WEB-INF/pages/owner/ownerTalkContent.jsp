@@ -58,7 +58,7 @@
 							<img src="/walker/${wk_profile_img1}" class="img-circle" alt="">
 							<ul>
 								<li>
-									<label>프렌즈네임</label>
+									<label>${chatDto.walker_id}</label>
 								</li>
 								<li>
 									<div class="reserve-box-you">
@@ -75,7 +75,7 @@
 							<img src="/walker/${wk_profile_img1}" class="img-circle" alt="">
 							<ul>
 								<li>
-									<label>프렌즈네임</label>
+									<label>${chatDto.walker_id}</label>
 								</li>
 								<li>
 									<div class="reserve-box-you">

@@ -27,7 +27,7 @@
 						<img src="/owner/${mem_profile_img}" class="img-circle" alt="">
 						<ul>
 							<li>
-								<label>프렌즈네임</label>
+								<label>${chatDto.mem_nickname}</label>
 							</li>
 							<li>
 								<div class="reserve-box-you">
@@ -58,7 +58,7 @@
 										</li>
 									</ul>
 									<div class="btn-line">
-										<button class="btn btn-primary" type="button" id="btn_accept" onclick="matchingSuccess()">수락3</button>
+										<button class="btn btn-primary" type="button" id="btn_accept" onclick="matchingSuccess()">수락</button>
 										<button class="btn btn-default" type="button" id="btn_reject" onclick="matchingFail()">거절</button>
 									</div>
 			
