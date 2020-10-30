@@ -107,4 +107,14 @@ public class ChatDAOImpl implements ChatDAO{
 	public int walkingUpdate(Map<String, String> map) {
 		return session.update("kr.pandorabox.aniwalk.chat.walkingUpdate", map);
 	}
+	@Override
+	public List<ChatDTO> reservationList(Map<String, String> map) {
+		Query query = new Query(new Criteria().andOperator(
+				Criteria.where("mem_nickname").is(map.get("mem_nickname")),
+				Criteria.where("walker_id").is(map.get("walker_id")),
+				Criteria.where("wk_id").ne(null)));
+		query.with(new Sort(Sort.Direction.DESC,"_id"));
+		List<ChatDTO> docs = mongoTemplate.find(query, ChatDTO.class,"chat");
+		return docs;
+	}
 }

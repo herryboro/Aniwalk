@@ -41,37 +41,35 @@ public class MyHandler extends TextWebSocketHandler{
         //메시지 수신 후 실행 메서드
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		System.out.println("TextWebSocketHandler : 메시지 수신!");
-		System.out.println("메시지 : " + message.getPayload());
+		
 		JSONObject object = new JSONObject(message.getPayload());
 		String type = object.getString("type");
-		System.out.println("type::::::"+type);
+		
 		
 		if(type != null && type.equals("register") ) {
-			System.out.println("타입 확인::"+type);
+			
 			//등록 요청 메시지
 			String user = object.getString("userid");
-			System.out.println("user확인:: "+user);
-			System.out.println("session:::::"+session);
+			
 			//아이디랑 Session이랑 매핑 >>> Map
 			userMap.put(user, session);
 		}else if(type.equals("chat")){
-			System.out.println("여기로 들어오나");
+			
 			//채팅 메시지 : 상대방 아이디를 포함해서 메시지를 보낼것이기 때문에
 			//Map에서 상대방 아이디에 해당하는 WebSocket 꺼내와서 메시지 전송
 			//String user = object.getString("userid");
 			String target = object.getString("target");
-			System.out.println("target::::::"+target);
+			
 		
 			WebSocketSession ws = (WebSocketSession)userMap.get(target);
-			System.out.println("ws::::" +ws);
 			
 			String msg = type+"|"+object.getString("message")+ "|" + target;
-			System.out.println("msg::::"+msg);
+			
 			if(ws !=null ) {
 				ws.sendMessage(new TextMessage(msg));
 			}
 		}else if(type.equals("reservation")) {
-			System.out.println("타입이 reservation");
+			
 			String target = object.getString("target");
 			WebSocketSession ws = (WebSocketSession)userMap.get(target);
 			String walk_date = object.getString("walk_date");
@@ -81,10 +79,31 @@ public class MyHandler extends TextWebSocketHandler{
 			String dog_name = object.getString("dog_name");
 			String recruit_notices = object.getString("recruit_notices");
 			String dog_type = object.getString("dog_type");
-			
+			String chat_date = object.getString("chat_date");
 			//수정하기 msg
-			String msg = type+"|"+target+"|"+walk_date+"|"+walk_start_time+"|"+walk_end_time+"|"+recruit_location+"|"+dog_name+"|"+recruit_notices+"|"+dog_type;
+			String msg = type+"|"+target+"|"+walk_date+"|"+walk_start_time+"|"+walk_end_time+"|"+recruit_location+"|"+dog_name+"|"+recruit_notices+"|"+dog_type+"|"+chat_date;
 			System.out.println("msg::::"+msg);
+			if(ws !=null ) {
+				ws.sendMessage(new TextMessage(msg));
+			}
+		}else if(type.equals("accept")) {
+			String target = object.getString("target");
+			WebSocketSession ws = (WebSocketSession)userMap.get(target);
+			
+			String walking_id =object.getString("walking_id");
+			String chat_date =object.getString("chat_date");
+			
+			String msg = type+"|"+target+"|"+chat_date+"|"+walking_id; 
+			if(ws !=null ) {
+				ws.sendMessage(new TextMessage(msg));
+			}
+		}else if(type.equals("reject")) {
+			String target = object.getString("target");
+			WebSocketSession ws = (WebSocketSession)userMap.get(target);
+			
+			String chat_date =object.getString("chat_date");
+			
+			String msg = type+"|"+target+"|"+chat_date ;
 			if(ws !=null ) {
 				ws.sendMessage(new TextMessage(msg));
 			}

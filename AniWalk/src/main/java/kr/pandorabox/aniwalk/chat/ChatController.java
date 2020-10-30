@@ -120,6 +120,7 @@ public class ChatController {
 		
 		//매칭안된 나의 산책 모집글 가져오기
 		List<WalkingDTO> nonMatchList = service.nonMatchList(mem_nickname);
+		System.out.println("컨트롤러 매칭안된 모집글:::"+nonMatchList.size());
 		
 		//워커 프로필사진 가져오기
 		String wk_profile_img1 = service.getWalkerProfile(walker_id);
@@ -159,17 +160,31 @@ public class ChatController {
 	}
 	
 	//오너 채팅창에서 예약하기 버튼 클릭시 walking 테이블 update
-		@RequestMapping(value="/chat/walkingUpdate.do",
-				method = RequestMethod.GET,
-				produces = "application/text;charset=utf-8")
-		public @ResponseBody int getWalkerProfile(String walking_id,String wk_id) {
-			System.out.println("컨트롤러 데이터 확인:"+walking_id+"||"+wk_id);
-			Map<String, String> map = new HashMap<String, String>();
-			map.put("walking_id", walking_id);
-			map.put("wk_id", wk_id);
-			int result = service.walkingUpdate(map);
-			return result;
+	@RequestMapping(value="/chat/walkingUpdate.do",
+			method = RequestMethod.GET,
+			produces = "application/text;charset=utf-8")
+	public @ResponseBody String getWalkerProfile(String walker_id,String mem_nickname) {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("walker_id", walker_id);
+		map.put("mem_nickname", mem_nickname);
+		List<ChatDTO> reservationDto = service.reservationList(map);
+		String wk_id = reservationDto.get(0).getWk_id();
+		String walking_id = reservationDto.get(0).getWalking_id();
+		
+		System.out.println("wk_id와 walking_id 확인: "+wk_id+walking_id);
+		
+		Map<String, String> mapp = new HashMap<String,String>();
+		mapp.put("wk_id", wk_id);
+		mapp.put("walking_id", walking_id);
+		int result = service.walkingUpdate(mapp);
+		
+		String success ="";
+		if(result==1) {
+			success = walking_id ;
 		}
-	
+		return success;
+	}
+
 	
 }

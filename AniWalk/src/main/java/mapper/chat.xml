@@ -15,17 +15,19 @@
 	</select>
 	<select id="nonMatchList" parameterType="String" resultType="walking">
 		<![CDATA[
-		select * from ani_walking w left outer join ani_member m
-		on w.recruit_mem_id = m.mem_id
-		left outer join ani_dog d
-		on d.mem_id = d.mem_id
+		select * from ani_walking w left outer join ani_dog d
+		on w.dog_id=d.dog_id
 		left outer join ani_dog_img i
-		on i.dog_id = d.dog_id
-		where m.mem_nickname = #{mem_nickname}
-		and w.recruit_close_yn = 0
+		on i.dog_id=d.dog_id
+		left outer join ani_member m
+		on m.mem_id=w.recruit_mem_id
+		where m.mem_nickname=#{mem_nickname}
+		and w.recruit_close_yn=0
 		and w.match_wk_id is null
+		order by w.recruit_date 
 		]]> 
-	</select>
+	</select> 
+        
 	<update id="walkingUpdate" parameterType="Map">
 		update ani_walking set recruit_close_yn=1, match_wk_id =#{wk_id} where walking_id =#{walking_id}
 	</update>

@@ -19,6 +19,9 @@ public class ChatDTO {
 	private String dog_name ;
 	private String recruit_notices ;
 	private String dog_type;
+	private String wk_id;
+	private String walking_id;
+	private String reservation;
 	
 	public String getChat_date() {
 		return chat_date;
@@ -113,6 +116,24 @@ public class ChatDTO {
 	}
 	public void setDog_type(String dog_type) {
 		this.dog_type = dog_type;
+	}
+	public String getWk_id() {
+		return wk_id;
+	}
+	public void setWk_id(String wk_id) {
+		this.wk_id = wk_id;
+	}
+	public String getWalking_id() {
+		return walking_id;
+	}
+	public void setWalking_id(String walking_id) {
+		this.walking_id = walking_id;
+	}
+	public String getReservation() {
+		return reservation;
+	}
+	public void setReservation(String reservation) {
+		this.reservation = reservation;
 	}
 	@Override
 	public String toString() {

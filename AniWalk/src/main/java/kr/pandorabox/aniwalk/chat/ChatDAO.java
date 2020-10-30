@@ -18,6 +18,8 @@ public interface ChatDAO {
 	///워커///
 	public List<ChatDTO> walkerChatList(Map<String,Object> walkerChatList);
 	public List<ChatDTO> walkerChatFind(Map<String, Object> searchCondition);
+	//예약 리스트 가져오기
+	public List<ChatDTO> reservationList(Map<String,String> map);
 	
 	///오너///
 	public void chatInsert(Map<String, Object> chat);

@@ -24,7 +24,7 @@
 		<div class="content-part" id="messageWindow">
 			<c:forEach var="chatDto" items="${chatDtos}">
 				<c:choose>
-					<c:when test="${chatDto.walk_date ne null}"> <!-- 예약 내역 -->
+					<c:when test="${chatDto.walk_date ne null}"> <!-- 예약 신청 -->
 						<div class="reserve-box-my">
 							<ul>
 								<li>
@@ -53,7 +53,40 @@
 							<button class="btn btn-primary" type="button">예약 정보 수정</button>
 						</div>
 					</c:when>
-					<c:otherwise> <!-- 예약 내역이 아닌 일반 채팅 내용 -->
+					<c:when test="${chatDto.reservation eq 'accept'}"> <!-- 워커가 예약 수락 -->
+						<div class="you">
+							<img src="/walker/${wk_profile_img1}" class="img-circle" alt="">
+							<ul>
+								<li>
+									<label>프렌즈네임</label>
+								</li>
+								<li>
+									<div class="reserve-box-you">
+										<label>프렌즈 ${chatDto.walker_id}님이 산책 예약을 수락했습니다.</label>
+										<button class="btn btn-primary">정보보기</button>
+									</div>
+									<span style="position: relative; top: 40%;">${chatDto.chat_date}</span>
+								</li>
+							</ul>
+						</div>
+					</c:when>
+					<c:when test="${chatDto.reservation eq 'reject'}"> <!-- 워커가 예약 거절 -->
+						<div class="you">
+							<img src="/walker/${wk_profile_img1}" class="img-circle" alt="">
+							<ul>
+								<li>
+									<label>프렌즈네임</label>
+								</li>
+								<li>
+									<div class="reserve-box-you">
+										<label>프렌즈 ${chatDto.walker_id}님과 산책이 매칭되지 않았습니다.</label>
+									</div>
+									<span style="position: relative; top: 40%;">${chatDto.chat_date}</span>
+								</li>
+							</ul>
+						</div>
+					</c:when>
+					<c:otherwise> <!-- 일반 채팅 내용 -->
 						<c:choose> 
 							<c:when test="${chatDto.send_nickname eq mem_nickname}"> <!-- 내가 보낸 내용 -->
 								<div class="my">
@@ -252,6 +285,7 @@
 	
 	//예약하기 버튼 클릭 시 이벤트
 	function reservation(){
+		var NowTime = getTimeStamp();
 		var nonMatchList = [];
 		var cnt = 0;
 		<c:forEach var="one" items="${nonMatchList}">
@@ -282,7 +316,10 @@
 			'dog_name' : nonMatchList[matchingIndex][4],
 			'recruit_notices' : nonMatchList[matchingIndex][5],
        		'wk_profile_img1' : $('#wk_profile_img1').val(),
-       		'dog_type' : nonMatchList[matchingIndex][6]
+       		'dog_type' : nonMatchList[matchingIndex][6],
+       		'chat_date' : NowTime,
+       		'wk_id' : $('#wk_id').val(),
+       		'walking_id' : nonMatchList[matchingIndex][7]
 		
        	}
        	var trans_json = JSON.stringify(trans_object); //json으로 변환
@@ -302,24 +339,7 @@
        		}
        	});
 		
-		//walking table update
-		
-		console.log("데이터 오는지 확인::"+nonMatchList[matchingIndex][7] + "||" +$('#wk_id').val());
-		
-		$.ajax({
-				url: "/aniwalk/chat/walkingUpdate.do" ,
-				type: "get",
-				data:  {
-							"walking_id" : nonMatchList[matchingIndex][7],
-							"wk_id" : $('#wk_id').val()
-						},
-				success: function(data){ //익명으로 함수 생성
-					console.log("data 업데이트::"+data);
-				},
-				error: function(a,b,c){ //ajax 실패시 원인
-					alert("에러"+c);
-				}
-			})
+
 		
 		//소켓에 예약정보 보내기
 		var msg = {
@@ -331,7 +351,9 @@
 			recruit_location : nonMatchList[matchingIndex][3],
 			dog_name : nonMatchList[matchingIndex][4],
 			recruit_notices : nonMatchList[matchingIndex][5],
-			dog_type : nonMatchList[matchingIndex][6]
+			dog_type : nonMatchList[matchingIndex][6],
+			chat_date : NowTime,
+			
 		};
 		ws.send(JSON.stringify(msg));
 		
@@ -419,7 +441,7 @@
             alert('채팅을 입력해주세요.');
         } else { 
         	
-        	if(type != 'reservation'){ //type이 reservation인 경우
+        	if(type == 'chat'){ //type이 reservation인 경우
         		var content = message[1];
             	var sender = message[2];
             	if(sender != $("#chat_id").val()){ //내가 보낸 메시지
@@ -433,6 +455,24 @@
             		chatToInsert += '<ul><li><label>'+target+'</label></li><li><div>'+content+'</div><span>'+NowTime+'</span></li></ul></div>';
             		$("#messageWindow").append(chatToInsert)	
             	}
+        	}else if(type=='accept'){ //타입이 수락인 경우
+        		var chat_date =  message[2];
+        		var walking_id = message[3];
+        		chatToInsert += '<div class="you"><img src="/walker/${wk_profile_img1}" class="img-circle" alt="">';
+    			chatToInsert += '<ul><li><label>'+target+'</label></li><li><div class="reserve-box-you">';
+    			chatToInsert += '<label>프렌즈 '+target+'님이 산책 예약을 수락했습니다.</label>';
+    			chatToInsert += '<button class="btn btn-primary">정보보기</button></div>';
+    			chatToInsert += '<span style="position: relative; top: 40%;">'+chat_date+'</span></li></ul></div>';
+    			$("#messageWindow").append(chatToInsert)
+    			
+        	}else if(type=='reject'){ //타입이 거절인 경우 
+        		var chat_date =  message[2];
+        		chatToInsert += '<div class="you"><img src="/walker/${wk_profile_img1}" class="img-circle" alt="">';
+    			chatToInsert += '<ul><li><label>'+target+'</label></li><li><div class="reserve-box-you">';
+    			chatToInsert += '<label>프렌즈 '+target+'님과 산책이 매칭되지 않았습니다.</label>';
+    			chatToInsert += '</div>';
+    			chatToInsert += '<span style="position: relative; top: 40%;">'+chat_date+'</span></li></ul></div>';
+    			$("#messageWindow").append(chatToInsert)
         	}
         }
 	}

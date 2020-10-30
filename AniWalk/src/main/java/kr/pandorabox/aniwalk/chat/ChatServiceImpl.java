@@ -36,6 +36,10 @@ public class ChatServiceImpl implements ChatService{
 	public List<ChatDTO> walkerChatFind(Map<String, Object> searchCondition) {
 		return dao.walkerChatFind(searchCondition);
 	}
+	@Override
+	public List<ChatDTO> reservationList(Map<String, String> map) {
+		return dao.reservationList(map);
+	}
 	
 	////////오너///////
 	@Override
