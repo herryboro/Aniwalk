@@ -15,6 +15,7 @@
 		<typeAlias type="kr.pandorabox.aniwalk.manager.MemberDTO" alias="member"/>
 		<typeAlias type="kr.pandorabox.aniwalk.chat.ChatDTO" alias="chat"/>
 		<typeAlias type="kr.pandorabox.aniwalk.walking.ApplyWalkingDTO" alias="apply"/>
+		<typeAlias type="kr.pandorabox.aniwalk.review.ReviewDTO" alias="review"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/member.xml"/>
@@ -22,5 +23,6 @@
 		<mapper resource="mapper/manager.xml"/>
 		<mapper resource="mapper/walking.xml"/>
 		<mapper resource="mapper/chat.xml"/>
+		<mapper resource="mapper/review.xml"/>
 	</mappers>
 </configuration>

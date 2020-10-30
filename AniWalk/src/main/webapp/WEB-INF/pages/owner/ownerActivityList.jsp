@@ -58,7 +58,7 @@
 			</c:if>
 			<c:if test="${all.real_walk_end_time ne null}">
 				<!-- 1개 시작 -->
-				<ul class="list-item">
+				<ul class="list-item" onclick="location.href='/aniwalk/owner/activDone.do?walking_id=${all.walking_id}'">
 					<li style="justify-content: center">
 						<img class="img-rounded" alt="" src="/walker/${all.wk_profile_img1}">
 		

@@ -15,13 +15,32 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.pandorabox.aniwalk.review.ReviewDTO;
+import kr.pandorabox.aniwalk.review.ReviewService;
+
 @Controller
 public class WalkingController {
 	@Autowired
 	private WalkingService walkingService;
+	@Autowired
+	private ReviewService reviewService;
+	
+	// 오너 페이지 - 산책완료 정보
+	@RequestMapping("/owner/activDone.do")
+	public ModelAndView getOwnerActivDoneInfo(String walking_id) {
+		ModelAndView mav = new ModelAndView();
+		List<WalkingDTO> missionList = walkingService.getMissionList(walking_id);
+		WalkingDTO walkingInfo = walkingService.getWalkingInfo(walking_id);
+		ReviewDTO review = reviewService.getReview(walking_id);
+		mav.setViewName("owner/activDone");
+		mav.addObject("review", review);
+		mav.addObject("missionList", missionList);
+		mav.addObject("walkingInfo", walkingInfo);
+		return mav;
+	}
 	
 	// 프렌즈 페이지 - 산책완료 정보
-	@RequestMapping("walker/activDone")
+	@RequestMapping("/walker/activDone.do")
 	public ModelAndView getActivDoneInfo(String walking_id) {
 		ModelAndView mav = new ModelAndView();
 		List<WalkingDTO> missionList = walkingService.getMissionList(walking_id);
@@ -102,7 +121,9 @@ public class WalkingController {
 	public ModelAndView getMissionList(String walking_id) {
 		ModelAndView mav = new ModelAndView();
 		List<WalkingDTO> list = walkingService.getMissionList(walking_id);
+		ReviewDTO review = reviewService.getReview(walking_id);
 		mav.setViewName("walker/activiting");
+		mav.addObject("review", review);
 		mav.addObject("missionList", list);
 		mav.addObject("walking_id",walking_id);
 		return mav;

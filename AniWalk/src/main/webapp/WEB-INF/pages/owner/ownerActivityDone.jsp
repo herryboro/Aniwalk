@@ -22,7 +22,6 @@
 	<div class="map-part">
 		<div id="map" style="width:100%;height:100%;"></div>
 	</div>
-	<button id='currentBtn' type="button">현재 위치 보기</button>
 	<div class="subtitle">
 		<h4>실시간 산책정보</h4>
 	</div>
@@ -34,16 +33,16 @@
 			</div>
 		</div>
 	</div>
-	<button id="activeDone" class="btn btn-primary hidden">산책완료</button>
+	<button id="activeDone" class="btn btn-primary">산책완료</button>
 </div>
 
 
 <div class="modal-bg hidden">
 	<div class="modal-content" onclick="event.stopPropagation()">
 		<button type="button" class="close">&times;</button>
-		<form class="review-form">
+		<form class="review-form" method="post" action="/aniwalk/owner/review.do?walking_id=${walkingInfo.walking_id}">
 			<h2>산책에 대한 평점을 주세요</h2>
-			<input class="star-score" type="hidden" value="5">
+			<input name="review_score" class="star-score" type="hidden" value="5">
 			<div class="starRev">
 				<span class="starR on">별1</span>
 				<span class="starR on">별2</span>
@@ -52,10 +51,10 @@
 				<span class="starR on">별5</span>
 			</div>
 			<label>
-				<textarea class="form-control" placeholder="평가후기를 남겨주세요."></textarea>
+				<textarea name="review_contents" class="form-control" placeholder="평가후기를 남겨주세요." required></textarea>
 			</label>
-			<h4>이미지 혹은 영상을 업로드 해주세요</h4>
-			<input type="file" class="form-control" >
+			<!-- <h4>이미지 혹은 영상을 업로드 해주세요</h4>
+			<input type="file" class="form-control" > -->
 			<div class="btn-line">
 				<button class="btn btn-primary" type="submit">확인</button>
 				<button id="jumpBtn" class="btn btn-default" type="button">건너뛰기</button>
@@ -69,18 +68,11 @@
 <input id="walking_id" type="hidden" value="${walkingInfo.walking_id}">
 <script src="${pageContext.request.contextPath}/static/js/map.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/ownerActiviting.js"></script>
-<script>
-document.getElementById('currentBtn')
-.addEventListener('click', () => setPositionCenter());
 
-$(document).ready(function(){
-	getWalkingMission('center');
-	getWalkingLocation();
-	let getLocation = setInterval(() => {
-		getWalkingMission();
-		getWalkingLocation();
-	}, 2000);
-})
+<script>
+
+getWalkingMission('center');
+getWalkingLocation();
 </script>
 </body>
 </html>

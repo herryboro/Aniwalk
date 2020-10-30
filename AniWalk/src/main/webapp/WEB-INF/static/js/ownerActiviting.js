@@ -18,6 +18,9 @@ const close = document.querySelector('.close');
 const modalClose = function(){
 	modalBg.classList.add('hidden');
 }
+if(document.getElementById('review').value) {
+	activeDone.classList.add('hidden');
+}
 
 activeDone.addEventListener('click',function(){
 	modalBg.classList.remove('hidden');
@@ -88,6 +91,3 @@ const viewWalkingMission = function(data) {
 			image + '</div></div>');
 	
 }
-
-document.getElementById('currentBtn')
-	.addEventListener('click', () => setPositionCenter());
