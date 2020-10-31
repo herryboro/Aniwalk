@@ -56,35 +56,28 @@
 			<hr width="80%" color="gray">
 		</div>
 		<div class="review-list">
-		
-		
-			<div class="review-item">
-				<img class="img-rounded" src="${pageContext.request.contextPath}/images/mydog.jpg" alt="">
-				<div class="review-right">
-					<ul>
-						<li class="bottom-margin">
-							<div>
-								<img class="img-circle" src="${pageContext.request.contextPath}/images/profile_test.png" alt="">
-								<label>사용자닉네임</label>
-								<div class="star-rating">
-									<span style="width:30%"></span>
+			<c:forEach var="review" items="${reviewList}">
+				<div class="review-item">
+					<img class="img-rounded" src="/owner/${review.dog_image}" alt="">
+					<div class="review-right">
+						<ul>
+							<li class="bottom-margin">
+								<div>
+									<img class="img-circle" src="/owner/${review.mem_profile_img}" 
+										onerror="this.src='/aniwalk/images/profile_test.png'" alt="">
+									<label>${review.mem_nickname}</label>
+									<div class="star-rating">
+										<span style="width:30%"></span>
+									</div>
+									<label>(1.5)</label>
+									<span class="right">${review.review_date}</span>
 								</div>
-								<label>(1.5)</label>
-								<span class="right">2020-09-25</span>
-							</div>
-						</li>
-						<li>
-							새가 운다사랑의 풀이 없으면 인간은 사막이다 오아이스도 없는 사막이다
-							보이는 끝까지 찾아다녀도 목숨이 있는 때까지 방황하여도 보이는 것은 거친 모래뿐일 것이다
-							이상의 꽃이 없으면 쓸쓸한 인간에 남는 것은 영락과 부패 뿐이다 낙원을
-						</li>
-					</ul>
+							</li>
+							<li>${review.review_contents}</li>
+						</ul>
+					</div>
 				</div>
-			</div>
-
-
-
-
+			</c:forEach>
 		</div>
 	</div>
 </div>

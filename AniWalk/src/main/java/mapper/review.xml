@@ -4,6 +4,17 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="kr.pandorabox.aniwalk.review">
+	<!-- 오너 페이지  - 펫 프렌즈 산책 리뷰 리스트 -->
+	<select id="getWalkerReviewList" parameterType="String" resultType="review">
+		select * from ani_review r 
+		left outer join ani_walking wk
+		on r.walking_id = wk.walking_id
+		left outer join ani_member m
+		on wk.recruit_mem_id = m.mem_id
+		left outer join ani_dog_img di
+		on wk.dog_id = di.dog_id
+		where wk.match_wk_id=#{wk_id}
+	</select>
 	<select id="getReview" parameterType="String" resultType="review">
 		select * from ani_review where walking_id=#{walking_id}
 	</select>

@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.pandorabox.aniwalk.Authentication;
 import kr.pandorabox.aniwalk.SHA256;
 import kr.pandorabox.aniwalk.member.MemberService;
+import kr.pandorabox.aniwalk.review.ReviewDTO;
+import kr.pandorabox.aniwalk.review.ReviewService;
 
 @Controller
 public class WalkerController {
@@ -27,6 +29,8 @@ public class WalkerController {
 	private SHA256 hash;
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private ReviewService reviewService;
 	
 	// 펫 프렌즈 신청 관리
 	@RequestMapping("/manager/updateWalker.do")
@@ -66,7 +70,9 @@ public class WalkerController {
 	public ModelAndView ownerWalkerInfo(String wk_id) {
 		ModelAndView mav = new ModelAndView();
 		List<WalkerDTO> walkerInfo = walkerService.applierList(wk_id);
+		List<ReviewDTO> reviewList = reviewService.getWalkerReviewList(wk_id);
 		mav.setViewName("owner/walkerInfo");	// ownerWalkerInfo.jsp
+		mav.addObject("reviewList", reviewList);
 		mav.addObject("walkerInfo", walkerInfo);
 		return mav;
 	}

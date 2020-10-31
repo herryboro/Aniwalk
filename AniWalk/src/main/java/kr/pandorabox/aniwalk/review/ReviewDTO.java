@@ -12,11 +12,14 @@ public class ReviewDTO {
 	private String mem_nickname;
 	private String mem_profile_img;
 	
+	private String dog_image;
+	
 	@Override
 	public String toString() {
 		return "ReviewDTO [review_id=" + review_id + ", walking_id=" + walking_id + ", review_contents="
 				+ review_contents + ", review_score=" + review_score + ", review_date=" + review_date
-				+ ", mem_nickname=" + mem_nickname + ", mem_profile_img=" + mem_profile_img + "]";
+				+ ", mem_nickname=" + mem_nickname + ", mem_profile_img=" + mem_profile_img + ", dog_image=" + dog_image
+				+ "]";
 	}
 	public String getReview_id() {
 		return review_id;
@@ -60,4 +63,14 @@ public class ReviewDTO {
 	public void setMem_profile_img(String mem_profile_img) {
 		this.mem_profile_img = mem_profile_img;
 	}
+
+	public String getDog_image() {
+		return dog_image;
+	}
+
+
+	public void setDog_image(String dog_image) {
+		this.dog_image = dog_image;
+	}
+	
 }
