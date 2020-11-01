@@ -2,6 +2,7 @@ package kr.pandorabox.aniwalk.walker;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -71,8 +72,11 @@ public class WalkerController {
 		ModelAndView mav = new ModelAndView();
 		List<WalkerDTO> walkerInfo = walkerService.applierList(wk_id);
 		List<ReviewDTO> reviewList = reviewService.getWalkerReviewList(wk_id);
+		double total = reviewList.size() == 0 ? 0 : reviewList.stream()
+				.mapToInt(review -> Integer.parseInt(review.getReview_score())).sum()/(double) reviewList.size();
 		mav.setViewName("owner/walkerInfo");	// ownerWalkerInfo.jsp
 		mav.addObject("reviewList", reviewList);
+		mav.addObject("totalScore", total);
 		mav.addObject("walkerInfo", walkerInfo);
 		return mav;
 	}

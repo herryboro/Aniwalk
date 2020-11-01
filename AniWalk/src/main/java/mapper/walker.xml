@@ -6,7 +6,12 @@
 <mapper namespace="kr.pandorabox.aniwalk.walker">
 	<!-- 오너 페이지 - 펫 프렌즈 리스트 -->
 	<select id="getWalkerList" parameterType="String" resultType="walker">
-		select * from ani_walker 
+		select w.*, total from ani_walker w left outer join
+		(select wk.match_wk_id, sum(to_number(review_score)) total 
+		from ani_review r left outer join ani_walking wk
+		on r.walking_id = wk.walking_id
+		group by wk.match_wk_id) t
+		on w.wk_id = t.match_wk_id
 		where apply_state=4 and activity_state=1
 		<if test="value != null">
 			and (wk_name like '%'||#{value}||'%' 

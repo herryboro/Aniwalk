@@ -37,6 +37,7 @@ public class WalkerDTO {
 	private String review_score;
 	private Date review_date;
 	private String mem_nickname;
+	private double total;
 	
 	
 	@Override
@@ -241,6 +242,12 @@ public class WalkerDTO {
 	}
 	public void setWk_intro(String wk_intro) {
 		this.wk_intro = wk_intro;
+	}
+	public double getTotal() {
+		return total;
+	}
+	public void setTotal(double total) {
+		this.total = total;
 	}
 	
 

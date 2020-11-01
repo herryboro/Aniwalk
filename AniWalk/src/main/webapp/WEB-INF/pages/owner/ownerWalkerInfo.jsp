@@ -23,9 +23,26 @@
 			<ul>
 				<li>
 					<div>
-						<div class="star-rating">
-							<span style="width:30%"></span>
+						<div class="starRev">
+							<c:forEach begin="1" varStatus="status" end="${totalScore * 2}">
+								<c:if test="${status.current % 2 == 1}">
+									<span class="starR1 on"></span>
+								</c:if>
+								<c:if test="${status.current % 2 == 0}">
+									<span class="starR2 on"></span>
+								</c:if>
+							</c:forEach>
+							<c:forEach begin="${(totalScore * 2) % 2}" varStatus="status" 
+										end="${9 - totalScore * 2 + ((totalScore * 2) % 2)}">
+								<c:if test="${status.current % 2 == 0}">
+									<span class="starR1"></span>
+								</c:if>
+								<c:if test="${status.current % 2 == 1}">
+									<span class="starR2"></span>
+								</c:if>
+							</c:forEach>
 						</div>
+						<label class="total">${totalScore}</label>
 					</div>
 				</li>
 				<li>
@@ -66,10 +83,15 @@
 									<img class="img-circle" src="/owner/${review.mem_profile_img}" 
 										onerror="this.src='/aniwalk/images/profile_test.png'" alt="">
 									<label>${review.mem_nickname}</label>
-									<div class="star-rating">
-										<span style="width:30%"></span>
+									<div class="starRev">
+										<c:forEach begin="1" end="${review.review_score}">
+											<span class="starR on"></span>
+										</c:forEach>
+										<c:forEach begin="1" end="${5-review.review_score}">
+											<span class="starR"></span>
+										</c:forEach>
 									</div>
-									<label>(1.5)</label>
+									<label class="star">${review.review_score}</label>
 									<span class="right">${review.review_date}</span>
 								</div>
 							</li>
