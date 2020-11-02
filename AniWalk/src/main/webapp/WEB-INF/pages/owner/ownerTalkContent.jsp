@@ -63,7 +63,7 @@
 								<li>
 									<div class="reserve-box-you">
 										<label>프렌즈 ${chatDto.walker_id}님이 산책 예약을 수락했습니다.</label>
-										<button class="btn btn-primary">정보보기</button>
+										<button class="btn btn-primary" type="button" onclick="location.href='/aniwalk/owner/activityList.do'">정보보기</button>
 									</div>
 									<span style="position: relative; top: 40%;">${chatDto.chat_date}</span>
 								</li>
@@ -119,80 +119,6 @@
 				</c:choose>
 				
 			</c:forEach>
-			<!-- 여기 아래부터 톡글 시작 
-			 상대방
-			<div class="you">
-				<img src="${pageContext.request.contextPath}/images/applier.png" class="img-circle" alt="">
-				<ul>
-					<li>
-						<label>프렌즈네임</label>
-					</li>
-					<li>
-						<div>톡내용톡내용톡내톡내용</div>
-						<span>톡한날짜</span>
-					</li>
-				</ul>
-			</div>
-
-			<!-- 자신 
-			<div class="my">
-				<ul>
-					<li style="min-width: 60px">
-						<span>톡한날짜</span>
-					</li>
-					<li>
-						<div class="my-talk-content">톡내용</div>
-					</li>
-				</ul>
-			</div>
-		
-			<div class="reserve-box-my">
-				<ul>
-					<li>
-						<label>날짜 : </label>
-						<span>2020-09-21</span>
-					</li>
-					<li>
-						<label>시간 : </label>
-						<span>오후 1:30 ~ 오후 2:00 (30분)</span>
-					</li>
-					<li>
-						<label>장소 : </label>
-						<span>서울특별시 서초구 방배로26길 13</span>
-					</li>
-					<li>
-						<label>반려견 : </label>
-						<span>크림(포메라니안)</span>
-					</li>
-					<li>
-						<label>주의사항 : </label>
-						<div>
-							악악악악악악악악악악악악악악악악악악악악악악악악악악악악악악악악악악악악악악악악악악악<br>
-							악악악악악악악악악악악악악악악악악악악악악악악악악<br>
-							악악악악악악악악악악악악악악악악악악악악악악악
-						</div>
-					</li>
-				</ul>
-				<button class="btn btn-primary" type="button">예약 정보 수정</button>
-			</div>
-
-		
-			<div class="you">
-				<img src="${pageContext.request.contextPath}/images/applier.png" class="img-circle" alt="">
-				<ul>
-					<li>
-						<label>프렌즈네임</label>
-					</li>
-					<li>
-						<div class="reserve-box-you">
-							<label>프렌즈 이름 님이 산책 예약을 수락했습니다.</label>
-							<button class="btn btn-primary">정보보기</button>
-						</div>
-						<span style="position: relative; top: 40%;">톡한날짜</span>
-					</li>
-				</ul>
-			</div>
-			 끝 -->
 		</div>
 	</div>
 
@@ -458,10 +384,12 @@
         	}else if(type=='accept'){ //타입이 수락인 경우
         		var chat_date =  message[2];
         		var walking_id = message[3];
+        		
+        		var move = "'/aniwalk/owner/activityList.do'";
         		chatToInsert += '<div class="you"><img src="/walker/${wk_profile_img1}" class="img-circle" alt="">';
     			chatToInsert += '<ul><li><label>'+target+'</label></li><li><div class="reserve-box-you">';
     			chatToInsert += '<label>프렌즈 '+target+'님이 산책 예약을 수락했습니다.</label>';
-    			chatToInsert += '<button class="btn btn-primary">정보보기</button></div>';
+    			chatToInsert += '<button class="btn btn-primary" type="button" onclick="location.href='+move+'" >정보보기</button></div>';
     			chatToInsert += '<span style="position: relative; top: 40%;">'+chat_date+'</span></li></ul></div>';
     			$("#messageWindow").append(chatToInsert)
     			
