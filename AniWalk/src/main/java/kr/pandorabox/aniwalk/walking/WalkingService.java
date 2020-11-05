@@ -7,13 +7,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface WalkingService {
-	public int recruitInsert(WalkingDTO walking);
 	public List<WalkingDTO> recruitDog(String mem_nickname);
 	public List<WalkingDTO> getRecruitList(String search);
 	public List<WalkingDTO> recruitlist(String mem_nickname);
 	public int insertWalkingData(WalkingDTO walkingDto);
 	public List<WalkingDTO> getMissionList(String walking_id);
-	public int recruitUpdate(WalkingDTO walking);
 	public List<ApplyWalkingDTO> applyList(String walking_id);
 	public int matching(Map<String, String> map);
 	//오늘 산책 정보
@@ -32,4 +30,7 @@ public interface WalkingService {
 	public String getWalkingLocation(String walking_id);
 	public List<WalkingDTO> getSearchRecruitList(WalkingDTO walkingDto);
 	public List<WalkingDTO> getAllWalkingList(String walker_id);
+	
+	//오너 모집글 작성 시 insert, update
+	public int recruitInsertUpdate(WalkingDTO walking);
 }

@@ -90,10 +90,7 @@ public class WalkingServiceImpl implements WalkingService{
 		return result;
 	}
 	
-	@Override
-	public int recruitInsert(WalkingDTO walking) {
-		return walkingDao.recruitInsert(walking);
-	}
+	
 	@Override
 	public List<WalkingDTO> recruitDog(String mem_nickname) {
 		return walkingDao.recruitDog(mem_nickname);
@@ -107,10 +104,7 @@ public class WalkingServiceImpl implements WalkingService{
 	public List<WalkingDTO> recruitlist(String mem_nickname) {
 		return walkingDao.recruitlist(mem_nickname);
 	}
-	@Override
-	public int recruitUpdate(WalkingDTO walking) {
-		return walkingDao.recruitUpdate(walking);
-	}
+	
 	@Override
 	public List<ApplyWalkingDTO> applyList(String walking_id) {
 		return walkingDao.applyList(walking_id);
@@ -139,5 +133,18 @@ public class WalkingServiceImpl implements WalkingService{
 	@Override
 	public int applyCheck(Map<String, String> map) {
 		return walkingDao.applyCheck(map);
+	}
+	//오너 모집글 작성 시 insert, update
+	@Override
+	public int recruitInsertUpdate(WalkingDTO walking) {
+		int result = 0; //전체 결과
+		int walkingResult = 0; //walking 테이블에 insert 결과
+		int memberResult = 0; //member 테이블 update 결과
+		walkingResult = walkingDao.recruitInsert(walking);
+		memberResult = walkingDao.recruitUpdate(walking);
+		if(walkingResult>=1 & memberResult>=1) {
+			result = 1;
+		}
+		return result;
 	}
 }

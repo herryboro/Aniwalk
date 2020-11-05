@@ -108,6 +108,13 @@
 			 id="walkerApply"/>
 		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="walkerApply"/>
 	</aop:config>
+	<aop:config>
+		<!-- 모집글 작성 트랜잭션 처리 -->
+		<aop:pointcut expression="execution(*
+		 kr.pandorabox.aniwalk.walking.*.recruitInsertUpdate(..))"
+			 id="recruitInsertUpdate"/>
+		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="recruitInsertUpdate"/>
+	</aop:config>
 	
 	<!-- 인터셉터 객체 생성 -->
 	  

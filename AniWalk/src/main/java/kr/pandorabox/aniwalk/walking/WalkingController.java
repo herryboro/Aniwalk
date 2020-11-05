@@ -161,10 +161,8 @@ public class WalkingController {
 	//모집글 insert
 	@RequestMapping("/owner/recruitInsert.do")
 	public String recruitInsert(WalkingDTO walking) {
-		walkingService.recruitInsert(walking);
-		//산책모집 올리면 member 테이블에 포인트 update
-		walkingService.recruitUpdate(walking);
-		
+		int result = walkingService.recruitInsertUpdate(walking);
+		System.out.println("쿼리문 결과:"+result);
 		return "redirect:/owner/recruitList.do";
 	}
 	//내 모집글 list
