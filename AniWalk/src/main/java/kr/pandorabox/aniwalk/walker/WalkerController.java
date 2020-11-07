@@ -102,9 +102,9 @@ public class WalkerController {
 	public String auth(String wk_phone) {
 		Random ran = new Random();
 	    String auth = Integer.toString(ran.nextInt(899999) + 100000); 
-	    System.out.println(auth);
+	    System.out.println("auth: " + auth);
 	    auth = hash.toSHA256(auth);
-	    System.out.println(auth);
+	    System.out.println("auth2: " + auth);
 		return auth;
 	}
 	

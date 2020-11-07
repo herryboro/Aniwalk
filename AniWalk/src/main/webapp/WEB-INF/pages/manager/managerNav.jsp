@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,14 +9,16 @@
 </head>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/manager.css">
 <body>
-<div class="dash-nav">
-	<ul>
-		<li><a href="/aniwalk/manager/user.do">유저관리</a></li>
-		<li><a href="/aniwalk/manager/walker.do">워커관리</a></li>
-		<li><a href="/aniwalk/manager/manageMatching.do">예약관리</a></li>
-		<li><a href="/aniwalk/manager/managePoint.do">포인트관리</a></li>
-	</ul>
-</div>
+<c:if test="${result eq 2}">
+	<div class="dash-nav">
+		<ul>
+			<li><a href="/aniwalk/manager/user.do">유저관리</a></li>
+			<li><a href="/aniwalk/manager/walker.do">워커관리</a></li>
+			<li><a href="/aniwalk/manager/manageMatching.do">예약관리</a></li>
+			<li><a href="/aniwalk/manager/managePoint.do">포인트관리</a></li>
+		</ul>
+	</div>
+</c:if>
 <script>
 	const clickItem = document.getElementsByTagName('li');
 

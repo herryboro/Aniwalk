@@ -28,6 +28,7 @@ public class MemberController {
 		
 		String mem_nickname = memberService.joinCheck(kakao_id);
 		String filename = memberService.getProfile(mem_nickname);
+		System.out.println("filename : " + filename );
 		
 		if(mem_nickname == null) {
 			mav.setViewName("login");		// main/signUp.jsp
@@ -88,7 +89,7 @@ public class MemberController {
 	@RequestMapping("/owner/myPro.do")
 	public ModelAndView addDog(JoinMemberDogImgDTO joinMemberDogImgDTO, HttpServletRequest request) {
 		String mem_nickname = (String) request.getSession().getAttribute("mem_nickname");
-		
+		System.out.println("dog_birth: " + joinMemberDogImgDTO.getDog_birth());
 		String getForeign_Mem_id = memberService.getMem_id(mem_nickname);
 		joinMemberDogImgDTO.setMem_id(getForeign_Mem_id);
 	
@@ -168,7 +169,6 @@ public class MemberController {
 			String filename = memberService.getProfile(mem_nickname);
 
 			if(result == 1) {
-				req.getSession().setAttribute("filename", filename);
 				req.getSession().setAttribute("mem_nickname", joinMemberDogImgDTO.getMem_nickname());
 				mav.addObject("filename", filename);
 				mav.setViewName("redirect:/owner/my.do");	

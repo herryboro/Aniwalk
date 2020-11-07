@@ -16,7 +16,7 @@
 			onclick="location.href='/aniwalk/owner/index.do'">
 	<ul>
 		<li>
-			<img class="img-circle" src="/owner/${filename}" alt=""
+			<img class="img-circle" src="/owner/${param.filename}" alt=""
 				 onclick="location.href='/aniwalk/owner/my.do'"
 				 onerror="this.src='/aniwalk/images/profile_test.png'">
 			<label onclick="location.href='/aniwalk/owner/my.do'"> ${mem_nickname} </label>
