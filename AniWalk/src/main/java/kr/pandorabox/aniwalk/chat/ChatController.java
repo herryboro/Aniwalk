@@ -15,12 +15,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.pandorabox.aniwalk.member.MemberService;
 import kr.pandorabox.aniwalk.walking.WalkingDTO;
 
 @Controller
 public class ChatController {
 	@Autowired
 	ChatService service;
+	@Autowired
+	MemberService memberService; 
 
 	/////////////////////walker/////////////////////
 	
@@ -55,6 +58,7 @@ public class ChatController {
 	public ModelAndView walkerChatContent(HttpServletRequest req,String mem_nickname) {
 		ModelAndView mav = new ModelAndView();
 		String walker_id = (String) req.getSession().getAttribute("walker_id");
+		String filename = memberService.getProfile(mem_nickname);
 		Map<String, Object> searchCondition = new HashMap<String, Object>();
 		searchCondition.put("walker_id", walker_id);
 		searchCondition.put("mem_nickname", mem_nickname);
@@ -65,7 +69,7 @@ public class ChatController {
 		//오너 프로필 사진 가져오기
 		String mem_profile_img = service.getMemProfile(mem_nickname);
 		System.out.println("워커 채팅 컨트롤러 mem_profile_img ::::"+ mem_profile_img);
-		
+		mav.addObject("filename", filename);
 		mav.addObject("mem_profile_img", mem_profile_img);
 		mav.addObject("walker_id", walker_id);
 		mav.addObject("mem_nickname", mem_nickname);

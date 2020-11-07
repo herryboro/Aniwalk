@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,10 +17,19 @@
 			onclick="location.href='/aniwalk/owner/index.do'">
 	<ul>
 		<li>
-			<img class="img-circle" src="/owner/${param.filename}" alt=""
-				 onclick="location.href='/aniwalk/owner/my.do'"
-				 onerror="this.src='/aniwalk/images/profile_test.png'">
-			<label onclick="location.href='/aniwalk/owner/my.do'"> ${mem_nickname} </label>
+			<c:if test="${param.filename ne null}">
+				<img class="img-circle" src="/owner/${param.filename}" alt=""
+					 onclick="location.href='/aniwalk/owner/my.do'"
+					 onerror="this.src='/aniwalk/images/profile_test.png'">
+				<label onclick="location.href='/aniwalk/owner/my.do'"> ${mem_nickname}</label>
+			</c:if>
+			<c:if test="${param.filename eq null}">
+				<img class="img-circle" src="/owner/${filename}" alt=""
+					 onclick="location.href='/aniwalk/owner/my.do'"
+					 onerror="this.src='/aniwalk/images/profile_test.png'">
+				<label onclick="location.href='/aniwalk/owner/my.do'"> ${mem_nickname}</label>
+			</c:if>
+			
 		</li>
 		<li>
 			<button class="btn btn-primary" type="button" onclick="location.href='/aniwalk/owner/recruitList.do'">산책모집</button>

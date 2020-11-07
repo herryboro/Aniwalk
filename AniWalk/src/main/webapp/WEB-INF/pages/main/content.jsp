@@ -35,9 +35,7 @@
 		      Kakao.API.request({
 		        url: '/v2/user/me',
 		        success: function(res) {
-		         // alert(JSON.stringify(res))   
-		         
-		          
+		         // alert(JSON.stringify(res))   	         		          
 		          var kakao_id = res.id;
 		          var nickname = res.properties['nickname'];
 		          var profile_img = res.properties['profile_image'];
@@ -45,9 +43,7 @@
 		          var email = res.kakao_account['email'];
 		          var phone_number = res.kakao_account['phone_number'];         
 		          var gender = res.kakao_account['gender']
-		          var kakao_access_token = authObj.access_token;
-		       
-		          
+		          var kakao_access_token = authObj.access_token;	       		          
 		          
 		          console.log(kakao_id);
 		          console.log(nickname);		   

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.pandorabox.aniwalk.member.MemberService;
 import kr.pandorabox.aniwalk.review.ReviewDTO;
 import kr.pandorabox.aniwalk.review.ReviewService;
 
@@ -24,15 +25,20 @@ public class WalkingController {
 	private WalkingService walkingService;
 	@Autowired
 	private ReviewService reviewService;
+	@Autowired
+	MemberService memberService; 
 	
 	// 오너 페이지 - 산책완료 정보
 	@RequestMapping("/owner/activDone.do")
-	public ModelAndView getOwnerActivDoneInfo(String walking_id) {
+	public ModelAndView getOwnerActivDoneInfo(String walking_id, HttpServletRequest req) {
+		String mem_nickname = (String)req.getSession().getAttribute("mem_nickname");
 		ModelAndView mav = new ModelAndView();
+		String filename = memberService.getProfile(mem_nickname);
 		List<WalkingDTO> missionList = walkingService.getMissionList(walking_id);
 		WalkingDTO walkingInfo = walkingService.getWalkingInfo(walking_id);
 		ReviewDTO review = reviewService.getReview(walking_id);
 		mav.setViewName("owner/activDone");
+		mav.addObject("filename", filename);
 		mav.addObject("review", review);
 		mav.addObject("missionList", missionList);
 		mav.addObject("walkingInfo", walkingInfo);
@@ -148,10 +154,10 @@ public class WalkingController {
 	public ModelAndView recruit(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		String mem_nickname = (String) request.getSession().getAttribute("mem_nickname");
-		
+		String filename = memberService.getProfile(mem_nickname);
 		List<WalkingDTO> walkingDtos = walkingService.recruitDog(mem_nickname);
 		String recruit_mem_id = walkingDtos.get(0).getMem_id();
-		
+		mav.addObject("filename", filename);
 		mav.addObject("recruit_mem_id",recruit_mem_id);
 		mav.addObject("walkingDtos", walkingDtos);
 		mav.setViewName("owner/recruit");
@@ -170,8 +176,9 @@ public class WalkingController {
 	public ModelAndView list(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		String mem_nickname = (String) req.getSession().getAttribute("mem_nickname");
+		String filename = memberService.getProfile(mem_nickname);
 		List<WalkingDTO> walkingDtos= walkingService.recruitlist(mem_nickname);
-		
+		mav.addObject("filename", filename);
 		mav.setViewName("owner/recruitList");
 		mav.addObject("mem_nickname", mem_nickname);
 		mav.addObject("walkingDtos", walkingDtos);
@@ -203,6 +210,7 @@ public class WalkingController {
 	public ModelAndView ownerIndex(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		String mem_nickname = (String) req.getSession().getAttribute("mem_nickname");
+		String filename = memberService.getProfile(mem_nickname);
 		
 		//현재 날짜
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -213,7 +221,7 @@ public class WalkingController {
 		map.put("walk_date", walk_date);
 		
 		List<WalkingDTO> todayList =walkingService.todayWalking(map);
-		
+		mav.addObject("filename", filename);
 		mav.addObject("todayList", todayList);
 		mav.setViewName("owner/index");
 		return mav;
@@ -224,9 +232,9 @@ public class WalkingController {
 	public ModelAndView todayWalking(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		String mem_nickname = (String) req.getSession().getAttribute("mem_nickname");
-		
+		String filename = memberService.getProfile(mem_nickname);
 		List<WalkingDTO> allList =walkingService.allWalking(mem_nickname);
-		
+		mav.addObject("filename", filename);
 		mav.addObject("allList", allList);
 		mav.setViewName("owner/activityList");
 		return mav;
@@ -234,10 +242,13 @@ public class WalkingController {
 	
 	//owner 실시간 산책 정보
 	@RequestMapping("/owner/activity.do")
-	public ModelAndView walkingInfo(String walking_id) {
+	public ModelAndView walkingInfo(String walking_id, HttpServletRequest req) {
+		String mem_nickname = (String)req.getSession().getAttribute("mem_nickname");
 		ModelAndView mav = new ModelAndView();
+		String filename = memberService.getProfile(mem_nickname);
 		WalkingDTO walkingInfo = walkingService.getWalkingInfo(walking_id);
 		List<WalkingDTO> missionList = walkingService.getMissionList(walking_id);
+		mav.addObject("filename", filename);
 		mav.addObject("walkingInfo", walkingInfo);
 		mav.addObject("missionList", missionList);
 		mav.setViewName("owner/activity");

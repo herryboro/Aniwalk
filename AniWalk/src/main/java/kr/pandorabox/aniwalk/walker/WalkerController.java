@@ -56,22 +56,23 @@ public class WalkerController {
 	// owner페이지 펫 프렌즈 리스트
 	@RequestMapping("owner/walker.do")
 	public ModelAndView walkerList(String searchWalker, HttpServletRequest req) {
-		String mem_nickname = (String) req.getSession().getAttribute("mem_nickname");
 		ModelAndView mav = new ModelAndView();
 		List<WalkerDTO> list = walkerService.getWalkerList(searchWalker);
-		String filename = memberService.getProfile(mem_nickname);
+		
 		mav.addObject("walkerList",list);
-		mav.addObject("filename",filename);
 		mav.setViewName("owner/walkerList"); // ownerWalkerList.jsp
 		return mav;
 	}
 	
 	// owner페이지  펫 프렌즈 상세 정보
 	@RequestMapping("owner/walkerInfo.do")
-	public ModelAndView ownerWalkerInfo(String wk_id) {
+	public ModelAndView ownerWalkerInfo(String wk_id, HttpServletRequest req) {
+		String mem_nickname = (String)req.getSession().getAttribute("mem_nickname");
+		System.out.println(mem_nickname);
 		ModelAndView mav = new ModelAndView();
 		List<WalkerDTO> walkerInfo = walkerService.applierList(wk_id);
 		List<ReviewDTO> reviewList = reviewService.getWalkerReviewList(wk_id);
+	
 		double total = reviewList.size() == 0 ? 0 : reviewList.stream()
 				.mapToInt(review -> Integer.parseInt(review.getReview_score())).sum()/(double) reviewList.size();
 		mav.setViewName("owner/walkerInfo");	// ownerWalkerInfo.jsp

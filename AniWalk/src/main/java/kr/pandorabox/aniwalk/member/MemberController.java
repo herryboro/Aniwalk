@@ -35,6 +35,7 @@ public class MemberController {
 			return mav;
 		} else {
 			request.getSession().setAttribute("mem_nickname", mem_nickname);
+			request.getSession().setAttribute("filename", filename);
 			mav.addObject("filename", filename);
 			mav.addObject("mem_nickname", mem_nickname);
 			mav.addObject("kakao_id", kakao_id);
@@ -76,10 +77,8 @@ public class MemberController {
 	public ModelAndView ownerMy(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		String mem_nickname = (String) req.getSession().getAttribute("mem_nickname");
-		String filename = memberService.getProfile(mem_nickname);
 		
 		List<JoinMemberDogImgDTO> joinDtos = memberService.myPage(mem_nickname);
-		mav.addObject("filename", filename);
 		mav.addObject("joinDtos", joinDtos);
 		mav.setViewName("owner/my");		//ownerMy.jsp
 		return mav;
@@ -128,7 +127,6 @@ public class MemberController {
 	// 반려견 정보 삭제 
 	public ModelAndView delDogInfo() {
 		ModelAndView mav = new ModelAndView();
-		
 		return mav;
 	}
 	
@@ -137,11 +135,9 @@ public class MemberController {
 		public ModelAndView modifyInfo(HttpServletRequest req) {
 			String mem_nickname = (String)req.getSession().getAttribute("mem_nickname");
 			String mem_phone = memberService.getPhone_number(mem_nickname);
-			String filename = memberService.getProfile(mem_nickname);
 			
 			ModelAndView mav = new ModelAndView();
 			mav.addObject("phone", mem_phone);
-			mav.addObject("filename", filename);
 			mav.addObject("mem_nickname", mem_nickname);
 			mav.setViewName("owner/ownerMyInfoUpdateView");		// owner/ownerMyInfoUpdate.jsp
 			return mav;
@@ -170,6 +166,7 @@ public class MemberController {
 
 			if(result == 1) {
 				req.getSession().setAttribute("mem_nickname", joinMemberDogImgDTO.getMem_nickname());
+				req.getSession().setAttribute("filename", filename);
 				mav.addObject("filename", filename);
 				mav.setViewName("redirect:/owner/my.do");	
 			} else if(result == 2) {
