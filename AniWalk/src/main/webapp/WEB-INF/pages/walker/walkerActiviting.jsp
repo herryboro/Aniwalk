@@ -236,7 +236,19 @@
 	
 </script>
 <script>
+const savelocation = () => {
+	setTimeout(()=> {
+		currentPosition();
+		saveCurrentPosition(walking_id, currentlat, currentlng);
+		savelocation();
+	}, 10000);
+};
 currentPosition(); // 현재 위치 호출 함수
+	
+$(document).ready(function(){
+	setPositionCenter();
+})
+
 if("${missionList.size()}" != 0){
 	$('#input-list > li').addClass('hidden');
 	action()
@@ -262,7 +274,9 @@ if("${missionList.size()}" != 0){
 	}
 	setPositionCenter();
 	loadImg(datalist);
-}	
+	savelocation();
+}
+
 </script>
 </body>
 </html>

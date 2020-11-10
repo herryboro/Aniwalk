@@ -79,7 +79,7 @@ $(document).ready(function(){
 	let getLocation = setInterval(() => {
 		getWalkingMission();
 		getWalkingLocation();
-	}, 2000);
+	}, 10000);
 })
 </script>
 </body>

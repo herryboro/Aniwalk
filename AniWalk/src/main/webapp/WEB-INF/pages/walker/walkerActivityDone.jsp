@@ -43,7 +43,6 @@ mapOption = {
 	level: 3 // 지도의 확대 레벨
 };
 const map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-const walking_id = document.getElementById('walking_id').value;
 
 if("${missionList.size()}" != 0){
 	let location = [];

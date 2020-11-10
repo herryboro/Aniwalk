@@ -186,12 +186,13 @@
 	</select>
 	
 	<!-- 산책 path -->
-	<update id="insertWalkingLocation" parameterType="Map">
-		update ani_walking set walking_map_path=walking_map_path||#{walking_map_path}||'/' where walking_id=#{walking_id}
-	</update>
+	<insert id="insertWalkingLocation" parameterType="walking">
+		insert into ani_walking_path values('path'||lpad(seq_walking_path.nextval,5,0),
+				#{walking_id}, #{walking_lat}, #{walking_lng})
+	</insert>
 	
 	<!-- 산책 path 불러오기 -->
-	<select id="getWalkingLocation" parameterType="String" resultType="String">
-		select walking_map_path from ani_walking where walking_id=#{walking_id}
+	<select id="getWalkingLocation" parameterType="String" resultType="walking">
+		select * from ani_walking_path where walking_id=#{walking_id}
 	</select>
 </mapper>

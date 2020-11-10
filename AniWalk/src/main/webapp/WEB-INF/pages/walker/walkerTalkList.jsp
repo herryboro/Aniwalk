@@ -28,7 +28,8 @@
 			<div class="talk-item">
 				<ul>
 					<li>
-						<a href="/aniwalk/walker/talkContent.do?mem_nickname=${chatList.mem_nickname}"><img class="img-circle" src="/owner/${chatList.mem_profile_img}" alt=""></a>
+						<a href="/aniwalk/walker/talkContent.do?mem_nickname=${chatList.mem_nickname}"><img class="img-circle" src="/owner/${chatList.mem_profile_img}" 
+								onerror="this.src='/aniwalk/images/profile_test.png'" alt=""></a>
 					</li>
 					<li>
 						<div>

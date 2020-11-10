@@ -118,7 +118,6 @@ const saveImg = function (e) {
 	currentPosition();
 	setPositionCenter();
 	missionLoc();
-	let walking_id = document.getElementById('walking_id').value;
 	let input = $(e.target);
 	let formData = new FormData(input.parent()[0]);
 	if(input.prev().val()!=''){
@@ -154,6 +153,13 @@ const saveImg = function (e) {
 	} else {
 		alert('사진을 선택해주세요');
 	}
+}
+
+//현재 위치 DB에 저장
+const saveCurrentPosition = (walking_id, currentlat, currentlng) => {
+	$.get("/aniwalk/walker/insertWalkingLocation.do?walking_id="
+			+ walking_id + "&walking_lat="+currentlat+"&walking_lng="+currentlng, (data) => {
+	});
 }
 
 //업로드 할 사진 선택시 이벤트
@@ -217,6 +223,7 @@ let nowMinute = today.getMinutes();
 startUploadBtn.addEventListener('click',function (e){
 	//missionLoc();
 	saveImg(e);
+	savelocation();
 	//teststart(); 
 })
 waterUploadBtn.addEventListener('click',function (e){
@@ -233,6 +240,7 @@ oopsUploadBtn.addEventListener('click',function (e){
 })
 endUploadBtn.addEventListener('click',function (e){
 	saveImg(e);
+	clearTimeout(savelocation);
 	alert('산책이 완료 되었습니다 :)');
 	location.href='/aniwalk/walker/main.do';
 })

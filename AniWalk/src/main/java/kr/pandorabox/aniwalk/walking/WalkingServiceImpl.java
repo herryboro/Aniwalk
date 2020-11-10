@@ -31,17 +31,14 @@ public class WalkingServiceImpl implements WalkingService{
 	
 	// 산책 path 불러오기
 	@Override
-	public String getWalkingLocation(String walking_id) {
+	public List<WalkingDTO> getWalkingLocation(String walking_id) {
 		return walkingDao.getWalkingLocation(walking_id);
 	}
 	
 	// 산책 path
 	@Override
-	public int insertWalkingLocation(String walking_id, String walking_map_path) {
-		Map<String, String> map = new HashMap<>();
-		map.put("walking_id", walking_id);
-		map.put("walking_map_path", walking_map_path);
-		return walkingDao.insertWalkingLocation(map);
+	public int insertWalkingLocation(WalkingDTO walkingDto) {
+		return walkingDao.insertWalkingLocation(walkingDto);
 	}
 	
 	// owner 산책 정보
@@ -69,7 +66,7 @@ public class WalkingServiceImpl implements WalkingService{
 	public int insertWalkingData(WalkingDTO walkingDto) {
 		MultipartFile[] walking = walkingDto.getFiles();
 		String mission_img = "";
-		String path = "C:/walking";
+		String path = "/aniwalk/walking";
 		for(int i=0; i<walking.length; i++) {
 			String fileName = walking[i].getOriginalFilename();
 			if(fileName.length()!=0) {

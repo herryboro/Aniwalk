@@ -4,7 +4,9 @@ let geocoder = new kakao.maps.services.Geocoder(); //주소-좌표 변환 객체
 let markers = []; //지도에 표시된 마커 객체를 가지고 있을 배열입니다
 let currentlat = '';
 let currentlng = '';
+let linePath = [];
 
+const walking_id = document.getElementById('walking_id').value;
 // 지도에 마커 추가
 const walkingAction = function (lat, lng, content) {
 	let locPosition = new kakao.maps.LatLng(lat, lng);
@@ -30,11 +32,11 @@ const walkingAction = function (lat, lng, content) {
     });
 	
 	if(content=='current'){
+		if(markers[0]) markers[0].setMap(null);
 		markers[0] = marker;
 	}else{
 		markers.push(marker);
 	}
-	
 	// 마커가 지도 위에 표시되도록 설정합니다
 	marker.setMap(map);  
 }
@@ -88,6 +90,18 @@ const removeMarker = function () {
 	markers = [];
 }
 
+const drawLine = function() {
+	// 지도에 표시할 선을 생성합니다
+	let polyline = new kakao.maps.Polyline({
+	    path: linePath, // 선을 구성하는 좌표배열 입니다
+	    strokeWeight: 5, // 선의 두께 입니다
+	    strokeColor: '#FFAE00', // 선의 색깔입니다
+	    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+	    strokeStyle: 'solid' // 선의 스타일입니다
+	});
+	// 지도에 선을 표시합니다 
+	polyline.setMap(map);  
+}
 //현재 생성중인 산책 미션 불러오기
 const loadImg = function (data) {
 	for(var i=0;i<data.length;i++) {
@@ -106,23 +120,7 @@ const loadImg = function (data) {
 		}
 	}
 }
-
-const drawLine = function() {
-	// 지도에 표시할 선을 생성합니다
-	let polyline = new kakao.maps.Polyline({
-	    path: linePath, // 선을 구성하는 좌표배열 입니다
-	    strokeWeight: 5, // 선의 두께 입니다
-	    strokeColor: '#FFAE00', // 선의 색깔입니다
-	    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-	    strokeStyle: 'solid' // 선의 스타일입니다
-	});
-	// 지도에 선을 표시합니다 
-	polyline.setMap(map);  
-}
-
 const getWalkingLocation = function(){
-	let walkingLocations = [];
-	let walkingLocation = [];
 	$.ajax({
 		type: 'post',
 		url: '/aniwalk/walking/getWalkingLocation.do',
@@ -130,22 +128,18 @@ const getWalkingLocation = function(){
 			"walking_id" : walking_id
 		},
 		success:function (data){
+			console.log(data)
 			if(data != null){
-				linePath = [];
-				walkingLocations = data.split('/');
-				for(let i in walkingLocations){
-					if(walkingLocations[i] != ''){
-						walkingLocation = walkingLocations[i].split(',');
-						currentlat = walkingLocation[0];
-						currentlng = walkingLocation[1];
-						linePath.push(new kakao.maps.LatLng(walkingLocation[0],walkingLocation[1]))	
-					}
-				}
+				data.map((path) => {
+					currentlat = path.walking_lat;
+					currentlng = path.walking_lng;
+					linePath.push(new kakao.maps.LatLng(path.walking_lat, path.walking_lat));	
+				})
 				drawLine();
 			}
 		},
 		error: function (a,b,c){
-			alert('xx')
+			alert('error:getWalkingLocation');
 		}
 	})
 }

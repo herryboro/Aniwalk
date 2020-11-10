@@ -52,6 +52,9 @@ public class WalkingDTO {
 	private String wk_profile_img1;
 	private String wk_name;
 	
+	//path
+	private String walking_lat;
+	private String walking_lng;
 	
 	@Override
 	public String toString() {
@@ -60,12 +63,39 @@ public class WalkingDTO {
 				+ ", walk_start_time=" + walk_start_time + ", walk_end_time=" + walk_end_time + ", recruit_notices="
 				+ recruit_notices + ", recruit_location=" + recruit_location + ", recruit_close_yn=" + recruit_close_yn
 				+ ", match_wk_id=" + match_wk_id + ", walking_map_path=" + walking_map_path + ", map_capture_img="
-				+ map_capture_img + ", mission_id=" + mission_id + ", mission_contents=" + mission_contents
-				+ ", mission_img=" + mission_img + ", mission_perform_location=" + mission_perform_location
-				+ ", mission_perform_time=" + mission_perform_time + ", files=" + Arrays.toString(files) + ", dog_name="
-				+ dog_name + ", dog_type=" + dog_type + ", dog_size=" + dog_size + ", dog_info=" + dog_info
-				+ ", dog_birth=" + dog_birth + ", mem_id=" + mem_id + ", dog_img_id=" + dog_img_id + ", dog_image="
-				+ dog_image + "]";
+				+ map_capture_img + ", walking_point=" + walking_point + ", real_walk_start_time="
+				+ real_walk_start_time + ", real_walk_end_time=" + real_walk_end_time + ", mission_id=" + mission_id
+				+ ", mission_contents=" + mission_contents + ", mission_img=" + mission_img
+				+ ", mission_perform_location=" + mission_perform_location + ", mission_perform_time="
+				+ mission_perform_time + ", files=" + Arrays.toString(files) + ", dog_name=" + dog_name + ", dog_type="
+				+ dog_type + ", dog_size=" + dog_size + ", dog_info=" + dog_info + ", dog_birth=" + dog_birth
+				+ ", mem_id=" + mem_id + ", dog_img_id=" + dog_img_id + ", dog_image=" + dog_image
+				+ ", wk_profile_img1=" + wk_profile_img1 + ", wk_name=" + wk_name + ", walking_lat=" + walking_lat
+				+ ", walking_lng=" + walking_lng + "]";
+	}
+
+
+
+	public String getWalking_lat() {
+		return walking_lat;
+	}
+
+
+
+	public void setWalking_lat(String walking_lat) {
+		this.walking_lat = walking_lat;
+	}
+
+
+
+	public String getWalking_lng() {
+		return walking_lng;
+	}
+
+
+
+	public void setWalking_lng(String walking_lng) {
+		this.walking_lng = walking_lng;
 	}
 
 

@@ -26,14 +26,14 @@ public class WalkingDAOImpl implements WalkingDAO{
 	
 	//산책 path 불러오기
 	@Override
-	public String getWalkingLocation(String walking_id) {
-		return session.selectOne("kr.pandorabox.aniwalk.walking.getWalkingLocation", walking_id);
+	public List<WalkingDTO> getWalkingLocation(String walking_id) {
+		return session.selectList("kr.pandorabox.aniwalk.walking.getWalkingLocation", walking_id);
 	}
 	
 	//산책 path
 	@Override
-	public int insertWalkingLocation(Map<String, String> map) {
-		return session.update("kr.pandorabox.aniwalk.walking.insertWalkingLocation", map);
+	public int insertWalkingLocation(WalkingDTO walkingDto) {
+		return session.insert("kr.pandorabox.aniwalk.walking.insertWalkingLocation", walkingDto);
 	}
 	
 	

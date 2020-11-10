@@ -1,9 +1,5 @@
 //카카오톡지도
 
-let linePath = [];
-
-const walking_id = document.getElementById('walking_id').value;
-
 const mapContainer = document.getElementById('map'), // 지도를 표시할 div
 		mapOption = {
 			center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표

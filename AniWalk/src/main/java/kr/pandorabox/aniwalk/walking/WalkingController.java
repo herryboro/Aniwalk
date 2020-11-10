@@ -86,19 +86,22 @@ public class WalkingController {
 	@ResponseBody
 	@RequestMapping(value = "/walking/getWalkingLocation.do",
 			method = RequestMethod.POST,
-			produces = "application/text;charset=utf-8")
-	public String getWalkingLocation(String walking_id) {
-		String result = walkingService.getWalkingLocation(walking_id);
-		return result;
+			produces = "application/json;charset=utf-8")
+	public List<WalkingDTO> getWalkingLocation(String walking_id) {
+		List<WalkingDTO> path = walkingService.getWalkingLocation(walking_id);
+		return path;
 	}	
 	
 	// 산책 path 저장
 	@ResponseBody
-	@RequestMapping(value = "/walking/walkingLocation.do",
-			method = RequestMethod.POST,
+	@RequestMapping(value = "/walker/insertWalkingLocation.do",
+			method = RequestMethod.GET,
 			produces = "application/text;charset=utf-8")
-	public String walkingLocation(String walking_id, String walking_map_path) {
-		int result = walkingService.insertWalkingLocation(walking_id, walking_map_path);
+	public String walkingLocation(WalkingDTO walkingDto) {
+		System.out.println(walkingDto.getWalking_lat());
+		System.out.println(walkingDto.getWalking_lng());
+		System.out.println(walkingDto.getWalking_id());
+		int result = walkingService.insertWalkingLocation(walkingDto);
 		return "success";
 	}
 	
