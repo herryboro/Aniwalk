@@ -4,7 +4,6 @@ let geocoder = new kakao.maps.services.Geocoder(); //주소-좌표 변환 객체
 let markers = []; //지도에 표시된 마커 객체를 가지고 있을 배열입니다
 let currentlat = '';
 let currentlng = '';
-let linePath = [];
 
 const walking_id = document.getElementById('walking_id').value;
 // 지도에 마커 추가
@@ -90,8 +89,9 @@ const removeMarker = function () {
 	markers = [];
 }
 
-const drawLine = function() {
+const drawLine = function(linePath) {
 	// 지도에 표시할 선을 생성합니다
+	console.log(linePath);
 	let polyline = new kakao.maps.Polyline({
 	    path: linePath, // 선을 구성하는 좌표배열 입니다
 	    strokeWeight: 5, // 선의 두께 입니다
@@ -127,15 +127,16 @@ const getWalkingLocation = function(){
 		data:{
 			"walking_id" : walking_id
 		},
+		async: false,
 		success:function (data){
-			console.log(data)
 			if(data != null){
-				data.map((path) => {
+				let linePath = data.map((path) => {
+					console.log(path.walking_lat);
 					currentlat = path.walking_lat;
 					currentlng = path.walking_lng;
-					linePath.push(new kakao.maps.LatLng(path.walking_lat, path.walking_lat));	
+					return new kakao.maps.LatLng(path.walking_lat, path.walking_lng);	
 				})
-				drawLine();
+				drawLine(linePath);
 			}
 		},
 		error: function (a,b,c){

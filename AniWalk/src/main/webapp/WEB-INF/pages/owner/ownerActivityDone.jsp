@@ -71,8 +71,10 @@
 
 <script>
 
-getWalkingMission('center');
-getWalkingLocation();
+$(document).ready(function(){
+	getWalkingMission('center');
+	getWalkingLocation();	
+})
 </script>
 </body>
 </html>

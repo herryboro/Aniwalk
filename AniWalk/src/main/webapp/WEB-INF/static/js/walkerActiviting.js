@@ -133,12 +133,14 @@ const saveImg = function (e) {
 			processData: false,
 	        contentType: false,
 	        cache: false,
+	        async: false,
 			success:function (data){
 				input.prev().val('')
 				input.prev().prev().empty();
 				input.prev().prev().append('<img src="/aniwalk/images/main_logo.png" alt="" class=" img-rounded">');
 				action();
 				walkingAction(currentlat, currentlng, $('#mission').val());
+				saveCurrentPosition(walking_id, currentlat, currentlng);
 				removeWhite();
 				if($('#mission').val() == 'start') {
 					activeBtn[2].click();
