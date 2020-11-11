@@ -42,7 +42,7 @@
 							<li>
 								<h3>${walker.wk_name}</h3>
 								<div class="starRev">
-									<c:forEach begin="1" varStatus="status" end="${walker.total}">
+									<c:forEach begin="1" varStatus="status" end="${walker.starcnt}">
 										<c:if test="${status.current % 2 == 1}">
 											<span class="starR1 on"></span>
 										</c:if>
@@ -50,8 +50,8 @@
 											<span class="starR2 on"></span>
 										</c:if>
 									</c:forEach>
-									<c:forEach begin="${walker.total % 2}" varStatus="status" 
-												end="${9 - walker.total + (walker.total % 2)}">
+									<c:forEach begin="${walker.starcnt % 2}" varStatus="status" 
+												end="${9 - walker.starcnt + (walker.starcnt % 2)}">
 										<c:if test="${status.current % 2 == 0}">
 											<span class="starR1"></span>
 										</c:if>
@@ -60,7 +60,7 @@
 										</c:if>
 									</c:forEach>
 								</div>
-								<label>${walker.total/2}</label>
+								<label>${walker.total}</label>
 							</li>
 							<li>
 								<ul>

@@ -38,6 +38,7 @@ public class WalkerDTO {
 	private Date review_date;
 	private String mem_nickname;
 	private double total;
+	private int starcnt;
 	
 	
 	@Override
@@ -46,13 +47,23 @@ public class WalkerDTO {
 				+ ", wk_phone=" + wk_phone + ", wk_birth=" + wk_birth + ", wk_email=" + wk_email + ", wk_addr="
 				+ wk_addr + ", wk_profile_img1=" + wk_profile_img1 + ", wk_profile_img2=" + wk_profile_img2
 				+ ", wk_profile_img3=" + wk_profile_img3 + ", wk_event_agree=" + wk_event_agree + ", wk_location1="
-				+ wk_location1 + ", wk_location2=" + wk_location2 + ", wk_intro=" + wk_intro + ", wk_point=" + wk_point
-				+ ", apply_date=" + apply_date + ", apply_state=" + apply_state + ", activity_start_date="
-				+ activity_start_date + ", activity_state=" + activity_state + ", wk_profile_imgs="
-				+ Arrays.toString(wk_profile_imgs) + ", files=" + Arrays.toString(files) + ", review_id=" + review_id
-				+ ", mem_id=" + mem_id + ", review_contents=" + review_contents + ", review_score=" + review_score
-				+ ", review_date=" + review_date + ", mem_nickname=" + mem_nickname + "]";
+				+ wk_location1 + ", wk_location2=" + wk_location2 + ", wk_certificate_list=" + wk_certificate_list
+				+ ", wk_intro=" + wk_intro + ", wk_point=" + wk_point + ", apply_date=" + apply_date + ", apply_state="
+				+ apply_state + ", activity_start_date=" + activity_start_date + ", activity_state=" + activity_state
+				+ ", wk_profile_imgs=" + Arrays.toString(wk_profile_imgs) + ", files=" + Arrays.toString(files)
+				+ ", review_id=" + review_id + ", mem_id=" + mem_id + ", review_contents=" + review_contents
+				+ ", review_score=" + review_score + ", review_date=" + review_date + ", mem_nickname=" + mem_nickname
+				+ ", total=" + total + ", starcnt=" + starcnt + "]";
 	}
+	
+	public int getStarcnt() {
+		return starcnt;
+	}
+
+	public void setStarcnt(int starcnt) {
+		this.starcnt = starcnt;
+	}
+
 	public String getWk_id() {
 		return wk_id;
 	}
