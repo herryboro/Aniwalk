@@ -84,8 +84,8 @@
 									</li>
 								</ul>
 								<div class="mydog-btn">
-									<button type="button" class="btn btn-primary mydog-update-btn" value="dog_id">수정</button>
-									<button type="button" class="btn btn-danger mydog-del-btn" value="dog_id">삭제</button>
+									<button type="button" class="btn btn-primary mydog-update-btn" value="${joinDto.dog_id}">수정</button>
+									<button type="button" class="btn btn-danger mydog-del-btn" value="${joinDto.dog_id}">삭제</button>
 								</div>
 							</div>
 						</div>
@@ -155,9 +155,12 @@
 							<select class="form-control" name="dog_type">
 								<option value="" selected>견종</option>
 								<option>포메라니안</option>
+								<option>말티즈</option>
 								<option>폼피츠</option>
 								<option>사모예드</option>
 								<option>푸들</option>
+								<option>진돗개</option>
+								<option>리트리버</option>
 							</select>
 						</li>
 						<li>
@@ -184,37 +187,41 @@
 <div class="modal-bg hidden dog-update-modal">
 	<div class="modal-content" onclick="event.stopPropagation()">
 		<button class="close-btn" type="button">&times;</button>
-		<form class="mydog-input" enctype="multipart/form-data" action="/aniwalk/owner/myPro.do" method="post">
+		<form class="mydog-input" enctype="multipart/form-data" action="/aniwalk/owner/modifyDog.do" method="post">
+			<input class="hidden_dog_id" type="hidden" name="dog_id" value="">
 			<div class="input-form">
 				<div>
-					<img id="dogUpdateImg" src="${pageContext.request.contextPath}/images/profile_test.png" alt="" class="img-rounded">
+					<img id="dogUpdateImg" src="/aniwalk/images/profile_test.png" alt="" class="img-rounded">
 					<h5>&lt;대표사진설정&gt;</h5>
 					<input id="UpdateuploadImg" type="file" class="hidden" name="files">
 				</div>
 				<div style="width: 40%">
 					<ul>
-						<li>
+						<li class="modify_modal_name">
 							<label>* 이름</label>
-							<input type="text" class="form-control" name="dog_name" placeholder="강아지 이름을 입력해주세요">
+							<input type="text" class="form-control" name="dog_name" value="">
 						</li>
-						<li>
+						<li class="modify_modal_type">
 							<label>* 견종</label>
 							<select class="form-control" name="dog_type">
 								<option value="" selected>견종</option>
 								<option>포메라니안</option>
+								<option>말티즈</option>
 								<option>폼피츠</option>
 								<option>사모예드</option>
 								<option>푸들</option>
+								<option>진돗개</option>
+								<option>리트리버</option>
 							</select>
 						</li>
-						<li>
+						<li class="">
 							<label>생일</label>
 							<input type="date" name="dog_birth" class="form-control">
 						</li>
 						<li>
 							<label>특징</label>
 						</li>
-						<li>
+						<li class="modify_modal_info">
 							<label style="width: 100%">
 								<textarea class="form-control" name="dog_info" cols="20"></textarea>
 							</label>
@@ -235,8 +242,8 @@
 <div class="popup-bg hidden">
 	<div class="popup-content" onclick="event.stopPropagation()">
 		<h3 style="text-align: center; margin-bottom: 50px;">삭제하시겠습니까?</h3>
-		<form class="mydog-del-modal-form" action="recruitlist.do">
-			<input id="delDogId" type="hidden" value="">
+		<form class="mydog-del-modal-form" action="delete.do">	
+			<input id="delDogId" type="hidden" value="" name="dog_id">
 			<button class="btn btn-danger" type="submit">삭제</button>
 			<button id="popupCloseBtn" class="btn btn-default" type="button">취소</button>
 		</form>
@@ -310,14 +317,37 @@
 		dogUpdateBtn[i].addEventListener('click',function (){
 			dogUpdateModal.classList.remove('hidden');
 			/*경찬이형 여기 ajax로 기존에 있는 데이터들 불러와야되요*/
-		});
-	}
+			$.ajax({
+				url: "/aniwalk/owner/dogInfoList.do",
+				type: "get",
+				data: {
+					"dog_id" : dogUpdateBtn[i].value			
+				},	
+				success: function(data) {
+					console.log(data);	
+					console.log(data[0].dog_id);	
+					$(".dog-update-modal").find(".modify_modal_name").children().val(data[0].dog_name);
+					$(".dog-update-modal").find(".modify_modal_type").children().val(data[0].dog_type);
+					$(".dog-update-modal").find(".modify_modal_birth").children().val(data[0].dog_birth);
+					$(".dog-update-modal").find(".modify_modal_info").children().children().val(data[0].dog_info);
+					$(".dog-update-modal").find(".hidden_dog_id").val(data[0].dog_id);
+													
+				},
+				error:function(a,b,c){
+				}
+			});
+		})
+	};
 	dogUpdateModal.addEventListener('click',function (){
 		dogUpdateModal.classList.add('hidden');
 	});
 	updateModalClose.addEventListener('click',function (){
 		dogUpdateModal.classList.add('hidden');
-	})
+	});
+											
+	document.getElementById("dogUpdateImg").addEventListener("click", function() {
+		document.getElementById("UpdateuploadImg").click();
+	});
 
 </script>
 

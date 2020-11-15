@@ -87,4 +87,32 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne("kr.pandorabox.aniwalk.member.getProfile", mem_nickname);
 	}
 	
+	// ajax용 반려견 정보
+	@Override
+	public List<JoinMemberDogImgDTO> getDogInfo(Map<String, String> map) {
+		System.out.println("map: " + map);
+		return sqlSession.selectList("kr.pandorabox.aniwalk.member.getDogInfo", map);
+	}
+	
+	// 개 정보 수정
+	@Override
+	public void modifyDogInfo(JoinMemberDogImgDTO JoinMemberDogImgDTO) {
+		sqlSession.update("kr.pandorabox.aniwalk.member.modifyDogInfo", JoinMemberDogImgDTO);
+	}
+	
+	// 개 프로필 수정
+	@Override
+	public void modifyDogProfile(String dog_id, ArrayList<String> filelist) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("dog_id", dog_id);
+		map.put("dog_profile", filelist.get(0));
+		sqlSession.update("kr.pandorabox.aniwalk.member.modifyDogProfile", map);
+	}
+	
+	// 개 정보 삭제
+	@Override
+	public void delDog(String dog_id) {
+		sqlSession.update("kr.pandorabox.aniwalk.member.delDog", dog_id);
+	}
+	
 }

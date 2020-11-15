@@ -183,18 +183,20 @@
 		var area = ["강원도", "경기도", "경상남도", "경상북도", "광주광역시", "대구광역시",
 			"대전광역시", "부산광역시", "서울특별시", "세종특별자치시", "울산광역시", "인천광역시",
 			"전라남도", "전라북도", "제주특별자치도", "충청남도", "충청북도"]
+		console.log(area.length);
 		for(var i=0; i<area.length; i++){
 			$('#area').append("<option>" + area[i] + "</option>");
 		}
-		$('#area').attr('option')
+	
 		$('#area').on('change', function(){
 			$.ajax({
 				url:"/aniwalk/walker/regionCheck.do",
-				type:"get",
-				data:{
+				type:"get",			
+				data:{			
 					"area" : $('#area').val()
 				},
 				success:function(data){
+					console.log(data);
 					$('#city').empty();
 					$('#city').append("<option>선택하세요</option>");
 					for(var i=0; i<data.length; i++){
@@ -273,6 +275,7 @@ $(document).ready(function(){
 				"phoneNum" : $('#phoneNum').val()
 			},
 			success:function(data){
+				console.log('data: ' + data);
 				if(data === ''){
 					addPhoneAuthForm();
 					if(addPhoneAuthForm()){
@@ -286,7 +289,9 @@ $(document).ready(function(){
 								"wk_phone" : $('#phoneNum').val()
 							},
 							success:function(data){
+								console.log('data: ' + data);
 								var auth_num = $('#auth_num').val(data);
+								console.log('auth_num: ' + auth_num);
 							},
 							error:function(a,b,c){
 							}
@@ -311,7 +316,7 @@ $(document).ready(function(){
 				"auth_num" : $('#auth_num').val(),
 				"auth" : $('.auth').val()
 			},
-			success:function(data){
+			success:function(data){				
 				if(data == 'pass'){
 					$('#auth-btn').remove();
 					$('.auth-part').empty();

@@ -2,6 +2,7 @@ package kr.pandorabox.aniwalk.member;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public interface MemberDAO {
 	String joinCheck(int kakao_id);
@@ -17,5 +18,9 @@ public interface MemberDAO {
 	public int updateUserInfo(JoinMemberDogImgDTO joinMemberDogImgDTO);
 	public int updateUserProfile(List<String> list);
 	public String getProfile(String mem_nickname);
+	public List<JoinMemberDogImgDTO> getDogInfo(Map<String, String> map);
+	public void modifyDogInfo(JoinMemberDogImgDTO JoinMemberDogImgDTO);
+	public void modifyDogProfile(String dog_id, ArrayList<String> filelist);
+	public void delDog(String dog_id);
 	
 }

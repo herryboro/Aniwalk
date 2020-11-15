@@ -55,6 +55,7 @@ addPhoneAuthForm = function(){
         </form>
     `;
     const inputPhoneNum = document.getElementById('phoneNum');
+  
     let phoneNum = inputPhoneNum.value.split('');
     let minusError = 0;
     for(let i=0; i<phoneNum.length; i++){

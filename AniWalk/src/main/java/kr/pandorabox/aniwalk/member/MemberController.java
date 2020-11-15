@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import kr.pandorabox.aniwalk.FileUploadLogic;
@@ -88,7 +89,6 @@ public class MemberController {
 	@RequestMapping("/owner/myPro.do")
 	public ModelAndView addDog(JoinMemberDogImgDTO joinMemberDogImgDTO, HttpServletRequest request) {
 		String mem_nickname = (String) request.getSession().getAttribute("mem_nickname");
-		System.out.println("dog_birth: " + joinMemberDogImgDTO.getDog_birth());
 		String getForeign_Mem_id = memberService.getMem_id(mem_nickname);
 		joinMemberDogImgDTO.setMem_id(getForeign_Mem_id);
 	
@@ -115,18 +115,31 @@ public class MemberController {
 		}	
 		return mav;
 	}
-	
+	// ajax용 반려견 정보 
+	@ResponseBody
+	@RequestMapping(value = "/owner/dogInfoList.do", method = RequestMethod.GET, 
+		produces = "application/json;charset=utf-8")
+	public List<JoinMemberDogImgDTO> dogInfoList(HttpServletRequest req, String dog_id) {
+		System.out.println("ajaxdog_id: " + dog_id);
+		String mem_nickname = (String)req.getSession().getAttribute("mem_nickname");		
+		return memberService.getDogInfo(mem_nickname, dog_id);
+	}	
 	// 반려견 정보 수정
-	public ModelAndView modifyDogInfo(HttpServletRequest req) {
-		String mem_nickname = (String)req.getSession().getAttribute("mem_nickname");
+	@RequestMapping("/owner/modifyDog.do")
+	public ModelAndView modifyDogInfo(HttpServletRequest req, JoinMemberDogImgDTO JoinMemberDogImgDTO) {
+		memberService.modifyDogInfo(JoinMemberDogImgDTO);
 		ModelAndView mav = new ModelAndView();
-		
+		mav.setViewName("redirect:/owner/my.do");
 		return mav;
 	}
 	
 	// 반려견 정보 삭제 
-	public ModelAndView delDogInfo() {
+	@RequestMapping("/owner/delete.do")
+	public ModelAndView delDogInfo(HttpServletRequest req, String dog_id) {
+		System.out.println("del dog_id: " + dog_id);
 		ModelAndView mav = new ModelAndView();
+		memberService.delDog(dog_id);
+		mav.setViewName("redirect:/owner/my.do");
 		return mav;
 	}
 	

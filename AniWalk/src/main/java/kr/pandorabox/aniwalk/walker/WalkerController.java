@@ -167,6 +167,7 @@ public class WalkerController {
 			method=RequestMethod.GET,
 			produces = "application/json;charset=utf-8")
 	public @ResponseBody int login(String walker_id, String wk_pw, HttpServletRequest request) {
+		System.out.println("walker_id: " + walker_id);
 		int result = walkerService.walkerLogin(walker_id,wk_pw);
 		if(result > 0) {
 			request.getSession().setAttribute("walker_id", walker_id);
