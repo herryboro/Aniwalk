@@ -33,6 +33,16 @@ public class WalkerController {
 	@Autowired
 	private ReviewService reviewService;
 	
+	
+	// 펫 프렌즈 이메일 중복확인
+	@ResponseBody
+	@RequestMapping(value = "/walker/emailCheck.do",
+			method = RequestMethod.GET)
+	public String emailCheck(String email) {
+		int result = walkerService.emailCheck(email);
+		return result == 0 ? "y" : "n";
+	}
+	
 	// 펫 프렌즈 신청 관리
 	@RequestMapping("/manager/updateWalker.do")
 	public String UpdateWalker(WalkerDTO walkerDto) {
@@ -75,6 +85,7 @@ public class WalkerController {
 	
 		double total = reviewList.size() == 0 ? 0 : reviewList.stream()
 				.mapToInt(review -> Integer.parseInt(review.getReview_score())).sum()/(double) reviewList.size();
+		total = Math.round(total*10)/10.0;
 		mav.setViewName("owner/walkerInfo");	// ownerWalkerInfo.jsp
 		mav.addObject("reviewList", reviewList);
 		mav.addObject("totalScore", total);
@@ -88,7 +99,7 @@ public class WalkerController {
 			method = RequestMethod.POST,
 			produces = "application/text;charset=utf-8")
 	public String authNum(String auth_num, String auth) {
-	    auth = hash.toSHA256(auth);
+	    //auth = hash.toSHA256(auth);
 	    if(auth_num.equals(auth)) {
 	    	return "pass";
 	    }
@@ -104,7 +115,7 @@ public class WalkerController {
 		Random ran = new Random();
 	    String auth = Integer.toString(ran.nextInt(899999) + 100000); 
 	    System.out.println("auth: " + auth);
-	    auth = hash.toSHA256(auth);
+	    //auth = hash.toSHA256(auth);
 	    System.out.println("auth2: " + auth);
 		return auth;
 	}
@@ -167,7 +178,6 @@ public class WalkerController {
 			method=RequestMethod.GET,
 			produces = "application/json;charset=utf-8")
 	public @ResponseBody int login(String walker_id, String wk_pw, HttpServletRequest request) {
-		System.out.println("walker_id: " + walker_id);
 		int result = walkerService.walkerLogin(walker_id,wk_pw);
 		if(result > 0) {
 			request.getSession().setAttribute("walker_id", walker_id);
@@ -197,9 +207,7 @@ public class WalkerController {
 			method = RequestMethod.GET,
 			produces = "application/text;charset=utf-8")
 	public String phoneCheck(String phoneNum) {
-		System.out.println("넘어온 핸드폰번호 ===>"+phoneNum);
 		String result = walkerService.phoneCheck(phoneNum);
-		System.out.println("핸드폰체크 결과값"+result);
 		return result;
 	}
 	

@@ -79,7 +79,10 @@
 			</li>
 			<li>
 				<label>이메일 주소</label>
-				<label><input name='wk_email' class="form-control" type="text" placeholder="이메일 주소 입력" required></label>
+				<label>
+					<input id="email" name='wk_email' class="form-control" type="text" placeholder="이메일 주소 입력" required>
+					<button id="email-btn" class="btn btn-primary auth-btn" type="button">중복 확인</button><span id="emailCheck"></span>
+				</label>
 			</li>
 			<li>
 				<label>자기소개</label>
@@ -137,6 +140,20 @@
 	</form>
 </div>
 <script type="text/javascript">
+	const emailCheck = document.getElementById("email");
+	const emailCheckBtn = document.getElementById("email-btn");
+	const emailCheckResult = document.getElementById("emailCheck");
+	emailCheckBtn.addEventListener('click', () => {
+		if(! check_email.test(emailCheck.value)) {
+	        alert(emailError);
+	    } else {
+	    	$.get('/aniwalk/walker/emailCheck.do?email=' + emailCheck.value, data => {
+				console.log(data);
+				emailCheckResult.innerText = data == 'y' ? '사용 가능한 이메일 입니다.' : '이미 사용중인 이메일 입니다.';
+			})
+	    }
+	});
+	
 	// profile 사진 
 	$('#wk_profile').on('change', function(e){
 		var cnt = 0;
@@ -292,6 +309,7 @@ $(document).ready(function(){
 								console.log('data: ' + data);
 								var auth_num = $('#auth_num').val(data);
 								console.log('auth_num: ' + auth_num);
+								$('.auth').val(data)
 							},
 							error:function(a,b,c){
 							}

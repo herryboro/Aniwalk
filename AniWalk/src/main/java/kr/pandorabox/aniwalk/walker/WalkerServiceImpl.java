@@ -17,6 +17,11 @@ public class WalkerServiceImpl implements WalkerService {
 	@Autowired
 	private FileUploadLogic uploadService;
 	
+	@Override
+	public int emailCheck(String email) {
+		return walkerDao.emailCheck(email);
+	}
+	
 	// 펫 프렌즈 자격증 정보 
 	@Override
 	public List<String> certificateImg(String wk_id) {

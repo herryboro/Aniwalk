@@ -55,7 +55,7 @@ const coord2Address = function (coord) {
 		}
 	};
 	message = '<div style="padding:5px;">현재위치</div>';
-	walkingAction(currentlat,currentlng,'current')
+	//walkingAction(currentlat,currentlng,'current')
 	geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
 }
 
@@ -69,16 +69,17 @@ const currentPosition = function () {
 			currentlat = position.coords.latitude; // 위도
 			currentlng = position.coords.longitude; // 경도
 
-			var locPosition = new kakao.maps.LatLng(currentlat, currentlng), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+			var locPosition = new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
 					message = '<div style="padding:5px;">현재위치</div>'; // 인포윈도우에 표시될 내용입니다
 			coord2Address(locPosition)
+			walkingAction(position.coords.latitude,position.coords.longitude,'current');
 		});
 
 	} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
 		var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
 				message = 'geolocation을 사용할수 없어요..'
 	}
-	walkingAction(currentlat,currentlng,'current');
+	
 }
 
 //지도 위에 표시되고 있는 마커를 모두 제거합니다

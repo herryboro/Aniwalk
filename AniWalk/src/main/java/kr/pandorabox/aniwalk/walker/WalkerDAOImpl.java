@@ -13,6 +13,11 @@ public class WalkerDAOImpl implements WalkerDAO{
 	@Autowired
 	SqlSession session;
 	
+	@Override
+	public int emailCheck(String email) {
+		return session.selectOne("kr.pandorabox.aniwalk.walker.emailCheck", email);
+	}
+	
 	// 오너 페이지 - 펫 프렌즈 리스트 
 	@Override
 	public List<WalkerDTO> getWalkerList(String searchWalker) {

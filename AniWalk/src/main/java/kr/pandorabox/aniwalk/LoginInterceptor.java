@@ -4,8 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+@Component
 public class LoginInterceptor extends HandlerInterceptorAdapter{
 	// preHandle() : 컨트롤러보다 먼저 수행되는 메서드
     @Override
