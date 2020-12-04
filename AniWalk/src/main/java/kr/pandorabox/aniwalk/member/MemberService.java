@@ -15,5 +15,7 @@ public interface MemberService {
 	public List<JoinMemberDogImgDTO> getDogInfo(String mem_nickname, String dog_id);
 	public void modifyDogInfo(JoinMemberDogImgDTO JoinMemberDogImgDTO);
 	public void delDog(String dog_id);
+	public String phoneCheck(String phoneNum);
+	public int nicknameCheck(String mem_nickname);
 	
 }

@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	<!-- 카카오 Developers 에서 로그인 API 가져옴 -->
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
 <body>
@@ -23,8 +24,8 @@
 </div>
 
 <script>
-	  // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    	Kakao.init('2521c7cc3e67ced68e19182536406c54');  //여기서 아까 발급받은 키 중 javascript키를 사용해준다.
+	  // 사용할 앱의 JavaScript 키.
+    	Kakao.init('2521c7cc3e67ced68e19182536406c54');  // 발급받은 키 중 javascript키를 사용해준다.
     
 		// SDK 초기화 여부를 판단합니다.
 		console.log(Kakao.isInitialized());  	  	  
@@ -35,7 +36,8 @@
 		      Kakao.API.request({
 		        url: '/v2/user/me',
 		        success: function(res) {
-		         // alert(JSON.stringify(res))   	         		          
+		         // alert(JSON.stringify(res))   	 
+		         // 사용하고픈 정보들을 변수에 담는다.        		          
 		          var kakao_id = res.id;
 		          var nickname = res.properties['nickname'];
 		          var profile_img = res.properties['profile_image'];
@@ -43,19 +45,13 @@
 		          var email = res.kakao_account['email'];
 		          var phone_number = res.kakao_account['phone_number'];         
 		          var gender = res.kakao_account['gender']
-		          var kakao_access_token = authObj.access_token;	       		          
-		          
-		          console.log(kakao_id);
-		          console.log(nickname);		   
-		          console.log(profile_img);
-		          console.log(connected_time);
-		          console.log(email);
-		          console.log(phone_number);
-		          console.log(gender);
-		          console.log(kakao_access_token);
-		         
-		          location.href="loginPro.do?kakao_id="+ kakao_id + "&nickname=" + nickname + "&profile_img=" + profile_img
-	           		+ "&connected_time=" + connected_time + "&email=" + email + "&phone_number=" + phone_number + "&gender="+ gender 
+		          var kakao_access_token = authObj.access_token;	       		          		          	      
+
+			      // loginPro 컨트롤러를 호출하면서 데이터들을 보내준다.    			
+		          location.href="loginPro.do?kakao_id="+ kakao_id + "&nickname=" + nickname 
+		          	+ "&profile_img=" + profile_img
+	           		+ "&connected_time=" + connected_time + "&email=" + email + "&phone_number=" 
+	           		+ phone_number + "&gender="+ gender 
 	           		+"&kakao_access_token=" + kakao_access_token;
 		          
 		        },

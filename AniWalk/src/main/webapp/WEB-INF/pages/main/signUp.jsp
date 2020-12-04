@@ -6,11 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<style>
+	.form-group ajax_nickname{
+		display: flex;
+		position: relative;
+		left: 100%;
+	}
+</style>
 </head>
-
 	<!-- jquery -->
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
 <body>
 <div class="container register" style="width: 100%; height: 100%;">
 	<div class="register-left">
@@ -25,11 +30,14 @@
 				<label class="col-sm-2">닉네임</label>
 				<div class="col-sm-6">
 					<label>																				<!-- get방식을 받으려면  ${param.xx}를 사용-->
-						<input class="form-control" type="text" placeholder="닉네임 입력" name="mem_nickname" maxlength="10" required>
+						<input class="form-control" id="nickname" type="text" placeholder="닉네임 입력" name="mem_nickname" maxlength="10" required>
+						<input id="duple" name="duple" type="hidden" value="0">
 						<input class="form-control" type="hidden" name="kakao_id" value="${param.kakao_id}">
 					</label>
 				</div>
+				<div class="form-group ajax_nickname" id="ajax_memnick_name"></div>
 			</div>
+			
 			<div class="form-group">
 				<label class="col-sm-2">핸드폰번호</label>
 				<div class="col-sm-10">
@@ -48,9 +56,6 @@
 					</div>
 				</div>
 			</div>
-
-
-
 
 			<div class="form-group">
 				<label class="col-sm-2">반려견 정보 등록</label>
@@ -127,6 +132,42 @@ $(document).ready(function(){
 
 });
 </script>
+<script>
+	$(document).ready(function() {
+		// 닉네임 입력창에 keyup을 하는 순간 => ①
+		$("#nickname").on("keyup", function(e) {
+			// 입력된 문자가 MemberController의 nicknameCheck 메소드를 거치며 DB에 해당 닉네임이 있는지 없는지 조회 => ②
+			$.ajax({
+				url: "/aniwalk/member/nicknameCheck.do",
+				type: "post",
+				data: {
+					"mem_nickname" : $("#nickname").val()
+				},
+				success: function(data) {
+					console.log(data);
+					// 입력창에 아무것도 입력하지 않았을때 => 빨간 표시로 "닉네임을 입력해주세요." 라는 문구
+					if($("#nickname").val() === null || $("#nickname").val() === "") {
+						$("#ajax_memnick_name").text("닉네임을 입력해주세요.");
+						$("#ajax_memnick_name").css("color", "red");
+					// 중복된 닉네임이 없을시 => data에 쿼리에서 리턴된 0이 담기며 파란 표시로 "사용 가능한 닉네임입니다." 라는 문구
+					} else if(data === 0) {
+						$("#ajax_memnick_name").text("사용 가능한 닉네임입니다.");
+						$("#ajax_memnick_name").css("color", "blue");
+						// 유효성 처리를 위해 임의로 만든 hidden 태그의 value값으로 0을 준다.
+						$("#duple").val(0);
+					// 사용중인 닉네임이 있을시 => data에 쿼리에서 리턴된 1이 담기며 빨간 표시로 "이미 사용중인 닉네임입니다." 라는 문구
+					} else if(data === 1) {
+						$("#ajax_memnick_name").text("이미 사용중인 닉네임입니다.");
+						$("#ajax_memnick_name").css("color", "red");
+						// 유효성 처리를 위해 임의로 만든 hidden 태그의 value값으로 1을 준다.
+						$("#duple").val(1);
+					}
+				},
+				error: function(e) {}
+			});
+		});
+	});
+</script>
 
 <script>
 	const clickImg = document.getElementById('clickImg');
@@ -157,23 +198,35 @@ $(document).ready(function(){
 
 <script>
 	//인증번호 관련
+	
+	// input태그의 type=button, class값 auth-btn 으로 이루어진 속성을 가져와 click 이벤트를 걸어준다
 	const authBtn = document.querySelector('.auth-btn');
 	authBtn.addEventListener('click',function(){
+		// 입력한 휴대폰 번호를 컨트롤러의 phoneCheck메서드로 보내 DB에 이미 가입되어 있는 번호가 있는지 조회
 		$.ajax({
-			url:"/aniwalk/walker/phoneCheck.do",
+			url:"/aniwalk/member/phoneCheck.do",
 			type:"get",
 			data:{
 				"phoneNum" : $('#phoneNum').val()
 			},
 			success:function(data){
+				// 조회된 휴대폰 번호가 없다면 정상 가입할 수 있는 기본 조건이 된다.
 				if(data === ''){
+					// 유효성을 처리하는 자바스크립트 함수
 					addPhoneAuthForm();
+					// 유효성을 만족하는 경우 addPhoneAuthForm() 리턴값이 true가 되어 아래 if문이 동작
 					if(addPhoneAuthForm()){
-						$('#phoneNum').attr("readonly", "readonly");
-						$('.auth-phone').empty();
+						$('#phoneNum').attr("readonly", "readonly");					
 						$('#auth-btn').val('인증번호 다시받기');
+						// 컨트롤러의 auth메소드에서 Random함수를 이용해 무작위로 6자리의 숫자를 생성
+						// 생성된 6자리 인증번호를 hash 코드를 생성하는 클래스에서 해쉬값으로 변경하여 리턴
+						// 웹의 console 창에서 hash값이 보이므로 인해 보안성이 강화된다.
+						
+						// ( 해당 코드들은 실제 핸드폰 인증 대신에 자바 랜덤 함수로 임의로 인증번호를 생성하여
+						//   휴대폰 인증 하도록 처리되었습니다. 회원가입을 진행하기 위해 입력해야 하는
+						//   실제 인증번호는 sts console 창에 sysout으로 찍힌 번호를 입력합니다. )
 						$.ajax({
-							url:"/aniwalk/walker/auth.do",
+							url:"/aniwalk/member/auth.do",
 							type:"post",
 							data:{
 								"wk_phone" : $('#phoneNum').val()
@@ -185,6 +238,8 @@ $(document).ready(function(){
 							}
 						})
 					}
+				// 이미 가입되어 있는 휴대전화 번호가 있을 경우 아래 phoneUnusable() 함수가 동작한다
+				// "이미 사용중인 번호입니다" 라는 메세지가 화면에 출력되게 하는 유효성 처리 함수
 				}else{
 					phoneUnusable();
 				}
@@ -199,7 +254,7 @@ $(document).ready(function(){
 	function auth(){
 		alert($('.auth').val());
 		$.ajax({
-			url:"/aniwalk/walker/authNum.do",
+			url:"/aniwalk/member/authNum.do",
 			type:"post",
 			data:{
 				"auth_num" : $('#auth_num').val(),

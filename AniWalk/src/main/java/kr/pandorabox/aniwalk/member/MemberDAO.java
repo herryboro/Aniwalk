@@ -22,5 +22,7 @@ public interface MemberDAO {
 	public void modifyDogInfo(JoinMemberDogImgDTO JoinMemberDogImgDTO);
 	public void modifyDogProfile(String dog_id, ArrayList<String> filelist);
 	public void delDog(String dog_id);
+	public String phoneCheck(String phoneCheck);
+	public int nicknameCheck(String mem_nickname);
 	
 }

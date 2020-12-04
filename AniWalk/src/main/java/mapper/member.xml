@@ -25,7 +25,15 @@
 		</foreach>
 		select * from dual
 	</insert>
- 
+	
+	<select id="nicknameCheck" parameterType="String" resultType="int">
+		select count(*) from ani_member where mem_nickname=#{mem_nickname}
+	</select>
+ 	
+ 	<select id="phoneCheck" parameterType="String" resultType="String">
+ 		select mem_phone from ani_member where mem_phone=#{mem_phone}
+ 	</select>
+	
 	<select id="myPage" parameterType="String" resultType="joinMemberDogImage">
 		select * from ani_dog d 
 		left outer join ani_member m

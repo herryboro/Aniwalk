@@ -37,6 +37,18 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.insert("kr.pandorabox.aniwalk.member.fileinsert", paramMap);
 	}
 	
+	// ajax phone 중복검사용
+	@Override
+	public String phoneCheck(String phoneCheck) {
+		return sqlSession.selectOne("kr.pandorabox.aniwalk.member.phoneCheck", phoneCheck);
+	}
+	
+	// 멤버 회원가입 닉네임 중복 ajax처리 
+	@Override
+	public int nicknameCheck(String mem_nickname) {
+		return sqlSession.selectOne("kr.pandorabox.aniwalk.member.nicknameCheck", mem_nickname);
+	}
+	
 	@Override
 	public List<JoinMemberDogImgDTO> myPage(String mem_nickname) {
 		return sqlSession.selectList("kr.pandorabox.aniwalk.member.myPage", mem_nickname);

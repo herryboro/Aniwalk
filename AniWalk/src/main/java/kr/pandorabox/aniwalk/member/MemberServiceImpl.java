@@ -41,6 +41,19 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 	
+	// ajax phone 중복검사용
+	@Override
+	public String phoneCheck(String phoneNum) {
+		String result = memberDAO.phoneCheck(phoneNum);
+		return result;
+	}
+	
+	// 멤버 회원가입 닉네임 중복 ajax처리
+	@Override
+	public int nicknameCheck(String mem_nickname) {
+		return memberDAO.nicknameCheck(mem_nickname);
+	}
+		
 	@Override
 	public List<JoinMemberDogImgDTO> myPage(String mem_nickname) {
 		return memberDAO.myPage(mem_nickname);

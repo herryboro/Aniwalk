@@ -43,6 +43,26 @@ applyCheck =  function(){
 
 }
 
+// user 회원가입 유효성
+function signUpCheck() {
+	let userNickname = signUpForm.mem_nickname.value;
+	let dogNameValue = signUpForm.dog_name.value;
+	let dogType = signUpForm.dog_type.value;
+	
+	if(check_minWord.test(userNickname)) {
+		alert(nameError);
+		return false;
+	}
+	if(signUpForm.duple.value === "1") {
+		alert("중복된 닉네임은 사용할 수 없습니다.");
+		return false;
+	}
+	if(dogNameValue === '' || check_spc.test(dogNameValue) || check_minWord.test(dogNameValue)) {
+		alert(nameError);
+		return false;
+	}
+}
+
 //핸드폰인증 유효성
 addPhoneAuthForm = function(){
     const authPart = document.querySelector('.auth-part');
@@ -56,7 +76,7 @@ addPhoneAuthForm = function(){
     `;
     const inputPhoneNum = document.getElementById('phoneNum');
   
-    let phoneNum = inputPhoneNum.value.split('');
+    let phoneNum = inputPhoneNum.value.split(''); 
     let minusError = 0;
     for(let i=0; i<phoneNum.length; i++){
         if(phoneNum[i] === '-'){
